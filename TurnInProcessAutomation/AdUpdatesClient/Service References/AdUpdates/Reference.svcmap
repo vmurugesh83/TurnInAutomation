@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="35328aaa-020d-437b-9b7c-aefada41f8cd" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://avservices.qa.bonton.com/AdChangeService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AdChange1.wsdl" MetadataType="Wsdl" ID="20aea383-e41c-4307-a70a-1396d4d4e547" SourceId="1" SourceUrl="http://avservices.qa.bonton.com/AdChangeService.svc?wsdl" />
+    <MetadataFile FileName="AdChangeService3.xsd" MetadataType="Schema" ID="f4f9e647-09e1-44b7-9b42-490ba2c6157b" SourceId="1" SourceUrl="http://avservices.qa.bonton.com/AdChangeService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AdChangeService31.xsd" MetadataType="Schema" ID="207b3d93-5071-4220-bbbd-6b8b7713d903" SourceId="1" SourceUrl="http://avservices.qa.bonton.com/AdChangeService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AdChangeService1.disco" MetadataType="Disco" ID="3f38d86c-f403-4122-b54b-9d3e667d561a" SourceId="1" SourceUrl="http://avservices.qa.bonton.com/AdChangeService.svc?disco" />
+    <MetadataFile FileName="AdChangeService32.xsd" MetadataType="Schema" ID="d52d0bfe-d0ef-4f2a-8d68-ec7b9d797d73" SourceId="1" SourceUrl="http://avservices.qa.bonton.com/AdChangeService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

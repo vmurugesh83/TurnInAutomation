@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="VB" Debug="true" Service="AdUpdates.AdChange" CodeBehind="AdChangeService.svc.vb" %>

@@ -1,0 +1,130 @@
+﻿<!--***********************************************************
+    Name: Home.cshtml
+    Angular Route: #/home
+    Flow: opening page
+    Description:  This page is the first page displayed for the app.
+************************************************************
+    -->
+
+<div class="row clearfix" style="margin-top:6px;">
+    <div class="col-sm-8 col-sm-offset-2 backgroundLtGray backgroundLtGrayBox">
+        <div class="row clearfix">
+            <div class="col-sm-6">
+                <form ng-submit="searchUPC()">
+                    <input ng-model="upc" ng-keypress="numberValidator(event)" ng-paste="upcPaste($event)" type="text" placeholder="Scan UPC" class="form-control" id="scanUPC" tabindex="1" bt-focus="true" /><input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" />
+                </form>
+            </div>
+
+            <div class="col-sm-6">
+                <form ng-submit="openOrder()">
+                    <input name="orderNo" ng-model="formInput.orderNo" ng-paste="orderNumberPaste($event)" ng-keypress="numberValidator(event)" type="text" tabindex="2" placeholder="Scan Order Number" class="form-control" id="scanReceipt" />
+                    <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" />
+                </form>
+            </div>
+                
+        </div>
+    </div>
+ </div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-3" style="padding-top: 20px;">
+                <span style="color:#AFAFAF;font-size: 1.6em;"><i class="fa fa-search"></i> Search for...</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 backgroundLtGray backgroundLtGrayBox">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <button class="btn btn-lg btn-block btn-default" tabindex="3" ng-click="navigate('itemSearch')">
+                            <img class="homeImgSize" src="assets/images/shoeIcon.png" /><br />
+                            <span class="homeDarkGray">ITEM</span>
+                        </button>
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-lg btn-block btn-default" tabindex="4" ng-click="navigate('orderSearch')">
+                            <img class="homeImgSize" src="assets/images/OrderIcon.png" /><br />
+                            <span class="homeDarkGray">ORDER</span>
+                        </button>
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-lg btn-block btn-default" tabindex="5" ng-click="navigate('customerSearch')">
+                            <i class="fa fa-user fa-3x" ng-class="'iconUnset'" style="color:#7F7F7F;"></i><br />
+                            <span class="homeDarkGray">CUSTOMER</span>
+                        </button>
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-lg btn-block btn-default" tabindex="6" ng-click="navigate('pickUpInStore')" ng-disabled="isCsr()">
+                            <img class="homeImgSize" src="assets/images/PickUp.png" /><br />
+                            <span class="homeDarkGray">PICK UP IN STORE</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>  
+</div>
+
+<div class="row clearfix margintop20">
+    <div class="col-sm-2 column">
+    </div>
+    <div class="col-sm-8 column">
+        <div class="row clearfix">
+            <div class="col-sm-12 column">
+                <h3 class="text-muted text-center">
+                    Announcements
+                </h3>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <!--scrollDefaultTable" style="overflow-y:hidden"-->
+            <div class="col-sm-12 column  scrollDefaultTable" id="AnnouncementWrapper" style="overflow-y: hidden" iscroll>
+                <table class="table table-condensed table-bordered">
+                    <thead class="backgroundLtGray">
+                        <tr>
+
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Announcement
+                            </th>
+
+                            <!--<th ng-show="hideColumns">
+                        Expiration
+                    </th>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="announcement in announcements track by $index" on-finish-render="refreshIScroll()">
+                            <td>
+                                {{announcement.date | date : 'M/d/yy h:mm a'}}
+                            </td>
+                            <td>
+                                {{announcement.detail}}
+                            </td>
+                            <td ng-show="hideColumns">
+                                {{announcement.key}}
+                            </td>
+                            <td ng-show="hideColumns">
+                                {{announcement.locations}}
+                            </td>
+                            <td ng-show="hideColumns">
+                                {{announcement.expDate}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!--div class="row clearfix">
+            <div class="col-sm-12 column">
+                <button ng-click="openAnnouncementDialog()" type="button" class="btn btn-lg btn-default center-block ">Manage Announcements</button>
+            </div>
+        </!--div-->
+    </div>
+    <div class="col-sm-2 column">
+    </div>
+</div>

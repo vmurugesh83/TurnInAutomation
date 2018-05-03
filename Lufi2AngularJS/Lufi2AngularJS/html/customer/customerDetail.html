@@ -1,0 +1,258 @@
+﻿<div class="panel panel-success">
+    <div class="row clearfix">
+        <div class="col-sm-6" style="padding-left: 25px;padding-top: 10px;">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span style="font-size: 1.6em;font-weight: 700;">{{selectedContact._FirstName}} {{selectedContact._MiddleName}} {{selectedContact._LastName}}</span>
+
+                    <button class="btn btn-info" ng-click="updateCustomer()" style="margin-left:10px">Update Customer</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 column">
+                    Email:{{selectedContact._EmailID}}
+                </div>
+            </div>
+            <div ng-show="selectedContact._DayPhone" class="row">
+                <div class="col-sm-12 column">
+                    Primary Phone : {{selectedContact._DayPhone | phoneFormat}}
+                </div>
+            </div>
+
+            <div ng-show="selectedContact._MobilePhone" class="row">
+                <div class="col-sm-12 column">
+                    Mobile Phone : {{selectedContact._MobilePhone | phoneFormat}}
+                </div>
+            </div>
+            <div ng-show="selectedContact._EveningPhone" class="row">
+                <div class="col-sm-12 column">
+                    Secondary Phone : {{selectedContact._EveningPhone | phoneFormat}}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 column">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Shipping Address
+                        </th>
+                        <th>
+                            Billing Address
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <customeraddress address="selectedCustomer.defaultAddresses.PersonInfoShipTo" addressclass="'customerDetailsHeaderAddress'"></customeraddress>
+                        </td>
+                        <td>
+                            <customeraddress address="selectedCustomer.defaultAddresses.PersonInfoBillTo" addressclass="'customerDetailsHeaderAddress'"></customeraddress>
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="panel panel-success">
+    <div class="row clearfix">
+        <div class="col-sm-12 column">
+            <tabset>
+                <tab active="true" heading="Addresses">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="CustomerDetailWrapper">
+                                <table class="table">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="contact in selectedCustomer.CustomerContactList.CustomerContact" on-finish-render="refreshIScroll('CustomerDetailWrapper')">
+                                            <td ng-click="contactClicked(contact)">
+                                                <table class="table">
+                                                    <thead>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="address in contact.CustomerAdditionalAddressList.CustomerAdditionalAddress">
+                                                            <td>
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <customeraddress address="address.PersonInfo" addressclass="'customerDetailsAddressTab'"></customeraddress>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12" style="margin: 5px 0;">
+                                                                                <div ng-show="address._IsDefaultBillTo === 'Y'" style="color:red;font-weight:700">Default Billing Address</div>
+                                                                                <div ng-show="address._IsDefaultShipTo === 'Y'" style="color:red;font-weight:700">Default Shipping Address</div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-3">
+                                                                                <button class="btn btn-default btn-block" ng-click="modifyAddress(contact._CustomerContactID , address._CustomerAdditionalAddressID)">Modify</button>
+                                                                            </div>
+                                                                            <div class="col-sm-3"></div>
+                                                                            <div class="col-sm-3">
+                                                                                <button class="btn btn-danger btn-block" ng-click="deleteAddress(contact._CustomerContactID, address._CustomerAdditionalAddressID)" ng-disabled="contact.CustomerAdditionalAddressList.CustomerAdditionalAddress.length === 1">Delete</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </tab>
+                <tab select="draftOrders()" heading="Draft Orders">
+                    <div class="row">
+                        <div class="col-md-12 column">
+                            <div id="CustomerDraftWrapper" style="overflow-y: hidden;max-height:260px;min-height:90px;position:relative;overflow-x: hidden;">
+                                <table ng-show="draftOrders.length > 0" ng-table="draftTableParams" class="table">
+                                    <tr ng-repeat="order in $data">
+                                        <td ng-click="openOrderDetail(order)" data-title="'Order Number'" sortable="'_OrderNo'">
+                                            <a href=""> {{order._OrderNo}} </a>
+                                        </td>
+                                        <td data-title="'Associate ID'" sortable="'_AssociateID'">
+                                            {{order._AssociateID}}
+                                        </td>
+                                        <td data-title="'Order Date'" sortable="'_OrderDate'">
+                                            {{order._OrderDate | date:'short'}}
+                                        </td>
+                                        <td data-title="'First Name'" sortable="'_CustomerFirstName'">
+                                            {{order._CustomerFirstName}}
+                                        </td>
+                                        <td data-title="'Last Name'" sortable="'_CustomerLastName'">
+                                            {{order._CustomerLastName}}
+                                        </td>
+                                        <td data-title="'Email Address'" sortable="'_CustomerEMailID'">
+                                            {{order._CustomerEMailID}}
+                                        </td>
+                                        <td data-title="'Phone'" sortable="'_CustomerPhoneNo'">
+                                            {{order._CustomerPhoneNo | phoneFormat}}
+                                        </td>
+                                        <td data-title="'Total'" sortable="'_GrandTotal'">
+                                            {{order._GrandTotal | currency}}
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <span ng-show="isDraftOrdersQueried && draftOrders.length < 1">No Draft Orders Found.</span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </tab>
+                <tab select="confirmedOrders()" heading="Confirmed Orders">
+
+                    <div class="row">
+                        <div class="col-md-12 column">
+                            <div id="CustomerConfirmedWrapper" style="overflow-y: hidden;max-height:260px;min-height:90px;position:relative;overflow-x: hidden;">
+                                <table ng-show="confirmOrders.length > 0" ng-table="confirmedTableParams" class="confirmedWidth table">
+                                    <tr ng-repeat="order in $data">
+                                        <td data-title="'Channel'" sortable="'_EnteredBy'">
+                                            {{order._EnteredBy}}
+                                        </td>
+                                        <td ng-click="openOrderDetail(order)" data-title="'Order Number'" sortable="'_OrderNo'">
+                                            <a href=""> {{order._OrderNo}} </a>
+                                        </td>
+                                        <td data-title="'Associate ID'" sortable="'_AssociateID'">
+                                            {{order._AssociateID}}
+                                        </td>
+                                        <td data-title="'Order Date'" sortable="'_OrderDate'">
+                                            {{order._OrderDate | date:'short'}}
+                                        </td>
+                                        <td data-title="'Status'" sortable="'_Status'">
+                                            {{order._Status}}
+                                        </td>
+                                        <td data-title="'First Name'" sortable="'_CustomerFirstName'">
+                                            {{order._CustomerFirstName}}
+                                        </td>
+                                        <td data-title="'Last Name'" sortable="'_CustomerLastName'">
+                                            {{order._CustomerLastName}}
+                                        </td>
+                                        <td data-title="'Email Address'" sortable="'_CustomerEMailID'">
+                                            {{order._CustomerEMailID}}
+                                        </td>
+                                        <td data-title="'Phone'" sortable="'_CustomerPhoneNo'">
+                                            {{order._CustomerPhoneNo | phoneFormat}}
+                                        </td>
+                                        <td data-title="'Total'" sortable="'_GrandTotal'">
+                                            {{order._GrandTotal | currency}}
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <span ng-show="isConfirmedOrdersQueried && confirmOrders.length < 1">No Confirmed Orders Found.</span>
+
+                            </div>
+                        </div>
+                    </div>
+                </tab>
+                <tab select="returnOrders()" heading="Return Orders">
+
+                    <div class="row">
+                        <div class="col-md-12 column">
+                            <div id="CustomerReturnsWrapper" style="overflow-y: hidden;max-height:260px;min-height:90px;position:relative;overflow-x: hidden;">
+                                <table ng-show="returnOrders.length > 0" ng-table="returnTableParams" class="table">
+                                    <tr ng-repeat="order in $data">
+                                        <td ng-click="openOrderDetail(order)" data-title="'Order Number'" sortable="'_OrderNo'">
+                                            <a href=""> {{order._OrderNo}} </a>
+                                        </td>
+                                        <td data-title="'Order Date'" sortable="'_OrderDate'">
+                                            {{order._OrderDate | date:'short'}}
+                                        </td>
+                                        <td data-title="'Status'" sortable="'_Status'">
+                                            {{order._Status}}
+                                        </td>
+                                        <td data-title="'First Name'" sortable="'_CustomerFirstName'">
+                                            {{order._CustomerFirstName}}
+                                        </td>
+                                        <td data-title="'Last Name'" sortable="'_CustomerLastName'">
+                                            {{order._CustomerLastName}}
+                                        </td>
+                                        <td data-title="'Address'" sortable="'PersonInfoBillTo._AddressLine1'">
+                                            {{order.PersonInfoBillTo._AddressLine1}}
+                                        </td>
+                                        <td data-title="'Total'" sortable="'_GrandTotal'">
+                                            {{order._GrandTotal | currency}}
+                                        </td>
+                                    </tr>
+                                </table>
+                                <span ng-show="isReturnOrdersQueried && returnOrders.length < 1">No Return Orders Found.</span>
+                            </div>
+                        </div>
+                    </div>
+                </tab>
+            </tabset>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <div class="row clearfix">
+            <div class="col-sm-5 column">
+            </div>
+            <div class="col-sm-3 column">
+                <button class="btn btn-default btn-block" type="button" ng-click="goToState('addModifyAddress', selectedContact._CustomerContactID) ">Add Address</button>
+            </div>
+            <div class="col-sm-3 column">
+                <button ng-click="addToCart()" class="btn btn-success btn-block">Add Customer to Cart</button>
+            </div>
+            <div class="col-sm-1 column">
+            </div>
+        </div>
+    </div>
+</div>

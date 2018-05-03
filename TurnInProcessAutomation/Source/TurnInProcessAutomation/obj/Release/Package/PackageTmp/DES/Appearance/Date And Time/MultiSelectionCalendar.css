@@ -1,0 +1,81 @@
+/*------------------------------------------------------------------
+Supports the features introduced by the MultiSelectionCalendar control
+that are not in the Calendar control. See Calendar.css for other styles.
+
+NOTE: By default, DES compresses this file to remove comments.
+You can also have it remove most whitespace or omit compression with this key
+in the <appSettings> section of web.config:
+<add key="DES_StyleSheetCompression" value="none|full" />
+-------------------------------------------------------------------*/
+
+/* Property: MessageCenterCssClass
+The enclosure for the Message Center.
+Consider borders and background attributes.
+*/
+.DES_MSCMessageCenter
+{
+   border-right: gray double;
+   border-top: gray double;
+   border-left: gray double;
+   border-bottom: gray double;
+}
+
+/* Property: MessageCenterTitleCssClass
+Title row of the Message Center. Used when the MessageCenterTitle property is assigned.
+*/
+.DES_MSCMessageCenterTitle
+{
+   color: blue;
+   font-size: 8pt;
+   font-family: Arial;
+}
+
+/* Property: MessageCenterBodyCssClass
+Body section of the Message Center */
+.DES_MSCMessageCenterBody
+{
+   padding-right: 5px;
+   padding-left: 5px;
+   padding-bottom: 5px;
+   padding-top: 5px;
+}
+
+/* The message center includes a hyperlink for the Clear command 
+which is shown when you use the {CLEAR} token in any of the textual properties.
+This gives that command its appearance. */
+.DES_MSCMessageCenterBody A:link
+{
+   color:blue;
+   text-decoration:underline;
+}
+.DES_MSCMessageCenterBody A:visited
+{
+   color:blue;
+   text-decoration:underline;
+}
+.DES_MSCMessageCenterBody A:hover
+{
+   color:blue;
+   text-decoration:underline;
+}
+
+/* Property: MessageCenterNextClickCssClass
+Enclosure for the Next Click description in the Message Center. */
+.DES_MSCMessageCenterNextClick
+{
+}
+
+
+/* Property: HiliteToSelectCssClass
+Hilites day cells when a range will be selected. */
+.DES_MSCHiliteToSelect
+{
+	background-color: #e6e6fa;	/* Lavender */
+}
+
+/* Property: HiliteToUnselectCssClass
+Hilites day cells when a range will be unselected. */
+.DES_MSCHiliteToUnselect
+{
+	background-color: #fff29a;
+}

@@ -1,0 +1,41 @@
+﻿<address ng-show="address._FirstName" style="word-wrap: break-word;" ng-class="addressclass">
+    <strong>{{address._FirstName}} {{address._MiddleName}} {{address._LastName}}</strong><br>
+    <div ng-show="address._AddressID">
+        {{address._AddressID}}
+    </div>
+    <div ng-show="address._AddressLine1.trim().length>0">
+        {{address._AddressLine1}}
+    </div>
+    <div ng-show="address._AddressLine2.trim().length>0">
+        {{address._AddressLine2}}
+    </div>
+    <div ng-show="address._AddressLine3.trim().length>0">
+        {{address._AddressLine3}}
+    </div>
+    <span class="text-capitalize">{{address._City}}</span>, {{address._State}} {{address._ZipCode}}<br />
+    <div ng-show="address._EMailID.length>0" title="Email"><strong>Email:</strong>{{address._EMailID}}</div>
+    <div ng-show="address._DayPhone.length>0" title="Phone"><strong>Phone:</strong>{{address._DayPhone | phoneFormat}}</div>
+</address>
+<!-- Customer Search different attributes-->
+<address ng-show="address.FirstName" style="word-wrap: break-word;" ng-class="addressclass">
+    <div ng-if="address.CustomerFirstName.trim().length>0">
+        <strong>Customer:{{address.CustomerFirstName}} {{address.CustomerLastName}}</strong>
+        <br>
+    </div>
+    <strong>{{address.FirstName}} {{address.LastName}}</strong><br>
+    <div ng-show="address.AddressId.trim().length>0">
+        {{address.AddressId}}
+    </div>
+    <div ng-show="address.AddressLine1.trim().length>0">
+        {{address.AddressLine1}}
+    </div>
+    <div ng-show="address.AddressLine2.trim().length>0">
+        {{address.AddressLine2}}
+    </div>
+    <div ng-show="address.AddressLine3.trim().length>0">
+        {{address.AddressLine3}}
+    </div>
+    <span class="text-capitalize">{{address.City}}</span>, {{address.State}} {{address.Zipcode}}<br />
+    <div ng-show="address.EmailAddress.length>0" title="Email"><strong>Email:</strong>{{address.EmailAddress}}</div>
+    <div ng-show="address.DayPhone.length>0" title="Phone"><strong>Phone:</strong>{{address.DayPhone | phoneFormat}}</div>
+</address> 

@@ -1,0 +1,112 @@
+/*------------------------------------------------------------------
+Supports the Context Menu control, including when it is used
+in various Date and Time controls. QuickDateMenu uses it also.
+
+NOTE: By default, DES compresses this file to remove comments.
+You can also have it remove most whitespace or omit compression with this key
+in the <appSettings> section of web.config:
+<add key="DES_StyleSheetCompression" value="none|full" />
+-------------------------------------------------------------------*/
+
+/* Property: CssClass
+Affects its overall appearance including border, main font, and background color.
+*/
+.DESMenu
+{
+   background-color: white;
+	color: black;
+   font-size: 8pt;
+   font-family: Arial;
+   border-right: #a9a9a9 1px solid; /* dark grey */
+   border-top: #a9a9a9 1px solid;
+   border-left: #a9a9a9 1px solid;
+   border-bottom: #a9a9a9 1px solid;
+	padding-top: 2px;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-bottom: 2px;
+}
+
+/* Property: CommandRowCssClass
+Appearance of the menu command row.
+Consider height, padding, font and background attributes.*/
+.DESMenuCommand
+{
+	height:20px;
+	padding-top:4px;
+}
+
+
+/* Property: CommandLabelCssClass
+Appearance of the menu command label*/
+.DESMenuLabel
+{
+	text-align: left;
+/* float and position here allow varying width labels to be complimented by
+varying width keystrokes. If these two elements overlap, consider changing
+the overall width of the control in its Width property. */	
+	float:left;
+	position:relative;
+	left:16px;
+}
+
+/* Property: CommandKeyCssClass
+Appearance of the menu command keystroke*/
+.DESMenuKey
+{
+	text-align: right;
+/* float and position here allow varying width labels to be complimented by
+varying width keystrokes. If these two elements overlap, consider changing
+the overall width of the control in its Width property. */	
+	float:right;
+	position:relative;
+	left:-16px;
+}
+
+/* Property: SeparatorCssClass
+Appearance of a separator. This gives the overall space given to the row.
+The .Line class below defines the actual line */
+.DESMenuSeparator
+{
+	height:6px;
+	font-size:2pt;
+}
+
+/* The actual separator line appearance. */
+.DESMenuSeparator .Line
+{
+	border-top: #a9a9a9 1px solid;
+	width: 100%;
+	height: 1px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+/* Property: CommandHintCssClass
+The appearance of hint rows.
+Consider background, font, and border attributes.
+*/
+.DESMenuHint
+{
+	color: #a52a2a;   /* brown */
+	background-color: #ffff99;
+	border-right: #d3d3d3 thin inset;
+	border-top: #d3d3d3 thin inset;
+	border-left: #d3d3d3 thin inset;
+	border-bottom: #d3d3d3 thin inset;
+	padding-top: 2px;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-bottom: 2px;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+/* Property: MouseOverCssClass
+Creates the mouse over effect on command rows.
+It merges with the existing style of the row.
+*/
+.DESMenuMouseOver
+{
+	background-color: #3366cc;
+}

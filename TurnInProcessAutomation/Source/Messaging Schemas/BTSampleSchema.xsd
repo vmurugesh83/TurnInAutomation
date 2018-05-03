@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    attributeFormDefault="qualified" id="SampleSchema" 
+    targetNamespace="http://schema.bonton.com/Schema/SampleSchema"
+    xmlns="http://schema.bonton.com/Schema/SampleSchema">
+  <xs:element name="MerchandiseSample">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="ApprovalFlag" type="xs:boolean" minOccurs="0" />
+        <xs:element name="ApprovalStatus" type="xs:string" minOccurs="0" />
+        <xs:element name="BoxNumber" type="xs:string" minOccurs="0" />
+        <xs:element name="BrandDesc" type="xs:string" minOccurs="0" />
+        <xs:element name="BrandId" type="xs:int" minOccurs="0" />
+        <xs:element name="BuyerDesc" type="xs:string" minOccurs="0" />
+        <xs:element name="BuyerGroupEmail" type="xs:string" minOccurs="0" />
+        <xs:element name="BuyerId" type="xs:int" minOccurs="0" />
+        <xs:element name="CheckInDate" type="xs:dateTime" minOccurs="0" />
+        <xs:element name="ClassDesc" type="xs:string" minOccurs="0" />
+        <xs:element name="ClassId" type="xs:int" minOccurs="0" />
+        <xs:element name="CMGDesc" type="xs:string" minOccurs="0" />
+        <xs:element name="CMGID" type="xs:int" minOccurs="0" />
+        <xs:element name="CMRNotes" type="xs:string" minOccurs="0" />
+        <xs:element name="ColorCode" type="xs:string" minOccurs="0" />
+        <xs:element name="ColorDesc" type="xs:string" minOccurs="0" />
+        <xs:element name="CRGDesc" type="xs:string" minOccurs="0" />
+        <xs:element name="CRGID" type="xs:int" minOccurs="0" />
+        <xs:element name="CurrentAdNumber" type="xs:int" minOccurs="0" maxOccurs="1" />
+        <xs:element name="CurrentPageNumber" type="xs:int" minOccurs="0" maxOccurs="1" />
+        <xs:element name="Disposition" type="xs:string" minOccurs="0" />
+        <xs:element name="DeptDesc" type="xs:string" minOccurs="0"/>
+        <xs:element name="DeptID" type="xs:int" minOccurs="0"/>
+        <xs:element name="ExpediteReturn" type="xs:boolean" minOccurs="0" />
+        <xs:element name="ExtensionDate" type="xs:dateTime" minOccurs="0" />
+        <xs:element name="ISN" type="xs:int" minOccurs="0" />
+        <xs:element name="ISNChanged" type="xs:boolean" minOccurs="0"/>
+        <xs:element name="ISNDescription" type="xs:string" minOccurs="0" />
+        <xs:element name="IsWebEligible" type="xs:boolean" minOccurs="0" />
+        <xs:element name="LabelID" type="xs:int" minOccurs="0" />
+        <xs:element name="LabelDesc" type="xs:string" minOccurs="0" />
+        <xs:element name="LastUsedDate" type="xs:string" minOccurs="0" />
+        <xs:element name="MerchID" type="xs:int" minOccurs="0" />
+        <xs:element name="PlaceholderAdNumber" type="xs:int" minOccurs="0" maxOccurs="1" />
+        <xs:element name="PlaceholderPageNumber" type="xs:int" minOccurs="0" maxOccurs="1" />
+        <xs:element name="Quantity" type="xs:int" minOccurs="0" />
+        <xs:element name="Requestor" type="xs:string" minOccurs="0" />
+        <xs:element name="ReturnAddress1" type="xs:string" minOccurs="0" />
+        <xs:element name="ReturnAddress2" type="xs:string" minOccurs="0" />
+        <xs:element name="ReturnCity" type="xs:string" minOccurs="0" />
+        <xs:element name="ReturnDate" type="xs:dateTime" minOccurs="0" />
+        <xs:element name="ReturnPhone" type="xs:string" minOccurs="0" />
+        <xs:element name="ReturnState" type="xs:string" minOccurs="0" />
+        <xs:element name="ReturnZip" type="xs:string" minOccurs="0" />
+        <xs:element name="SampleCareNotes" type="xs:string" minOccurs="0" />
+        <xs:element name="SampleDueInhouseDate" type="xs:dateTime" minOccurs="0" />
+        <xs:element name="SamplePrimaryLocation" type="xs:string" minOccurs="0" />
+        <xs:element name="SampleRequestedDate" type="xs:dateTime" minOccurs="0" />
+        <xs:element name="SampleRequestType" type="xs:string" minOccurs="0" />
+        <xs:element name="SampleRequestorName" type="xs:string" minOccurs="0" />
+        <xs:element name="SampleRequestorEmail" type="xs:string" minOccurs="0" />
+        <xs:element name="SampleSecondaryLocation" type="xs:string" minOccurs="0" />
+        <xs:element name="SampleSource" type="xs:string" minOccurs="0" />
+        <xs:element name="SampleStatus" type="xs:string" minOccurs="0" />
+        <xs:element name="SellingLocation" type="xs:boolean" minOccurs="0" />
+        <xs:element name="SequenceNumber" type="xs:int" minOccurs="0" />
+        <xs:element name="ShelfNumber" type="xs:string" minOccurs="0" />
+        <xs:element name="SizeCode" type="xs:int" minOccurs="0" />
+        <xs:element name="SizeDesc" type="xs:string" minOccurs="0" />
+        <xs:element name="SizeSuffix" type="xs:string" minOccurs="0" />
+        <xs:element name="TurninMerchandiseID" type="xs:int" minOccurs="0" />
+        <xs:element name="UPC" type="xs:string" minOccurs="0" />
+        <xs:element name="User" type="xs:string" minOccurs="0" />
+        <xs:element name="VendorEmail" type="xs:string" minOccurs="0" />
+        <xs:element name="VendorId" type="xs:int" minOccurs="0" />
+        <xs:element name="VendorInstructions" type="xs:string" minOccurs="0" />
+        <xs:element name="VendorName" type="xs:string" minOccurs="0" />
+        <xs:element name="VendorPhone" type="xs:string" minOccurs="0" />
+        <xs:element name="VendorPID" type="xs:string" minOccurs="0" />
+        <xs:element name="VendorStyleNumber" type="xs:string" minOccurs="0" />
+        <xs:element ref="SnapshotImage" minOccurs="0" maxOccurs="1"/>       
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="SnapshotImage">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="FileName" type="xs:string" minOccurs="0"/>
+        <xs:element name="ID" type="xs:int" minOccurs="0"/>
+        <xs:element name="PrimaryView" type="URL" minOccurs="0" />
+        <xs:element name="SecondaryView" type="URL" minOccurs="0" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="URL">
+    <xs:all>
+      <xs:element name="ActualURL" type="xs:string" minOccurs="0"/>
+      <xs:element name="MediumURL" type="xs:string" minOccurs="0"/>
+      <xs:element name="ThumbnailURL" type="xs:string" minOccurs="0"/>
+    </xs:all>
+  </xs:complexType>
+
+    <xs:element name="Samples">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="MerchandiseSample" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

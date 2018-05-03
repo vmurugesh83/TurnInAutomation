@@ -1,0 +1,46 @@
+﻿
+<div class="modal-header">
+    <h4 class="modal-title">Item Description</h4>
+</div>
+<div class="col-sm-12 column" ng-show="currentItem.productname != null">
+    <h5 ng-bind-html="currentItem.productname"></h5>
+    <h5 ng-show="currentItem.longpatterndesc">{{currentItem.longpatterndesc}}</h5>
+    <p>
+        <span ng-bind-html="currentItem.webcatprodshortdesc"></span>
+    </p>
+    <p>
+        <span ng-bind-html="currentItem.webcatprodlongdesc"></span>
+    </p>
+</div>
+<div class="col-sm-12 column" ng-hide="currentItem.productname != null">
+    <h5>{{currentItem.isnlongdesc}}</h5>
+    <h5 ng-show="currentItem.longpatterndesc">{{currentItem.longpatterndesc}}</h5>
+    <p>
+        <ul class="line-inline">
+            <li ng-show="showValidDesc(currentItem.genclasslongdesc)">{{currentItem.genclasslongdesc}}</li>
+            <li ng-show="showValidDesc(currentItem.colorlongdesc)">{{currentItem.colorlongdesc}}</li>
+            <li ng-show="showValidDesc(currentItem.desc1)">{{currentItem.desc1}}</li>
+            <li ng-show="showValidDesc(currentItem.brandlongdesc)">{{currentItem.brandlongdesc}}</li>
+            <li ng-show="showValidDesc(currentItem.proddtllongdesc)">{{currentItem.proddtllongdesc}}</li>
+            <li ng-show="showValidDesc(currentItem.gensclalongdesc)">{{currentItem.gensclalongdesc}}</li>
+            <li ng-show="showValidDesc(currentItem.fablongdesc)">{{currentItem.fablongdesc}}</li>
+            <li ng-show="showValidDesc(currentItem.fabdtldesc)">{{currentItem.fabdtldesc}}</li>
+            <li ng-show="showValidDesc(currentItem.proddetail2)">{{currentItem.proddetail2}}</li>
+            <li ng-show="showValidDesc(currentItem.proddetail3)">{{currentItem.proddetail3}}</li>
+        </ul>
+    </p>
+</div>
+<div class="modal-footer">
+    <div class="row ">
+        <div class="col-sm-6 column">
+        </div>
+        <div class="col-sm-3 column">
+            <button ng-disabled="currentItem._AvailableQty == '0'" ng-click="openOrderCart(currentItem)" ng-hide="isCart" class="btn btn-success btn-block" type="button">Add to Cart</button>
+        </div>
+        <div class="col-sm-3 column">
+            <button ng-click="close()" class="btn btn-warning btn-block" type="button">Close</button>
+        </div>
+    </div>
+</div>
+
+

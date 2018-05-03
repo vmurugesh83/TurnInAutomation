@@ -1,0 +1,74 @@
+/*------------------------------------------------------------------
+Supports the TextCounter control.
+
+NOTE: By default, DES compresses this file to remove comments.
+You can also have it remove most whitespace or omit compression with this key
+in the <appSettings> section of web.config:
+<add key="DES_StyleSheetCompression" value="none|full" />
+-------------------------------------------------------------------*/
+
+/* Property: CssClass
+When text count is between the Minimum and Maximum,
+and has not reached any milestones. */
+.DES_TCCNormal
+{
+}
+/* Property: NormalTokenCssClass
+For the {COUNT} and {NEARNESS} tokens when text count is between the Minimum and Maximum,
+and has not reached any milestones. */
+.DES_TCCNormalToken
+{
+}
+
+
+/* Property: Milestone1CssClass
+When the text count has reached milestone1. */
+.DES_TCCMilestone1
+{
+}
+
+/* Property: Milestone1TokenCssClass
+For the {COUNT} and {NEARNESS} tokens when the text count has reached milestone1. */
+.DES_TCCMilestone1Token
+{
+}
+
+/* Property: Milestone2CssClass
+When the text count has reached milestone2. */
+.DES_TCCMilestone2
+{
+}
+/* Property: Milestone2CssClass
+For the {COUNT} and {NEARNESS} tokens when the text count has reached milestone2. */
+.DES_TCCMilestone2Token
+{
+   color: Red;
+}
+
+/* Property: AboveMaximumCssClass
+When the text count has exceeded the Maximum. */
+.DES_TCCAboveMax
+{
+   color: Red;
+}
+
+/* Property: AboveMaximumCssClass
+For the {COUNT} and {NEARNESS} tokens when the text count has exceeded the Maximum. */
+.DES_TCCAboveMaxToken
+{
+   color: Red;
+}
+
+/* Property: BelowMinimumCssClass
+When the text count is below the minimum. */
+.DES_TCCBelowMin
+{
+   color: Red;
+}
+
+/* Property: BelowMinimumCssClass
+For the {COUNT} and {NEARNESS} tokens when the text count is below the minimum. */
+.DES_TCCBelowMinToken
+{
+   color: Red;
+}

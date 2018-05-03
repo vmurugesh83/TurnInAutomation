@@ -1,0 +1,42 @@
+/*------------------------------------------------------------------
+Supports the TextBox controls and MultiSegmentDataEntry control.
+
+NOTE: By default, DES compresses this file to remove comments.
+You can also have it remove most whitespace or omit compression with this key
+in the <appSettings> section of web.config:
+<add key="DES_StyleSheetCompression" value="none|full" />
+-------------------------------------------------------------------*/
+
+/* Property: MultiSegmentDataEntry.CssClass
+Overall appearance. Not predefined but suggested. By default, it gives a border to make it
+look like a textbox. */
+.DESTBMultiSegContainer
+{
+   border-left: #d3d3d3 thin inset; /* lightgrey */
+   border-top: #d3d3d3 thin inset;
+   border-right: #d3d3d3 thin inset;
+   border-bottom: #d3d3d3 thin inset;
+   padding-left: 2px;
+   padding-top: 2px;
+   padding-right: 2px;
+   padding-bottom: 2px;
+}
+
+/* Property: not predefined but suggested
+for each textbox segment in the MultiSegmentDataEntry.
+Reduces the visual impact of the individual TextBox borders
+so the control looks like a single textbox. */
+.DESTBMultiSegTextBox
+{
+   border-left: #f5f5f5 thin solid;  /* whitesmoke */
+   border-top: #f5f5f5 thin solid;
+   border-right: #f5f5f5 thin solid;
+   border-bottom: #f5f5f5 thin solid;
+}
+
+/* Property: not predefined.
+For each dropdownlist segment in the MultiSegmentDataEntry.
+*/
+.DESTBMultiSegDropDownList
+{
+}

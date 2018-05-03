@@ -1,0 +1,38 @@
+﻿<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Bill To Addresses</h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-sm-12">
+                
+                <button class="btn btn-primary shippingSelectButton pull-right" ng-click="openEditAddress()">Add New Billing Address</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="margintop20" id="ItemDetailWrapper" style="overflow-y: hidden;max-height:350px;min-height:90px;position:relative">
+                    <table class="table table-striped">
+                        <thead></thead>
+                        <tbody>
+                            <tr ng-repeat="address in billingAddresses">
+                                <td ng-click="saveAddress(address)">
+                                    <div>
+                                        {{address.PersonInfo | oneLineAddress:'long':'name':'id'}} <span class="errorSpan" ng-show="!address.btIsValid">Invalid Address. Please Edit</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn btn-default shippingSelectButton pull-right" style="margin-right:20px" ng-click="openEditAddress(address)">Edit</button>
+
+                                </td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

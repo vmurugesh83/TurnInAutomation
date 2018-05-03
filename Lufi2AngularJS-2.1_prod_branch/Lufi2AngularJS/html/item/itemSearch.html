@@ -1,0 +1,93 @@
+﻿<!-- ***********************************************************
+    Name: itemSearch.cshtml
+    Angular Route: #/itemSearch
+    Flow: Item Search /Locate / Add to Cart
+    Description:  This page is the first search page.  This form accept UPC, WebID, ImageID, Brand Name, Vendor Style, Description, and
+            Item Structure -- Corporate Major Group (CMG), Corporate Family Group (CFG), and Family of Business (FOB)
+************************************************************ -->
+
+<!-- Complete Search form inputs -->
+<form ng-submit="search()">
+    <div class="row margin-top-5">
+        <div class="col col-sm-3 col-sm-offset-2">
+            UPC
+        </div>
+        <div class="col col-sm-6">
+            <input ng-model="queryParameters.upc" type="text" class="form-control" id="upcField" ng-keypress="numberValidator(event)" bt-focus="true" />
+        </div>
+    </div>
+    <div class="row margin-top-5">
+        <div class="col col-sm-3 col-sm-offset-2">
+            WebID/ImageID
+        </div>
+        <div class="col col-sm-6">
+            <input ng-keypress="numberValidator(event)" maxlength="9" ng-model="queryParameters.webIdImageId" class="form-control" id="idField" />
+        </div>
+    </div>
+    <div class="row margin-top-5">
+        <div class="col col-sm-3 col-sm-offset-2">
+            Brand Name
+        </div>
+        <div class="col col-sm-6 ">
+            <input id="brandNameField" type="text" ng-model="queryParameters.brandName" typeahead="brand.name for brand in brandsData | filter:$viewValue | limitTo:8" class="form-control">
+        </div>
+    </div>
+    <div class="row margin-top-5">
+        <div class="col col-sm-3 col-sm-offset-2">
+            Vendor Style
+        </div>
+        <div class="col col-sm-6">
+            <input ng-model="queryParameters.vendorStyle" type="text" class="form-control" id="vendorStypeField" />
+        </div>
+    </div>
+    <div class="row margin-top-5">
+        <div class="col col-sm-3 col-sm-offset-2">
+            Description
+        </div>
+        <div class="col col-sm-6">
+            <input ng-model="queryParameters.description" type="text" class="form-control" id="descriptionField" />
+        </div>
+    </div>
+    <div class="row margin-top-5">
+        <div class="col col-sm-3 col-sm-offset-2">
+            Merchandise Category (CMG)
+        </div>
+        <div class="col col-sm-6">
+            <select ng-click="cmgClick()" ng-model=" queryParameters.selectedCMG" class="form-control" id="cmgField" ng-options="item.originalValue as item.value for item in cmgData ">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <!--
+    <div class="row margin-top-5">
+        <div class="col col-sm-2 col-sm-offset-2">
+            CFG
+        </div>
+        <div class="col col-sm-6">
+            <select ng-click="cfgClick()" ng-model="queryParameters.selectedCFG" class="form-control" id="cfgField" ng-options="item.originalValue as item.value for item in cfgData | structurefilter">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+        -->
+    <div class="row margin-top-5">
+        <div class="col col-sm-3 col-sm-offset-2">
+            Department/Area (FOB)
+        </div>
+        <div class="col col-sm-6">
+            <select ng-model="queryParameters.selectedFOB" class="form-control" id="fobField" ng-options="item.originalValue as item.value for item in fobData | structurefilter ">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <hr />
+    <button ng-show ="false" type="submit" class="btn btn-primary  btn-block">Submit</button>
+</form>
+    <div class="row">
+        <div class="col col-sm-3 col-sm-offset-5 ">
+            <button ng-click="cleanSearchParameters()" type="reset" class="btn btn-default btn-block">Clear</button>
+        </div>
+        <div class="col col-sm-3">
+            <button ng-click="search()" ng-disabled="!isSearchable()" class="btn btn-primary  btn-block">Submit</button>
+        </div>
+    </div>

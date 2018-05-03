@@ -1,0 +1,191 @@
+/*------------------------------------------------------------------
+Supports the Calendar control including inside of a popup.
+Supports the toggle button to popup the Calendar.
+
+NOTE: By default, DES compresses this file to remove comments.
+You can also have it remove most whitespace or omit compression with this key
+in the <appSettings> section of web.config:
+<add key="DES_StyleSheetCompression" value="none|full" />
+-------------------------------------------------------------------*/
+
+/* ---- CLASSES FOR DAY CELLS -----------------------------------------
+Formatted day cells that use nested tables need to carry the styles 
+into their inner TR tags. 
+Cell borders are partially handled here. You specify just the color.
+The control determines when to create the border with your color.
+DES merges these styles together by taking a Basic style
+and adding selected, today, and SpecialDate as needed.
+*/
+
+/* Property: SelectableCssClass
+Default appearance for selectable Special Dates.
+Basic style within the current month. 
+*/
+.DES_SDSelectable1, .DES_SDSelectable1 TR
+{
+   background-color:  #ffe4e1;  /* mistyrose */
+   cursor: pointer;  /* W3C approved hand. */
+   cursor: hand;   /* IE specific hand */
+  /* only specify color of borders. Lines are added programmatically */
+   border-right-color: #808080;	/* gray */
+   border-top-color: #808080;
+   border-left-color: #808080;
+   border-bottom-color: #808080;
+}
+
+/* Property: SelectableOtherMonthCssClass
+Default appearance for selectable Special Dates.
+Basic style the other month Day Cells. 
+*/
+.DES_SDSelectableOM1, .DES_SDSelectableOM1 TR
+{
+   background-color: #b0e0e6;  /* powderblue */
+   cursor: pointer;
+   cursor: hand;
+/* only specify color of borders. Lines are added programmatically */
+   border-right-color: #C0C0C0;	/* silver */
+   border-top-color: #C0C0C0;
+   border-left-color: #C0C0C0;
+   border-bottom-color: #C0C0C0;
+}
+
+/* Generally assigned to individual Special Date items in its CssClass property.
+Provides a per-item appearance that differs from the default appearance (DES_SDSelectable1) */
+.DES_SDSelectable2, .DES_SDSelectable2 TR
+{
+   background-color: #eee8aa; /* palegoldenrod */
+   cursor: pointer;
+   cursor: hand; 
+/* only specify color of borders. Lines are added programmatically */
+   border-right-color: #808080; /* gray */
+   border-top-color: #808080;
+   border-left-color: #808080;
+   border-bottom-color: #808080;
+}
+
+/* Generally assigned to individual Special Date items in its OtherMonthCssClass property.
+Provides a per-item appearance that differs from the default appearance (DES_SDSelectableOM1) */
+.DES_SDSelectableOM2, .DES_SDSelectableOM2 TR
+{
+   background-color: #dcdcdc;  /* gainsboro */
+   cursor: pointer;
+   cursor: hand;
+/* only specify color of borders. Lines are added programmatically */
+   border-right-color: #C0C0C0;	/* silver */
+   border-top-color: #C0C0C0;
+   border-left-color: #C0C0C0;
+   border-bottom-color: #C0C0C0;
+}
+
+/* Property: UnselectableCssClass
+Default appearance for unselectable Special Dates.
+Basic style within the current month. 
+*/
+.DES_SDUnselectable1, .DES_SDUnselectable1 TR
+{
+   color: gray;
+   background-color: #ffe4e1;  /* mistyrose */
+  /* only specify color of borders. Lines are added programmatically */
+   border-right-color: #808080;	/* gray */
+   border-top-color: #808080;
+   border-left-color: #808080;
+   border-bottom-color: #808080;
+}
+
+/* Property: UnselectableOtherMonthCssClass
+Default appearance for unselectable Special Dates.
+Basic style the other month Day Cells. 
+*/
+.DES_SDUnselectableOM1, .DES_SDUnselectableOM1 TR
+{
+   color: gray;
+   background-color: #b0e0e6;  /* powderblue */
+  /* only specify color of borders. Lines are added programmatically */
+   border-right-color: #C0C0C0;	/* silver */
+   border-top-color: #C0C0C0;
+   border-left-color: #C0C0C0;
+   border-bottom-color: #C0C0C0;
+}
+
+/* Generally assigned to individual Special Date items in its CssClass property.
+Provides a per-item appearance that differs from the default appearance (DES_SDUnselectable1) */
+.DES_SDUnselectable2, .DES_SDUnselectable2 TR
+{
+   color: gray;
+   background-color: #eee8aa; /* palegoldenrod */
+  /* only specify color of borders. Lines are added programmatically */
+   border-right-color: #808080;	/* gray */
+   border-top-color: #808080;
+   border-left-color: #808080;
+   border-bottom-color: #808080;
+}
+
+/* Generally assigned to individual Special Date items in its OtherMonthCssClass property.
+Provides a per-item appearance that differs from the default appearance (DES_SDUnselectableOM1) */
+.DES_SDUnselectableOM2, .DES_SDUnselectableOM2 TR
+{
+   color: gray;
+   background-color: #dcdcdc;  /* gainsboro */
+  /* only specify color of borders. Lines are added programmatically */
+   border-right-color: #C0C0C0;	/* silver */
+   border-top-color: #C0C0C0;
+   border-left-color: #C0C0C0;
+   border-bottom-color: #C0C0C0;
+}
+
+/* ---- SPECIAL DATE TIMEROWS ---- 
+These are used when you set Calendar.DayCellFormatter.Format = Table
+and Calendar.ExpandedDateFormatter.Format = Table.
+They define the overall appearance of each row shown in the table of time rows.
+*/
+.DES_SDTimeRow, .DES_SDTimeRow TD
+{
+}
+.DES_SDTimeRowAlt, .DES_SDTimeRowAlt TD
+{
+}
+
+/* ---- ExpandedDateFormatter styles ---- */
+/* Property: Calendar.ExpandedDateFormatter.CssClass
+Overall appearance of the popup area.
+Define the font, background, and borders.
+*/
+.DES_EDFMain
+{
+   font-size: 8pt;
+   font-family: Arial;
+   color: black;
+   background-color: #f0f8ff; /* aliceblue */
+   border-right: black 1px solid;
+   border-top: black 1px solid;
+   border-left: black 1px solid;
+   border-bottom: black 1px solid;
+   padding-right: 5px;
+   padding-left: 5px;
+   padding-bottom: 5px;
+   padding-top: 5px;
+   max-height:400px;  /* adjust this size as needed */
+   overflow:auto; /* creates scrollbars when the height limit is exceeded */
+}
+.DES_EDFMain TR
+{
+   font-size: 8pt;
+   font-family: Arial;
+   color: black;
+}
+
+/* Property: Calendar.ExpandedDateFormatter.TitleCssClass
+Appearance of the title bar row. */
+.DES_EDFTitle
+{
+   background-color: white;
+   border-top: black 1px solid;
+   border-bottom: black 1px solid;
+}
+
+.DES_EDFTitle TR
+{
+   font-size: 8pt;
+   font-family: Arial;
+   color: black;
+}

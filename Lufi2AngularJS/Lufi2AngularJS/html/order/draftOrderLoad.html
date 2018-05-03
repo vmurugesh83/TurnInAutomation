@@ -1,0 +1,41 @@
+﻿<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Loading Order</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row" >
+            <div class="col-sm-12" ng-show="!isLoaded">
+                <img src="../../assets/images/ajax-loader.gif" />
+                Adding items from order 
+            </div>
+            <div class="col-sm-12 ngFadeIn" ng-show="isLoaded">
+                All items loaded.
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12" ng-show="errorMessages.length">
+                <div class="margintop20" id="ErrorWrapper" style="overflow-y: hidden;max-height:350px;min-height:90px;position:relative">
+                    <table class="table table-striped">
+                        <thead><tr><th>Error Messages:</th></tr></thead>
+                        <tbody>
+                            <tr ng-repeat="error in errorMessages track by $index">
+                                <td>
+                                    <div>
+                                        {{$index + 1}}.) <span ng-bind-html="error"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-sm-4 col-sm-push-8">
+                <button class="btn btn-primary btn-block" ng-disabled="!isLoaded" ng-click="close()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>

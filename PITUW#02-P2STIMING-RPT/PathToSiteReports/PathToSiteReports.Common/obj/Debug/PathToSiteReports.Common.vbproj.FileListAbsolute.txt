@@ -1,0 +1,16 @@
+C:\Users\034846\Documents\Visual Studio 2013\Projects\PathToSiteReports\PathToSiteReports.Common\bin\Debug\PathToSiteReports.Common.dll
+C:\Users\034846\Documents\Visual Studio 2013\Projects\PathToSiteReports\PathToSiteReports.Common\bin\Debug\PathToSiteReports.Common.pdb
+C:\Users\034846\Documents\Visual Studio 2013\Projects\PathToSiteReports\PathToSiteReports.Common\bin\Debug\PathToSiteReports.Common.xml
+C:\Users\034846\Documents\Visual Studio 2013\Projects\PathToSiteReports\PathToSiteReports.Common\obj\Debug\PathToSiteReports.Common.Resources.resources
+C:\Users\034846\Documents\Visual Studio 2013\Projects\PathToSiteReports\PathToSiteReports.Common\obj\Debug\PathToSiteReports.Common.vbproj.GenerateResource.Cache
+C:\Users\034846\Documents\Visual Studio 2013\Projects\PathToSiteReports\PathToSiteReports.Common\obj\Debug\PathToSiteReports.Common.dll
+C:\Users\034846\Documents\Visual Studio 2013\Projects\PathToSiteReports\PathToSiteReports.Common\obj\Debug\PathToSiteReports.Common.xml
+C:\Users\034846\Documents\Visual Studio 2013\Projects\PathToSiteReports\PathToSiteReports.Common\obj\Debug\PathToSiteReports.Common.pdb
+C:\Repository\2013\ADVMarketing.Jobs\PITUW#02-P2STIMING-RPT\PathToSiteReports\PathToSiteReports.Common\bin\Debug\PathToSiteReports.Common.dll
+C:\Repository\2013\ADVMarketing.Jobs\PITUW#02-P2STIMING-RPT\PathToSiteReports\PathToSiteReports.Common\bin\Debug\PathToSiteReports.Common.pdb
+C:\Repository\2013\ADVMarketing.Jobs\PITUW#02-P2STIMING-RPT\PathToSiteReports\PathToSiteReports.Common\bin\Debug\PathToSiteReports.Common.xml
+C:\Repository\2013\ADVMarketing.Jobs\PITUW#02-P2STIMING-RPT\PathToSiteReports\PathToSiteReports.Common\obj\Debug\PathToSiteReports.Common.Resources.resources
+C:\Repository\2013\ADVMarketing.Jobs\PITUW#02-P2STIMING-RPT\PathToSiteReports\PathToSiteReports.Common\obj\Debug\PathToSiteReports.Common.vbproj.GenerateResource.Cache
+C:\Repository\2013\ADVMarketing.Jobs\PITUW#02-P2STIMING-RPT\PathToSiteReports\PathToSiteReports.Common\obj\Debug\PathToSiteReports.Common.dll
+C:\Repository\2013\ADVMarketing.Jobs\PITUW#02-P2STIMING-RPT\PathToSiteReports\PathToSiteReports.Common\obj\Debug\PathToSiteReports.Common.xml
+C:\Repository\2013\ADVMarketing.Jobs\PITUW#02-P2STIMING-RPT\PathToSiteReports\PathToSiteReports.Common\obj\Debug\PathToSiteReports.Common.pdb

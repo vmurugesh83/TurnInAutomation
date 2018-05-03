@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="CatalogEstimating.AuthorizedUser">
+    <Position X="4.75" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <FileName>AuthorizedUser.cs</FileName>
+      <HashCode>AAAAAAAABCAAgAAQAACAACAAAAAAACAAAACAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Members>
+      <Field Name="_impersonationContext" Hidden="true" />
+      <Field Name="_rights" Hidden="true" />
+      <Field Name="_userToken" Hidden="true" />
+      <Method Name="~AuthorizedUser" Hidden="true" />
+      <Method Name="CheckRights" Hidden="true" />
+      <Method Name="CloseHandle" Hidden="true" />
+    </Members>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CatalogEstimating.ExcelWriter">
+    <Position X="4.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <FileName>ExcelWriter.cs</FileName>
+      <HashCode>AAAAAAAAACAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CatalogEstimating.UserControlPanel">
+    <Position X="1" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>UserControlPanel.cs</FileName>
+      <HashCode>AAAAAAAAACAAAABAAACABAACAAAAAAAACAAAAAAAgAA=</HashCode>
+    </TypeIdentifier>
+    <Members>
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+    </Members>
+  </Class>
+  <Class Name="CatalogEstimating.UserControlTab">
+    <Position X="1" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>UserControlTab.cs</FileName>
+      <HashCode>EAAAIAAIACAAAAAAAACQBAACAAAAQAAACAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ChildControls" />
+    </ShowAsCollectionAssociation>
+    <Members>
+      <Field Name="_childControls" Hidden="true" />
+      <Field Name="_tabControl" Hidden="true" />
+      <Method Name="ChildControl_Dirty" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Method Name="OnCreateControl" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="CatalogEstimating.UserControlPanel" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.125" Y="2.476" />
+        <Point X="2.125" Y="3" />
+      </Path>
+    </InheritanceLine>
+    <AssociationLine Name="ChildControls" Type="CatalogEstimating.UserControlPanel">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.098" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+  </Class>
+  <Class Name="CatalogEstimating.ChildForm">
+    <Position X="1" Y="4.75" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>ChildForm.cs</FileName>
+      <HashCode>AAAAAIAAACACACAAAACIBAACBAQgAAEAAAAIBABAABQ=</HashCode>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MainForm" />
+    </ShowAsAssociation>
+    <Members>
+      <Field Name="_menuFile" Hidden="true" />
+      <Field Name="_menuHelp" Hidden="true" />
+      <Field Name="_menuStrip" Hidden="true" />
+      <Field Name="_menuWindow" Hidden="true" />
+      <Field Name="_parentForm" Hidden="true" />
+      <Field Name="_readOnly" Hidden="true" />
+      <Field Name="_statusStrip" Hidden="true" />
+      <Field Name="_toolStrip" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+    </Members>
+  </Class>
+  <Class Name="CatalogEstimating.MainForm">
+    <Position X="4.75" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <FileName>MainForm.cs</FileName>
+      <HashCode>gBEBEEAgEG0iQAAAAILIBAwCBgIgAIAEABBAhCBAkJQ=</HashCode>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AuthorizedUser" />
+      <Property Name="WorkingDatabase" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Databases" />
+    </ShowAsCollectionAssociation>
+    <Members>
+      <Field Name="_childForms" Hidden="true" />
+      <Field Name="_databases" Hidden="true" />
+      <Field Name="_menuEdit" Hidden="true" />
+      <Field Name="_menuEditAddtoPolybag" Hidden="true" />
+      <Field Name="_menuEditCopy" Hidden="true" />
+      <Field Name="_menuEditSync" Hidden="true" />
+      <Field Name="_menuEditSyncEstimates" Hidden="true" />
+      <Field Name="_menuEditSyncRates" Hidden="true" />
+      <Field Name="_menuFile" Hidden="true" />
+      <Field Name="_menuFileDelete" Hidden="true" />
+      <Field Name="_menuFileExit" Hidden="true" />
+      <Method Name="_menuFileExit_Click" Hidden="true" />
+      <Field Name="_menuFileNew" Hidden="true" />
+      <Field Name="_menuFileNewEstimate" Hidden="true" />
+      <Method Name="_menuFileNewEstimate_Click" Hidden="true" />
+      <Field Name="_menuFileNewPolybag" Hidden="true" />
+      <Method Name="_menuFileNewPolybag_Click" Hidden="true" />
+      <Field Name="_menuFileOpen" Hidden="true" />
+      <Field Name="_menuFileOpenReadOnly" Hidden="true" />
+      <Field Name="_menuFileSep0" Hidden="true" />
+      <Field Name="_menuFileSep1" Hidden="true" />
+      <Field Name="_menuFileUpload" Hidden="true" />
+      <Field Name="_menuFileView" Hidden="true" />
+      <Field Name="_menuHelp" Hidden="true" />
+      <Field Name="_menuHelpAbout" Hidden="true" />
+      <Method Name="_menuHelpAbout_Click" Hidden="true" />
+      <Field Name="_menuStrip" Hidden="true" />
+      <Field Name="_menuWindow" Hidden="true" />
+      <Field Name="_statusStrip" Hidden="true" />
+      <Field Name="_toolStrip" Hidden="true" />
+      <Field Name="_user" Hidden="true" />
+      <Field Name="_workingDatabase" Hidden="true" />
+      <Method Name="ChildForm_Closed" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="GetWindowList" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Method Name="menuWindowItem_Click" Hidden="true" />
+      <Method Name="OnClosed" Hidden="true" />
+      <Method Name="RefreshWindowList" Hidden="true" />
+      <Method Name="SetProp" Hidden="true" />
+    </Members>
+    <AssociationLine Name="AuthorizedUser" Type="CatalogEstimating.AuthorizedUser" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="5.033" />
+        <Point X="7.125" Y="5.033" />
+        <Point X="7.125" Y="2.87" />
+        <Point X="6.75" Y="2.87" />
+      </Path>
+    </AssociationLine>
+  </Class>
+  <Class Name="CatalogEstimating.EstimateForm">
+    <Position X="0.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>EstimateForm.cs</FileName>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Members>
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+    </Members>
+  </Class>
+  <Class Name="CatalogEstimating.PolybagEditForm">
+    <Position X="2.25" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <FileName>PolybagEditForm.cs</FileName>
+      <HashCode>AAAAAAAAACAAAABAAACAAAACAAAAAAAAAAAAAAAQAAA=</HashCode>
+    </TypeIdentifier>
+    <Members>
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+    </Members>
+  </Class>
+  <Class Name="CatalogEstimating.CESDatabase">
+    <Position X="4.75" Y="7" Width="2" />
+    <TypeIdentifier>
+      <FileName>CESDatabase.cs</FileName>
+      <HashCode>AAACgAAAAEAAAAAEAABAAAAACAgAAAAAAAAQAAAQABA=</HashCode>
+    </TypeIdentifier>
+    <Members>
+      <Field Name="_db" Hidden="true" />
+      <Field Name="_friendlyName" Hidden="true" />
+      <Field Name="_id" Hidden="true" />
+      <Field Name="_isLive" Hidden="true" />
+      <Field Name="_isWorking" Hidden="true" />
+    </Members>
+  </Class>
+  <Enum Name="CatalogEstimating.UserRights">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Enumerations.cs</FileName>
+      <HashCode>AAAAAAAAABAAAAAAAIAAAQAAAAAAAEAAAAAIAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+</ClassDiagram>

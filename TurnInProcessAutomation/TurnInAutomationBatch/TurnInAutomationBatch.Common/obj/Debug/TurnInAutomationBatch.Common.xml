@@ -1,0 +1,50 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+TurnInAutomationBatch.Common
+</name>
+</assembly>
+<members>
+<member name="M:TurnInAutomationBatch.Common.LogHelper.WriteToLogFile(TurnInAutomationBatch.BLL.Enumerations.LogEntryType,System.String)">
+	<summary>
+ Checks whether log file for today is present or not.  If its present, then it appends the text to the log file.
+ If not, it creates the log file and writes the text.
+ </summary>
+	<param name="logText"></param>
+	<remarks></remarks>
+</member><member name="M:TurnInAutomationBatch.Common.LogHelper.WriteToConsole(System.String)">
+	<summary>
+ Writes the log messages to the console only if it is in debug mode
+ </summary>
+	<param name="logText"></param>
+	<remarks></remarks>
+</member><member name="M:TurnInAutomationBatch.Common.LogHelper.DeleteOldLogs(System.Int32)">
+	<summary>
+ Deletes the log files that were modified before the threshold date
+ </summary>
+	<param name="intNumberOfDays"></param>
+	<remarks></remarks>
+</member><member name="P:TurnInAutomationBatch.Common.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:TurnInAutomationBatch.Common.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:TurnInAutomationBatch.Common.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:TurnInAutomationBatch.Common.ImportExcel.GetColumnName(System.String)">
+	<summary>
+ Given a cell name, parses the specified cell to get the column name.
+ </summary>
+	<param name="cellReferece"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

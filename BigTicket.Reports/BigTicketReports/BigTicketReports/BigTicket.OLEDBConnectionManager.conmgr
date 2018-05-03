@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="BigTicket OLEDBConnectionManager"
+  DTS:DTSID="{4FFC8A2E-915F-4E1B-943F-D9761E66BBA0}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=PROD;User ID=tcmvenk;Provider=IBMDADB2.DB2COPY1;Persist Security Info=True;Location=gateway.db.prod.bonton.com:6100;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA13DQloiP/023QmVTQ65pIgAAAAACAAAAAAADZgAAwAAAABAAAABCn3Sk8X6b5tIgM9z5KdrfAAAAAASAAACgAAAAEAAAAEQDgBQL/Dm+hc/MuZGz++B4AAAAltToP4UuzqVv/mBVKGEqH69G8+PiAA+L91MTLGTEgbbb6bQJSWB4LkMpNJtVwYwdYt9aWyE9Sn4D7zrQXPtoefkhx4vXKklZ4TJhE6J9qIayK4khEzu+9fkGNxM28KWl5+yGe1mL0rd0FQf7jnxVIkRdpDduf7l8FAAAALby27UjWZ5vW1VoV/v/Lf8uLNGH</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

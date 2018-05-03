@@ -1,0 +1,1229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6D8A5558-3A56-4416-B12E-1FB8ED90BBBF}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TurnInProcessAutomation</RootNamespace>
+    <AssemblyName>TurnInProcessAutomation</AssemblyName>
+    <OptionStrict>On</OptionStrict>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>Bin\</OutputPath>
+    <DocumentationFile>TurnInProcessAutomation.xml</DocumentationFile>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PublishDatabases>false</PublishDatabases>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>TurnInProcessAutomation.xml</DocumentationFile>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\TurnInProcessAutomation.3rdPartyDlls\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="IBM.Data.DB2, Version=9.0.0.2, Culture=neutral, PublicKeyToken=7c307b91aa13d208, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TurnInProcessAutomation.3rdPartyDlls\IBM.Data.DB2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TurnInProcessAutomation.3rdPartyDlls\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="PeterBlum.DES">
+      <HintPath>..\TurnInProcessAutomation.3rdPartyDlls\PeterBlum.DES.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Telerik.Web.Design, Version=2015.3.930.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TurnInProcessAutomation.3rdPartyDlls\Telerik.Web.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI, Version=2011.3.1305.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TurnInProcessAutomation.3rdPartyDlls\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI.Skins, Version=2011.3.1305.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TurnInProcessAutomation.3rdPartyDlls\Telerik.Web.UI.Skins.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2016.3.1021.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TurnInProcessAutomation.3rdPartyDlls\Telerik.Windows.Documents.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet, Version=2016.3.1021.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TurnInProcessAutomation.3rdPartyDlls\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml, Version=2016.3.1021.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TurnInProcessAutomation.3rdPartyDlls\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip, Version=2016.3.1021.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TurnInProcessAutomation.3rdPartyDlls\Telerik.Windows.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="TSC.Timeout">
+      <HintPath>..\TurnInProcessAutomation.3rdPartyDlls\TSC.Timeout.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\BontonStandard\PanelBar\ArrowDown.gif" />
+    <Content Include="App_Themes\BontonStandard\PanelBar\ArrowDownBlue.gif" />
+    <Content Include="App_Themes\BontonStandard\PanelBar\ArrowDownWhite.gif" />
+    <Content Include="App_Themes\BontonStandard\PanelBar\ArrowRight.gif" />
+    <Content Include="App_Themes\BontonStandard\PanelBar\ArrowRightBlue.gif" />
+    <Content Include="App_Themes\BontonStandard\PanelBar\ArrowRightWhite.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\2splitbarBgVertical.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\close.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\Default.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\dock.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\IconHover.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\new_close.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\slideHeader.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\slideZoneBg.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\slideZoneBgBottom.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\slideZoneBgRight.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\slideZoneBgTop.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\slideZoneDockedTab.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\slideZoneDockedTabHorizontal.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\splitbarBg.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\splitbarBgVertical copy.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\splitbarBgVertical.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\splitbar_collapse_h.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\splitbar_collapse_v.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\splitbar_expand_h.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\splitbar_expand_v.gif" />
+    <Content Include="App_Themes\BontonStandard\Splitter\undock.gif" />
+    <Content Include="App_Themes\EditorContentArea.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="Images\Alert.gif" />
+    <Content Include="Images\Bonton_Stores_Logo.jpg" />
+    <Content Include="Images\Camera.gif" />
+    <Content Include="Images\noimagefound_690x460.jpg" />
+    <Content Include="Images\Submit.gif" />
+    <Content Include="Images\Warning.gif" />
+    <Content Include="Images\Warning.png" />
+    <Content Include="InvalidAccess.aspx" />
+    <Content Include="Javascript\dymo.label.framework.js" />
+    <Content Include="Javascript\PrintersAndMultipleLabelsPrinting.js" />
+    <None Include="App_Data\RadSpell\en-US.tdf" />
+    <Content Include="Configuration\TEST\AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\TEST\DBSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\TEST\ClientSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\QA\AppSettings.config" />
+    <Content Include="Configuration\QA\ClientSettings.config" />
+    <Content Include="Configuration\QA\DBSettings.config" />
+    <Content Include="Configuration\PROD\DBSettings.config" />
+    <Content Include="Configuration\PROD\AppSettings.config" />
+    <Content Include="Configuration\PROD\ClientSettings.config" />
+    <Content Include="PopupPage.Master" />
+    <None Include="My Project\PublishProfiles\Profile1.pubxml" />
+    <None Include="Service References\WebCatImport\WebCatImport.disco" />
+    <None Include="Service References\WebCatImport\configuration91.svcinfo" />
+    <None Include="Service References\WebCatImport\configuration.svcinfo" />
+    <None Include="Service References\WebCatImport\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+    <Content Include="ExportUPCsByCategory.aspx" />
+    <Content Include="Javascript\RadButtonTemplate.js" />
+    <Content Include="Webforms\DCTransfer\TransferFromDC.aspx" />
+    <Content Include="Webforms\eCommerce\AdPageSetup.aspx" />
+    <Content Include="Webforms\eCommerce\CopyPrioritization.aspx" />
+    <Content Include="Webforms\eCommerce\PreTurnInSetUp.aspx" />
+    <Content Include="Webforms\eCommerce\eCommTurnInMeet.aspx" />
+    <Content Include="Webforms\eCommerce\SamplePicker.aspx" />
+    <Content Include="Webforms\eCommerce\WebCategories.aspx" />
+    <Content Include="Webforms\eCommerce\eCommFabOrig.aspx" />
+    <Content Include="Webforms\GXS\GXSCatalogue.aspx" />
+    <Content Include="Webforms\GXS\GXSCopyView.aspx" />
+    <Content Include="WebUserControls\eCommerce\eCommFabOrigCtrl.ascx" />
+    <Content Include="WebUserControls\GXS\CopyPrioritizationSearchCtrl.ascx" />
+    <Content Include="WebUserControls\GXS\CopyPrioritizationCtrl.ascx" />
+    <Content Include="WebUserControls\GXS\Images\nextSlide.gif" />
+    <Content Include="WebUserControls\GXS\Images\previousSlide.gif" />
+    <Content Include="Webforms\LabelTestCode\WebForm1.aspx" />
+    <Content Include="Webforms\TurnInQuery\TurnInQuery.aspx" />
+    <Content Include="WebUserControls\DCTransfer\DCTransferSearchControl.ascx" />
+    <Content Include="WebUserControls\GXS\GXSCatalogueExtendedPropertiesCtrl.ascx" />
+    <Content Include="WebUserControls\GXS\GXSCatalogueStyleSKUPropertiesCtrl.ascx" />
+    <Content Include="WebUserControls\GXS\GXSCatalogViews.xml" />
+    <Content Include="WebUserControls\GXS\GXSCopyViewCtrl.ascx" />
+    <Content Include="WebUserControls\GXS\GXSCopyViewSearchCtrl.ascx" />
+    <Content Include="WebUserControls\GXS\GXSImageViewerCtrl.ascx" />
+    <Content Include="WebUserControls\GXS\Images\blue.png" />
+    <Content Include="WebUserControls\GXS\Images\blue225.png" />
+    <Content Include="WebUserControls\GXS\Images\green.png" />
+    <Content Include="WebUserControls\GXS\Images\green225.png" />
+    <Content Include="WebUserControls\GXS\Images\orange.png" />
+    <Content Include="WebUserControls\GXS\Images\orange225.png" />
+    <Content Include="WebUserControls\GXS\Images\red.png" />
+    <Content Include="WebUserControls\GXS\Images\red225.png" />
+    <Content Include="WebUserControls\GXS\Images\yellow.png" />
+    <Content Include="WebUserControls\GXS\Images\yellow225.png" />
+    <Content Include="WebUserControls\ModalMoveBatch.ascx" />
+    <Content Include="WebUserControls\eCommerce\eCommTurnInMeetCtrl.ascx" />
+    <Content Include="WebUserControls\Maintenance\AdPageSetupCtrl.ascx" />
+    <Content Include="WebUserControls\ModalOrderISN.ascx" />
+    <Content Include="WebUserControls\ModalOrderColors.ascx" />
+    <Content Include="WebUserControls\ModalSnapshotImage.ascx" />
+    <Content Include="WebUserControls\TurnInQuery\TurnInQueryCtrl.ascx" />
+    <None Include="PrintLabels\UPC.label" />
+    <None Include="Service References\SecurityService\SecurityService.disco" />
+    <None Include="Service References\SecurityService\configuration91.svcinfo" />
+    <None Include="Service References\SecurityService\configuration.svcinfo" />
+    <None Include="Service References\SecurityService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+    <Content Include="Images\minus-button.png" />
+    <Content Include="Images\minus-small.png" />
+    <Content Include="Images\minus.png" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Webforms\LabelTestCode\testhandler.ashx" />
+    <None Include="Service References\WebCatImport\WebCatImport.wsdl" />
+    <None Include="Service References\WebCatImport\WebCatImport.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebCatImport\WebCatImport1.wsdl" />
+    <None Include="Service References\WebCatImport\WebCatImport1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebCatImport\WebCatImport2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebCatImport\WebCatImport3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Webforms\eCommerce\CreateSSRSReport.ashx" />
+    <None Include="Web References\com.gxs.catalogue\ItemWebService.wsdl" />
+    <Content Include="Web References\com.gxs.catalogue\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Agents\WorkhorseMerchandise.vb" />
+    <Compile Include="Objects\GXSCopyViewHelper.vb" />
+    <Compile Include="Objects\GXSServiceHelper.vb" />
+    <Compile Include="PopupPage.Master.designer.vb">
+      <DependentUpon>PopupPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PopupPage.Master.vb">
+      <DependentUpon>PopupPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DES\DES_SupportTelerikWebUI.vb" />
+    <Compile Include="InvalidAccess.aspx.designer.vb">
+      <DependentUpon>InvalidAccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InvalidAccess.aspx.vb">
+      <DependentUpon>InvalidAccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LogOff.aspx.designer.vb">
+      <DependentUpon>LogOff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LogOff.aspx.vb">
+      <DependentUpon>LogOff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Objects\Message.vb" />
+    <Compile Include="Objects\ReportServerCredentials.vb" />
+    <Compile Include="Objects\WebHelper.vb" />
+    <Compile Include="Service References\SecurityService\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WebCatImport\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="SessionExpired.aspx.designer.vb">
+      <DependentUpon>SessionExpired.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SessionExpired.aspx.vb">
+      <DependentUpon>SessionExpired.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ServerControls\BonTonValidationSummary.vb" />
+    <Compile Include="Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.vb">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Objects\ApplicationWrapper.vb" />
+    <Compile Include="Objects\MessageBox.vb" />
+    <Compile Include="Objects\ToolBarButtons.vb" />
+    <Compile Include="Objects\SessionWrapper.vb" />
+    <Compile Include="ContentPage.Master.designer.vb">
+      <DependentUpon>ContentPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ContentPage.Master.vb">
+      <DependentUpon>ContentPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Objects\PageBase.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.vb">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.vb">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExportUPCsByCategory.aspx.designer.vb">
+      <DependentUpon>ExportUPCsByCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExportUPCsByCategory.aspx.vb">
+      <DependentUpon>ExportUPCsByCategory.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Web References\com.gxs.catalogue\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\DCTransfer\TransferFromDC.aspx.designer.vb">
+      <DependentUpon>TransferFromDC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\DCTransfer\TransferFromDC.aspx.vb">
+      <DependentUpon>TransferFromDC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Webforms\eCommerce\CopyPrioritization.aspx.designer.vb">
+      <DependentUpon>CopyPrioritization.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\eCommerce\CopyPrioritization.aspx.vb">
+      <DependentUpon>CopyPrioritization.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Webforms\eCommerce\CreateSSRSReport.ashx.vb">
+      <DependentUpon>CreateSSRSReport.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\eCommerce\eCommTurnInMeet.aspx.designer.vb">
+      <DependentUpon>eCommTurnInMeet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\eCommerce\eCommTurnInMeet.aspx.vb">
+      <DependentUpon>eCommTurnInMeet.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Webforms\eCommerce\FabOrig.vb" />
+    <Compile Include="Webforms\eCommerce\SamplePicker.aspx.designer.vb">
+      <DependentUpon>SamplePicker.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\eCommerce\SamplePicker.aspx.vb">
+      <DependentUpon>SamplePicker.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Webforms\eCommerce\WebCategories.aspx.designer.vb">
+      <DependentUpon>WebCategories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\eCommerce\WebCategories.aspx.vb">
+      <DependentUpon>WebCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Webforms\eCommerce\eCommFabOrig.aspx.designer.vb">
+      <DependentUpon>eCommFabOrig.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\eCommerce\eCommFabOrig.aspx.vb">
+      <DependentUpon>eCommFabOrig.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Webforms\GXS\GXSCatalogue.aspx.designer.vb">
+      <DependentUpon>GXSCatalogue.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\GXS\GXSCatalogue.aspx.vb">
+      <DependentUpon>GXSCatalogue.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Webforms\GXS\GXSCopyView.aspx.designer.vb">
+      <DependentUpon>GXSCopyView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\GXS\GXSCopyView.aspx.vb">
+      <DependentUpon>GXSCopyView.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Webforms\LabelTestCode\testhandler.ashx.vb">
+      <DependentUpon>testhandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\eCommerce\AdPageSetup.aspx.designer.vb">
+      <DependentUpon>AdPageSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\eCommerce\AdPageSetup.aspx.vb">
+      <DependentUpon>AdPageSetup.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Webforms\eCommerce\eCommercePrioritization.aspx.designer.vb">
+      <DependentUpon>eCommercePrioritization.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\eCommerce\eCommercePrioritization.aspx.vb">
+      <DependentUpon>eCommercePrioritization.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Webforms\eCommerce\PreTurnInSetUp.aspx.designer.vb">
+      <DependentUpon>PreTurnInSetUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\eCommerce\PreTurnInSetUp.aspx.vb">
+      <DependentUpon>PreTurnInSetUp.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Webforms\Maintenance\AdPageSetup.aspx.designer.vb">
+      <DependentUpon>AdPageSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\Maintenance\AdPageSetup.aspx.vb">
+      <DependentUpon>AdPageSetup.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Webforms\Print\PrintPreTurnInSetUpCreate.aspx.designer.vb">
+      <DependentUpon>PrintPreTurnInSetUpCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\Print\PrintPreTurnInSetUpCreate.aspx.vb">
+      <DependentUpon>PrintPreTurnInSetUpCreate.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Webforms\Print\PrintPreTurnInSetUpMaint.aspx.designer.vb">
+      <DependentUpon>PrintPreTurnInSetUpMaint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\Print\PrintPreTurnInSetUpMaint.aspx.vb">
+      <DependentUpon>PrintPreTurnInSetUpMaint.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Webforms\Print\PrintTurnInMaint.aspx.designer.vb">
+      <DependentUpon>PrintTurnInMaint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\Print\PrintTurnInMaint.aspx.vb">
+      <DependentUpon>PrintTurnInMaint.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Webforms\LabelTestCode\WebForm1.aspx.designer.vb">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\LabelTestCode\WebForm1.aspx.vb">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Webforms\TurnInQuery\TurnInQuery.aspx.designer.vb">
+      <DependentUpon>TurnInQuery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webforms\TurnInQuery\TurnInQuery.aspx.vb">
+      <DependentUpon>TurnInQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\ContentTreeView.ascx.designer.vb">
+      <DependentUpon>ContentTreeView.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\ContentTreeView.ascx.vb">
+      <DependentUpon>ContentTreeView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\DCTransfer\DCTransferSearchControl.ascx.designer.vb">
+      <DependentUpon>DCTransferSearchControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\DCTransfer\DCTransferSearchControl.ascx.vb">
+      <DependentUpon>DCTransferSearchControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\eCommerce\eCommFabOrigCtrl.ascx.designer.vb">
+      <DependentUpon>eCommFabOrigCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\eCommerce\eCommFabOrigCtrl.ascx.vb">
+      <DependentUpon>eCommFabOrigCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\GXS\GXSCatalogueExtendedPropertiesCtrl.ascx.designer.vb">
+      <DependentUpon>GXSCatalogueExtendedPropertiesCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\GXS\GXSCatalogueExtendedPropertiesCtrl.ascx.vb">
+      <DependentUpon>GXSCatalogueExtendedPropertiesCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\GXS\GXSCatalogueStyleSKUPropertiesCtrl.ascx.designer.vb">
+      <DependentUpon>GXSCatalogueStyleSKUPropertiesCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\GXS\GXSCatalogueStyleSKUPropertiesCtrl.ascx.vb">
+      <DependentUpon>GXSCatalogueStyleSKUPropertiesCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\GXS\CopyPrioritizationCtrl.ascx.designer.vb">
+      <DependentUpon>CopyPrioritizationCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\GXS\CopyPrioritizationCtrl.ascx.vb">
+      <DependentUpon>CopyPrioritizationCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\GXS\GXSCopyViewCtrl.ascx.designer.vb">
+      <DependentUpon>GXSCopyViewCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\GXS\GXSCopyViewCtrl.ascx.vb">
+      <DependentUpon>GXSCopyViewCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\GXS\CopyPrioritizationSearchCtrl.ascx.designer.vb">
+      <DependentUpon>CopyPrioritizationSearchCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\GXS\CopyPrioritizationSearchCtrl.ascx.vb">
+      <DependentUpon>CopyPrioritizationSearchCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\GXS\GXSCopyViewSearchCtrl.ascx.designer.vb">
+      <DependentUpon>GXSCopyViewSearchCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\GXS\GXSCopyViewSearchCtrl.ascx.vb">
+      <DependentUpon>GXSCopyViewSearchCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\GXS\GXSImageViewerCtrl.ascx.designer.vb">
+      <DependentUpon>GXSImageViewerCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\GXS\GXSImageViewerCtrl.ascx.vb">
+      <DependentUpon>GXSImageViewerCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\ModalMoveBatch.ascx.designer.vb">
+      <DependentUpon>ModalMoveBatch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\ModalMoveBatch.ascx.vb">
+      <DependentUpon>ModalMoveBatch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\eCommerce\eCommercePrioritizationCtrl.ascx.designer.vb">
+      <DependentUpon>eCommercePrioritizationCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\eCommerce\eCommercePrioritizationCtrl.ascx.vb">
+      <DependentUpon>eCommercePrioritizationCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\eCommerce\eCommPreTurnInSetUpCtrl.ascx.designer.vb">
+      <DependentUpon>eCommPreTurnInSetUpCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\eCommerce\eCommPreTurnInSetUpCtrl.ascx.vb">
+      <DependentUpon>eCommPreTurnInSetUpCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\eCommerce\eCommTurnInMeetCtrl.ascx.designer.vb">
+      <DependentUpon>eCommTurnInMeetCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\eCommerce\eCommTurnInMeetCtrl.ascx.vb">
+      <DependentUpon>eCommTurnInMeetCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\MainMenu.ascx.designer.vb">
+      <DependentUpon>MainMenu.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\MainMenu.ascx.vb">
+      <DependentUpon>MainMenu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\Maintenance\AdPageSetupCtrl.ascx.designer.vb">
+      <DependentUpon>AdPageSetupCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\Maintenance\AdPageSetupCtrl.ascx.vb">
+      <DependentUpon>AdPageSetupCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\Maintenance\AdPageSetUpSearchCtrl.ascx.designer.vb">
+      <DependentUpon>AdPageSetUpSearchCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\Maintenance\AdPageSetUpSearchCtrl.ascx.vb">
+      <DependentUpon>AdPageSetUpSearchCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\MessagePanel.ascx.designer.vb">
+      <DependentUpon>MessagePanel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\MessagePanel.ascx.vb">
+      <DependentUpon>MessagePanel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\ModalOrderISN.ascx.designer.vb">
+      <DependentUpon>ModalOrderISN.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\ModalOrderISN.ascx.vb">
+      <DependentUpon>ModalOrderISN.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\ModalOrderColors.ascx.designer.vb">
+      <DependentUpon>ModalOrderColors.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\ModalOrderColors.ascx.vb">
+      <DependentUpon>ModalOrderColors.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\ModalPopupControl.ascx.designer.vb">
+      <DependentUpon>ModalPopupControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\ModalPopupControl.ascx.vb">
+      <DependentUpon>ModalPopupControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\ModalSnapshotImage.ascx.designer.vb">
+      <DependentUpon>ModalSnapshotImage.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\ModalSnapshotImage.ascx.vb">
+      <DependentUpon>ModalSnapshotImage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\Print\PrintPreTurnInCtrl.ascx.designer.vb">
+      <DependentUpon>PrintPreTurnInCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\Print\PrintPreTurnInCtrl.ascx.vb">
+      <DependentUpon>PrintPreTurnInCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\Print\PrintTurnInMaintctrl.ascx.designer.vb">
+      <DependentUpon>PrintTurnInMaintctrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\Print\PrintTurnInMaintctrl.ascx.vb">
+      <DependentUpon>PrintTurnInMaintctrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\SidebarTreeView.ascx.designer.vb">
+      <DependentUpon>SidebarTreeView.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\SidebarTreeView.ascx.vb">
+      <DependentUpon>SidebarTreeView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\TimeoutWarning.ascx.designer.vb">
+      <DependentUpon>TimeoutWarning.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\TimeoutWarning.ascx.vb">
+      <DependentUpon>TimeoutWarning.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\ToolTipValidator.ascx.designer.vb">
+      <DependentUpon>ToolTipValidator.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\ToolTipValidator.ascx.vb">
+      <DependentUpon>ToolTipValidator.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUserControls\TurnInQuery\TurnInQueryCtrl.ascx.designer.vb">
+      <DependentUpon>TurnInQueryCtrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUserControls\TurnInQuery\TurnInQueryCtrl.ascx.vb">
+      <DependentUpon>TurnInQueryCtrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\licenses.licx" />
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\ValidationMessages.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Themes\BontonAlternate\Main.css" />
+    <Content Include="App_Themes\BontonAlternate\Telerik.css" />
+    <Content Include="App_Themes\BontonStandard\Global.skin" />
+    <Content Include="App_Themes\BontonAlternate\Global.skin" />
+    <Content Include="App_Themes\BontonStandard\Images\Add.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Add_d.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\BottomLine.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Cal.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Cal_d.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Cancel.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Cancel_d.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Checked.png" />
+    <Content Include="App_Themes\BontonStandard\Images\Checked_d.png" />
+    <Content Include="App_Themes\BontonStandard\Images\Collapsed_red.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Copy.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Copy_d.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Delete.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Delete_d.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Edit1.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Edit1_d.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Edit2.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Edit2_d.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Edit3.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Edit3_d.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Expanded_red.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Indeterminate.png" />
+    <Content Include="App_Themes\BontonStandard\Images\Indeterminate_d.png" />
+    <Content Include="App_Themes\BontonStandard\Images\KIDtls.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\KIDtls_d.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\List.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\List_d.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\modalBtnBg.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\PagingNext.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\PagingPrev.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Print.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Print_d.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\PSel.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Reset.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Reset_d.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Retrieve1.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Retrieve1_d.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Retrieve2.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Retrieve2_d.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Save.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\Save_d.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\selectedBg.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="App_Themes\BontonStandard\Images\ui-bg_flat_55_fbec88_40x100.png" />
+    <Content Include="App_Themes\BontonStandard\Images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="App_Themes\BontonStandard\Images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="App_Themes\BontonStandard\Images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="App_Themes\BontonStandard\Images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="App_Themes\BontonStandard\Images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="App_Themes\BontonStandard\Images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="App_Themes\BontonStandard\Images\ui-icons_217bc0_256x240.png" />
+    <Content Include="App_Themes\BontonStandard\Images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="App_Themes\BontonStandard\Images\ui-icons_469bdd_256x240.png" />
+    <Content Include="App_Themes\BontonStandard\Images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="App_Themes\BontonStandard\Images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="App_Themes\BontonStandard\Images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="App_Themes\BontonStandard\Images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="App_Themes\BontonStandard\Images\Unchecked.png" />
+    <Content Include="App_Themes\BontonStandard\Images\Unchecked_d.png" />
+    <Content Include="App_Themes\BontonStandard\Images\View1.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\View1_d.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\View2.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\View2_d.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\View3.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\View3_d.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\View4.gif" />
+    <Content Include="App_Themes\BontonStandard\Images\View4_d.gif" />
+    <Content Include="DES\GetFiles.aspx" />
+    <Content Include="DES\Security Config Files\custom.config" />
+    <Content Include="DES\Security Config Files\IP.config" />
+    <Content Include="DES\Security Config Files\master.config" />
+    <Content Include="DES\Security Config Files\msaccess.config" />
+    <Content Include="DES\Security Config Files\mssqlserver.config" />
+    <Content Include="DES\Security Config Files\mysql.config" />
+    <Content Include="DES\Security Config Files\oracle.config" />
+    <Content Include="DES\custom.DES.config" />
+    <Content Include="DES\DES.config" />
+    <Content Include="DES\Telerik_Web_UI.config" />
+    <None Include="DES\Licenses\More Validators\DES MV Development.lic" />
+    <None Include="DES\Licenses\Professional Validation\DES PV Development.lic" />
+    <None Include="Contract\Messages.xsd" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\DataSources\RTS.BLL.SecurityService.UserInfo.datasource" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="App_Themes\BontonStandard\jquery-ui-1.7.1.custom.css" />
+    <Content Include="App_Themes\BontonStandard\Main.css" />
+    <Content Include="App_Themes\BontonStandard\Telerik.css" />
+    <Content Include="App_Themes\printStyles.css" />
+    <Content Include="DES\Appearance\Date And Time\Backgrounds\GradientBlue16px.GIF" />
+    <Content Include="DES\Appearance\Date And Time\Backgrounds\GradientBlue24px.GIF" />
+    <Content Include="DES\Appearance\Date And Time\Backgrounds\GradientBlue32px.GIF" />
+    <Content Include="DES\Appearance\Date And Time\Backgrounds\GradientBlue48px.GIF" />
+    <Content Include="DES\Appearance\Date And Time\Backgrounds\GradientGray16px.GIF" />
+    <Content Include="DES\Appearance\Date And Time\Backgrounds\GradientGray24px.GIF" />
+    <Content Include="DES\Appearance\Date And Time\Backgrounds\GradientGray32px.GIF" />
+    <Content Include="DES\Appearance\Date And Time\Backgrounds\GradientGray48px.GIF" />
+    <Content Include="DES\Appearance\Date And Time\Backgrounds\GradientRed16px.GIF" />
+    <Content Include="DES\Appearance\Date And Time\Backgrounds\GradientRed24px.GIF" />
+    <Content Include="DES\Appearance\Date And Time\Backgrounds\GradientRed32px.GIF" />
+    <Content Include="DES\Appearance\Date And Time\Backgrounds\GradientRed48px.GIF" />
+    <Content Include="DES\Appearance\Date And Time\Backgrounds\GradientYellow16px.GIF" />
+    <Content Include="DES\Appearance\Date And Time\Backgrounds\GradientYellow24px.GIF" />
+    <Content Include="DES\Appearance\Date And Time\Backgrounds\GradientYellow32px.GIF" />
+    <Content Include="DES\Appearance\Date And Time\Backgrounds\GradientYellow48px.GIF" />
+    <Content Include="DES\Appearance\Date And Time\Calendar.css" />
+    <Content Include="DES\Appearance\Date And Time\Calendar.jpg" />
+    <Content Include="DES\Appearance\Date And Time\Calendar2.jpg" />
+    <Content Include="DES\Appearance\Date And Time\Calendar2Pressed.JPG" />
+    <Content Include="DES\Appearance\Date And Time\CalendarMouseOver.jpg" />
+    <Content Include="DES\Appearance\Date And Time\CalendarPressed.JPG" />
+    <Content Include="DES\Appearance\Date And Time\Clock.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ClockMouseOver.gif" />
+    <Content Include="DES\Appearance\Date And Time\ClockPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\DateAndTimeTextBoxes.css" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd2Blue.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd2BluePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd2DroppedWhite.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd2DroppedWhitePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd2Overlay1Black.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd2Overlay1BlackPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd2Overlay1Blue.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd2Overlay1BluePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd2Overlay1Gray.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd2Overlay1GrayPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd2SolidBlack.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd2SolidBlackPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd2SolidBlue.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd2SolidBluePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd2SolidGray.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd2SolidGrayPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd2_3DBlue.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd2_3DBluePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmdBlue.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmdBluePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmdDroppedWhite.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmdDroppedWhitePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmdSolidBlack.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmdSolidBlackPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmdSolidBlue.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmdSolidBluePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmdSolidGray.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmdSolidGrayPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd_3DBlue.GIF" />
+    <Content Include="DES\Appearance\Date And Time\LeftCmd_3DBluePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\MonthYearPicker.css" />
+    <Content Include="DES\Appearance\Date And Time\MultiSelectionCalendar.css" />
+    <Content Include="DES\Appearance\Date And Time\OutOfRangeDay.GIF" />
+    <Content Include="DES\Appearance\Date And Time\QuickDate.GIF" />
+    <Content Include="DES\Appearance\Date And Time\QuickDatePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\Range.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RangePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd2Blue.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd2BluePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd2DroppedWhite.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd2DroppedWhitePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd2Overlay1Black.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd2Overlay1BlackPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd2Overlay1Blue.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd2Overlay1BluePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd2Overlay1Gray.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd2Overlay1GrayPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd2SolidBlack.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd2SolidBlackPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd2SolidBlue.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd2SolidBluePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd2SolidGray.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd2SolidGrayPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd2_3DBlue.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd2_3DBluePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmdBlue.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmdBluePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmdDroppedWhite.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmdDroppedWhitePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmdSolidBlack.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmdSolidBlackPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmdSolidBlue.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmdSolidBluePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmdSolidGray.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmdSolidGrayPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd_3DBlue.GIF" />
+    <Content Include="DES\Appearance\Date And Time\RightCmd_3DBluePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\SpecialDates.css" />
+    <Content Include="DES\Appearance\Date And Time\SpecialDatesIcon.bmp" />
+    <Content Include="DES\Appearance\Date And Time\TimePicker.css" />
+    <Content Include="DES\Appearance\Date And Time\ToggleDOW3DBlack.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleDOW3DBlackPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleDOWDroppedWhite.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleDOWDroppedWhitePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleDOWSolidBlack.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleDOWSolidBlackPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleDOWSolidBlue.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleDOWSolidBluePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleDOWSolidGray.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleDOWSolidGrayPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleMonth3DBlack.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleMonth3DBlackPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleMonthDroppedWhite.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleMonthDroppedWhitePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleMonthSolidBlack.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleMonthSolidBlackPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleMonthSolidBlue.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleMonthSolidBluePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleMonthSolidGray.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleMonthSolidGrayPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleWeek3DBlack.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleWeek3DBlackPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleWeekDroppedWhite.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleWeekDroppedWhitePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleWeekSolidBlack.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleWeekSolidBlackPressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleWeekSolidBlue.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleWeekSolidBluePressed.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleWeekSolidGray.GIF" />
+    <Content Include="DES\Appearance\Date And Time\ToggleWeekSolidGrayPressed.GIF" />
+    <Content Include="DES\Appearance\Interactive Pages\CalcDesignMode.bmp" />
+    <Content Include="DES\Appearance\Interactive Pages\FSADesignMode.bmp" />
+    <Content Include="DES\Appearance\Interactive Pages\InteractivePages.css" />
+    <Content Include="DES\Appearance\Interactive Pages\Menu.css" />
+    <Content Include="DES\Appearance\Interactive Pages\NCEDesignMode.bmp" />
+    <Content Include="DES\Appearance\Interactive Pages\PopupHints.css" />
+    <Content Include="DES\Appearance\Interactive Pages\TextCounter.css" />
+    <Content Include="DES\Appearance\Shared\BlueDot.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\AliceBlue\Bottom.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\AliceBlue\Left.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\AliceBlue\Right.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\AliceBlue\Top.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\LtBlue\Bottom.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\LtBlue\Left.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\LtBlue\Right.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\LtBlue\Top.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\LtGray\Bottom.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\LtGray\Left.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\LtGray\Right.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\LtGray\Top.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\LtRed\Bottom.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\LtRed\Left.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\LtRed\Right.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\LtRed\Top.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\LtYellow\Bottom.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\LtYellow\Left.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\LtYellow\Right.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\LtYellow\Top.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\Mistyrose\Bottom.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\Mistyrose\Left.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\Mistyrose\Right.gif" />
+    <Content Include="DES\Appearance\Shared\Callouts\Mistyrose\Top.gif" />
+    <Content Include="DES\Appearance\Shared\CloseCmd.GIF" />
+    <Content Include="DES\Appearance\Shared\CloseCmd2.GIF" />
+    <Content Include="DES\Appearance\Shared\CloseCmd2MouseOver.GIF" />
+    <Content Include="DES\Appearance\Shared\CloseCmd2Pressed.GIF" />
+    <Content Include="DES\Appearance\Shared\CloseCmdMouseOver.GIF" />
+    <Content Include="DES\Appearance\Shared\CloseCmdPressed.GIF" />
+    <Content Include="DES\Appearance\Shared\DnArrow1.GIF" />
+    <Content Include="DES\Appearance\Shared\DnArrow1MouseOver.GIF" />
+    <Content Include="DES\Appearance\Shared\DnArrow1Pressed.GIF" />
+    <Content Include="DES\Appearance\Shared\HelpCmd.GIF" />
+    <Content Include="DES\Appearance\Shared\HelpCmdMouseOver.GIF" />
+    <Content Include="DES\Appearance\Shared\HelpCmdPressed.GIF" />
+    <Content Include="DES\Appearance\Shared\PgFirst.GIF" />
+    <Content Include="DES\Appearance\Shared\PgFirstMouseOver.GIF" />
+    <Content Include="DES\Appearance\Shared\PgFirstPressed.GIF" />
+    <Content Include="DES\Appearance\Shared\PgLast.GIF" />
+    <Content Include="DES\Appearance\Shared\PgLastMouseOver.GIF" />
+    <Content Include="DES\Appearance\Shared\PgLastPressed.GIF" />
+    <Content Include="DES\Appearance\Shared\PgNext.GIF" />
+    <Content Include="DES\Appearance\Shared\PgNextMouseOver.GIF" />
+    <Content Include="DES\Appearance\Shared\PgNextPressed.GIF" />
+    <Content Include="DES\Appearance\Shared\PgPrev.GIF" />
+    <Content Include="DES\Appearance\Shared\PgPrevMouseOver.GIF" />
+    <Content Include="DES\Appearance\Shared\PgPrevPressed.GIF" />
+    <Content Include="DES\Appearance\Shared\SmallDownArrow.GIF" />
+    <Content Include="DES\Appearance\Shared\SmallDownArrowMouseOver.GIF" />
+    <Content Include="DES\Appearance\Shared\SmallDownArrowPressed.GIF" />
+    <Content Include="DES\Appearance\Shared\spacer.GIF" />
+    <Content Include="DES\Appearance\Shared\UpArrow1.GIF" />
+    <Content Include="DES\Appearance\Shared\UpArrow1MouseOver.GIF" />
+    <Content Include="DES\Appearance\Shared\UpArrow1Pressed.GIF" />
+    <Content Include="DES\Appearance\TextBoxes\TextBoxes.css" />
+    <Content Include="DES\Appearance\Validation\bigvalerroricon.gif" />
+    <Content Include="DES\Appearance\Validation\BigValErrorIcon2.GIF" />
+    <Content Include="DES\Appearance\Validation\bigvalerroricon_animated.gif" />
+    <Content Include="DES\Appearance\Validation\PopupErrorFormatter.css" />
+    <Content Include="DES\Appearance\Validation\RequiredDot.GIF" />
+    <Content Include="DES\Appearance\Validation\ValErrorIcon.GIF" />
+    <Content Include="DES\Appearance\Validation\ValErrorIcon2.GIF" />
+    <Content Include="DES\Appearance\Validation\ValErrorIcon_animated.GIF" />
+    <Content Include="DES\Appearance\Validation\Validation.css" />
+    <Content Include="DES\Appearance\Validation\validicon.GIF" />
+    <Content Include="DES\Licenses\Add Suite And Trial Licenses Here.txt" />
+    <Content Include="DES\Licenses\Date and Time\Add Peters Date and Time Licenses here.txt" />
+    <Content Include="DES\Licenses\Input Security\Add Input Security License here.txt" />
+    <Content Include="DES\Licenses\Interactive Pages\Add Peters Interactive Pages Licenses here.txt" />
+    <Content Include="DES\Licenses\Textboxes\Add Peters Textboxes Licenses here.txt" />
+    <Content Include="Images\Add.gif" />
+    <Content Include="Images\Add_d.gif" />
+    <Content Include="Images\arrowleft.gif" />
+    <Content Include="Images\arrowright.gif" />
+    <Content Include="Images\BackButton.gif" />
+    <Content Include="Images\Batch.gif" />
+    <Content Include="Images\BontonHomePageLogo.gif" />
+    <Content Include="Images\Bonton_Stores_Wash2.gif" />
+    <Content Include="Images\BottomLine.gif" />
+    <Content Include="Images\Cal.gif" />
+    <Content Include="Images\Cal_d.gif" />
+    <Content Include="Images\Cancel.gif" />
+    <Content Include="Images\Cancel1.gif" />
+    <Content Include="Images\Cancel_d.gif" />
+    <Content Include="Images\Checked.png" />
+    <Content Include="Images\Checked_d.png" />
+    <Content Include="Images\CheckMark.gif" />
+    <Content Include="Images\ClassDetails.gif" />
+    <Content Include="Images\Collapsed_red.gif" />
+    <Content Include="Images\Copy.gif" />
+    <Content Include="Images\Copy_d.gif" />
+    <Content Include="Images\Delete.gif" />
+    <Content Include="Images\Delete_d.gif" />
+    <Content Include="Images\drilldown.GIF" />
+    <Content Include="Images\Edit1.gif" />
+    <Content Include="Images\Edit1_d.gif" />
+    <Content Include="Images\Edit2.gif" />
+    <Content Include="Images\Edit2_d.gif" />
+    <Content Include="Images\Edit3.gif" />
+    <Content Include="Images\Edit3_d.gif" />
+    <Content Include="Images\EOD.gif" />
+    <Content Include="Images\Error.png" />
+    <Content Include="Images\Expanded_red.gif" />
+    <Content Include="Images\Export.gif" />
+    <Content Include="Images\Export_d.gif" />
+    <Content Include="Images\Folder.gif" />
+    <Content Include="Images\Indeterminate.png" />
+    <Content Include="Images\Indeterminate_d.png" />
+    <Content Include="Images\InvoiceList.gif" />
+    <Content Include="Images\KIDtls.gif" />
+    <Content Include="Images\KIDtls_d.gif" />
+    <Content Include="Images\List.gif" />
+    <Content Include="Images\List_d.gif" />
+    <Content Include="Images\LookUp.gif" />
+    <Content Include="Images\Match.gif" />
+    <Content Include="Images\MatchSetIDList.gif" />
+    <Content Include="Images\MLetter2.jpg" />
+    <Content Include="Images\PagingNext.gif" />
+    <Content Include="Images\PagingPrev.gif" />
+    <Content Include="Images\POList.gif" />
+    <Content Include="Images\POPaidHistory.gif" />
+    <Content Include="Images\Print.gif" />
+    <Content Include="Images\Print_d.gif" />
+    <Content Include="Images\PSel.gif" />
+    <Content Include="Images\ReceiptList.gif" />
+    <Content Include="Images\Reset.gif" />
+    <Content Include="Images\Reset_d.gif" />
+    <Content Include="Images\Retrieve1.gif" />
+    <Content Include="Images\Retrieve1_d.gif" />
+    <Content Include="Images\Retrieve2.gif" />
+    <Content Include="Images\Retrieve2_d.gif" />
+    <Content Include="Images\Save.gif" />
+    <Content Include="Images\Save_d.gif" />
+    <Content Include="Images\UnCancel.gif" />
+    <Content Include="Images\Unchecked.png" />
+    <Content Include="Images\Unchecked_d.png" />
+    <Content Include="Images\View1.gif" />
+    <Content Include="Images\View1_d.gif" />
+    <Content Include="Images\View2.gif" />
+    <Content Include="Images\View2_d.gif" />
+    <Content Include="Images\View3.gif" />
+    <Content Include="Images\View3_d.gif" />
+    <Content Include="Images\View4.gif" />
+    <Content Include="Images\View4_d.gif" />
+    <Content Include="Images\ViewComments.GIF" />
+    <Content Include="Images\ViewComments1.GIF" />
+    <Content Include="Images\WorkList.gif" />
+    <Content Include="Javascript\blockUI.js" />
+    <Content Include="Javascript\jquery-1.2.6.js" />
+    <Content Include="Javascript\jquery-1.3.2.min.js" />
+    <Content Include="Javascript\jquery-ui-1.7.0.min.js" />
+    <Content Include="Javascript\jquery.bgiframe-2.1.1.pack.js" />
+    <Content Include="Javascript\jquery.numberformatter-1.2.1.js" />
+    <Content Include="Javascript\jshashtable-2.1.js" />
+    <Content Include="LogOff.aspx" />
+    <Content Include="SessionExpired.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Javascript\ContentPage.js" />
+    <Content Include="Javascript\CheckBoxTemplate.js" />
+    <Content Include="Javascript\Dimensions.js" />
+    <Content Include="Javascript\Dirty.js" />
+    <Content Include="Javascript\OldReferenceCode.js" />
+    <Content Include="Javascript\CommonJSFunctions.js" />
+    <Content Include="Error.aspx" />
+    <Content Include="TreeView.xml" />
+    <Content Include="Webforms\eCommerce\eCommercePrioritization.aspx" />
+    <Content Include="Webforms\Maintenance\AdPageSetup.aspx" />
+    <Content Include="Webforms\Print\PrintPreTurnInSetUpCreate.aspx" />
+    <Content Include="Webforms\Print\PrintPreTurnInSetUpMaint.aspx" />
+    <Content Include="Webforms\Print\PrintTurnInMaint.aspx" />
+    <Content Include="WebUserControls\ContentTreeView.ascx" />
+    <Content Include="WebUserControls\eCommerce\eCommercePrioritizationCtrl.ascx" />
+    <Content Include="WebUserControls\eCommerce\eCommPreTurnInSetUpCtrl.ascx" />
+    <Content Include="WebUserControls\MainMenu.ascx" />
+    <Content Include="WebUserControls\Maintenance\AdPageSetUpSearchCtrl.ascx" />
+    <Content Include="WebUserControls\MessagePanel.ascx" />
+    <Content Include="WebUserControls\ModalPopupControl.ascx" />
+    <Content Include="ContentPage.Master" />
+    <Content Include="WebUserControls\Print\PrintPreTurnInCtrl.ascx" />
+    <Content Include="WebUserControls\Print\PrintTurnInMaintctrl.ascx" />
+    <Content Include="WebUserControls\SidebarTreeView.ascx" />
+    <Content Include="WebUserControls\TimeoutWarning.ascx" />
+    <Content Include="WebUserControls\ToolTipValidator.ascx" />
+    <None Include="Service References\SecurityService\SecurityService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Utilities\BonTon.Common.vbproj">
+      <Project>{C9B2AAC6-0004-403B-B4D2-DD603573FEEC}</Project>
+      <Name>BonTon.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TurnInProcessAutomation.BLL\TurnInProcessAutomation.BLL.vbproj">
+      <Project>{6B7538BD-8EE5-4C1F-9E12-49655FFBD297}</Project>
+      <Name>TurnInProcessAutomation.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TurnInProcessAutomation.BusinessEntities\TurnInProcessAutomation.BusinessEntities.vbproj">
+      <Project>{014F9B48-D9CE-48F6-9C2B-877C127B604F}</Project>
+      <Name>TurnInProcessAutomation.BusinessEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TurnInProcessAutomation.SqlDAL\TurnInProcessAutomation.SqlDAL.vbproj">
+      <Project>{9779AA21-97AF-4FB3-AE43-A346AC133BEB}</Project>
+      <Name>TurnInProcessAutomation.SqlDAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SecurityService\" />
+    <WCFMetadataStorage Include="Service References\WebCatImport\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="https://catalogue.gxs.com/QRSGUI/services/ItemWebService%3fWSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\com.gxs.catalogue\</RelPath>
+      <UpdateFromURL>https://catalogue.gxs.com/QRSGUI/services/ItemWebService%3fWSDL</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>MySettings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>TurnInProcessAutomation_com_gxs_catalogue_ItemWebService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>65139</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/TurnInProcessAutomation</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

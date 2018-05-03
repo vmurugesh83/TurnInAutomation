@@ -1,0 +1,306 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+TurnInProcessAutomation.MainframeDAL
+</name>
+</assembly>
+<members>
+<member name="M:TurnInProcessAutomation.MainframeDAL.CFGDao.GetAllFromCFG">
+	<summary>
+ Method to get all CFGInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.BatchDao.GetAllBatches(System.String)">
+	<summary>
+ Method to get all Batch IDs.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.GMMDao.GetAllFromGMM">
+	<summary>
+ Method to get all GMMInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.BuyerDao.GetAllFromBuyer">
+	<summary>
+ Method to get all BuyerInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.BuyerDao.GetBuyersForCMG(System.String)">
+	<summary>
+ Method to get all BuyerInfo records related to CMG.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.BuyerDao.GetBuyersByDMM(System.Int32)">
+	<summary>
+ Method to get BuyerInfo by DMM
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.LocationDao.GetLocations">
+	<summary>
+ Method to get all CMGInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.LocationDao.GetLocationsByISNColor(System.Decimal,System.Int32)">
+	<summary>
+ Method to get all locations for an ISN and Color which has Onhand Quantity.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.LocationDao.GetLocationByLocationID(System.Int32)">
+	<summary>
+ Method to get location details by location id.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.ClassDao.GetAllFromClassByDepartment(System.Int32)">
+	<summary>
+ Method to get all ClassInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.TMS900PARAMETERDao.GetAllFromTMS900PARAMETER(System.String,System.Int32)">
+	<summary>
+ Method to get all TMS900PARAMETERInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.TMS900PARAMETERDao.GetAllFromTMS900PARAMETERByIntColumns(System.String,System.Int32,System.Int32)">
+	<summary>
+ Method to get all TMS900PARAMETERInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommFabOrigDao.GetAllFabOrigResultsByHierarchy(System.String,System.Int16,System.Int16,System.Int16,System.Int32,System.String,System.String,System.String,System.String,System.String,System.Int16,System.Int32,System.Nullable{System.DateTime})">
+	<summary>
+ Method to get all EcommFabOrigInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommFabOrigDao.GetAllEcommFabOrigResultsByISNs(System.String,System.String,System.String)">
+	<summary>
+ Method to get all EcommFabOrigInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommFabOrigDao.GetAllEcommFabOrigResultsByPOShipDate(System.Int32,System.Int32,System.Int16,System.Int16,System.Int32,System.String,System.DateTime,System.Boolean)">
+	<summary>
+ Method to get all isns match the search criteria defined
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommPrioritizationDao.GetPrioritizationResults(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+	<summary>
+ Method to get all the records for Prioritization page.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommPrioritizationDao.GetColorLevelResults(System.Decimal,System.Char,System.Decimal)">
+	<summary>
+ Method to get all the Color Level records for Prioritization page.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommPrioritizationDao.GetSizeLevelResults(System.Decimal,System.Int32,System.String)">
+	<summary>
+ Method to get all the Size Level records for Prioritization page.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommPrioritizationDao.GetClrSizFamilyLookUp(System.Decimal,System.Int16)">
+	<summary>
+ Method to populate the Color Family combo box at Color Hierarchy Level.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommPrioritizationDao.GetNonSwatchClrLookUp">
+	<summary>
+ Method to populate the Non Swatch Color combo box at Color Hierarchy Level.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommPrioritizationDao.GetWebcatSizeLookUp">
+	<summary>
+ Method to populate the Webcat Size combo box at Size Hierarchy Level.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommPrioritizationDao.GetImageIDs(System.String,System.Char,System.String)">
+	<summary>
+ Method to get the list of Image IDs.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommPrioritizationDao.GetEmailAddress(System.String)">
+	<summary>
+ Method to retrieve an User's email id.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommPrioritizationDao.FeatureExistsOnReturnedProduct(System.Int32)">
+	<summary>
+ Method to check whether the Feature ID already exists in TTU720PRODUCT table.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommPrioritizationDao.GetExistingUPCOnWebCat(System.Int32)">
+	<summary>
+ Method to check whether the UPC data already exists in TTU750PRODUCT_UPC table.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommPrioritizationDao.IsImageProcessedInWebCat(System.Int32)">
+	<summary>
+ Method to check whether the Image is processed in TTU720PRODUCT table.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommPrioritizationDao.GetPrioritizationResults(System.String,System.String)">
+	<summary>
+ Method to get all the records for exporting to excel. This is a temporary method and will be removed eventually.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommPrioritizationDao.ExportCategories(System.String)">
+	<summary>
+ Method to get all the categories for export. This is a temporary method and will be removed eventually.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommPrioritizationDao.UpdateImageIDFeatureID(System.Int32,System.Int32,System.Int32,System.String)">
+	<summary>
+ Updates the image id and feature id of the merchandise in the TTU600 table
+ </summary>
+	<param name="ImageID"></param>
+	<param name="FeatureID"></param>
+	<param name="TurnInMerchID"></param>
+	<param name="UserId"></param>
+	<remarks></remarks>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.BrandDao.GetAllBrands">
+	<summary>
+ Method to get all LabelInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.CMGDao.GetAllCMG">
+	<summary>
+ Method to get all CMGInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.DMMDao.GetAllFromDMM">
+	<summary>
+ Method to get all DMMInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.WebCatDao.GetWebCatByISN(System.Decimal)">
+	<summary>
+ Method to get all WebCat records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.VendorStyleDao.GetAllFromVendorStyle(System.Int32,System.Int32,System.Int32,System.Int32,System.String)">
+	<summary>
+ Method to get all VendorStyleInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.VendorStyleDao.GetVendorStyleNumPrioritization(System.String)">
+	<summary>
+ Method to get all VendorStyleInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.TTUConfigDAO.GetConfigurationByKey(System.String)">
+	<summary>
+ Method to get configurations by the key name
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.VendorDao.GetAllFromVendorByDepartment(System.Int32)">
+	<summary>
+ Method to get all VendorInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.FOBDao.GetAllFOB">
+	<summary>
+ Method to get all FOBInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EMMDao.GetAllFromEMM">
+	<summary>
+ Method to get all EMMInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.ImageDao.GetAllImages(System.String,System.String)">
+	<summary>
+ Method to get all BuyerInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.DepartmentDao.GetAllFromDepartment">
+	<summary>
+ Method to get all DepartmentInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.DepartmentDao.GetAllDepartmentbyGMM(System.Int32)">
+	<summary>
+ Method to get all DepartmentInfo records by GMM.
+ </summary>
+</member><member name="P:TurnInProcessAutomation.MainframeDAL.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:TurnInProcessAutomation.MainframeDAL.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:TurnInProcessAutomation.MainframeDAL.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.GXSCatalogDao.GetAllFromTU1135SP(System.Decimal)">
+	<summary>
+ Method to get all GXSCFGInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.CRGDao.GetAllCRG">
+	<summary>
+ Method to get all CRGInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.TEC998PARMDao.GetAll998ParmValues(System.String)">
+	<summary>
+ Method to get all TEC998PARMInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.TEC998PARMDao.GetAll998DropShipValues(System.String)">
+	<summary>
+ Method to get all TEC998PARMInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.LabelDao.GetLabelsByBrand(System.String)">
+	<summary>
+ Method to get all LabelInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.SellYearDao.GetAllFromSellYear">
+	<summary>
+ Method to get all SellYearInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.SellSeasonDao.GetAllFromSellSeason">
+	<summary>
+ Method to get all SellSeasonInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.CopyPrioritizationDao.GetCopyPrioritizationResultsByCriteria(System.Int32,System.String,System.String,System.String,System.String,System.Int32,System.Int32)">
+	<summary>
+ Method to get all CopyPrioritizationInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.CopyPrioritizationDao.GetCopyPrioritizationResults(System.Int32)">
+	<summary>
+ Method to get one CopyPrioritizationInfo record.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.CopyPrioritizationDao.GetCopyPrioritizationResultsByDept(System.Int32,System.String,System.Nullable{System.DateTime},System.String,System.Int32,System.String,System.String,System.String,System.Int32,System.Int32)">
+	<summary>
+ Method to get one CopyPrioritizationInfo record.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.CopyPrioritizationDao.GetCopyPrioritizationResult(System.Int32,System.Int32)">
+	<summary>
+ Method to get one CopyPrioritizationInfo record.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.CopyPrioritizationDao.GetColorLevelResults(System.Int32)">
+	<summary>
+ Method to get all the Available Color records for Copy Prioritization edit page.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.CopyPrioritizationDao.GetProductCategories(System.Int32)">
+	<summary>
+ Method to get all the Web Categories
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.SubClassDao.GetAllFromSubClassByDeptClass(System.Int32,System.Int32)">
+	<summary>
+ Method to get all SubClassInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.ACodeDao.GetAllFromACodeByDepartment(System.Int32)">
+	<summary>
+ Method to get all ACodeInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommSetupCreateDao.GetAllEcommSetupCreateResultsByHierarchy(System.Int32,System.Int32,System.String,System.Int16,System.Int16,System.Int16,System.Int32,System.String,System.String,System.String,System.String,System.String,System.Int16,System.Int32,System.Nullable{System.DateTime})">
+	<summary>
+ Method to get all EcommSetupCreateInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommSetupCreateDao.GetAllEcommSetupCreateResultsByISNs(System.Int32,System.Int32,System.String,System.String)">
+	<summary>
+ Method to get all EcommSetupCreateInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommSetupCreateDao.GetColorSizeResults(System.Int32,System.Int16,System.String,System.String)">
+	<summary>
+ Method to get all EcommSetupClrSzInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommSetupCreateDao.GetKilledItems(System.String,System.String,System.String)">
+	<summary>
+ Method to get all EcommSetupClrSzInfo records.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommSetupCreateDao.GetSavedISNCount(System.String)">
+	<summary>
+ Method to get the count of Saved ISNs among the Selected list of ISNs.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommSetupCreateDao.GetClrSizeLocLookUp(System.Decimal)">
+	<summary>
+ Method to populate the Color, Sample Size, and Sample Store Combo boxes in ColorSize tab.
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommSetupCreateDao.GetAllEcommSetupCreateResultsByPOShipDate(System.Int32,System.Int32,System.Int32,System.Int32,System.Int16,System.Int16,System.Int32,System.String,System.DateTime,System.Boolean)">
+	<summary>
+ Method to get all isns match the search criteria defined
+ </summary>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommSetupCreateDao.GetCFGDefaultShipDays(System.Int32,System.Int32,System.Int16,System.String)">
+	<summary>
+ Gets the default ship days for the parameters passed.  
+ </summary>
+	<param name="DMMID"></param>
+	<param name="BuyerID"></param>
+	<param name="DepartmentId"></param>
+	<param name="VendorStyleNumber"></param>
+	<returns>Returns the default ship days defined for the CFG in the TMS900Parameter table</returns>
+	<remarks>
+ If there are multiple vendor style numbers passed, then department will be ignored.  Otherwise nothing will be returned if the vendor styles are from two different deparments.
+ </remarks>
+</member><member name="M:TurnInProcessAutomation.MainframeDAL.EcommSetupCreateDao.GetApprovedEcommSetupCreateDetail(System.Decimal,System.DateTime,System.Boolean)">
+	<summary>
+ Calls the stored procedure to get color level results for the ISN passed
+ </summary>
+	<param name="ISN">ISN for which color level results to be retrieved</param>
+	<param name="StartShipDate">Start ship date to be matched with PO ship date</param>
+	<param name="IncludeOnlyApprovedItems">Indicator to decide the items (Approved, not approved or both) to be retrieved</param>
+	<returns>Returns the color level results for the ISN passed</returns>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

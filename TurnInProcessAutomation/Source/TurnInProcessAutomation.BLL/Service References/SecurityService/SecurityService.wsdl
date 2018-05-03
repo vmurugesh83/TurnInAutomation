@@ -1,0 +1,1030 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://bonton.com/security" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://bonton.com/security" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://bonton.com/security">
+      <s:element name="GetApprovalResources">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="system" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="category" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApprovalResourcesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetApprovalResourcesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldAccess">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="field" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldAccessResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFieldAccessResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMenuItems">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMenuItemsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMenuItemsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMenuItemsWithTabs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMenuItemsWithTabsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMenuItemsWithTabsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUicLevel1Values">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="attribute" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUicLevel1ValuesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUicLevel1ValuesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUicLevel2Values">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="attribute" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="value1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUicLevel2ValuesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUicLevel2ValuesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUicLevel3Values">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="attribute" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="value1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="value2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUicLevel3ValuesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUicLevel3ValuesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUicLevel4Values">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="attribute" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="value1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="value2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="value3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUicLevel4ValuesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUicLevel4ValuesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUicLevel1UsersWithValues">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="attribute" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUicLevel1UsersWithValuesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUicLevel1UsersWithValuesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUicLevel2UsersWithValues">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="attribute" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="value1" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUicLevel2UsersWithValuesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUicLevel2UsersWithValuesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUicLevel3UsersWithValues">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="attribute" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="value1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="value2" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUicLevel3UsersWithValuesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUicLevel3UsersWithValuesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUicLevel4UsersWithValues">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="attribute" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="value1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="value2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="value3" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUicLevel4UsersWithValuesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUicLevel4UsersWithValuesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUicAllLevelUsersWithValues">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="attribute" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUicAllLevelUsersWithValuesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUicAllLevelUsersWithValuesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApplications">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetApplicationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetApplicationsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldAccessForUpdate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldAccessForUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFieldAccessForUpdateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMenuItemsForUpdate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMenuItemsForUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMenuItemsForUpdateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRolesForApplication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRolesForApplicationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRolesForApplicationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRolesForUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRolesForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRolesForUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PutFieldAcess">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PutFieldAcessResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PutFieldAcessResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PutMenuItems">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PutMenuItemsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PutMenuItemsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PutRolesForApplication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PutRolesForApplicationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PutRolesForApplicationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserInfoResult" type="tns:UserInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MI" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmployeeId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Jobcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pyramid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Supervisor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WorkPhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CellPhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HomePhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RetCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RetMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUserInformation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserInformationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserInformationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetApprovalResourcesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetApprovalResources" />
+  </wsdl:message>
+  <wsdl:message name="GetApprovalResourcesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetApprovalResourcesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldAccessSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFieldAccess" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldAccessSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFieldAccessResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMenuItemsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMenuItems" />
+  </wsdl:message>
+  <wsdl:message name="GetMenuItemsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMenuItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMenuItemsWithTabsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMenuItemsWithTabs" />
+  </wsdl:message>
+  <wsdl:message name="GetMenuItemsWithTabsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMenuItemsWithTabsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUicLevel1ValuesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUicLevel1Values" />
+  </wsdl:message>
+  <wsdl:message name="GetUicLevel1ValuesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUicLevel1ValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUicLevel2ValuesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUicLevel2Values" />
+  </wsdl:message>
+  <wsdl:message name="GetUicLevel2ValuesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUicLevel2ValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUicLevel3ValuesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUicLevel3Values" />
+  </wsdl:message>
+  <wsdl:message name="GetUicLevel3ValuesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUicLevel3ValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUicLevel4ValuesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUicLevel4Values" />
+  </wsdl:message>
+  <wsdl:message name="GetUicLevel4ValuesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUicLevel4ValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUicLevel1UsersWithValuesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUicLevel1UsersWithValues" />
+  </wsdl:message>
+  <wsdl:message name="GetUicLevel1UsersWithValuesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUicLevel1UsersWithValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUicLevel2UsersWithValuesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUicLevel2UsersWithValues" />
+  </wsdl:message>
+  <wsdl:message name="GetUicLevel2UsersWithValuesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUicLevel2UsersWithValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUicLevel3UsersWithValuesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUicLevel3UsersWithValues" />
+  </wsdl:message>
+  <wsdl:message name="GetUicLevel3UsersWithValuesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUicLevel3UsersWithValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUicLevel4UsersWithValuesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUicLevel4UsersWithValues" />
+  </wsdl:message>
+  <wsdl:message name="GetUicLevel4UsersWithValuesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUicLevel4UsersWithValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUicAllLevelUsersWithValuesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUicAllLevelUsersWithValues" />
+  </wsdl:message>
+  <wsdl:message name="GetUicAllLevelUsersWithValuesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUicAllLevelUsersWithValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetApplicationsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetApplications" />
+  </wsdl:message>
+  <wsdl:message name="GetApplicationsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetApplicationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldAccessForUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFieldAccessForUpdate" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldAccessForUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFieldAccessForUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMenuItemsForUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMenuItemsForUpdate" />
+  </wsdl:message>
+  <wsdl:message name="GetMenuItemsForUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMenuItemsForUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRolesForApplicationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRolesForApplication" />
+  </wsdl:message>
+  <wsdl:message name="GetRolesForApplicationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRolesForApplicationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRolesForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRolesForUser" />
+  </wsdl:message>
+  <wsdl:message name="GetRolesForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRolesForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="PutFieldAcessSoapIn">
+    <wsdl:part name="parameters" element="tns:PutFieldAcess" />
+  </wsdl:message>
+  <wsdl:message name="PutFieldAcessSoapOut">
+    <wsdl:part name="parameters" element="tns:PutFieldAcessResponse" />
+  </wsdl:message>
+  <wsdl:message name="PutMenuItemsSoapIn">
+    <wsdl:part name="parameters" element="tns:PutMenuItems" />
+  </wsdl:message>
+  <wsdl:message name="PutMenuItemsSoapOut">
+    <wsdl:part name="parameters" element="tns:PutMenuItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="PutRolesForApplicationSoapIn">
+    <wsdl:part name="parameters" element="tns:PutRolesForApplication" />
+  </wsdl:message>
+  <wsdl:message name="PutRolesForApplicationSoapOut">
+    <wsdl:part name="parameters" element="tns:PutRolesForApplicationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInformationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserInformation" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInformationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserInformationResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SecurityServiceSoap">
+    <wsdl:operation name="GetApprovalResources">
+      <wsdl:input message="tns:GetApprovalResourcesSoapIn" />
+      <wsdl:output message="tns:GetApprovalResourcesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldAccess">
+      <wsdl:input message="tns:GetFieldAccessSoapIn" />
+      <wsdl:output message="tns:GetFieldAccessSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMenuItems">
+      <wsdl:input message="tns:GetMenuItemsSoapIn" />
+      <wsdl:output message="tns:GetMenuItemsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMenuItemsWithTabs">
+      <wsdl:input message="tns:GetMenuItemsWithTabsSoapIn" />
+      <wsdl:output message="tns:GetMenuItemsWithTabsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel1Values">
+      <wsdl:input message="tns:GetUicLevel1ValuesSoapIn" />
+      <wsdl:output message="tns:GetUicLevel1ValuesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel2Values">
+      <wsdl:input message="tns:GetUicLevel2ValuesSoapIn" />
+      <wsdl:output message="tns:GetUicLevel2ValuesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel3Values">
+      <wsdl:input message="tns:GetUicLevel3ValuesSoapIn" />
+      <wsdl:output message="tns:GetUicLevel3ValuesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel4Values">
+      <wsdl:input message="tns:GetUicLevel4ValuesSoapIn" />
+      <wsdl:output message="tns:GetUicLevel4ValuesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel1UsersWithValues">
+      <wsdl:input message="tns:GetUicLevel1UsersWithValuesSoapIn" />
+      <wsdl:output message="tns:GetUicLevel1UsersWithValuesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel2UsersWithValues">
+      <wsdl:input message="tns:GetUicLevel2UsersWithValuesSoapIn" />
+      <wsdl:output message="tns:GetUicLevel2UsersWithValuesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel3UsersWithValues">
+      <wsdl:input message="tns:GetUicLevel3UsersWithValuesSoapIn" />
+      <wsdl:output message="tns:GetUicLevel3UsersWithValuesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel4UsersWithValues">
+      <wsdl:input message="tns:GetUicLevel4UsersWithValuesSoapIn" />
+      <wsdl:output message="tns:GetUicLevel4UsersWithValuesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUicAllLevelUsersWithValues">
+      <wsdl:input message="tns:GetUicAllLevelUsersWithValuesSoapIn" />
+      <wsdl:output message="tns:GetUicAllLevelUsersWithValuesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetApplications">
+      <wsdl:input message="tns:GetApplicationsSoapIn" />
+      <wsdl:output message="tns:GetApplicationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldAccessForUpdate">
+      <wsdl:input message="tns:GetFieldAccessForUpdateSoapIn" />
+      <wsdl:output message="tns:GetFieldAccessForUpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMenuItemsForUpdate">
+      <wsdl:input message="tns:GetMenuItemsForUpdateSoapIn" />
+      <wsdl:output message="tns:GetMenuItemsForUpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesForApplication">
+      <wsdl:input message="tns:GetRolesForApplicationSoapIn" />
+      <wsdl:output message="tns:GetRolesForApplicationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesForUser">
+      <wsdl:input message="tns:GetRolesForUserSoapIn" />
+      <wsdl:output message="tns:GetRolesForUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PutFieldAcess">
+      <wsdl:input message="tns:PutFieldAcessSoapIn" />
+      <wsdl:output message="tns:PutFieldAcessSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PutMenuItems">
+      <wsdl:input message="tns:PutMenuItemsSoapIn" />
+      <wsdl:output message="tns:PutMenuItemsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PutRolesForApplication">
+      <wsdl:input message="tns:PutRolesForApplicationSoapIn" />
+      <wsdl:output message="tns:PutRolesForApplicationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <wsdl:input message="tns:GetUserInfoSoapIn" />
+      <wsdl:output message="tns:GetUserInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInformation">
+      <wsdl:input message="tns:GetUserInformationSoapIn" />
+      <wsdl:output message="tns:GetUserInformationSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SecurityServiceSoap" type="tns:SecurityServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetApprovalResources">
+      <soap:operation soapAction="http://bonton.com/security/GetApprovalResources" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldAccess">
+      <soap:operation soapAction="http://bonton.com/security/GetFieldAccess" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMenuItems">
+      <soap:operation soapAction="http://bonton.com/security/GetMenuItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMenuItemsWithTabs">
+      <soap:operation soapAction="http://bonton.com/security/GetMenuItemsWithTabs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel1Values">
+      <soap:operation soapAction="http://bonton.com/security/GetUicLevel1Values" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel2Values">
+      <soap:operation soapAction="http://bonton.com/security/GetUicLevel2Values" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel3Values">
+      <soap:operation soapAction="http://bonton.com/security/GetUicLevel3Values" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel4Values">
+      <soap:operation soapAction="http://bonton.com/security/GetUicLevel4Values" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel1UsersWithValues">
+      <soap:operation soapAction="http://bonton.com/security/GetUicLevel1UsersWithValues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel2UsersWithValues">
+      <soap:operation soapAction="http://bonton.com/security/GetUicLevel2UsersWithValues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel3UsersWithValues">
+      <soap:operation soapAction="http://bonton.com/security/GetUicLevel3UsersWithValues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel4UsersWithValues">
+      <soap:operation soapAction="http://bonton.com/security/GetUicLevel4UsersWithValues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUicAllLevelUsersWithValues">
+      <soap:operation soapAction="http://bonton.com/security/GetUicAllLevelUsersWithValues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplications">
+      <soap:operation soapAction="http://bonton.com/security/GetApplications" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldAccessForUpdate">
+      <soap:operation soapAction="http://bonton.com/security/GetFieldAccessForUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMenuItemsForUpdate">
+      <soap:operation soapAction="http://bonton.com/security/GetMenuItemsForUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesForApplication">
+      <soap:operation soapAction="http://bonton.com/security/GetRolesForApplication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesForUser">
+      <soap:operation soapAction="http://bonton.com/security/GetRolesForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutFieldAcess">
+      <soap:operation soapAction="http://bonton.com/security/PutFieldAcess" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutMenuItems">
+      <soap:operation soapAction="http://bonton.com/security/PutMenuItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutRolesForApplication">
+      <soap:operation soapAction="http://bonton.com/security/PutRolesForApplication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <soap:operation soapAction="http://bonton.com/security/GetUserInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInformation">
+      <soap:operation soapAction="http://bonton.com/security/GetUserInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SecurityServiceSoap12" type="tns:SecurityServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetApprovalResources">
+      <soap12:operation soapAction="http://bonton.com/security/GetApprovalResources" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldAccess">
+      <soap12:operation soapAction="http://bonton.com/security/GetFieldAccess" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMenuItems">
+      <soap12:operation soapAction="http://bonton.com/security/GetMenuItems" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMenuItemsWithTabs">
+      <soap12:operation soapAction="http://bonton.com/security/GetMenuItemsWithTabs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel1Values">
+      <soap12:operation soapAction="http://bonton.com/security/GetUicLevel1Values" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel2Values">
+      <soap12:operation soapAction="http://bonton.com/security/GetUicLevel2Values" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel3Values">
+      <soap12:operation soapAction="http://bonton.com/security/GetUicLevel3Values" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel4Values">
+      <soap12:operation soapAction="http://bonton.com/security/GetUicLevel4Values" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel1UsersWithValues">
+      <soap12:operation soapAction="http://bonton.com/security/GetUicLevel1UsersWithValues" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel2UsersWithValues">
+      <soap12:operation soapAction="http://bonton.com/security/GetUicLevel2UsersWithValues" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel3UsersWithValues">
+      <soap12:operation soapAction="http://bonton.com/security/GetUicLevel3UsersWithValues" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUicLevel4UsersWithValues">
+      <soap12:operation soapAction="http://bonton.com/security/GetUicLevel4UsersWithValues" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUicAllLevelUsersWithValues">
+      <soap12:operation soapAction="http://bonton.com/security/GetUicAllLevelUsersWithValues" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplications">
+      <soap12:operation soapAction="http://bonton.com/security/GetApplications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldAccessForUpdate">
+      <soap12:operation soapAction="http://bonton.com/security/GetFieldAccessForUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMenuItemsForUpdate">
+      <soap12:operation soapAction="http://bonton.com/security/GetMenuItemsForUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesForApplication">
+      <soap12:operation soapAction="http://bonton.com/security/GetRolesForApplication" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesForUser">
+      <soap12:operation soapAction="http://bonton.com/security/GetRolesForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutFieldAcess">
+      <soap12:operation soapAction="http://bonton.com/security/PutFieldAcess" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutMenuItems">
+      <soap12:operation soapAction="http://bonton.com/security/PutMenuItems" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutRolesForApplication">
+      <soap12:operation soapAction="http://bonton.com/security/PutRolesForApplication" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <soap12:operation soapAction="http://bonton.com/security/GetUserInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInformation">
+      <soap12:operation soapAction="http://bonton.com/security/GetUserInformation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SecurityService">
+    <wsdl:port name="SecurityServiceSoap" binding="tns:SecurityServiceSoap">
+      <soap:address location="http://10.56.100.18/SecurityService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SecurityServiceSoap12" binding="tns:SecurityServiceSoap12">
+      <soap12:address location="http://10.56.100.18/SecurityService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

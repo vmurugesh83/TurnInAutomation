@@ -1,0 +1,73 @@
+﻿<div>
+    <div class="modal-header">
+        <div class="row" style="font-size:1em">
+            <div class="col-sm-12 column text-center">
+                <h3 style="text-align: center">Customer Pick-up</h3>
+            </div>
+        </div>
+    </div>
+    <form name="confirmPickup" novalidate ng-submit="processConfirmPickup()">
+        <div class="modal-body">
+            <div ng-show="!processingConfirm">
+                <div class="row skinnyMarginVert">
+                    <div class="col-sm-6">
+                        <div class="textBold" style="font-size:1.2em">Select Method of Customer Identification</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button type="button" class="shippingLineSelectButton" style="margin-right:6px" ng-click="checkboxClick('govtId')"><i class="fa" ng-class="pickup.govtId ? checkedButtonFont : uncheckedButtonFont"></i></button>
+                        <span style="font-size:1.2em">Government ID</span>
+                    </div>
+                </div>
+                <!--<div class="row">
+                    <br />
+                    <div class="col-sm-6">
+                        <button type="button" class="shippingLineSelectButton" style="margin-right:6px" ng-click="checkboxClick('orderConfirmEmail')"><i class="fa" ng-class="pickup.orderConfirmEmail ? checkedButtonFont : uncheckedButtonFont"></i></button>
+                        <span style="font-size:1.2em">Order Confirmation Email</span>
+                    </div>
+                </div>-->
+                <div class="row">
+                    <br />
+                    <div class="col-sm-6">
+                        <button type="button" class="shippingLineSelectButton" style="margin-right:6px" ng-click="checkboxClick('paymentTender')"><i class="fa" ng-class="pickup.paymentTender ? checkedButtonFont : uncheckedButtonFont"></i></button>
+                        <span style="font-size:1.2em">Payment Tender</span>
+                    </div>
+                </div>
+
+                <div class="row skinnyMarginVert">
+                    <br />
+                    <div class="col-sm-6 ">
+                        <div class="textBold" style="font-size:1.2em">Ask Customer For Signature</div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 column" style="align-self:center">
+                        <input type="text" class="form-control" ng-model="pickup.customerName" required placeholder="Enter Customer Name from ID" />
+                    </div>
+                </div>
+            </div>
+            <div ng-show="processingConfirm">
+                <div class="row" ng-show="!processingConfirmSuccess">
+                    <div class="col-sm-9 col-sm-offset-2">
+                        <span class="bopisPickUpConfirmProcessingText"><img src="assets/images/ajax-loader.gif" /> Processing...</span>
+                    </div>
+                </div>
+                <div class="row" ng-show="processingConfirmSuccess">
+                    <div class="col-sm-9 col-sm-offset-2">
+                        <span class="bopisPickUpConfirmSuccessText"><i class="fa fa-check fa-2x"></i> Store Pick-Up Has Been Completed.</span>
+                        <div class="col-sm-9 col-sm-offset-2">
+                            <span class="bopisPickupConfirmationReminder">Thank the customer for their purchase.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer" <div ng-show="!processingConfirm">
+            <button type="button" class="btn btn-default" ng-click="cancelConfirmPickup(false)">Cancel</button>
+            <button type="button" class=" btn btn-success" ng-click="processConfirmPickup()" ng-disabled="disableConfirmButton">Confirm</button>
+
+        </div>
+    </form>
+</div>

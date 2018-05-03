@@ -1,0 +1,73 @@
+﻿Public Class SKUDetail
+
+    Public Property FOB As String
+
+    Public Property Dept As String
+
+    Public Property Dept_Class As String
+
+    Public Property ISN As Decimal
+
+    Public Property Color As Integer
+
+    Public Property SKU As Decimal
+
+    Public Property UPC As Decimal
+
+    Public Property AdNumber As Integer
+
+    Public Property AdType As String
+
+    Public Property SSSetupDate As Date
+
+    Public Property SampleRequestDate As Date
+
+    Public Property SampleReceiptDate As Date
+
+    Public Property SampleDueDate As Date
+
+    Public Property POApprovalDate As Date
+
+    Public Property POShipDate As Date
+
+    Public Property TurnInDate As Date
+
+    Public Property ImageShotDate As Date
+
+    Public Property FinalImageReadyDate As Date
+
+    Public Property POReceiptDate As Date
+
+    Public Property CopyReadyDate As Date
+
+    Public Property ProductReadyDate As Date
+
+    Public Property ProductActiveDate As Date
+
+    Public ReadOnly Property SSSetupToSampleRequest As Long
+        Get
+            Return DateDiff("d", Me.SampleRequestDate, Me.SSSetupDate, FirstDayOfWeek.Sunday)
+        End Get
+    End Property
+    Public ReadOnly Property SampleRequestToSampleReceipt As Long
+        Get
+            Return DateDiff("d", Me.SampleReceiptDate, Me.SampleRequestDate, FirstDayOfWeek.Sunday)
+        End Get
+    End Property
+    Public ReadOnly Property SSSetupToPOApproval As Long
+        Get
+            Return DateDiff("d", Me.POApprovalDate, Me.SSSetupDate, FirstDayOfWeek.Sunday)
+        End Get
+    End Property
+
+    Public ReadOnly Property SSSetupToTurnIn As Long
+        Get
+            Return DateDiff("d", Me.TurnInDate, Me.SSSetupDate, FirstDayOfWeek.Sunday)
+        End Get
+    End Property
+    Public ReadOnly Property POApprovalToTurnIn As Long
+        Get
+            Return DateDiff("d", Me.TurnInDate, Me.POApprovalDate, FirstDayOfWeek.Sunday)
+        End Get
+    End Property
+End Class

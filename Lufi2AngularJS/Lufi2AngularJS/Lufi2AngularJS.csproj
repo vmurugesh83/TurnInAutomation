@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{21A10381-B0D0-4A42-A700-8AB4B4555C40}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lufi2AngularJS</RootNamespace>
+    <AssemblyName>Lufi2AngularJS</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\app\announcementApp.js" />
+    <Content Include="assets\app\appServiceAppState.js" />
+    <Content Include="assets\app\appServiceReprice.js" />
+    <Content Include="assets\app\appServicesGiftRegistry.js" />
+    <Content Include="assets\app\appServicesPayment.js" />
+    <Content Include="assets\app\appServicespickUpInStore.js" />
+    <Content Include="assets\app\controllers.js" />
+    <Content Include="assets\app\controllers\announcementCtrl.js" />
+    <Content Include="assets\app\controllers\orderNotesCtrl.js" />
+    <Content Include="assets\app\controllers\couponCtrl.js" />
+    <Content Include="assets\app\controllers\orderPickupCtrl.js" />
+    <Content Include="assets\app\controllers\packConfirmCtrl.js" />
+    <Content Include="assets\app\controllers\pickingConfirmCtrl.js" />
+    <Content Include="assets\app\controllers\pickUpInStoreCtrl.js" />
+    <Content Include="assets\app\controllers\returnSummaryCtrl.js" />
+    <Content Include="assets\app\controllers\swipeCardCtrl.js" />
+    <Content Include="assets\app\endpoints\prodendpoints.js" />
+    <Content Include="assets\app\endpoints\qaendpoint.js" />
+    <Content Include="assets\app\endpoints\scintendpoints.js" />
+    <Content Include="assets\app\endpoints\testendpoints.js" />
+    <Content Include="assets\app\services.js" />
+    <Content Include="assets\bootstrap\css\darkly_bootstrap.min.css" />
+    <Content Include="assets\bootstrap\css\flatly_bootstrap.min.css" />
+    <Content Include="assets\bootstrap\css\readable_bootstrap.min.css" />
+    <Content Include="assets\images\bordered_lufi_logo_QA.jpg" />
+    <Content Include="assets\images\Cards\AmericanExpress.jpg" />
+    <Content Include="assets\images\Cards\BonTon.jpg" />
+    <Content Include="assets\images\Cards\Discover.jpg" />
+    <Content Include="assets\images\Cards\giftcard.jpg" />
+    <Content Include="assets\images\Cards\MasterCard.jpg" />
+    <Content Include="assets\images\Cards\visa.jpg" />
+    <Content Include="assets\images\credit-card.gif" />
+    <Content Include="assets\images\NotAvailable.jpg" />
+    <Content Include="assets\images\OrderIcon.png" />
+    <Content Include="assets\images\PickUp.png" />
+    <Content Include="assets\images\ReturnCart.png" />
+    <Content Include="assets\images\shoeIcon.png" />
+    <Content Include="assets\images\Shoprunner.jpg" />
+    <Content Include="assets\ng\angular-pageslide-directive.js" />
+    <Content Include="assets\ng\clipboard.min.js" />
+    <Content Include="assets\ng\ngclipboard.min.js" />
+    <Content Include="assets\ng\sweetalert.min.js" />
+    <Content Include="assets\nodeWebSocketServer\lufi_websocket.js" />
+    <Content Include="assets\nodeWebSocketServer\StartHerr.txt" />
+    <Content Include="assets\scroller\iscroll-probe.js" />
+    <Content Include="assets\scroller\iscroll.stickyheaders.js" />
+    <Content Include="assets\styles\sweetalert.css" />
+    <Content Include="assets\tests\announcementDeleteCtrlTests.js" />
+    <Content Include="assets\tests\appServiceAppStateTests.js" />
+    <Content Include="assets\tests\appServicesCustomerTests.js" />
+    <Content Include="assets\tests\appServicesGiftRegistryTests.js" />
+    <Content Include="assets\tests\authenticateUserTests.js" />
+    <Content Include="assets\tests\bigTicketValidateTests.js" />
+    <Content Include="assets\tests\btPropTests.js" />
+    <Content Include="assets\tests\customeraddressTests.js" />
+    <Content Include="assets\tests\deliveryTextTests.js" />
+    <Content Include="assets\tests\errorObjTests.js" />
+    <Content Include="assets\tests\filterShipToListTests.js" />
+    <Content Include="assets\tests\giftRegModCtrlTests.js" />
+    <Content Include="assets\tests\ISNModelHelperTests.js" />
+    <Content Include="assets\tests\itemInventoryTests.js" />
+    <Content Include="assets\tests\itemLocateTests.js" />
+    <Content Include="assets\tests\itemSearchTests.js" />
+    <Content Include="assets\tests\itemToLocateTests.js" />
+    <Content Include="assets\tests\loggerServiceTests.js" />
+    <Content Include="assets\tests\oneLineAddressTests.js" />
+    <Content Include="assets\tests\orderLinePricingDetailCtrlTests.js" />
+    <Content Include="assets\tests\orderPricingDetailCtrlTests.js" />
+    <Content Include="assets\tests\paymentTests.js" />
+    <Content Include="assets\tests\phoneFormatRemoveTests.js" />
+    <Content Include="assets\tests\phoneFormatTests.js" />
+    <Content Include="assets\tests\btPropTests.js" />
+    <Content Include="assets\tests\securityServiceTests.js" />
+    <Content Include="assets\tests\sendSMTPErrorEmailTests.js" />
+    <Content Include="assets\tests\shippingSelectionCtrlTests.js" />
+    <Content Include="assets\tests\shippingSpeedModCtrlTests.js" />
+    <Content Include="assets\tests\shippingSpeedMultiModCtrlTests.js" />
+    <Content Include="assets\tests\shipToModCtrlTests.js" />
+    <Content Include="assets\tests\structurefilterTests.js" />
+    <Content Include="assets\tests\taxExemptModCtrlTests.js" />
+    <Content Include="assets\tests\titlecaseTests.js" />
+    <Content Include="html\coupons\couponChargeDesc.html" />
+    <Content Include="html\coupons\coupons.html" />
+    <Content Include="html\customer\addModifyAddress.html" />
+    <Content Include="assets\app\app.js" />
+    <Content Include="assets\app\appDirectives.js" />
+    <Content Include="assets\app\appFilters.js" />
+    <Content Include="assets\app\appServiceOrderCart.js" />
+    <Content Include="assets\app\appServicesCommonCode.js" />
+    <Content Include="assets\app\appServicesItem.js" />
+    <Content Include="assets\app\appServicesAnnouncements.js" />
+    <Content Include="assets\app\appServicesWebSocket.js" />
+    <Content Include="assets\app\appUtilities.js" />
+    <Content Include="assets\app\appServicesOrder.js" />
+    <Content Include="assets\app\appServicesCustomer.js" />
+    <Content Include="assets\app\controllers\paymentSummaryCtrl.js" />
+    <Content Include="assets\app\controllers\addModifyAddress.js" />
+    <Content Include="assets\app\controllers\orderDetailCtrl.js" />
+    <Content Include="assets\app\controllers\orderSearchCtrl.js" />
+    <Content Include="assets\app\controllers\couponsCtrl.js" />
+    <Content Include="assets\app\controllers\customerDetailCtrl.js" />
+    <Content Include="assets\app\controllers\customerSearchCtrl.js" />
+    <Content Include="assets\app\controllers\modifyCustomerCtrl.js" />
+    <Content Include="assets\app\controllers\indexCtrl.js" />
+    <Content Include="assets\app\controllers\itemLocateCtrl.js" />
+    <Content Include="assets\app\controllers\homeCtrl.js" />
+    <Content Include="assets\app\controllers\itemDetailCtrl.js" />
+    <Content Include="assets\app\controllers\itemResultsCtrl.js" />
+    <Content Include="assets\app\controllers\itemSearchCtrl.js" />
+    <Content Include="assets\app\controllers\orderCartCtrl.js" />
+    <Content Include="assets\app\controllers\shippingSelectionCtrl.js" />
+    <Content Include="assets\app\propertiesService.js" />
+    <Content Include="assets\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="assets\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="assets\bootstrap\css\bootstrap.css" />
+    <Content Include="assets\bootstrap\css\bootstrap.min.css" />
+    <Content Include="assets\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\bootstrap\js\bootstrap.js" />
+    <Content Include="assets\bootstrap\js\bootstrap.min.js" />
+    <Content Include="assets\images\ajax-loader.gif" />
+    <Content Include="assets\images\bonton.png" />
+    <Content Include="assets\images\bonus_buy.png" />
+    <Content Include="assets\images\bordered_lufi_logo.jpg" />
+    <Content Include="assets\images\bordered_lufi_rectangle_h70.jpg" />
+    <Content Include="assets\images\clearance.png" />
+    <Content Include="assets\images\coupons_excluded.png" />
+    <Content Include="assets\images\giftBox.gif" />
+    <Content Include="assets\images\GiftMessage.gif" />
+    <Content Include="assets\images\greyGiftBox.gif" />
+    <Content Include="assets\images\GreyGiftMessage.gif" />
+    <Content Include="assets\images\incredible_value.png" />
+    <Content Include="assets\images\rsz_twomenbigticket.png" />
+    <Content Include="assets\images\special_handling.png" />
+    <Content Include="assets\images\web_exclusive.png" />
+    <Content Include="assets\images\yellow_dot.gif" />
+    <Content Include="assets\jquery\jquery.min.js" />
+    <Content Include="assets\karma.config.js" />
+    <Content Include="assets\mockdata\draftOrders.txt" />
+    <Content Include="assets\ng\angular-animate.min.js" />
+    <Content Include="assets\ng\angular-iscroll.js" />
+    <Content Include="assets\ng\angular-mocks.js" />
+    <Content Include="assets\ng\angular-resource.min.js" />
+    <Content Include="assets\ng\angular-sanitize.js" />
+    <Content Include="assets\ng\angular-ui-router.min.js" />
+    <Content Include="assets\ng\angular.min.js" />
+    <Content Include="assets\ng\ng-table.min.js" />
+    <Content Include="assets\ng\placeholders.min.js" />
+    <Content Include="assets\ng\ui-bootstrap-tpls.min.js" />
+    <Content Include="assets\ng\ui-bootstrap.js" />
+    <Content Include="assets\ng\uiBreadcrumbs.js" />
+    <Content Include="assets\scroller\iscroll.js" />
+    <Content Include="assets\styles\custom.css" />
+    <Content Include="assets\styles\font-awesome-4.3.0\css\font-awesome.css" />
+    <Content Include="assets\styles\font-awesome-4.3.0\css\font-awesome.min.css" />
+    <Content Include="assets\styles\font-awesome-4.3.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\styles\ng-table.min.css" />
+    <Content Include="assets\styles\styles.css" />
+    <Content Include="assets\styles\ui-router-animation.css" />
+    <Content Include="assets\tests\appServiceOrderCartTest.js" />
+    <Content Include="html\customer\addressSelection.html" />
+    <Content Include="html\customer\addressSuggestion.html" />
+    <Content Include="html\customer\customerAddress.html" />
+    <Content Include="html\customer\customerSearchSwipeCard.html" />
+    <Content Include="html\login.html" />
+    <Content Include="html\order\cancelOrderModal.html" />
+    <Content Include="html\order\draftOrderLoad.html" />
+    <Content Include="html\order\orderDetailOrderLineAdditionalDetails.html" />
+    <Content Include="html\order\returnSummary.html" />
+    <Content Include="html\payment\accEntry.html" />
+    <Content Include="html\item\facetBrandCollapse.tpl.html" />
+    <Content Include="grunt.build.config.js" />
+    <Content Include="gruntfile.js" />
+    <Content Include="html\item\facetColorCollapse.tpl.html" />
+    <Content Include="html\item\facetFOBCollapse.tpl.html" />
+    <Content Include="html\item\facets.tpl.html" />
+    <Content Include="html\item\facetSizeCollapse.tpl.html" />
+    <Content Include="html\item\itemDetailGWP.html" />
+    <Content Include="html\payment\inContactPaymentEntry.html" />
+    <Content Include="html\payment\paymentEntry.html" />
+    <Content Include="html\payment\paymentEntryRetalix.html" />
+    <Content Include="html\payment\paymentSummary.html" />
+    <Content Include="html\order\orderLineAdditionalDetails.html" />
+    <Content Include="html\order\orderNote.html" />
+    <Content Include="html\order\orderPricingDetail.html" />
+    <Content Include="html\pickUpInStore\alreadyPickedModal.html" />
+    <Content Include="html\pickUpInStore\alternatePickAndPack.html" />
+    <Content Include="html\pickUpInStore\confirmPickupModal.html" />
+    <Content Include="html\pickUpInStore\bopisReport.html" />
+    <Content Include="html\pickUpInStore\packConfirm.html" />
+    <Content Include="html\pickUpInStore\packConfirmModal.html" />
+    <Content Include="html\pickUpInStore\pickingConfirm.html" />
+    <Content Include="html\pickUpInStore\pickUpInStore.html" />
+    <Content Include="IndexPROD.html" />
+    <Content Include="IndexQA.html" />
+    <Content Include="shippingSpeedModal.html" />
+    <Content Include="html\customer\billingAddressModal.html" />
+    <Content Include="html\item\itemDetailDescription.html" />
+    <Content Include="taxExemptModal.html" />
+    <Content Include="shipToModal.html" />
+    <Content Include="html\order\orderDetail.html" />
+    <Content Include="html\customer\customerDetail.html" />
+    <Content Include="html\customer\modifyCustomer.html" />
+    <Content Include="giftMessageModal.html" />
+    <Content Include="html\order\orderSearch.html" />
+    <Content Include="deleteConfirmationDialog.html" />
+    <Content Include="manageAnnouncements.html" />
+    <Content Include="html\customer\customerSearch.html" />
+    <Content Include="managerLogin.html" />
+    <Content Include="exitLufi.html" />
+    <Content Include="favicon.ico" />
+    <Content Include="Home.html" />
+    <Content Include="Index.html" />
+    <Content Include="html\item\itemDetail.html" />
+    <Content Include="html\item\itemLocate.html" />
+    <Content Include="html\item\itemResults.html" />
+    <Content Include="html\item\itemSearch.html" />
+    <Content Include="html\modalTemplates\authModal.html" />
+    <Content Include="html\modalTemplates\error.html" />
+    <Content Include="html\modalTemplates\quantityEntry.html" />
+    <Content Include="html\modalTemplates\shippingSpeedMultiModal.html" />
+    <Content Include="orderCart.html" />
+    <Content Include="shippingSelection.html" />
+    <Content Include="checkoutStepProgress.tpl.html" />
+    <Content Include="tools\jsmin.exe" />
+    <Content Include="uiBreadcrumbs.tpl.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="zipCodeValidation.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="assets\bootstrap\css\bootstrap.css.map" />
+    <Content Include="assets\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\ng\angular-resource.min.js.map" />
+    <Content Include="assets\ng\angular.min.js.map" />
+    <Content Include="assets\styles\font-awesome-4.3.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\styles\font-awesome-4.3.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\styles\font-awesome-4.3.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\styles\font-awesome-4.3.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\styles\font-awesome-4.3.0\fonts\FontAwesome.otf" />
+    <Content Include="assets\styles\font-awesome-4.3.0\less\animated.less" />
+    <Content Include="assets\styles\font-awesome-4.3.0\less\bordered-pulled.less" />
+    <Content Include="assets\styles\font-awesome-4.3.0\less\core.less" />
+    <Content Include="assets\styles\font-awesome-4.3.0\less\fixed-width.less" />
+    <Content Include="assets\styles\font-awesome-4.3.0\less\font-awesome.less" />
+    <Content Include="assets\styles\font-awesome-4.3.0\less\icons.less" />
+    <Content Include="assets\styles\font-awesome-4.3.0\less\larger.less" />
+    <Content Include="assets\styles\font-awesome-4.3.0\less\list.less" />
+    <Content Include="assets\styles\font-awesome-4.3.0\less\mixins.less" />
+    <Content Include="assets\styles\font-awesome-4.3.0\less\path.less" />
+    <Content Include="assets\styles\font-awesome-4.3.0\less\rotated-flipped.less" />
+    <Content Include="assets\styles\font-awesome-4.3.0\less\stacked.less" />
+    <Content Include="assets\styles\font-awesome-4.3.0\less\variables.less" />
+    <Content Include="assets\styles\font-awesome-4.3.0\scss\font-awesome.scss" />
+    <Content Include="assets\styles\font-awesome-4.3.0\scss\_animated.scss" />
+    <Content Include="assets\styles\font-awesome-4.3.0\scss\_bordered-pulled.scss" />
+    <Content Include="assets\styles\font-awesome-4.3.0\scss\_core.scss" />
+    <Content Include="assets\styles\font-awesome-4.3.0\scss\_fixed-width.scss" />
+    <Content Include="assets\styles\font-awesome-4.3.0\scss\_icons.scss" />
+    <Content Include="assets\styles\font-awesome-4.3.0\scss\_larger.scss" />
+    <Content Include="assets\styles\font-awesome-4.3.0\scss\_list.scss" />
+    <Content Include="assets\styles\font-awesome-4.3.0\scss\_mixins.scss" />
+    <Content Include="assets\styles\font-awesome-4.3.0\scss\_path.scss" />
+    <Content Include="assets\styles\font-awesome-4.3.0\scss\_rotated-flipped.scss" />
+    <Content Include="assets\styles\font-awesome-4.3.0\scss\_stacked.scss" />
+    <Content Include="assets\styles\font-awesome-4.3.0\scss\_variables.scss" />
+    <Content Include="assets\misc\commonCode.min.json" />
+    <Content Include="package.json" />
+    <None Include="Properties\PublishProfiles\QaServerPublish.pubxml" />
+    <None Include="Properties\PublishProfiles\ScintServerPublish.pubxml" />
+    <None Include="Properties\PublishProfiles\TestServerPublish.pubxml" />
+    <Content Include="tools\conc.bat" />
+    <None Include="Properties\PublishProfiles\toFile.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50086</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50086/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>"$(ProjectDir)tools\conc.bat" "$(ProjectDir)" "$(ConfigurationName)"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

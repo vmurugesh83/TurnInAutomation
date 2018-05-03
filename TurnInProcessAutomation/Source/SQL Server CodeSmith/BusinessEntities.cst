@@ -1,0 +1,96 @@
+<%-- 
+Name: 
+Author: Kimberly Lehman
+Description: 
+--%>
+
+<%@ CodeTemplate Language="VB" TargetLanguage="Text" Inherits="ICCHelper" Src="ICCHelper.cst.vb" Debug="True" Description="Template description here." %>
+<%@ Property Name="SQLServerConnect" Type="System.String" Default="<SQL>" Optional="False" Category="Strings" Description="SQL Server Connection string." %>
+<%@ Property Name="Table" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow." %>
+<%@ Property Name="className" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow Formatted." %>
+
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Data.OleDb" %>
+<%@ Import Namespace="System.Collections.Generic" %>
+
+<%
+    Dim ColumnsSQL as string = "select COLUMN_NAME, DATA_TYPE, IS_NULLABLE, ISNULL(CHARACTER_OCTET_LENGTH,0) as LENGTH from information_schema.columns where table_name = '{0}' order by ordinal_position"
+    Dim PrimaryKeyColumnsSQL as string = "SELECT Col.Column_Name as COLUMN_NAME from INFORMATION_SCHEMA.TABLE_CONSTRAINTS Tab, INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE Col WHERE Col.Constraint_Name = Tab.Constraint_Name AND Col.Table_Name = Tab.Table_Name AND Constraint_Type = 'PRIMARY KEY' AND Col.Table_Name = '{0}'"
+    Dim ForeignKeyColumnsSQL as string = "SELECT Col.Column_Name as COLUMN_NAME from INFORMATION_SCHEMA.TABLE_CONSTRAINTS Tab, INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE Col WHERE Col.Constraint_Name = Tab.Constraint_Name AND Col.Table_Name = Tab.Table_Name AND Constraint_Type = 'FOREIGN KEY' AND Col.Table_Name = '{0}'"
+
+    Dim columnsDT As DataTable
+    Dim primaryKeyColumnsDT As DataTable
+    Dim foreignKeyColumnsDT As DataTable
+    
+ 	columnsDT = GetDataSet(SQLServerConnect, String.Format(ColumnsSQL, table)).Tables(0) 
+    primaryKeyColumnsDT = GetDataSet(SQLServerConnect, String.Format(PrimaryKeyColumnsSQL, table)).Tables(0) 
+    foreignKeyColumnsDT = GetDataSet(SQLServerConnect, String.Format(ForeignKeyColumnsSQL, table)).Tables(0) 
+    
+    dim columns as new List(Of String)
+    for each keyRow as DataRow in columnsDT.Rows        
+        columns.Add(keyRow("COLUMN_NAME"))            
+    next 
+    
+    dim primaryKeys as new List(Of String)
+    for each keyRow as DataRow in primaryKeyColumnsDT.Rows        
+        primaryKeys.Add(keyRow("COLUMN_NAME"))
+        columns.Remove(keyRow("COLUMN_NAME"))            
+    next 
+    
+    dim foreignKeys as new List(Of String)
+    for each keyRow as DataRow in foreignKeyColumnsDT.Rows        
+        foreignKeys.Add(keyRow("COLUMN_NAME"))            
+        columns.Remove(keyRow("COLUMN_NAME"))            
+    next 
+%>
+Imports System.ComponentModel
+
+<Serializable()> _
+Public Class <%=className%>Info
+
+    'Internal member variables
+	<% For i as integer = 0 to columnsDT.rows.Count - 1 %>
+	<% Dim name as string = columnsDT.rows(i)("COLUMN_NAME").ToString.Trim %>
+        Private _<%=ToCamelCase(name)%> As <%=ConvertType(columnsDT.rows(i)("DATA_TYPE").ToString.Trim, columnsDT.rows(i)("IS_NULLABLE").ToString.Trim)%>
+	<% Next i %>
+	
+    'Default constructor
+    Public Sub New()
+    End Sub
+
+    'Constructor with initialized values
+	Public Sub New(<% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("COLUMN_NAME").ToString.Trim %>ByVal <%=ToCamelCase(name)%> As <%=ConvertType(columnsDT.rows(i)("DATA_TYPE").ToString.Trim, columnsDT.rows(i)("IS_NULLABLE").ToString.Trim)%><% IF i=columnsDT.rows.Count - 1 then %><%Response.Write(")")%><%else%><%Response.Write(", _" & Environment.Newline & "                   ")%><%end if %><% Next i %> 
+    <% For i as integer = 0 to columnsDT.rows.Count - 1 %>
+    <% Dim name as string = columnsDT.rows(i)("COLUMN_NAME").ToString.Trim %>
+        Me._<%=ToCamelCase(name)%> = <%=ToCamelCase(name)%> 
+	<% Next i %>
+    End Sub
+   
+	<% For i as integer = 0 to columnsDT.rows.Count - 1 %>
+	<% Dim name as string = columnsDT.rows(i)("COLUMN_NAME").ToString.Trim %>
+	<% If (table = "TPM130EVT_PCAUD" And name <> "USER_ID") OrElse (name <> "USER_ID" And name <> "MODIFY_TS") Then %>
+    <% for each primaryKey as String in primaryKeys%>
+    <% if name = primaryKey %>
+    <DataObjectField(True)> _
+    <% end if %>
+    <% next %>
+    Public Property <%=ToPascalCase(columnsDT.rows(i)("COLUMN_NAME").ToString.Trim)%>() As <%=ConvertType(columnsDT.rows(i)("DATA_TYPE").ToString.Trim, columnsDT.rows(i)("IS_NULLABLE").ToString.Trim)%>
+        Get
+            Return _<%=ToCamelCase(columnsDT.rows(i)("COLUMN_NAME").ToString.Trim)%>
+        End Get
+        Set(ByVal value As <%=ConvertType(columnsDT.rows(i)("DATA_TYPE").ToString.Trim, columnsDT.rows(i)("IS_NULLABLE").ToString.Trim)%>)
+            _<%=ToCamelCase(columnsDT.rows(i)("COLUMN_NAME").ToString.Trim)%> = value
+        End Set
+    End Property
+    
+	<% End If %>
+	<% Next i %>    
+End Class
+
+<script runat="template">
+
+
+
+
+
+</script>

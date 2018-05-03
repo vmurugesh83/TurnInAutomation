@@ -1,0 +1,258 @@
+﻿
+<div class="row" same-height="">
+    <div class="col col-sm-9">
+        <div class="row">
+            <div class="col col-sm-12">
+                <table ng-if="numberOfCards()>0" class="table table-striped">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="card in paymentData.cards">
+                            <td ng-click="removePayment(card)">
+                                <span class="glyphicon glyphicon-remove" style="color: red; font-size: 1.5em; vertical-align:middle" aria-hidden="true"></span>
+                                <span style="color:red; margin-left:5px">remove</span>
+                            </td>
+                            <td>
+                                <img ng-show="card.cardType=='AMEX'" src="../../assets/images/Cards/AmericanExpress.jpg" />
+                                <img ng-show="card.cardType=='PLCC'" src="../../assets/images/Cards/BonTon.jpg" />
+                                <img ng-show="card.cardType=='DISCOVER'" src="../../assets/images/Cards/Discover.jpg" />
+                                <img ng-show="card.paymentType.msrType=='GiftCard'" src="../../assets/images/Cards/giftcard.jpg" />
+                                <img ng-show="card.cardType=='MASTERCARD'" src="../../assets/images/Cards/MasterCard.jpg" />
+                                <img ng-show="card.cardType=='VISA'" src="../../assets/images/Cards/visa.jpg" />
+                            </td>
+                            <td>{{card.cardNumber}}</td>
+                            <td>
+                                <div style="width: 45%; display: inline-block">Amount To charge:</div>
+                                <div style="width: 20%; display: inline-block; text-align: right">{{card.chargeAmount | currency}}</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div style="font-size: 18px; font-weight: 500">
+                                    <div style="width:45%; display:inline-block" ng-if="balanceRefund>=0">Balance Due:</div><span style="width:45%" ng-if="balanceRefund<0">Refund Due:</span>
+                                    <div style="width:20%; display:inline-block; text-align:right">{{balanceRefund | currency}}</div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table ng-if="numberOfCards()==0" class="table table-striped">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h4><a href="" ng-click="openPaymentEntry()">.. Add Payment ...</a></h4>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <h4><span ng-if="balanceRefund>=0">Balance Due</span><span ng-if="balanceRefund<0">Refund</span>:{{balanceRefund | currency}}</h4>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="row">
+                    <div class="col col-sm-3">
+                        <button ng-disabled="!canAddPayment()" ng-click="openPaymentEntry()" type="button" class="btn btn-success btn-block"><i class="fa fa-plus-square-o fa-lg"></i><span>  Add Payment</span></button>
+                    </div>
+                    <div class="col col-sm-4">
+                    </div>
+
+                    <div class="col col-sm-5">
+                        <button ng-click="openACCEntry()" type="button" class="btn btn-primary btn-block">
+                            <span ng-if="paymentData.accNumber">Remove Associate Discount Card</span><span ng-if="!paymentData.accNumber">Associate Discount Card</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div ng-show="!(orderLinesArray.length)" class="col-sm-12 text-center"><br /><br /><h2>No Items in Cart</h2><br /><br /></div>
+            <div ng-show="(orderLinesArray.length)" class="col-sm-12">
+                <div id="paymentOrderCartWrapper">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td class="col-md-6">
+                                    Item
+                                </td>
+                                <td class="col-md-1">
+                                    Quantity
+                                </td>
+                                <td class="col-md-3">
+                                    TKT Price
+                                </td>
+                                <td class="col-md-1">
+                                    Today's Price
+                                </td>
+                                <td class="col-md-1">
+                                    Line Total
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="orderLine in orderLinesArray" on-finish-render="refreshIScroll()" ng-class="{stripedRow: $even, nonstripedRow: $odd, stripedRowFirst: $first }">
+                                <td>
+                                    <div ng-bind-html="orderLine.btDisplay.defaultItemDescription"></div>
+                                    <span style="font-weight:700">UPC:</span> {{orderLine.Item._UPCCode}}
+                                    <span style="font-weight:700">Image ID:</span> {{orderLine.btDisplay.imageid}}
+                                    <span style="font-weight:700">Price Status:</span> {{orderLine.btDisplay.pricestatus}}
+                                    <span ng-show="orderLine.btDisplay.itemtype === 'BGT'"><img src="assets/images/rsz_twomenbigticket.png" style="float:left;padding-top:3px" /> <span style="font-weight:700">Big Ticket</span></span>
+                                </td>
+                                <td>
+                                    {{orderLine._OrderedQty | number:0}}
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        <div ng-switch="orderLine.Extn._ExtnIsPriceLocked=='Y'">
+                                            <input ng-switch-when="false" ng-keypress="numberValidator(event); currencyValidator(event, orderLine.LinePriceInfo._UnitPrice)" ng-change="priceModified($index)" ng-disabled="orderLine.Extn._ExtnIsPriceLocked=='Y'" ng-model="orderLine.LinePriceInfo._UnitPrice" class="form-control" type="text" />
+                                            <div ng-switch-when="true" style="width:100%; height:100%; border: 1px solid gray; border-radius: 5px 0px 0px 5px; padding: 6px 0px 6px 5px; cursor: not-allowed">{{orderLine.LinePriceInfo._UnitPrice | currency}}</div>
+                                        </div>
+                                        <span class="input-group-btn" ng-show="showOverrideButton(orderLine, $index)">
+                                            <button ng-click="priceOverride(orderLine, $index)" class="btn btn-primary" type="button">{{orderLine.Extn._ExtnIsPriceLocked=='N'?'Override':'Remove'}}</button>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    {{orderLine.LinePriceInfo._RetailPrice| currency}}
+                                </td>
+                                <td>
+                                    <a href="" ng-click="openOrderLinePricingDetail(orderLine)"> {{calculateLineTotal(orderLine) | currency}} </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-3 text-right" style="line-height: 2.2em;">
+                        Scan or Enter Coupon:
+                    </div>
+                    <div class="col-sm-3">
+                        <form ng-submit="addCoupon(txtCouponFromPayment)">
+                            <input ng-model="txtCouponFromPayment" class="form-control" type="text"><input ng-disabled="txtCouponFromPayment.length == 0" type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" />
+                        </form>
+                    </div>
+                    <div class="col-sm-3">
+                        <button ng-disabled="txtCouponFromPayment.length == 0" ng-click="addCoupon(txtCouponFromPayment)" class="btn btn-default btn-block">Add Coupon</button>
+                    </div>
+                    <div class="col-sm-3">
+                        <a href='#/coupons' class="btn btn-default btn-block">Coupon Summary</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col col-sm-3" style="border-left: thick solid #D3D3D3;background-color: #F2F2F2;">
+        <div class="row">
+            <div class="col col-md-12">
+                <table class="table-condensed table">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Merchandise Total
+                            </td>
+                            <td align="right">
+                                {{ merchandiseTotal() | currency }}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Coupon Discounts
+                            </td>
+                            <td align="right">
+                                {{ couponDiscountTotal() | currency }}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Misc Charges/Discounts
+                            </td>
+                            <td align="right">
+                                {{ misChargesTotal() | currency }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Assoc Disc/IC Disc
+                            </td>
+                            <td align="right">
+                                {{assocDiscTotal() | currency}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Sub Total
+                            </td>
+                            <td align="right">
+                                {{orderSubTotal() | currency}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Shipping
+                            </td>
+                            <td align="right">
+                                {{shippingTotal() | currency}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Tax
+                            </td>
+                            <td align="right">
+                                {{taxTotal() | currency}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Total
+                            </td>
+                            <td align="right">
+                                {{orderTotal() | currency}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-12 col-sm-offset-3">
+                                        <a href="" ng-click="openOrderPricingDetail()" aria-hidden="true"><h4>Pricing Detail</h4></a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1" style="padding-bottom:20px;">
+                <button class="btn btn-block btn-success paymentSummaryConfirm" ng-disabled="balanceRefund !=0 || isPriceOverideOccuring()" ng-click="confirmOrder()">Confirm Order</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

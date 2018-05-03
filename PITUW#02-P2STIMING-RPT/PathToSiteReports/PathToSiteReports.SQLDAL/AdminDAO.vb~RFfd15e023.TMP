@@ -1,0 +1,166 @@
+﻿Imports System.Data.SqlClient
+Imports BonTon.DBUtility.SqlHelper
+Imports PathToSiteReports.BusinessEntities
+
+Public Class AdminDAO
+    Public Function GetAdminDataByISNAndColor(ByVal internalStyleNumber As Decimal, ByVal ColorCode As Integer) As AdminData
+        Dim adminData As AdminData = Nothing
+        Dim sqlQuery As String = String.Empty
+
+        Try
+            sqlQuery = String.Format("SELECT ISNULL(IMN.image_id,0) AS image_id, " &
+                                     " ISNULL(ADM.AD_NBR,0) AS AD_NBR, " &
+                                     " ISNULL(AD.ad_desc,'') AS ad_desc, " &
+                                     " ISNULL(MT.media_type_desc,'') AS media_type_desc FROM " &
+                    " [informix].[merch] AS MER " &
+                    " INNER JOIN [informix].[ad_merch] AS ADM" &
+                    " ON MER.MERCH_ID = ADM.MERCH_ID" &
+                    " INNER JOIN  [informix].[ad_info] AS AD" &
+                    " ON ADM.AD_NBR = AD.AD_NBR" &
+                    " INNER JOIN [informix].[media_type] AS MT" &
+                    " ON AD.media_type_cd = MT.media_type_cd" &
+                    " LEFT OUTER JOIN [informix].[image_merch_new] AS IMN" &
+                    " ON ADM.MERCH_ID = IMN.MERCH_ID" &
+                    " WHERE MER.internal_style_num = {0} " &
+                    " AND MER.vendor_color_code = {1}", _
+                internalStyleNumber, ColorCode)
+
+            'Execute a query to read the adInfo
+            Using rdr As SqlDataReader = ExecuteReader(ConnectionStringLocalTransaction, CommandType.Text, sqlQuery)
+                If rdr.HasRows Then
+                    rdr.Read()
+                    adminData = New AdminData()
+                    adminData.ImageID = CInt(rdr("image_id"))
+                    adminData.AdNumber = CInt(rdr("AD_NBR"))
+                    adminData.AdDesc = CStr(rdr("ad_desc"))
+                    adminData.AdType = CStr(rdr("media_type_desc"))
+                End If
+            End Using
+
+        Catch ex As Exception
+            Throw
+        End Try
+        Return adminData
+    End Function
+    Public Function UpdateAdNumberAndImageID(ByVal skuDetailsTable As DataTable) As DataTable
+        Dim tempTableQuery As String = String.Empty
+        Dim updateStatement As String = String.Empty
+        Dim selectQuery As String = String.Empty
+        Dim updatedTable As DataTable = Nothing
+        Dim rdr As SqlDataReader = Nothing
+        Try
+            tempTableQuery = GetSKUDetailsTempTableQuery()
+            Using sqlCon As SqlConnection = New SqlConnection(ConnectionStringLocalTransaction)
+                sqlCon.Open()
+
+                Using sqlComm As SqlCommand = New SqlCommand(String.Empty, sqlCon)
+
+                    'Create the temp table
+                    sqlComm.CommandText = tempTableQuery
+                    sqlComm.ExecuteNonQuery()
+
+                    skuDetailsTable = UpdateInvalidSQLDateInDataTable(skuDetailsTable, "CMR_DATE", String.Empty)
+
+                    'Write the data from SKU details data table to the temp table
+                    Using bulkCopy As SqlBulkCopy = New SqlBulkCopy(sqlCon)
+                        bulkCopy.BulkCopyTimeout = 700
+                        bulkCopy.DestinationTableName = "#TmpSKUDetail"
+                        bulkCopy.WriteToServer(skuDetailsTable)
+                        bulkCopy.Close()
+                    End Using
+
+                    'Now we have the temp table with data, so update the data from admin
+                    updateStatement = GetAdNumAndImageIDUpdateStatement()
+                    sqlComm.CommandText = updateStatement
+                    sqlComm.ExecuteNonQuery()
+
+                    'Read the results to a database
+                    selectQuery = "SELECT * FROM #TmpSKUDetail"
+                    sqlComm.CommandText = selectQuery
+                    rdr = sqlComm.ExecuteReader(CommandBehavior.CloseConnection)
+                    updatedTable = ConvertToDataTable(rdr)
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+
+        Return updatedTable
+
+    End Function
+    Private Function GetSKUDetailsTempTableQuery() As String
+        Dim tempTableQuery As String = String.Empty
+
+        tempTableQuery = "CREATE TABLE #TmpSKUDetail (GMM VARCHAR(100), DMM VARCHAR(100)" &
+            ", BUYER VARCHAR(100), FOB VARCHAR(100), DEPT VARCHAR(100), Class VARCHAR(100)" &
+            ", INTERNAL_STYLE_NUM DECIMAL(15,0), CLR_CDE INTEGER, SKU_NUM DECIMAL(15,0)" &
+            ", UPC_NUM DECIMAL(15,0), SS_DATE DATETIME, SAMPLE_REQ_DATE DATETIME, CMR_DATE DATETIME, SAMPLE_DUE_DATE DATETIME" &
+            ", PO_APPROVAL_DTE DATETIME, DC_SHIP_DTE DATETIME, TURN_IN_DATE DATETIME" &
+            ", FIRST_RC_DATE DATETIME, COPY_READY_DATE DATETIME, PRODUCT_READY_DATE DATETIME" &
+            ", PRODUCT_ACTIVE_DATE DATETIME, AD_NUM INTEGER, AD_DESC VARCHAR(200)" &
+            ", AD_TYPE VARCHAR(100), IMAGE_ID_NUM INTEGER, IMAGE_SHOT_DATE DATETIME" &
+            ", IMAGE_READY_DATE DATETIME)"
+
+        Return tempTableQuery
+    End Function
+
+    Private Function GetAdNumAndImageIDUpdateStatement() As String
+        Dim updateStatement As String = "UPDATE #TmpSKUDetail " &
+            " SET AD_NUM = ADM.AD_NBR, " &
+            " AD_TYPE = MT.media_type_desc, " &
+            " IMAGE_ID_NUM = IMN.image_id " &
+            " FROM  [tempdb].[dbo].[##OOOH192] FC " &
+            " INNER JOIN [informix].[merch] AS MER " &
+            " ON FC.internal_style_num = MER.internal_style_num " &
+            " AND FC.clr_cde = MER.vendor_color_code" &
+            " INNER JOIN [informix].[ad_merch] AS ADM" &
+            " ON MER.MERCH_ID = ADM.MERCH_ID " &
+            " INNER JOIN  [informix].[ad_info] AS AD" &
+            " ON ADM.AD_NBR = AD.AD_NBR " &
+            " INNER JOIN [informix].[media_type] AS MT " &
+            " ON AD.media_type_cd = MT.media_type_cd " &
+            " LEFT OUTER JOIN [informix].[image_merch_new] AS IMN " &
+            " ON ADM.MERCH_ID = IMN.MERCH_ID"
+
+        Return updateStatement
+    End Function
+    Private Function ConvertToDataTable(ByVal rdr As SqlDataReader) As DataTable
+        Dim dtReturn As DataTable = New DataTable("dt")
+        Dim dtSchemaTable As DataTable = rdr.GetSchemaTable
+        Dim cField As Integer = dtSchemaTable.Rows.Count
+        Dim iField As Integer = 0
+        While (iField < cField)
+            dtReturn.Columns.Add(New DataColumn(dtSchemaTable.Rows(iField)("ColumnName").ToLower(), _
+                                                dtSchemaTable.Rows(iField)("DataType")))
+            iField += 1
+        End While
+        '
+        If (rdr.HasRows) Then
+            Dim drRow As DataRow
+            While rdr.Read
+                drRow = dtReturn.NewRow
+                iField = 0
+                While (iField < cField)
+                    drRow(iField) = rdr(iField)
+
+                    iField += 1
+                End While
+                dtReturn.Rows.Add(drRow)
+            End While
+        End If
+
+        Return dtReturn
+    End Function
+
+    Private Function UpdateInvalidSQLDateInDataTable(ByVal inputTable As DataTable, ByVal columnName As String, ByVal valueToUpdate As String) As DataTable
+        Dim rows() As DataRow = Nothing
+
+        rows = inputTable.Select(String.Format("{0} = '01/01/0001'", columnName))
+
+        For Each row As DataRow In rows
+            row(columnName) = valueToUpdate
+        Next
+
+        Return inputTable
+    End Function
+End Class

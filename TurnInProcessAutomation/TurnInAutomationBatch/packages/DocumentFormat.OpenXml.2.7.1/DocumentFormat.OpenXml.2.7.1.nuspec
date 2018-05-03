@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>DocumentFormat.OpenXml</id>
+    <version>2.7.1</version>
+    <title>DocumentFormat.OpenXml</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>https://github.com/OfficeDev/Open-XML-SDK/blob/vNext/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/OfficeDev/Open-XML-SDK</projectUrl>
+    <iconUrl>http://cdn.redmondpie.com/wp-content/uploads/2012/07/MS-Office-2013-logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Official NuGet for DocumentFormat.OpenXml</description>
+    <summary />
+    <copyright>Microsoft</copyright>
+    <tags>OpenXml Office Open XML documents</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5" />
+      <group targetFramework="Unsupported0.0">
+        <dependency id="NETStandard.Library" version="1.6.0" />
+        <dependency id="System.IO.Packaging" version="4.0.0" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Xml" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="System.Xml.Linq" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="WindowsBase" targetFramework=".NETFramework4.5" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

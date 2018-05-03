@@ -1,0 +1,1 @@
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdatesClient\bin\Release\AdUpdatesClient.exe.config

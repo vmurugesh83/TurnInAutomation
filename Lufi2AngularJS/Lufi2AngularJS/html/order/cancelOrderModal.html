@@ -1,0 +1,23 @@
+﻿<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Confirm Order Cancel</h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <p>Do you want to cancel the order?</p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-5">
+                <button class="btn btn-block btn-danger" ng-disabled="!canCancelOrder()" ng-click="cancelOrder()">Cancel Order</button>
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-block btn-default" ng-click="dismiss()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

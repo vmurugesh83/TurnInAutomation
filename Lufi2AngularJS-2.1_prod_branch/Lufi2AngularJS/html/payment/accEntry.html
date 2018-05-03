@@ -1,0 +1,54 @@
+﻿<div class="modal-header">
+    <h4 class="modal-title">Associate Discount Card Entry</h4>
+</div>
+<div class="modal-body">
+    <div ng-show="swipping">
+        <div class="row">
+            <div class="col col-sm-3">
+            </div>
+            <div class="col col-sm-6">
+                <img ng-click="disableSwipeCard()" class="ccSwipe" src="assets/images/credit-card.gif" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-sm-3">
+            </div>
+            <div class="col col-sm-6">
+                <button ng-click="disableSwipeCard()" class="btn btn-default btn-block">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div ng-show="!swipping">
+        <div class="row">
+            <div class="col col-sm-3">
+                Card Number
+            </div>
+            <div class="col col-sm-6">
+                <input maxlength="18" ng-keypress="numberValidator(event)" ng-model="accNumber" class="form-control" type="text">
+            </div>
+            <div class="col col-sm-3">
+                <button ng-click="swipeCard()" class="btn btn-default btn-block">Swipe Card</button>
+            </div>
+
+        </div>
+        <div class="row" ng-show="cardNumValidationError">
+            <div class="col col-sm-3"></div>
+            <div class="col col-sm-6">
+                <span style="color: red">
+                     Must begin with 2119
+                </span>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col col-sm-6">
+                    <button ng-disabled="!canSave()" ng-click="save()" class="btn btn-success btn-block">Save</button>
+                </div>
+                <div class="col col-sm-6">
+                    <button ng-click="close()" class="btn btn-warning btn-block">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

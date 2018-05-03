@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "PendingPrioritizationReport", "PendingPrioritizationReport\PendingPrioritizationReport.dtproj", "{3FD5D499-6276-4D88-BEF0-790F7787E458}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs2013.internal.bonton.com:8080/tfs2013/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = PendingPrioritizationReport\\PendingPrioritizationReport.dtproj
+		SccProjectName1 = PendingPrioritizationReport
+		SccLocalPath1 = PendingPrioritizationReport
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3FD5D499-6276-4D88-BEF0-790F7787E458}.Development|Default.ActiveCfg = Development
+		{3FD5D499-6276-4D88-BEF0-790F7787E458}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

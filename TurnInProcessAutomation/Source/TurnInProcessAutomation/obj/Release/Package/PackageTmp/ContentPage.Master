@@ -1,0 +1,104 @@
+<%@ Master Language="VB" Inherits="TurnInProcessAutomation.ContentPage" CodeBehind="ContentPage.Master.vb" %>
+
+<%@ Register Assembly="TSC.Timeout" Namespace="TSC.Timeout" TagPrefix="tsc" %>
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register Assembly="TurnInProcessAutomation" Namespace="TurnInProcessAutomation.BonTon.Web.Controls"
+    TagPrefix="cc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%--<meta http-equiv="X-UA-Compatible" content="IE=8" />--%>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">        
+    <title>Merchandise Turn-In System</title> 
+    <asp:contentplaceholder id="ExtraStylesAndScripts" runat="server" />  
+</head>
+<body>
+    <form id="ContentPageForm" runat="server">
+    <telerik:RadScriptManager ID="rsmJS" runat="server" EnablePageMethods="true">
+        <Scripts>            
+            <asp:ScriptReference Path="~/Javascript/CommonJSFunctions.js" />
+            <asp:ScriptReference Path="~/Javascript/jquery-1.3.2.min.js" />
+            <asp:ScriptReference Path="~/Javascript/jquery-ui-1.7.0.min.js" />
+            <asp:ScriptReference Path="~/Javascript/jquery.bgiframe-2.1.1.pack.js" />
+            <asp:ScriptReference Path="~/Javascript/jshashtable-2.1.js" />
+            <asp:ScriptReference Path="~/Javascript/jquery.numberformatter-1.2.1.js" />            
+            <asp:ScriptReference Path="~/Javascript/blockUI.js" />
+            <asp:ScriptReference Path="~/Javascript/dymo.label.framework.js" />
+        </Scripts>
+    </telerik:RadScriptManager>
+    <telerik:RadAjaxManager runat="server" ID="ramAjaxMgr" EnablePageHeadUpdate="False"
+        UpdatePanelsRenderMode="Inline" DefaultLoadingPanelID="ralpLoadPnl" 
+        ClientEvents-OnRequestStart="CenterLoadingPanel" />
+    <telerik:RadAjaxLoadingPanel ID="ralpLoadPnl" runat="server" IsSticky="true" Transparency="2" Skin="Windows7">
+    </telerik:RadAjaxLoadingPanel>
+    <div id="appHeader">
+       <asp:Label id="lblEnvironmentLeft" runat="server" ></asp:Label>
+       &nbsp;&nbsp;&nbsp;Merchandise Turn-In System&nbsp;&nbsp;&nbsp;
+     <asp:Label id="lblEnvironmentRight" runat="server" ></asp:Label>   
+   </div>
+    <div>
+        <span id="dirtyForm" style="display:none"></span>
+        <tsc:Timeout ID="sessionTimeout" runat="server" title="Session Expiring" Enabled="true"
+            TimeoutURL="~/SessionExpired.aspx" ResetSessionOnAsyncPostback="true" CountDownSpanID="tscCounter"
+            DirtyFormSpanID="dirtyForm">
+            <Template>
+                <p>
+                    <span class="ui-icon ui-icon-alert" style="float: left; margin: 1px 10px 20px 0;">
+                    </span>Your session is about to Expire.
+                </p>
+                <span id="tscCounter"></span>
+                <p>
+                    Click <b>OK</b> to continue your session.</p>
+            </Template>
+        </tsc:Timeout>
+    </div>
+    <div id="appMenu">
+        <bonton:ApplicationMenu ID="MerchandiseTurnInSystemMenu" runat="server" />
+        
+        <asp:LoginView ID="LoginView1" runat="server">
+            <LoggedInTemplate>
+                <span style="padding: 4px; color: White; float: right; font-weight: bold">Logged in
+                    as:
+                    <asp:LoginName ID="LoginName1" runat="server" />
+                </span>
+            </LoggedInTemplate>
+            <AnonymousTemplate>
+                <span style="color: White; float: right; font-weight: bold;">
+                    <asp:LoginStatus ID="LoginStatus1" runat="server" />
+                </span>
+            </AnonymousTemplate>
+        </asp:LoginView>
+                       
+    </div>    
+    <telerik:RadSplitter ID="rsApplication" runat="server" SkinID="appSplitter" SplitBarsSize="">
+        <telerik:RadPane ID="rpSidebar" runat="server" SkinID="appSidebarPane">
+            <asp:PlaceHolder ID="phSidebar" runat="server"></asp:PlaceHolder>
+        </telerik:RadPane>
+        <telerik:RadSplitBar runat="server" ID="rsbSideBar" CollapseMode="Forward" EnableResize="true" />
+        <telerik:RadPane runat="server" ID="rpContentArea" Scrolling="None" Height="100%">                
+            <asp:ContentPlaceHolder ID="ContentArea" runat="server">
+            </asp:ContentPlaceHolder>
+        </telerik:RadPane>
+    </telerik:RadSplitter>    
+
+    <script type="text/javascript">
+        Sys.Application.add_load(RTS.Common.unBlockUI);
+        
+        function PrintPane(paneIndex) {
+            var splitter = $find('<%= rsApplication.ClientID%>');
+            var pane = splitter.GetPaneByIndex(paneIndex);
+
+            if (!pane) return;
+
+            var cssFileAbsPath = 'App_Themes/printStyles.css';
+            var arrExtStylsheetFiles = [cssFileAbsPath];
+
+            pane.Print(arrExtStylsheetFiles);
+        }
+
+        function CenterLoadingPanel(sender, args) {            
+            centerElementOnScreen($get("<%= ralpLoadPnl.ClientID %>"));
+        }
+    </script>
+    </form>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<%-- 
+Name: 
+Author: Kimberly Lehman
+Description: 
+
+--%>
+<%@ CodeTemplate Language="VB" Src="ICCHelper.cst.vb" Inherits="ICCHelper" OutPutType="Normal" Debug="True" Description="RecObj Master" %>
+<%@ Property Name="SQLServerConnect" Type="System.String" Default="Server=M055-SQL-1T;Initial Catalog=DBADVPROD;User ID=INFORMIX;Password=INFORMIX;Persist Security Info=True" Optional="False" Category="Strings" Description="SQL Server Connection string." %>
+<%@ Property Name="tableName" Type="System.String" Default="ad_info" Optional="False" Category="Strings" Description="Table Name" %>
+<%@ Property Name="projectName" Type="System.String" Default="TurnInProcessAutomation" Optional="False" Category="Strings" Description="Table Name" %>
+<%@ Property Name="BusinessEntityOutputFolder" Type="System.String" Default="C:\csmithoutput" Optional="False" Category="OutputPaths" Description="Output path of model class files." %>
+<%@ Property Name="EntityFactoryOutputFolder" Type="System.String" Default="C:\csmithoutput" Optional="False" Category="OutputPaths" Description="Output path of model factory class files." %>
+<%@ Property Name="DataAccessInterfaceOutputFolder" Type="System.String" Default="C:\csmithoutput" Optional="False" Category="OutputPaths" Description="Output path of data access interface class files." %>
+<%@ Property Name="DataAccessOutputFolder" Type="System.String" Default="C:\csmithoutput" Optional="False" Category="OutputPaths" Description="Output path of data access object class files." %>
+
+
+<%@ Assembly Name="System.Data" %>
+
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Data.OleDb" %>
+<%@ Import Namespace="System.IO" %>
+
+<%@ Register Name="BusinessEntities" Template="BusinessEntities.cst" %>
+<%@ Register Name="ModelFactories" Template="ModelFactories.cst" %>
+<%@ Register Name="DataAccessInterfaces" Template="DataAccessInterfaces.cst" %>
+<%@ Register Name="DataAccessMethods" Template="DataAccessMethods.cst" %>
+
+<script runat="template">
+Public OverRides Sub Render(Writer as TextWriter)
+    Dim tablesDT As DataTable
+    
+    Dim businessEntities as BusinessEntities
+    Dim modelFactories as ModelFactories
+    Dim dataAccessInterfaces as DataAccessInterfaces
+    Dim dataAccessMethods as DataAccessMethods
+        
+    Dim businessEntitiesOutFile as OutputFile
+    Dim businessEntitiesFileName as string
+    
+    Dim modelFactoriesOutFile as OutputFile
+    Dim modelFactoriesFileName as string
+    
+    Dim dataAccessInterfacesOutFile as OutputFile
+    Dim dataAccessInterfacesFileName as string
+        
+    Dim dataAccessMethodsOutFile as OutputFile
+    Dim dataAccessMethodsFileName as string
+    
+    Dim TablesSQL as string = "SELECT * FROM information_schema.tables where table_name = '"+ tableName +"'"
+
+	tablesDT = GetDataSet(SQLServerConnect, TablesSQL).Tables(0) 
+    For each tableRow as DataRow in TablesDT.rows  
+        'create Business Entities
+        businessEntities = new BusinessEntities
+        
+        'assign template properties
+        businessEntities.Table = tableName
+        businessEntities.SQLServerConnect = SQLServerConnect
+        businessEntities.className = ToCamelCase(tableName)
+        
+        'create output file 
+        businessEntitiesFileName = string.Format("{0}\{1}.vb", BusinessEntityOutputFolder, ToCamelCase(tableName) & "Info")
+        businessEntitiesOutFile = new OutputFile(businessEntitiesFileName)
+        
+        'render Business Entities
+        businessEntities.RenderToFile(businessEntitiesOutFile, true)          
+        
+                
+        'create Model Factories
+        modelFactories = new ModelFactories
+        
+        'assign template properties
+        modelFactories.Table = tableName
+        modelFactories.SQLServerConnect = SQLServerConnect
+        modelFactories.className = ToCamelCase(tableName)
+        modelFactories.projectName = projectName
+
+        'create output file 
+        modelFactoriesFileName = string.Format("{0}\{1}.vb", EntityFactoryOutputFolder, ToCamelCase(tableName) & "Factory")
+        modelFactoriesOutFile = new OutputFile(modelFactoriesFileName)
+        
+        'render Business Entities
+        modelFactories.RenderToFile(modelFactoriesOutFile, true)           
+        
+        
+        'create Data Access Interfaces
+        dataAccessInterfaces = new DataAccessInterfaces
+        
+        'assign template properties
+        dataAccessInterfaces.Table = tableName
+        dataAccessInterfaces.SQLServerConnect = SQLServerConnect
+        dataAccessInterfaces.className = ToCamelCase(tableName)
+        dataAccessInterfaces.projectName = projectName
+
+        'create output file 
+        dataAccessInterfacesFileName = string.Format("{0}\{1}.vb", DataAccessInterfaceOutputFolder, "I" & ToCamelCase(tableName))
+        dataAccessInterfacesOutFile = new OutputFile(dataAccessInterfacesFileName)
+        
+        'render Data Access Methods
+        dataAccessInterfaces.RenderToFile(dataAccessInterfacesOutFile, true)           
+        
+        
+        'create Data Access Methods
+        dataAccessMethods = new DataAccessMethods
+        
+        'assign template properties
+        dataAccessMethods.Table = tableName
+        dataAccessMethods.SQLServerConnect = SQLServerConnect
+        dataAccessMethods.className = ToCamelCase(tableName)
+        dataAccessMethods.projectName = projectName
+
+        'create output file 
+        dataAccessMethodsFileName = string.Format("{0}\{1}.vb", DataAccessOutputFolder, ToCamelCase(tableName))
+        dataAccessMethodsOutFile = new OutputFile(dataAccessMethodsFileName)
+        
+        'render Data Access Methods
+        dataAccessMethods.RenderToFile(dataAccessMethodsOutFile, true)           
+    Next tableRow 
+End Sub
+</script>

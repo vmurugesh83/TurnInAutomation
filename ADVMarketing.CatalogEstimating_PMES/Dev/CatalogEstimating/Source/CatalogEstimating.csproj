@@ -1,0 +1,1409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D7DBF069-0EE7-4201-B7C8-D194AC83340F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CatalogEstimating</RootNamespace>
+    <AssemblyName>CatalogEstimating</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <ApplicationIcon>Resources\BonTonDiamond.ico</ApplicationIcon>
+    <ManifestCertificateThumbprint>ECAEEFC182A302F052646CE8F1A0A9E03F0204CF</ManifestCertificateThumbprint>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>true</SignManifests>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <TargetZone>LocalIntranet</TargetZone>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>\\internal.bonton.com\mke\Group\software\PMES-PROD\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>true</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>Print Media Estimating System - PROD %281.1.0.108%29</ProductName>
+    <PublisherName>Print Media Estimating - PROD</PublisherName>
+    <MinimumRequiredVersion>1.1.0.107</MinimumRequiredVersion>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>108</ApplicationRevision>
+    <ApplicationVersion>1.1.0.108</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>CatalogEstimating_2_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevAge.Core, Version=4.9.2709.30301, Culture=neutral, PublicKeyToken=faad465d84242dbf, processorArchitecture=MSIL" />
+    <Reference Include="DevAge.Windows.Forms, Version=4.9.2709.30447, Culture=neutral, PublicKeyToken=faad465d84242dbf, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Vbe.Interop.Forms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\Microsoft.Vbe.Interop.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="OFFICE, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\OFFICE.DLL</HintPath>
+    </Reference>
+    <Reference Include="SourceGrid, Version=4.9.2724.16901, Culture=neutral, PublicKeyToken=df6f5e538749e85d, processorArchitecture=MSIL" />
+    <Reference Include="SourceGrid.Extensions, Version=4.9.2724.16901, Culture=neutral, PublicKeyToken=df6f5e538749e85d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuthorizedUser.cs" />
+    <Compile Include="BonTon_PMES_LIVEDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BonTon_PMES_LIVEDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CESDatabase.cs" />
+    <Compile Include="ChildForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildForm.Designer.cs">
+      <DependentUpon>ChildForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommentsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommentsForm.Designer.cs">
+      <DependentUpon>CommentsForm.cs</DependentUpon>
+    </Compile>
+    <None Include="CatalogEstimating_2_TemporaryKey.pfx" />
+    <None Include="CatalogEstimating_PROD.pfx" />
+    <None Include="Database Objects\Functions\EstimatePieceWeight.sql" />
+    <Compile Include="CopyAssemDistrib.cs" />
+    <Compile Include="CopyPackage.cs" />
+    <Compile Include="CopyPackageComponentMap.cs" />
+    <Compile Include="CopyPubGroup.cs" />
+    <Compile Include="CopyPubIssueDate.cs" />
+    <Compile Include="CopyPubRateMap.cs" />
+    <Compile Include="CustomControls\CalendarColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\DecimalColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\IntegerColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\OptionalColumn.cs" />
+    <Compile Include="CustomGrids\Component\Controllers\CheckBoxToggle.cs" />
+    <Compile Include="CustomGrids\Component\ComponentGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomGrids\Component\Controllers\DisplayDetails.cs" />
+    <Compile Include="CustomGrids\Component\Controllers\ManualPressMakereadyController.cs" />
+    <Compile Include="CustomGrids\Component\Controllers\ManualStitcherMakereadyController.cs" />
+    <Compile Include="CustomGrids\Component\Controllers\PaperController.cs" />
+    <Compile Include="CustomGrids\Component\Controllers\PaperRateController.cs" />
+    <Compile Include="CustomGrids\Component\Controllers\PressMakereadyController.cs" />
+    <Compile Include="CustomGrids\Component\Controllers\PrinterController.cs" />
+    <Compile Include="CustomGrids\Component\Controllers\SelectDistMapRow.cs" />
+    <Compile Include="CustomGrids\Component\Controllers\StitcherMakereadyController.cs" />
+    <Compile Include="CustomGrids\Component\DistMappingGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomGrids\Controllers\RequiredCellController.cs" />
+    <Compile Include="CustomGrids\Component\Controllers\SelectCell.cs" />
+    <Compile Include="CustomGrids\Component\Controllers\SelectColumn.cs" />
+    <Compile Include="CustomGrids\Component\Editors\ComponentTypeEditor.cs" />
+    <Compile Include="CustomGrids\Component\Editors\EstimateMediaTypeEditor.cs" />
+    <Compile Include="CustomGrids\Component\Editors\PaperEditor.cs" />
+    <Compile Include="CustomGrids\Component\Editors\PaperGradeEditor.cs" />
+    <Compile Include="CustomGrids\Component\Editors\PaperMapEditor.cs" />
+    <Compile Include="CustomGrids\Component\Editors\PaperWeightEditor.cs" />
+    <Compile Include="CustomGrids\Component\Editors\PrinterEditor.cs" />
+    <Compile Include="CustomGrids\Component\Editors\TextBoxCurrencyRange.cs" />
+    <Compile Include="CustomGrids\Component\Editors\TextBoxDecimalRange.cs" />
+    <Compile Include="CustomGrids\Component\Editors\TextBoxPercentageRange.cs" />
+    <Compile Include="CustomGrids\Component\Editors\TextBoxIntegerRange.cs" />
+    <Compile Include="CustomGrids\Controllers\ExpandCollapseController.cs" />
+    <Compile Include="CustomGrids\Component\frmDetailComments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomGrids\Component\frmDetailComments.designer.cs">
+      <DependentUpon>frmDetailComments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomGrids\Controllers\ValueChangedController.cs" />
+    <Compile Include="DatabaseList.cs" />
+    <Compile Include="Datasets\Databases.cs">
+      <DependentUpon>Databases.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\DistributionMapping.cs">
+      <DependentUpon>DistributionMapping.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Datasets\DistributionMapping.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DistributionMapping.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\Estimates.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Estimates.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CopyEstimate.cs" />
+    <Compile Include="Datasets\EstimateSearch.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EstimateSearch.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\PolybagGroup.cs">
+      <DependentUpon>PolybagGroup.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Datasets\Publications.cs">
+      <DependentUpon>Publications.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Exceptions\PolybagGroupNotExistException.cs" />
+    <Compile Include="PolybagPickerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PolybagPickerForm.Designer.cs">
+      <DependentUpon>PolybagPickerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EstimateReport.cs" />
+    <Compile Include="ReportWriter.cs" />
+    <Compile Include="Types.cs" />
+    <Compile Include="CustomGrids\Component\Controllers\PopupMenu.cs" />
+    <Compile Include="CustomGrids\Component\Controllers\AssemblyRateController.cs" />
+    <Compile Include="CustomGrids\Component\Editors\PrinterRateEditor.cs" />
+    <Compile Include="CustomGrids\Component\Editors\VendorEditor.cs" />
+    <Compile Include="CopyComponent.cs" />
+    <Compile Include="Datasets\Administration.cs">
+      <DependentUpon>Administration.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Datasets\Administration.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Administration.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\Databases.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Databases.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\Estimates.cs">
+      <DependentUpon>Estimates.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Datasets\Lookup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lookup.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\PolybagGroup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PolybagGroup.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\Postal.cs">
+      <DependentUpon>Postal.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Datasets\Postal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Postal.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\Publications.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Publications.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\RptReport.cs">
+      <DependentUpon>RptReport.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Datasets\RptReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptReport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ExceptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExceptionForm.Designer.cs">
+      <DependentUpon>ExceptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FiscalCalculator.cs" />
+    <Compile Include="CustomControls\NumericTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PerformanceLog.cs" />
+    <Compile Include="UserControls\Admin\ucpAdminCostCodeMapping.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpAdminCostCodeMapping.Designer.cs">
+      <DependentUpon>ucpAdminCostCodeMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Main\CopyDescriptionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\Main\CopyDescriptionDialog.Designer.cs">
+      <DependentUpon>CopyDescriptionDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Main\CopyNumberDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\Main\CopyNumberDialog.Designer.cs">
+      <DependentUpon>CopyNumberDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatabaseForm.Designer.cs">
+      <DependentUpon>DatabaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EstimateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EstimateForm.Designer.cs">
+      <DependentUpon>EstimateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Events.cs" />
+    <Compile Include="ExcelWriter.cs" />
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\NullableDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PolybagEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PolybagEditForm.Designer.cs">
+      <DependentUpon>PolybagEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ChildForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommentsForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CommentsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExceptionForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ExceptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomGrids\Component\frmDetailComments.resx">
+      <DependentUpon>frmDetailComments.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PolybagPickerForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PolybagPickerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\ucpAdminCostCodeMapping.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpAdminCostCodeMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Estimate\uctDistributionMapping.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>uctDistributionMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Main\CopyDescriptionDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CopyDescriptionDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Main\CopyNumberDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CopyNumberDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DatabaseForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DatabaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EstimateForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EstimateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PolybagEditForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PolybagEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SplashForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SplashForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\VendorRates\PaperMgmtDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PaperMgmtDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\ucpAdminDatabases.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpAdminDatabases.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\ucpAdminInsertionGroupOrder.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpAdminInsertionGroupOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\ucpAdminInsertionGroupSetup.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpAdminInsertionGroupSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\ucpAdminInsertionRates.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpAdminInsertionRates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\ucpAdminInsertionScenarios.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpAdminInsertionScenarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlPanel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UserControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\ucpAdminVendorsRates.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpAdminVendorsRates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\ucpAdminVendorsSetup.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpAdminVendorsSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\ucpPostalCategorySetup.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpPostalCategorySetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\ucpPostalScenarioSetup.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpPostalScenarioSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\ucpPostalSetup.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpPostalSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\uctAdminInsertionGroups.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>uctAdminInsertionGroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\uctAdminInsertions.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>uctAdminInsertions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\uctAdminPostal.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>uctAdminPostal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Admin\uctAdminVendors.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>uctAdminVendors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Estimate\ucpAssemblyDistributionOptions.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpAssemblyDistributionOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Estimate\ucpComponents.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpComponents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Estimate\ucpCostSummary.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpCostSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Estimate\ucpEstimateSetup.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpEstimateSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Estimate\ucpInsertSetup.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpInsertSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Estimate\ucpMappings.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpMappings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Estimate\ucpSamples.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpSamples.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Estimate\uctEstimate.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>uctEstimate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Main\SynchronizeDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SynchronizeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Main\ucpComponentSearch.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpComponentSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Main\ucpEstimateSearch.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpEstimateSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Main\ucpEstimateUpload.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpEstimateUpload.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Main\ucpPolybagSearch.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpPolybagSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Main\ucpReports.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Main\uctAdministration.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>uctAdministration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Polybag\ucpPolybag.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ucpPolybag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Reports\ReportControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ReportControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Reports\rptAdPublicationCosts.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>rptAdPublicationCosts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Reports\rptDirectMailCost.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>rptDirectMailCost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Reports\rptEstimate.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>rptEstimate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Reports\rptEstimateElementDetail.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>rptEstimateElementDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Reports\rptEstimateSummary.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>rptEstimateSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Reports\rptPostageCategoryUsage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>rptPostageCategoryUsage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Reports\rptTyLyComparison.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>rptTyLyComparison.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Reports\rptVendorCommitment.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>rptVendorCommitment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\VendorRates\VendorRateControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>VendorRateControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\VendorRates\vndMailHouse.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>vndMailHouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\VendorRates\vndMailList.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>vndMailList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\VendorRates\vndMailTracker.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>vndMailTracker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\VendorRates\vndPaper.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>vndPaper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\VendorRates\vndPrinter.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>vndPrinter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\VendorRates\vndPrinterRate.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>vndPrinterRate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlTab.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UserControlTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Database Objects\Functions\CalcGrossInsertCostforPackageandPub.sql" />
+    <None Include="Framework.cd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="CustomGrids\RotatedText.cs" />
+    <Compile Include="SplashForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplashForm.Designer.cs">
+      <DependentUpon>SplashForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VendorRates\PaperMgmtDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\VendorRates\PaperMgmtDialog.Designer.cs">
+      <DependentUpon>PaperMgmtDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpAdminDatabases.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpAdminDatabases.Designer.cs">
+      <DependentUpon>ucpAdminDatabases.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpAdminInsertionGroupOrder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpAdminInsertionGroupOrder.Designer.cs">
+      <DependentUpon>ucpAdminInsertionGroupOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpAdminInsertionGroupSetup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpAdminInsertionGroupSetup.Designer.cs">
+      <DependentUpon>ucpAdminInsertionGroupSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpAdminInsertionScenarios.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpAdminInsertionScenarios.Designer.cs">
+      <DependentUpon>ucpAdminInsertionScenarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpAdminVendorsRates.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpAdminVendorsRates.Designer.cs">
+      <DependentUpon>ucpAdminVendorsRates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpAdminVendorsSetup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpAdminVendorsSetup.Designer.cs">
+      <DependentUpon>ucpAdminVendorsSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpPostalCategorySetup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpPostalCategorySetup.Designer.cs">
+      <DependentUpon>ucpPostalCategorySetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpPostalScenarioSetup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpPostalScenarioSetup.Designer.cs">
+      <DependentUpon>ucpPostalScenarioSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpPostalSetup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpPostalSetup.Designer.cs">
+      <DependentUpon>ucpPostalSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\uctAdminInsertionGroups.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\uctAdminInsertionGroups.Designer.cs">
+      <DependentUpon>uctAdminInsertionGroups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpAdminInsertionRates.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\ucpAdminInsertionRates.Designer.cs">
+      <DependentUpon>ucpAdminInsertionRates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlPanel.Designer.cs">
+      <DependentUpon>UserControlPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Enumerations.cs" />
+    <Compile Include="UserControls\Admin\uctAdminInsertions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\uctAdminInsertions.Designer.cs">
+      <DependentUpon>uctAdminInsertions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\uctAdminPostal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\uctAdminPostal.Designer.cs">
+      <DependentUpon>uctAdminPostal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Admin\uctAdminVendors.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Admin\uctAdminVendors.Designer.cs">
+      <DependentUpon>uctAdminVendors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Estimate\ucpAssemblyDistributionOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Estimate\ucpAssemblyDistributionOptions.Designer.cs">
+      <DependentUpon>ucpAssemblyDistributionOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Estimate\ucpComponents.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Estimate\ucpComponents.Designer.cs">
+      <DependentUpon>ucpComponents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Estimate\ucpCostSummary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Estimate\ucpCostSummary.Designer.cs">
+      <DependentUpon>ucpCostSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Estimate\ucpEstimateSetup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Estimate\ucpEstimateSetup.Designer.cs">
+      <DependentUpon>ucpEstimateSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Estimate\ucpInsertSetup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Estimate\ucpInsertSetup.Designer.cs">
+      <DependentUpon>ucpInsertSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Estimate\ucpMappings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Estimate\ucpMappings.Designer.cs">
+      <DependentUpon>ucpMappings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Estimate\ucpSamples.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Estimate\ucpSamples.Designer.cs">
+      <DependentUpon>ucpSamples.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Estimate\uctDistributionMapping.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Estimate\uctDistributionMapping.Designer.cs">
+      <DependentUpon>uctDistributionMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Estimate\uctEstimate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Estimate\uctEstimate.Designer.cs">
+      <DependentUpon>uctEstimate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Main\SynchronizeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\Main\SynchronizeDialog.Designer.cs">
+      <DependentUpon>SynchronizeDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Main\ucpComponentSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Main\ucpComponentSearch.Designer.cs">
+      <DependentUpon>ucpComponentSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Main\ucpEstimateSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Main\ucpEstimateSearch.Designer.cs">
+      <DependentUpon>ucpEstimateSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Main\ucpEstimateUpload.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Main\ucpEstimateUpload.Designer.cs">
+      <DependentUpon>ucpEstimateUpload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Main\ucpPolybagSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Main\ucpPolybagSearch.Designer.cs">
+      <DependentUpon>ucpPolybagSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Main\ucpReports.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Main\ucpReports.Designer.cs">
+      <DependentUpon>ucpReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Main\uctAdministration.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Main\uctAdministration.Designer.cs">
+      <DependentUpon>uctAdministration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Polybag\ucpPolybag.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Polybag\ucpPolybag.Designer.cs">
+      <DependentUpon>ucpPolybag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Reports\ReportControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Reports\ReportControl.Designer.cs">
+      <DependentUpon>ReportControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Reports\rptAdPublicationCosts.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Reports\rptAdPublicationCosts.Designer.cs">
+      <DependentUpon>rptAdPublicationCosts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Reports\rptDirectMailCost.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Reports\rptDirectMailCost.Designer.cs">
+      <DependentUpon>rptDirectMailCost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Reports\rptEstimate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Reports\rptEstimate.Designer.cs">
+      <DependentUpon>rptEstimate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Reports\rptEstimateElementDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Reports\rptEstimateElementDetail.Designer.cs">
+      <DependentUpon>rptEstimateElementDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Reports\rptEstimateSummary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Reports\rptEstimateSummary.Designer.cs">
+      <DependentUpon>rptEstimateSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Reports\rptPostageCategoryUsage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Reports\rptPostageCategoryUsage.Designer.cs">
+      <DependentUpon>rptPostageCategoryUsage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Reports\rptTyLyComparison.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Reports\rptTyLyComparison.Designer.cs">
+      <DependentUpon>rptTyLyComparison.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Reports\rptVendorCommitment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Reports\rptVendorCommitment.Designer.cs">
+      <DependentUpon>rptVendorCommitment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VendorRates\VendorRateControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\VendorRates\VendorRateControl.Designer.cs">
+      <DependentUpon>VendorRateControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VendorRates\vndMailHouse.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\VendorRates\vndMailHouse.Designer.cs">
+      <DependentUpon>vndMailHouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VendorRates\vndMailList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\VendorRates\vndMailList.Designer.cs">
+      <DependentUpon>vndMailList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VendorRates\vndMailTracker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\VendorRates\vndMailTracker.Designer.cs">
+      <DependentUpon>vndMailTracker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VendorRates\vndPaper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\VendorRates\vndPaper.Designer.cs">
+      <DependentUpon>vndPaper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VendorRates\vndPrinter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\VendorRates\vndPrinter.Designer.cs">
+      <DependentUpon>vndPrinter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VendorRates\vndPrinterRate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\VendorRates\vndPrinterRate.Designer.cs">
+      <DependentUpon>vndPrinterRate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlTab.Designer.cs">
+      <DependentUpon>UserControlTab.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BlankTemplate.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="BonTon_PMES_LIVEDataSet.xsc">
+      <DependentUpon>BonTon_PMES_LIVEDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="BonTon_PMES_LIVEDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BonTon_PMES_LIVEDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BonTon_PMES_LIVEDataSet.xss">
+      <DependentUpon>BonTon_PMES_LIVEDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CatalogEstimating_TemporaryKey.pfx" />
+    <None Include="Database Objects\Creation Scripts\Bon-Ton_PMES_addconstraints_001.sql" />
+    <None Include="Database Objects\Creation Scripts\Bon-Ton_PMES_create_DB_001.sql" />
+    <None Include="Database Objects\Creation Scripts\Bon-Ton_PMES_create_tables_001.sql" />
+    <None Include="Database Objects\Creation Scripts\Bon-Ton_PMES_drop_tables_001.sql" />
+    <None Include="Database Objects\Creation Scripts\Bon-Ton_PMES_populate_AssocDatabases.sql" />
+    <None Include="Database Objects\Creation Scripts\Bon-Ton_PMES_populate_lookups.sql" />
+    <None Include="Database Objects\Creation Scripts\BonTon Iteration #3\14_Bon-Ton_PMES_altercomponenttable.sql" />
+    <None Include="Database Objects\Creation Scripts\BonTon Iteration #3\15_Bon-Ton_PMES_alterpostalweightstable.sql" />
+    <None Include="Database Objects\Creation Scripts\BonTon Iteration #3\16_Bon-Ton_PMES_alterpackagetable.sql" />
+    <None Include="Database Objects\Creation Scripts\BonTon Iteration #3\17_Bon-Ton_PMES_alterpackagetable.sql" />
+    <None Include="Database Objects\Creation Scripts\BonTon Iteration #3\18_Bon-Ton_PMES_alterestimatescenariotable.sql" />
+    <None Include="Database Objects\Creation Scripts\BonTon Iteration #3\19_Bon-Ton_PMES_alterassocdatabases.sql" />
+    <None Include="Database Objects\Creation Scripts\BonTon Iteration #3\20_Bon-Ton_PMES_altercomponent.sql" />
+    <None Include="Database Objects\Creation Scripts\BonTon Iteration #3\21_Bon-Ton_PMES_uniqueconstraints.sql" />
+    <None Include="Database Objects\Creation Scripts\BonTon Iteration #3\22_Bon-Ton_PMES_alterdecimalprecision.sql" />
+    <None Include="Database Objects\Creation Scripts\BonTon Iteration #3\23_Bon-Ton_PMES_alter_tables.sql" />
+    <None Include="Database Objects\Creation Scripts\BonTon Iteration #3\24_Bon-Ton_PMES_altercomponent.sql" />
+    <None Include="Database Objects\Creation Scripts\BonTon Iteration #3\25_Bon-Ton_PMES_updateprinterratetype.sql" />
+    <None Include="Database Objects\Creation Scripts\BonTon Iteration #3\26_Bon-Ton_PMES_altercomponent.sql" />
+    <None Include="Database Objects\Creation Scripts\BonTon Iteration #3\27_Bon-Ton_PMES_alter_tables.sql" />
+    <None Include="Database Objects\Creation Scripts\BonTon Iteration #3\28_Bon-Ton_PMES_new_tables.sql" />
+    <None Include="Database Objects\Creation Scripts\BonTon Iteration #3\CreateFunctions.sql" />
+    <None Include="Database Objects\Creation Scripts\BonTon Iteration #3\CreateStoredProcs.sql" />
+    <None Include="Database Objects\Creation Scripts\BonTon Iteration #3\CreateViews.sql" />
+    <None Include="Database Objects\Creation Scripts\BonTon Iteration #3\DropUserDefinedObjects.sql" />
+    <None Include="Database Objects\Creation Scripts\DropUserDefinedObjects.sql" />
+    <None Include="Database Objects\Functions\CalcIssueDate.sql" />
+    <None Include="Database Objects\Functions\CalcItemPostage.sql" />
+    <None Include="Database Objects\Functions\CalcPubQuantityID.sql" />
+    <None Include="Database Objects\Functions\CalcPubRateID.sql" />
+    <None Include="Database Objects\Functions\ComponentInsertQuantity.sql" />
+    <None Include="Database Objects\Functions\ComponentMediaQuantity.sql" />
+    <None Include="Database Objects\Functions\ComponentOtherQuantity.sql" />
+    <None Include="Database Objects\Functions\EstimatePrimaryPolybagQuantity.sql" />
+    <None Include="Database Objects\Functions\EstimatePolybagCost.sql" />
+    <None Include="Database Objects\Functions\EstimatePolybagInkjetCost.sql" />
+    <None Include="Database Objects\Functions\ComponentPolybagInkjetMakereadyCost.sql" />
+    <None Include="Database Objects\Functions\ComponentPolybagMailHouseAdminFee.sql" />
+    <None Include="Database Objects\Functions\ComponentPolybagMailHouseGlueTackCost.sql" />
+    <None Include="Database Objects\Functions\ComponentPolybagMailHouseLetterInsertionCost.sql" />
+    <None Include="Database Objects\Functions\ComponentPolybagMailHouseOtherDirectMailHandlingCost.sql" />
+    <None Include="Database Objects\Functions\ComponentPolybagMailHouseTabbingCost.sql" />
+    <None Include="Database Objects\Functions\ComponentPolybagMailHouseTimeValueSlipsCost.sql" />
+    <None Include="Database Objects\Functions\ComponentPolybagMailListCost.sql" />
+    <None Include="Database Objects\Functions\ComponentPolybagMailTrackingCost.sql" />
+    <None Include="Database Objects\Functions\ComponentPolybagOtherFreightCost.sql" />
+    <None Include="Database Objects\Functions\ComponentPolybagPostalDropCost.sql" />
+    <None Include="Database Objects\Functions\ComponentPolybagQuantity.sql" />
+    <None Include="Database Objects\Functions\ComponentPolyPostage.sql" />
+    <None Include="Database Objects\Functions\ComponentSampleQuantity.sql" />
+    <None Include="Database Objects\Functions\EstimateSoloAndPrimaryPolybagQuantity.sql" />
+    <None Include="Database Objects\Functions\ComponentSoloMailQuantity.sql" />
+    <None Include="Database Objects\Functions\ComponentSoloPostage.sql" />
+    <None Include="Database Objects\Functions\ComponentWeight.sql" />
+    <None Include="Database Objects\Functions\EstimateDirectMailQuantity.sql" />
+    <None Include="Database Objects\Functions\EstimateHostAdNumber.sql" />
+    <None Include="Database Objects\Functions\EstimatePostalDropCost.sql" />
+    <None Include="Database Objects\Functions\EstimatePostalDropFuelSurchargeCost.sql" />
+    <None Include="Database Objects\Functions\EstimateSoloAndPrimaryPolybagWeight.sql" />
+    <None Include="Database Objects\Functions\FindComponentDescription.sql" />
+    <None Include="Database Objects\Functions\getFiscalData.sql" />
+    <None Include="Database Objects\Functions\getFiscalMonth.sql" />
+    <None Include="Database Objects\Functions\getFiscalYear.sql" />
+    <None Include="Database Objects\Functions\getSeasonID_ByDate.sql" />
+    <None Include="Database Objects\Functions\IsEstimateUsingPostalVendor.sql" />
+    <None Include="Database Objects\Functions\IsItemOverWeight.sql" />
+    <None Include="Database Objects\Functions\IsPubRateMapActive.sql" />
+    <None Include="Database Objects\Functions\PackageInsertIndex.sql" />
+    <None Include="Database Objects\Functions\PackagePageCount.sql" />
+    <None Include="Database Objects\Functions\PackagePolyPostage.sql" />
+    <None Include="Database Objects\Functions\PackagePolyQuantity.sql" />
+    <None Include="Database Objects\Functions\PackageSize.sql" />
+    <None Include="Database Objects\Functions\PackageTabPageCount.sql" />
+    <None Include="Database Objects\Functions\PackageWeight.sql" />
+    <None Include="Database Objects\Functions\PolybagCost.sql" />
+    <None Include="Database Objects\Functions\PolybagGroupRunDate.sql" />
+    <None Include="Database Objects\Functions\PolybagInkjetCost.sql" />
+    <None Include="Database Objects\Functions\PolybagInkjetMakereadyCost.sql" />
+    <None Include="Database Objects\Functions\PolybagMailHouseAdminFee.sql" />
+    <None Include="Database Objects\Functions\PolybagMailHouseGlueTackCost.sql" />
+    <None Include="Database Objects\Functions\PolybagMailHouseLetterInsertionCost.sql" />
+    <None Include="Database Objects\Functions\PolybagMailHouseOtherDirectMailHandlingCost.sql" />
+    <None Include="Database Objects\Functions\PolybagMailHouseTabbingCost.sql" />
+    <None Include="Database Objects\Functions\PolybagMailHouseTimeValueSlipsCost.sql" />
+    <None Include="Database Objects\Functions\PolybagMailListCost.sql" />
+    <None Include="Database Objects\Functions\PolybagMailTrackingCost.sql" />
+    <None Include="Database Objects\Functions\PolybagOtherFreightCost.sql" />
+    <None Include="Database Objects\Functions\PolybagPostalDropCost.sql" />
+    <None Include="Database Objects\Functions\PolybagPostalDropFuelSurchargeCost.sql" />
+    <None Include="Database Objects\Functions\PolybagPrimaryEstimate.sql" />
+    <None Include="Database Objects\Functions\PolybagPrimaryHost.sql" />
+    <None Include="Database Objects\Functions\PolyBagWeight.sql" />
+    <None Include="Database Objects\Creation Scripts\Rates and Lookups.txt" />
+    <None Include="Database Objects\Creation Scripts\Table Dependency Order.txt" />
+    <None Include="Database Objects\Jobs\PMES_SyncCopy.sql" />
+    <None Include="Database Objects\Jobs\PMES_SyncPurge.sql" />
+    <None Include="Database Objects\Stored Procedures\adpubcost_i.sql" />
+    <None Include="Database Objects\Stored Procedures\db_Copy.sql" />
+    <None Include="Database Objects\Stored Procedures\db_CopyAsOwner.sql" />
+    <None Include="Database Objects\Stored Procedures\db_Purge.sql" />
+    <None Include="Database Objects\Stored Procedures\db_PurgeAsOwner.sql" />
+    <None Include="Database Objects\Stored Procedures\directmailcost_i.sql" />
+    <None Include="Database Objects\Stored Procedures\EstAssemDistribOptions_s_ForEstimateCopy.sql" />
+    <None Include="Database Objects\Stored Procedures\EstComponent_Search.sql" />
+    <None Include="Database Objects\Stored Procedures\EstComponent_s_ForEstimateCopy.sql" />
+    <None Include="Database Objects\Stored Procedures\EstEstimatePolybagGroupMap_s_ByEstimateID.sql" />
+    <None Include="Database Objects\Stored Procedures\EstEstimate_s_Search.sql" />
+    <None Include="Database Objects\Stored Procedures\EstEstimate_u_Status.sql" />
+    <None Include="Database Objects\Stored Procedures\EstPackagePolybagMap_d.sql" />
+    <None Include="Database Objects\Stored Procedures\EstPackage_QuantitiesWithPBFlag_ByEstimateID.sql" />
+    <None Include="Database Objects\Stored Procedures\EstPackage_Quantities_ByEstimateID.sql" />
+    <None Include="Database Objects\Stored Procedures\EstPackage_s_InsertScenario.sql" />
+    <None Include="Database Objects\Stored Procedures\EstPolybagGroup_d_ByPolybagID.sql" />
+    <None Include="Database Objects\Stored Procedures\EstPolybag_Search.sql" />
+    <None Include="Database Objects\Stored Procedures\EstEstimate_Upload.sql" />
+    <None Include="Database Objects\Stored Procedures\EstPubIssueDates_i_ByEstimateID.sql" />
+    <None Include="Database Objects\Stored Procedures\EstPubIssueDates_s_Overrides_ByEstimateID.sql" />
+    <None Include="Database Objects\Stored Procedures\EstPubIssueDates_i_Override.sql" />
+    <None Include="Database Objects\Stored Procedures\EstEstimate_Upload_Search.sql" />
+    <None Include="Database Objects\Stored Procedures\InsertSetupInfo_s_ByEstimateID.sql" />
+    <None Include="Database Objects\Stored Procedures\Mailhouse_s_MailhouseIDandDescription_ByRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\MailList_s_MailListIDandDescription_ByRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\MailTracking_s_MailTrackingIDandDescription_ByRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\PaperMap_s_ByPaperIDPaperWeightIDPaperGradeIDRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\PaperMap_s_PaperMapID_ByOldPaperMapIDandRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\Paper_s_PaperIDandDescription_ByRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\Paper_s_PaperID_ByOldPaperIDandRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\Paper_u_Component.sql" />
+    <None Include="Database Objects\Stored Procedures\Paper_u_Component_ByPaperID.sql" />
+    <None Include="Database Objects\Stored Procedures\PostalScenario_s_PostalScenarioIDandDescription_ByRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\PprPaperGrade_s_ByGrade.sql" />
+    <None Include="Database Objects\Stored Procedures\PprPaperMap_d.sql" />
+    <None Include="Database Objects\Stored Procedures\PprPaperMap_i.sql" />
+    <None Include="Database Objects\Stored Procedures\PprPaperMap_s_ByPaperIDDescriptionWeightGrade.sql" />
+    <None Include="Database Objects\Stored Procedures\PprPaperMap_s_ByPaperIDandDescription.sql" />
+    <None Include="Database Objects\Stored Procedures\PprPaperMap_s_Default_ByPaperID.sql" />
+    <None Include="Database Objects\Stored Procedures\PprPaperMap_u.sql" />
+    <None Include="Database Objects\Stored Procedures\PprPaperWeight_s_ByWeight.sql" />
+    <None Include="Database Objects\Stored Procedures\PrinterRate_s_ByPrinterIDPrinterRateTypeID.sql" />
+    <None Include="Database Objects\Stored Procedures\PrinterRate_s_PrinterRateID_ByOldPrinterRateIDandRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\Printer_s_PrinterIDandDescription_ByRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\Printer_s_PrinterID_ByOldPrinterIDandRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\Printer_u_ComponentandPolybag.sql" />
+    <None Include="Database Objects\Stored Procedures\Printer_u_ComponentandPolybag_ByPrinterID.sql" />
+    <None Include="Database Objects\Stored Procedures\PrtPrinterRate_d_ByPrinterRateID.sql" />
+    <None Include="Database Objects\Stored Procedures\PrtPrinterRate_i.sql" />
+    <None Include="Database Objects\Stored Procedures\PrtPrinterRate_s_ByPrinterID_Description_PrinterRateTypeID.sql" />
+    <None Include="Database Objects\Stored Procedures\PrtPrinterRate_u.sql" />
+    <None Include="Database Objects\Stored Procedures\PstPostalScenario_s_ByDescriptionandRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\PstPostalScenario_s_ByOldIDandRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\PST_PostalCategoryScenario_Map_d.sql" />
+    <None Include="Database Objects\Stored Procedures\PST_PostalScenario_d.sql" />
+    <None Include="Database Objects\Stored Procedures\PubDayofWeekQuantity_s_ByRateMapQtyTypeDOW.sql" />
+    <None Include="Database Objects\Stored Procedures\PubDayofWeekRateTypes_d.sql" />
+    <None Include="Database Objects\Stored Procedures\PubGroupInsertScenarioMap_s_ScenarioID.sql" />
+    <None Include="Database Objects\Stored Procedures\PubGroup_s_ByDescriptionandRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\PubGroup_s_ByEstimateID.sql" />
+    <None Include="Database Objects\Stored Procedures\PubGroup_s_ByPubGroupID.sql" />
+    <None Include="Database Objects\Stored Procedures\PubInsertScenario_s_ScenarioID.sql" />
+    <None Include="Database Objects\Stored Procedures\PubIssueDate_s_ByPubRateMapInsertDateAMPM.sql" />
+    <None Include="Database Objects\Stored Procedures\PubIssueInfo_s_ByPubRateMapInsertDateAMPMQtyType.sql" />
+    <None Include="Database Objects\Stored Procedures\PubPubGroupMap_d.sql" />
+    <None Include="Database Objects\Stored Procedures\PubPubGroupMap_s_ByEstimateID.sql" />
+    <None Include="Database Objects\Stored Procedures\PubPubGroupMap_s_ByGroupID.sql" />
+    <None Include="Database Objects\Stored Procedures\PubPubGroup_s_ActiveByRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\PubRateMap_s_ActiveLocsByGroupIDRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\PubRateMap_s_ActiveLocsByRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\PubRateMap_s_ActivePubsByRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\PubRateMap_s_ByPubGroupID.sql" />
+    <None Include="Database Objects\Stored Procedures\PubRateMap_s_ByPubIDandPubLocID.sql" />
+    <None Include="Database Objects\Stored Procedures\rpt_VendorCommitment_Polybag.sql" />
+    <None Include="Database Objects\Stored Procedures\rpt_FinancialChange_UploadData.sql" />
+    <None Include="Database Objects\Stored Procedures\rpt_PostageCategoryUsage.sql" />
+    <None Include="Database Objects\Stored Procedures\rpt_PubChange_UploadData.sql" />
+    <None Include="Database Objects\Stored Procedures\rpt_TYLY.sql" />
+    <None Include="Database Objects\Stored Procedures\rpt_VendorCommitment_Publisher.sql" />
+    <None Include="Database Objects\Stored Procedures\rpt_VendorCommitment_Vendor.sql" />
+    <None Include="Database Objects\Jobs\sp_start_pmes_job.sql" />
+    <None Include="Database Objects\Stored Procedures\vendorcost_polybag_i.sql" />
+    <None Include="Database Objects\Stored Procedures\vendorcost_pub_i.sql" />
+    <None Include="Database Objects\Stored Procedures\vendorcost_vnd_i.sql" />
+    <None Include="Database Objects\Stored Procedures\VndMailHouseRate_d_ByMailHouseRateID.sql" />
+    <None Include="Database Objects\Stored Procedures\VndMailHouseRate_i.sql" />
+    <None Include="Database Objects\Stored Procedures\VndMailHouseRate_s_ByOldIDandRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\VndMailListResourceRate_d_ByMailListResourceRateID.sql" />
+    <None Include="Database Objects\Stored Procedures\VndMailListResourceRate_i.sql" />
+    <None Include="Database Objects\Stored Procedures\VndMailListResourceRate_s_ByDescriptionandRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\VndMailListResourceRate_s_ByOldIDandRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\VndMailTrackingRate_d_ByMailTrackingRateID.sql" />
+    <None Include="Database Objects\Stored Procedures\VndMailTrackingRate_i.sql" />
+    <None Include="Database Objects\Stored Procedures\VndMailTrackingRate_s_ByDescriptionandRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\VndPaper_s_ByDescriptionandRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\VndPrinter_s_ByDescriptionandRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\VndMailTrackingRate_s_ByOldIDandRunDate.sql" />
+    <None Include="Database Objects\Stored Procedures\VndVendor_s_ByDescriptionandVendorType.sql" />
+    <None Include="Database Objects\Stored Procedures\z00_PubInsertScenario_s_ActiveByRunDate.sql" />
+    <None Include="Database Objects\Views\0_vwPackageWeight.sql" />
+    <None Include="Database Objects\Views\0_vw_PubRateMap_withPubAndPublocNames.sql" />
+    <None Include="Database Objects\Views\0_vwComponentInsertQuantity.sql" />
+    <None Include="Database Objects\Views\3_vwComponentMediaQuantity.sql" />
+    <None Include="Database Objects\Views\0_vwComponentOtherQuantity.sql" />
+    <None Include="Database Objects\Views\0_vwComponentPolybagQuantity.sql" />
+    <None Include="Database Objects\Views\0_vwComponentSampleQuantity.sql" />
+    <None Include="Database Objects\Views\0_vwComponentSoloQuantity.sql" />
+    <None Include="Database Objects\Views\5_vwTotalEstimateWeight.sql" />
+    <None Include="Datasets\DistributionMapping.xsc">
+      <DependentUpon>DistributionMapping.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\DistributionMapping.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DistributionMapping.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\DistributionMapping.xss">
+      <DependentUpon>DistributionMapping.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Estimates.xsc">
+      <DependentUpon>Estimates.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Estimates.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Estimates.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\Estimates.xss">
+      <DependentUpon>Estimates.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\EstimateSearch.xsc">
+      <DependentUpon>EstimateSearch.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\EstimateSearch.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EstimateSearch.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\EstimateSearch.xss">
+      <DependentUpon>EstimateSearch.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\PolybagGroup.xsc">
+      <DependentUpon>PolybagGroup.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\PolybagGroup.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PolybagGroup.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\PolybagGroup.xss">
+      <DependentUpon>PolybagGroup.xsd</DependentUpon>
+    </None>
+    <None Include="Database Objects\Stored Procedures\VndMailHouseRate_s_ByDescriptionandRunDate.sql" />
+    <BaseApplicationManifest Include="Properties\app.manifest" />
+    <None Include="References\Microsoft.Office.Interop.Excel.dll" />
+    <None Include="References\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <None Include="References\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <None Include="References\Microsoft.Vbe.Interop.Forms.dll" />
+    <None Include="References\OFFICE.DLL" />
+    <None Include="Database Objects\Stored Procedures\EstEstimate_s_FiscalYear.sql" />
+    <None Include="Database Objects\Stored Procedures\EstEstimate_s_ByEstimateID.sql" />
+    <None Include="References\DevAge.Core.dll" />
+    <None Include="References\DevAge.Windows.Forms.dll" />
+    <None Include="References\SourceGrid.Extensions.dll" />
+    <None Include="Database Objects\Stored Procedures\EstPackagePolybagMap_i.sql" />
+    <None Include="Database Objects\Stored Procedures\EstPolybag_u.sql" />
+    <None Include="Database Objects\Stored Procedures\EstPackage_s_ForEstimateCopy.sql" />
+    <None Include="Database Objects\Views\0_vwComponentWeight.sql" />
+    <None Include="Database Objects\Stored Procedures\db_Purge_ByDate.sql" />
+    <None Include="References\SourceGrid.dll" />
+    <None Include="Database Objects\Stored Procedures\EstPolybag_Cleanup_ByPolybagGroupId.sql" />
+    <None Include="Database Objects\Stored Procedures\EstPolybagGroup_ClearMaps_ByPolybagGroupId.sql" />
+    <Content Include="Resources\BonTonDiamond.ico" />
+    <None Include="Database Objects\Functions\PolybagWeightIncludeBagWeight.sql" />
+    <None Include="Database Objects\Functions\PubRateMapInsertQuantityByInsertDate.sql" />
+    <None Include="Database Objects\Functions\TotalEstimateWeight.sql" />
+    <None Include="Database Objects\Stored Procedures\AssocDatabases_u.sql" />
+    <None Include="Database Objects\Stored Procedures\EstAssemDistribOptions_s_ByEstimateID.sql" />
+    <None Include="Database Objects\Stored Procedures\EstComponent_s_ByEstimateID.sql" />
+    <None Include="Database Objects\Stored Procedures\EstEstimate_i.sql" />
+    <None Include="Database Objects\Stored Procedures\EstEstimate_Search.sql" />
+    <None Include="Database Objects\Stored Procedures\EstEstimate_s_CostSummary_ByEstimateID.sql" />
+    <None Include="Database Objects\Stored Procedures\EstEstimate_s_CreatedBy.sql" />
+    <None Include="Database Objects\Stored Procedures\EstEstimate_u.sql" />
+    <None Include="Database Objects\Stored Procedures\EstPackageComponentMapping_s_ByEstimateID.sql" />
+    <None Include="Database Objects\Stored Procedures\EstPackage_s_ByEstimateID.sql" />
+    <None Include="Database Objects\Stored Procedures\EstSamples_s_ByEstimateID.sql" />
+    <None Include="Database Objects\Stored Procedures\PostalClass_s_all_ByPostalClassID.sql" />
+    <None Include="Database Objects\Stored Procedures\PostalMailerType_s_all_ByPostalMailerTypeID.sql" />
+    <None Include="Database Objects\Stored Procedures\PprPaperGrade_s_Grade_ByPaperIDandPaperWeightID.sql" />
+    <None Include="Database Objects\Stored Procedures\PprPaperMap_s_PaperWeightIDandPaperGradeID_ByPaperID.sql" />
+    <None Include="Database Objects\Stored Procedures\PprPaperWeight_s_Weight_ByPaperID.sql" />
+    <None Include="Database Objects\Stored Procedures\PrtPrinterRate_s_DescriptionandRate_ByPrinterIDandPrinterRateTypeID.sql" />
+    <None Include="Database Objects\Stored Procedures\PubDayofWeekQuantity_i.sql" />
+    <None Include="Database Objects\Stored Procedures\PubDayofWeekRates_d.sql" />
+    <None Include="Database Objects\Stored Procedures\PubDayofWeekRates_i.sql" />
+    <None Include="Database Objects\Stored Procedures\PubDayofWeekRateTypes_i.sql" />
+    <None Include="Database Objects\Stored Procedures\PubGroupInsertScenarioMap_d.sql" />
+    <None Include="Database Objects\Stored Procedures\PubGroupInsertScenarioMap_i.sql" />
+    <None Include="Database Objects\Stored Procedures\PubGroup_s.sql" />
+    <None Include="Database Objects\Stored Procedures\PubGroup_s_DistinctDescription.sql" />
+    <None Include="Database Objects\Stored Procedures\PubInsertDiscounts_i.sql" />
+    <None Include="Database Objects\Stored Procedures\PubInsertScenario_i.sql" />
+    <None Include="Database Objects\Stored Procedures\PubLoc_s.sql" />
+    <None Include="Database Objects\Stored Procedures\PubPubGroupMap_i.sql" />
+    <None Include="Database Objects\Stored Procedures\PubPubGroupMap_s.sql" />
+    <None Include="Database Objects\Stored Procedures\PubPubGroup_i.sql" />
+    <None Include="Database Objects\Stored Procedures\PubPubGroup_u_ByID.sql" />
+    <None Include="Database Objects\Stored Procedures\PubQuantity_i.sql" />
+    <None Include="Database Objects\Stored Procedures\PubRateMapActivate_s_ByPubIDandPubLocID.sql" />
+    <None Include="Database Objects\Stored Procedures\PubRateMap_i.sql" />
+    <None Include="Database Objects\Stored Procedures\PubRateMap_s_WithDescription_ByPubGroupID.sql" />
+    <None Include="Database Objects\Stored Procedures\PubRateMap_s_withPubDescription.sql" />
+    <None Include="Database Objects\Stored Procedures\PubRate_i.sql" />
+    <None Include="Database Objects\Stored Procedures\Pub_s.sql" />
+    <None Include="Database Objects\Stored Procedures\rpt_AdPublicationCosts.sql" />
+    <None Include="Database Objects\Stored Procedures\RptReport_i.sql" />
+    <None Include="Database Objects\Stored Procedures\RptReport_s_all.sql" />
+    <None Include="Database Objects\Stored Procedures\RptReport_s_Report_ByReportID.sql" />
+    <None Include="Database Objects\Stored Procedures\rpt_DirectMailCosts.sql" />
+    <None Include="Database Objects\Stored Procedures\rpt_EstimateSummary.sql" />
+    <None Include="Database Objects\Stored Procedures\Rpt_ReportHistory.sql" />
+    <None Include="Database Objects\Stored Procedures\VndPaperGrade_s_Grade_ByPaperIDandPaperWeightID.sql" />
+    <None Include="Database Objects\Stored Procedures\VndPaper_s_PaperID_ByVendorIDandRunDate.sql" />
+    <None Include="Datasets\Administration.xsc">
+      <DependentUpon>Administration.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Administration.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Administration.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\Administration.xss">
+      <DependentUpon>Administration.xsd</DependentUpon>
+    </None>
+    <None Include="Database Objects\Views\0_vw_Estimate_excludeOldUploads.sql" />
+    <None Include="Datasets\Databases.xsc">
+      <DependentUpon>Databases.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Databases.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Databases.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\Databases.xss">
+      <DependentUpon>Databases.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Lookup.xsc">
+      <DependentUpon>Lookup.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Lookup.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Lookup.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\Lookup.xss">
+      <DependentUpon>Lookup.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Postal.xsc">
+      <DependentUpon>Postal.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Postal.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Postal.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\Postal.xss">
+      <DependentUpon>Postal.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Publications.xsc">
+      <DependentUpon>Publications.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Publications.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Publications.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\Publications.xss">
+      <DependentUpon>Publications.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\RptReport.xsc">
+      <DependentUpon>RptReport.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\RptReport.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RptReport.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\RptReport.xss">
+      <DependentUpon>RptReport.xsd</DependentUpon>
+    </None>
+    <Content Include="ReportTemplate.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Unkill.bmp" />
+    <None Include="Resources\Validate.bmp" />
+    <None Include="Resources\Cancel.bmp" />
+    <None Include="Resources\CopyDialog.bmp" />
+    <None Include="Resources\Kill.bmp" />
+    <None Include="Resources\SaveAll.bmp" />
+    <None Include="Resources\Cut.bmp" />
+    <None Include="Resources\Print.bmp" />
+    <None Include="Resources\OpenReadOnly.bmp" />
+    <None Include="Resources\OpenPolybag.bmp" />
+    <None Include="Resources\Refresh.bmp" />
+    <None Include="Resources\Home.bmp" />
+    <None Include="Resources\Save.bmp" />
+    <None Include="Resources\Upload.bmp" />
+    <None Include="Resources\Delete.bmp" />
+    <None Include="Resources\Paste.bmp" />
+    <None Include="Resources\SyncEstimate.bmp" />
+    <None Include="Resources\CopyEstimate.bmp" />
+    <None Include="Resources\NewPolybag.bmp" />
+    <None Include="Resources\OpenEstimate.bmp" />
+    <None Include="Resources\NewEstimate.bmp" />
+    <None Include="Resources\LogoSmall.png" />
+    <None Include="Resources\LogoMedium.png" />
+    <None Include="Database Objects\Stored Procedures\AssocDatabases_s_All.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

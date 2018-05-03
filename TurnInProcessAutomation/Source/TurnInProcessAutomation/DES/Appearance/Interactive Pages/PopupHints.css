@@ -1,0 +1,537 @@
+/*------------------------------------------------------------------
+Supports the PopupHints used by the Hints system.
+There are several color schemes defined here. To change the color scheme,
+rename the values in each CssClass property of the
+PeterBlum.DES.Globals.PopupErrorFormatter1..4 property or the equivalent
+feature in the Global Settings Editor.
+
+NOTE: By default, DES compresses this file to remove comments.
+You can also have it remove most whitespace or omit compression with this key
+in the <appSettings> section of web.config:
+<add key="DES_StyleSheetCompression" value="none|full" />
+-------------------------------------------------------------------*/
+
+/* ---- Light Yellow Scheme ----
+background color: lightyellow (#ffffe0)
+font color: black
+header background: #ffff99 = darker version of LightYellow 
+footer background: default
+close button: shades of gray
+help button: shades of gray, underlined (like a hyperlink)
+*/
+
+/* Property: CssClass
+Affects its overall appearance including border, main font, and background color.
+Set up a TABLE and IMGtag version of these to transfer
+its settings into those aspects of this control */
+.DES_PHOverallLtYellow
+{
+   border-right: black 1px solid;
+   border-top: black 1px solid;
+   border-left: black 1px solid;
+   border-bottom: black 1px solid;
+   font-family: Arial; 
+   font-size: 8pt;
+   color: Black;
+   background-color: #ffffe0; /* lightyellow */
+}
+/* default font for all nested tables in the control */
+.DES_PHOverallLtYellow TABLE
+{
+   font-family: Arial;
+   font-size: 8pt;
+}
+
+/* prevent external img styles from affecting these styles */
+.DES_PHOverallLtYellow img
+{
+   background-color:transparent; 
+   margin-left: 0px; 
+   margin-top: 0px; 
+   margin-bottom:0px; 
+   margin-right:0px;
+}
+
+/* Property: BodyCssClass
+Container around the body, where the image and error message are shown.  
+Consider changing the background.*/
+.DES_PHBodyLtYellow
+{
+   cursor: default;
+   margin-left: 5px;
+   margin-right: 5px;
+   margin-bottom: 5px;
+}
+
+/* when using HelpBehavior=ButtonAppend, the HelpSeparator
+may contain an <hr> tag. This helps set its style. */
+.DES_PHBodyLtYellow hr
+{
+}
+
+/* Property: HeaderCssClass
+Overall appearance for the header 
+Consider changing the background.*/
+.DES_PHHeaderLtYellow
+{
+   background-color: #ffff99; /* darker version of LightYellow */
+   font-size: 8pt;
+/* add this if you allow dragging and want to emphasize that fact   
+   cursor: move;
+*/
+}
+
+/* Property: CloseButtonCssClass
+When the Close button is textual, this is used for the normal state.
+*/
+.DES_PHCloseButtonLtYellow
+{
+   cursor: default;
+   color: #696969; /* dimgray */
+   font-size:8pt;
+   background-color:White;
+}
+
+/* Mouse pressed effect for elements using DES_PHCloseButtonLtYellow.
+This will be merged with DES_PHCloseButtonLtYellow 
+and override only the attributes specified */
+.DES_PHCloseButtonLtYellowPressed
+{
+   color: black;
+}
+/* Mouse over effect for elements using DES_PHCloseButtonLtYellow.
+This will be merged with DES_PHCloseButtonLtYellow 
+and override only the attributes specified */
+.DES_PHCloseButtonLtYellowMouseOver
+{
+   color: #a9a9a9; /* darkgray */
+}
+
+/* Property: HelpButtonCssClass
+When the Help button is textual, this is used for the normal state.
+*/
+.DES_PHHelpButtonLtYellow
+{
+   cursor: default;
+   font-size:8pt;
+   color: #696969; /* dimgray */
+   text-decoration:underline;
+}
+
+/* Mouse pressed effect for elements using DES_PHHelpButton.
+This will be merged with DES_PHHelpButton 
+and override only the attributes specified */
+.DES_PHHelpButtonLtYellowPressed
+{
+   color: black;
+   text-decoration:underline;
+}
+
+/* Mouse over effect for elements using DES_PHHelpButton.
+This will be merged with DES_PHHelpButton 
+and override only the attributes specified */
+.DES_PHHelpButtonLtYellowMouseOver
+{
+   color: #a9a9a9; /* darkgray */
+   text-decoration:underline;
+}
+
+/* Property: FooterTextCssClass
+Footer is show by using the FooterText property. This provides a font and overall appearance. */
+.DES_PHFooterLtYellow
+{
+}
+
+/* ---- Light Blue Scheme ----
+background color: #f0f8ff (aliceblue)
+font color: black
+header background: #add8e6  (lightblue)
+footer background: default
+close button: shades of gray
+help button: shades of gray, underlined (like a hyperlink)
+*/
+
+/* Property: CssClass
+Affects its overall appearance including border, main font, and background color.
+Set up a TABLE and IMG tag version of these to transfer
+its settings into those aspects of this control */
+.DES_PHOverallLtBlue
+{
+   border-right: black 1px solid;
+   border-top: black 1px solid;
+   border-left: black 1px solid;
+   border-bottom: black 1px solid;
+   font-family: Arial; /*   font-size: 12pt; */
+   color: Black;
+   font-size: 8pt;
+   background-color: #f0f8ff; /* lighter version of LightBlue (aliceblue) */
+}
+/* default font for all nested tables in the control */
+.DES_PHOverallLtBlue TABLE
+{
+   font-family: Arial;
+   font-size: 8pt;
+}
+
+/* prevent external img styles from affecting these styles */
+.DES_PHOverallLtBlue img
+{
+   background-color:transparent; 
+   margin-left: 0px; 
+   margin-top: 0px; 
+   margin-bottom:0px; 
+   margin-right:0px;
+}
+
+/* Property: BodyCssClass
+Container around the body, where the image and error message are shown.  
+Consider changing the background.*/
+.DES_PHBodyLtBlue
+{
+   cursor: default;
+   margin-left: 5px;
+   margin-right: 5px;
+   margin-bottom: 5px;
+}
+
+/* when using HelpBehavior=ButtonAppend, the HelpSeparator
+may contain an <hr> tag. This helps set its style. */
+.DES_PHBodyLtBlue hr
+{
+}
+
+/* Property: HeaderCssClass
+Overall appearance for the header 
+Consider changing the background.*/
+.DES_PHHeaderLtBlue
+{
+   background-color: #add8e6; /* lightblue */
+   font-size: 8pt;
+/* add this if you allow dragging and want to emphasize that fact   
+   cursor: move;
+*/
+}
+
+/* Property: CloseButtonCssClass
+When the Close button is textual, this is used for the normal state.
+*/
+.DES_PHCloseButtonLtBlue
+{
+   cursor: default;
+   color: #696969; /* dimgray */
+   font-size:8pt;
+   background-color:White;
+}
+
+/* Mouse pressed effect for elements using DES_PHCloseButtonLtBlue.
+This will be merged with DES_PHCloseButtonLtBlue 
+and override only the attributes specified */
+.DES_PHCloseButtonLtBluePressed
+{
+   color: black;
+}
+/* Mouse over effect for elements using DES_PHCloseButtonLtBlue.
+This will be merged with DES_PHCloseButtonLtBlue 
+and override only the attributes specified */
+.DES_PHCloseButtonLtBlueMouseOver
+{
+   color: #a9a9a9; /* darkgray */
+}
+
+/* Property: HelpButtonCssClass
+When the Help button is textual, this is used for the normal state.
+*/
+.DES_PHHelpButtonLtBlue
+{
+   cursor: default;
+   font-size:8pt;
+   color: #696969; /* dimgray */
+   text-decoration:underline;
+}
+
+/* Mouse pressed effect for elements using DES_PHHelpButton.
+This will be merged with DES_PHHelpButton 
+and override only the attributes specified */
+.DES_PHHelpButtonLtBluePressed
+{
+   color: black;
+   text-decoration:underline;
+}
+
+/* Mouse over effect for elements using DES_PHHelpButton.
+This will be merged with DES_PHHelpButton 
+and override only the attributes specified */
+.DES_PHHelpButtonLtBlueMouseOver
+{
+   color: #a9a9a9; /* darkgray */
+   text-decoration:underline;
+}
+
+/* Property: FooterTextCssClass
+Footer is show by using the FooterText property. This provides a font and overall appearance. */
+.DES_PHFooterLtBlue
+{
+}
+
+/* ---- Light Gray Scheme ----
+background color: #dcdcdc (gainsboro)
+font color: black
+header background: lightgray
+footer background: default
+close button: shades of gray
+help button: shades of gray, underlined (like a hyperlink)
+*/
+
+/* Property: CssClass
+Affects its overall appearance including border, main font, and background color.
+Set up a TABLE and IMG tag version of these to transfer
+its settings into those aspects of this control */
+.DES_PHOverallLtGray
+{
+   border-right: black 1px solid;
+   border-top: black 1px solid;
+   border-left: black 1px solid;
+   border-bottom: black 1px solid;
+   font-family: Arial; /*   font-size: 12pt; */
+   color: Black;
+   font-size: 8pt;
+   background-color: #dcdcdc; /* gainsboro - lighter version of LightGray */
+}
+/* default font for all nested tables in the control */
+.DES_PHOverallLtGray TABLE
+{
+   font-family: Arial;
+   font-size: 8pt;
+}
+
+/* prevent external img styles from affecting these styles */
+.DES_PHOverallLtGray img
+{
+   background-color:transparent; 
+   margin-left: 0px; 
+   margin-top: 0px; 
+   margin-bottom:0px; 
+   margin-right:0px;
+}
+
+/* Property: BodyCssClass
+Container around the body, where the image and error message are shown.  
+Consider changing the background.*/
+.DES_PHBodyLtGray
+{
+   cursor: default;
+   margin-left: 5px;
+   margin-right: 5px;
+   margin-bottom: 5px;
+}
+
+/* when using HelpBehavior=ButtonAppend, the HelpSeparator
+may contain an <hr> tag. This helps set its style. */
+.DES_PHBodyLtGray hr
+{
+}
+
+/* Property: HeaderCssClass
+Overall appearance for the header 
+Consider changing the background.*/
+.DES_PHHeaderLtGray
+{
+   background-color: silver; 
+   font-size: 8pt;
+/* add this if you allow dragging and want to emphasize that fact   
+   cursor: move;
+*/
+}
+
+/* Property: CloseButtonCssClass
+When the Close button is textual, this is used for the normal state.
+*/
+.DES_PHCloseButtonLtGray
+{
+   cursor: default;
+   color: #696969; /* dimgray */
+   font-size:8pt;
+   background-color:White;
+}
+
+/* Mouse pressed effect for elements using DES_PHCloseButtonLtGray.
+This will be merged with DES_PHCloseButtonLtGray 
+and override only the attributes specified */
+.DES_PHCloseButtonLtGrayPressed
+{
+   color: black;
+}
+/* Mouse over effect for elements using DES_PHCloseButtonLtGray.
+This will be merged with DES_PHCloseButtonLtGray 
+and override only the attributes specified */
+.DES_PHCloseButtonLtGrayMouseOver
+{
+   color: #a9a9a9; /* darkgray */
+}
+
+/* Property: HelpButtonCssClass
+When the Help button is textual, this is used for the normal state.
+*/
+.DES_PHHelpButtonLtGray
+{
+   cursor: default;
+   font-size:8pt;
+   color: #696969; /* dimgray */
+   text-decoration:underline;
+}
+
+/* Mouse pressed effect for elements using DES_PHHelpButton.
+This will be merged with DES_PHHelpButton 
+and override only the attributes specified */
+.DES_PHHelpButtonLtGrayPressed
+{
+   color: black;
+   text-decoration:underline;
+}
+
+/* Mouse over effect for elements using DES_PHHelpButton.
+This will be merged with DES_PHHelpButton 
+and override only the attributes specified */
+.DES_PHHelpButtonLtGrayMouseOver
+{
+   color: #a9a9a9; /* darkgray */
+   text-decoration:underline;
+}
+
+/* Property: FooterTextCssClass
+Footer is show by using the FooterText property. This provides a font and overall appearance. */
+.DES_PHFooterLtGray
+{
+}
+
+
+/* ---- Light Red Scheme ----
+background color: mistyrose (#ffe4e1) which is a light red 
+font color: black
+header background: dark mistyrose
+footer background: default
+close button: shades of gray
+help button: shades of gray, underlined (like a hyperlink)
+*/
+
+/* Property: CssClass
+Affects its overall appearance including border, main font, and background color.
+Set up a TABLE and IMGtag version of these to transfer
+its settings into those aspects of this control */
+.DES_PHOverallLtRed
+{
+   border-right: black 1px solid;
+   border-top: black 1px solid;
+   border-left: black 1px solid;
+   border-bottom: black 1px solid;
+   font-family: Arial;
+   font-size: 8pt;
+   color:Black;
+   background-color: #ffe4e1; /* mistyrose */
+}
+/* default font for all nested tables in the control */
+.DES_PHOverallLtRed TABLE
+{
+   font-family: Arial;
+   font-size: 8pt;
+}
+
+/* prevent external img styles from affecting these styles */
+.DES_PHOverallLtRed img
+{
+   background-color:transparent; 
+   margin-left: 0px; 
+   margin-top: 0px; 
+   margin-bottom:0px; 
+   margin-right:0px;
+}
+
+/* Property: BodyCssClass
+Container around the body, where the image and error message are shown.  
+Consider changing the background.*/
+.DES_PHBodyLtRed
+{
+   cursor: default;
+   margin-left: 5px;
+   margin-right: 5px;
+   margin-bottom: 5px;
+}
+
+/* when using HelpBehavior=ButtonAppend, the HelpSeparator
+may contain an <hr> tag. This helps set its style. */
+.DES_PHBodyLtRed hr
+{
+}
+
+/* Property: HeaderCssClass
+Overall appearance for the header 
+Consider changing the background.*/
+.DES_PHHeaderLtRed
+{
+   background-color: #ffc1b9; /* darker version of mistyrose */
+   font-size:8pt;
+/* add this if you allow dragging and want to emphasize that fact   
+   cursor: move;
+*/
+}
+
+/* Property: CloseButtonCssClass
+When the Close button is textual, this is used for the normal state.
+*/
+.DES_PHCloseButtonLtRed
+{
+   cursor: default;
+   color: #696969; /* dimgray */
+   font-size:8pt;
+   background-color:White;
+}
+
+/* Mouse pressed effect for elements using DES_PHCloseButtonLtRed.
+This will be merged with DES_PHCloseButtonLtRed 
+and override only the attributes specified */
+.DES_PHCloseButtonLtRedPressed
+{
+   color: black;
+}
+/* Mouse over effect for elements using DES_PHCloseButtonLtRed.
+This will be merged with DES_PHCloseButtonLtRed 
+and override only the attributes specified */
+.DES_PHCloseButtonLtRedMouseOver
+{
+   color: #a9a9a9; /* darkgray */
+}
+
+/* Property: HelpButtonCssClass
+When the Help button is textual, this is used for the normal state.
+*/
+.DES_PHHelpButtonLtRed
+{
+   cursor: default;
+   font-size:8pt;
+   color: #696969; /* dimgray */
+   text-decoration:underline;
+}
+
+/* Mouse pressed effect for elements using DES_PHHelpButton.
+This will be merged with DES_PHHelpButton 
+and override only the attributes specified */
+.DES_PHHelpButtonLtRedPressed
+{
+   color: black;
+   text-decoration:underline;
+}
+
+/* Mouse over effect for elements using DES_PHHelpButton.
+This will be merged with DES_PHHelpButton 
+and override only the attributes specified */
+.DES_PHHelpButtonLtRedMouseOver
+{
+   color: #a9a9a9; /* darkgray */
+   text-decoration:underline;
+}
+
+/* Property: FooterTextCssClass
+Footer is show by using the FooterText property. This provides a font and overall appearance. */
+.DES_PHFooterLtRed
+{
+}

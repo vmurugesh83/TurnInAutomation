@@ -1,0 +1,8 @@
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\TurnInAutomationBatch\TurnInAutomationBatch.Model\bin\Release\TurnInAutomationBatch.Model.dll
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\TurnInAutomationBatch\TurnInAutomationBatch.Model\bin\Release\TurnInAutomationBatch.Model.pdb
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\TurnInAutomationBatch\TurnInAutomationBatch.Model\bin\Release\TurnInAutomationBatch.Model.xml
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\TurnInAutomationBatch\TurnInAutomationBatch.Model\obj\Release\TurnInAutomationBatch.Model.Resources.resources
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\TurnInAutomationBatch\TurnInAutomationBatch.Model\obj\Release\TurnInAutomationBatch.Model.vbproj.GenerateResource.Cache
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\TurnInAutomationBatch\TurnInAutomationBatch.Model\obj\Release\TurnInAutomationBatch.Model.dll
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\TurnInAutomationBatch\TurnInAutomationBatch.Model\obj\Release\TurnInAutomationBatch.Model.xml
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\TurnInAutomationBatch\TurnInAutomationBatch.Model\obj\Release\TurnInAutomationBatch.Model.pdb

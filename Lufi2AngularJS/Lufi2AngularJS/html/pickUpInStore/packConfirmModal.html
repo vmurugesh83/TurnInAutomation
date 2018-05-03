@@ -1,0 +1,67 @@
+﻿<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Confirm Order</h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Order: {{currentShipment.ShipmentLines.ShipmentLine[0]._OrderNo}}</h3>
+            </div>
+            <div class="col-sm-6">
+                <h3>Name: {{currentShipment._display._CustomerName}}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="col-sm-12 column scrollResults" id="ItemDetailWrapper" style="overflow-y: hidden" iscroll>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Image
+                                </th>
+                                <th>
+                                    UPC
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Quantity
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="line in currentShipmentLines" on-finish-render="refreshIScroll()">
+
+                                <td>
+                                    <img class="img-responsive" style="max-height:90px;" ng-src="{{line.ImageURL}}" />
+                                </td>
+                                <td>
+                                    <span>{{line.Upc}} </span>
+                                </td>
+                                <td>
+                                    <span ng-bind-html="line.Description"></span>
+</td>
+                                <td>
+                                    <span>{{line.QtyToPick}}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="col-sm-6 col-sm-offset-6">
+            <div class="row">
+                <div class="col-sm-6">
+                    <button class="btn btn-default btn-block" ng-click="cancel()">Cancel</button></div>
+                <div class="col-sm-6">
+                    <button class="btn btn-success btn-block" ng-click="confirm()">Confirm</button></div>
+            </div>
+        </div>
+    </div>
+</div>

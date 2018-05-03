@@ -1,0 +1,102 @@
+<%-- 
+Name: 
+Author: PC Mani
+Description: 
+--%>
+
+<%@ CodeTemplate Language="VB" TargetLanguage="Text" Src="ICCHelper.cst.vb" Inherits="ICCHelper" Debug="True" Description="Template description here." %>
+<%@ Property Name="DB2Connect" Type="System.String" Default="<SQL>" Optional="False" Category="Strings" Description="DB2 Connection string." %>
+<%@ Property Name="Table" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow." %>
+<%@ Property Name="ClassName" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow Formatted." %>
+<%@ Property Name="nSpace" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow Formatted." %>
+
+<%@ Assembly Name="System.Data" %>
+
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Data.OleDb" %>
+<%@ Import Namespace="System.Collections.Generic" %>
+
+<%    
+    Dim DB2ColumnsSQL as string = "SELECT NAME, COLTYPE, LENGTH, SCALE, NULLS, DEFAULT, KEYSEQ, FOREIGNKEY FROM SYSIBM.SYSCOLUMNS WHERE TBNAME = '{0}' AND TBCREATOR = 'MRSSI' ORDER BY COLNO"
+    Dim DB2KeyColumnsSQL as string = "SELECT NAME, COLTYPE, LENGTH, SCALE, NULLS, DEFAULT, KEYSEQ, FOREIGNKEY FROM SYSIBM.SYSCOLUMNS WHERE TBNAME = '{0}' AND KEYSEQ > 0 AND TBCREATOR = 'MRSSI'  ORDER BY KEYSEQ"
+    Dim DB2NonKeyColumnsSQL as string = "SELECT NAME, COLTYPE, LENGTH, SCALE, NULLS, DEFAULT, KEYSEQ, FOREIGNKEY FROM SYSIBM.SYSCOLUMNS WHERE TBNAME = '{0}' AND KEYSEQ = 0 AND TBCREATOR = 'MRSSI' ORDER BY COLNO"
+    
+    Dim columnsDT As DataTable
+    Dim keyColumnsDT As DataTable
+    dim nonKeyColumnsDT as DataTable
+    
+ 	columnsDT = GetDataSet(DB2Connect, String.Format(DB2ColumnsSQL, table)).Tables(0) 
+    keyColumnsDT = GetDataSet(DB2Connect, String.Format(DB2KeyColumnsSQL, table)).Tables(0) 
+    nonKeyColumnsDT = GetDataSet(DB2Connect, String.Format(DB2NonKeyColumnsSQL, table)).Tables(0) 
+    
+    dim primaryKeys as new List(Of String)
+    dim foreignKeys as new List(Of String)
+    for each keyRow as DataRow in keyColumnsDT.Rows      
+        if CINT(keyRow("KEYSEQ")) > 0 Then
+            primaryKeys.Add(keyRow("NAME"))            
+        else if keyRow("FOREIGNKEY").ToString().TRIM <> "" Then
+            foreignKeys.Add(keyRow("NAME"))
+        end if
+    next
+%>
+Imports <%=nSpace%>.BusinessEntities
+
+Public Interface I<%=className%>Dao
+        
+    ''' <summary>
+    ''' Method to get all <%=className%>Info records.
+    ''' </summary>	    	 
+    Function GetAllFrom<%=className%>() as IList(Of <%=className%>Info)
+
+<%  dim primaryKeyTypes as new List(Of String)
+    dim primaryKeyNullables as new List(Of String)
+    dim primaryKeyLengths as new List(Of String)
+
+    for each primaryKey as String in primaryKeys
+        for each row as DataRow in columnsDT.Rows
+            if row("NAME") = primaryKey then
+                primaryKeyTypes.Add(row("COLTYPE"))
+                primaryKeyNullables.Add(row("NULLS"))        
+                primaryKeyLengths.Add(row("LENGTH"))
+            end if
+        next
+    next
+%>    
+    ''' <summary>
+    ''' Method to get a <%=className%>Info record by its primary key column(s).
+    ''' </summary>	    	 
+    Function Get<%=className%>By<%for i as integer = 0 to primaryKeys.Count - 1%><%=ToPascalCase(primaryKeys(i))%><%if i = primaryKeys.Count - 1%><%else%>And<%end if%><%next%>(<%for i as integer = 0 to primaryKeys.Count - 1%>ByVal <%=ToCamelCase(primaryKeys(i))%> as <%=ConvertType(primaryKeyTypes(i), primaryKeyNullables(i))%><%if not i = primaryKeys.Count - 1 then%>, <%end if%><%next%>) as <%=className%>Info
+	
+<%for each foreignKey as String in foreignKeys%>    
+    <%dim foreignKeyType as String = String.Empty
+    dim foreignKeyNullable as String = String.Empty
+    dim foreignKeyLength as String = String.Empty
+    for each row as DataRow in columnsDT.Rows
+        if row("NAME") = foreignKey then
+            foreignKeyType = row("COLTYPE")
+            foreignKeyNullable = row("NULLS")
+            foreignKeyLength = row("LENGTH")
+        end if
+next%>
+    
+    ''' <summary>
+    ''' Method to get a list of <%=className%>Info records related to foreign key "<%=foreignKey%>".
+    ''' </summary>	    	 
+    Function Get<%=className%>By<%=ToPascalCase(foreignKey)%>(ByVal <%=ToCamelCase(foreignKey)%> as <%=ConvertType(foreignKeyType, foreignKeyNullable)%>) as IList(Of <%=className%>Info)
+    <%next%>    
+    ''' <summary>
+    ''' Method to add a <%=className%>Info record to the database.
+    ''' </summary>	    	 
+    Sub Insert<%=className%>(<% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("NAME").ToString.Trim %>ByVal <%=ToCamelCase(name)%> As <%=ConvertType(columnsDT.rows(i)("COLTYPE").ToString.Trim, columnsDT.rows(i)("NULLS").ToString.Trim)%><% IF i=columnsDT.rows.Count - 1 then %><%else%>, <%end if%><% Next i %>)
+    
+    ''' <summary>
+    ''' Method to update a <%=className%>Info record to the database.
+    ''' </summary>	    	 
+    Sub Update<%=className%>(ByVal <%=ToCamelCase(className)%>Info as <%=className%>Info)
+    
+    ''' <summary>
+    ''' Method to delete a <%=className%>Info record.
+    ''' </summary>	    	 
+    Sub Delete<%=className%>(<%for i as integer = 0 to primaryKeys.Count - 1%>ByVal <%=ToCamelCase(primaryKeys(i))%> as <%=ConvertType(primaryKeyTypes(i), primaryKeyNullables(i))%><%if not i = primaryKeys.Count - 1 then%>, <%end if%><%next%>)
+	                    
+End Interface

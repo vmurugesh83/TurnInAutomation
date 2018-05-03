@@ -1,0 +1,32 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+TurnInAutomationBatch
+</name>
+</assembly>
+<members>
+<member name="P:TurnInAutomationBatch.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:TurnInAutomationBatch.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:TurnInAutomationBatch.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:TurnInAutomationBatch.TurnInAutomation.SubmitTurnInMeeting(System.Int32,System.Int32,System.Int32)">
+	<summary>
+ Reads ISN and color level details for the Ad and moves them to the next level
+ </summary>
+	<param name="adNumber"></param>
+	<param name="pageNumber"></param>
+	<param name="turnInBatchID"></param>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

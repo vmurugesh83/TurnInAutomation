@@ -1,0 +1,8 @@
+Add Suite and Trial Version License Files to this folder according to the Installation Guide.
+If you have a License File for VAM: Essential Validators, VAM: Special Validators, 
+VAM: Data Entry Controls, VAM: Client-Side Toolkit, or VAM: Visual Input Security, 
+add to the appropriate subfolder.
+
+When adding a Suite license, assign the License Key in Application_Start or 
+Page_Load as documented in the Installation Guide.
+(When adding a Trial version license, you do not have to modify the License Key.)

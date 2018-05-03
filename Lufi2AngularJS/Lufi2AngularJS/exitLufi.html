@@ -1,0 +1,41 @@
+﻿<div ng-if="!noPrompt">
+    <div class="modal-header">
+        <h4 class="modal-title">Save Order?</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row clearfix">
+            <div class="col-sm-12 column">
+                An order is in the process of being created or modified.
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row clearfix">
+            <div class="col-sm-4">
+                <button class="btn btn-success btn-block" ng-click="save()" type="button">{{withDraftOrderSaveButtonText}}</button>
+            </div>
+            <div class="col-sm-4">
+                <button ng-click="discard()" class="btn btn-danger btn-block" type="button" ng-hide="isCsr()">Close Without Saving</button>
+            </div>
+            <div class="col-sm-4">
+                <button ng-click="cancel()" class="btn btn-default btn-block" type="button">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div ng-if="noPrompt">
+    <div class="modal-header">
+        <h4 class="modal-title">{{noDraftOrderPrompt}}</h4>
+    </div>
+    <div class="modal-footer">
+        <div class="row clearfix">
+            <div class="col-sm-6">
+                <button ng-click="exit()" class="btn btn-warning btn-block" type="button" ng-hide="isCsr()">Yes</button>
+            </div>
+            <div class="col-sm-6">
+                <button ng-click="cancel()" class="btn btn-default btn-block" type="button">{{noDraftOrderExitButtonText}}</button>
+            </div>
+        </div>
+    </div>
+</div>

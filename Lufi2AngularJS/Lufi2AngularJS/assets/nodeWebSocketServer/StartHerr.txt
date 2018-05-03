@@ -1,0 +1,9 @@
+To run you new a javascript runtime like NodeJS.
+
+Using node, you must have the required packages from NPM as shown in the .js script.
+
+Run with node:
+
+On command line while in the nodeWebSocketServer folder:
+
+> node lufi_websocket.js

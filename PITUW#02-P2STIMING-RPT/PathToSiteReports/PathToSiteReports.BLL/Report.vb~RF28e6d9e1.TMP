@@ -1,0 +1,127 @@
+﻿Imports PathToSiteReports.BusinessEntities
+Imports PathToSiteReports.MainframeDAL
+Imports PathToSiteReports.SQLDAL
+
+Public Class Report
+    Dim adminDAO As AdminDAO = Nothing
+    Dim virtualTicketDAO As VirtualTicketDAO = Nothing
+    Dim reportDAO As ReportsDAO = Nothing
+    Public Sub New()
+        adminDAO = New AdminDAO()
+        virtualTicketDAO = New VirtualTicketDAO()
+        reportDAO = New ReportsDAO()
+    End Sub
+    Public Function GetAutoTurnInReportInfo() As List(Of SKUDetail)
+        Dim skuDetails As List(Of SKUDetail) = Nothing
+        Dim skuDetailsTable As DataTable = Nothing
+        Dim adminData As AdminData = Nothing
+        Dim vtImageDetails As List(Of VirtualTicket) = Nothing
+        Dim resultsTable As DataTable = Nothing
+
+        skuDetailsTable = reportDAO.GetSKUDetailReport()
+
+        If Not skuDetailsTable Is Nothing AndAlso skuDetailsTable.Rows.Count > 0 Then
+            skuDetailsTable = adminDAO.UpdateAdNumberAndImageID(skuDetailsTable)
+
+            'Update Ad Type by the ad description
+            UpdateAdTypeByAdDescription(skuDetailsTable)
+
+            skuDetailsTable = virtualTicketDAO.UpdateImageShotAndFinalImageReadyDate(skuDetailsTable)
+        End If
+
+        skuDetails = reportDAO.GetSKUDetailsListFromDataTable(skuDetailsTable)
+
+        'If Not skuDetails Is Nothing AndAlso skuDetails.Count > 0 Then
+        '    For Each item As SKUDetail In skuDetails
+        '        adminData = adminDAO.GetAdminDataByISNAndColor(item.ISN, item.Color)
+
+        '        If Not adminData Is Nothing Then
+        '            item.ImageID = adminData.ImageID
+        '            item.AdNumber = adminData.AdNumber
+        '            item.AdDesc = adminData.AdDesc
+        '            item.AdType = adminData.AdType
+        '        End If
+
+        '        If item.ImageID > 0 Then
+        '            vtImageDetails = virtualTicketDAO.GetImageShotDateByImageID(item.ImageID)
+        '            If Not vtImageDetails Is Nothing AndAlso vtImageDetails.Count > 0 Then
+        '                If Not vtImageDetails.Find(Function(a) a.ImageExtension.ToUpper() <> "JPG") Is Nothing Then
+        '                    item.ImageShotDate = vtImageDetails.Find(Function(a) a.ImageExtension.ToUpper() <> "JPG").ImageModifiedDate
+        '                End If
+        '                If Not vtImageDetails.Find(Function(a) a.ImageExtension.ToUpper() = "JPG") Is Nothing Then
+        '                    item.FinalImageReadyDate = vtImageDetails.Find(Function(a) a.ImageExtension.ToUpper() = "JPG").ImageModifiedDate
+        '                End If
+        '            End If
+        '        End If
+        '    Next
+        'End If
+
+        Return skuDetails
+    End Function
+    Public Function GetAverageDaysFromTurnInToActive_VendorImages() As Integer
+        Return adminDAO.GetAverageDaysFromTurnInToActive_VendorImages()
+    End Function
+
+    Public Function GetAverageDaysFromTurnInToActive_TurnIn() As Integer
+        Return adminDAO.GetAverageDaysFromTurnInToActive_TurnIn()
+    End Function
+
+    Public Function GetAverageDaysFromTurnInToActive_INFC() As Integer
+        Return adminDAO.GetAverageDaysFromTurnInToActive_INFC()
+    End Function
+
+    Public Function GetAverageDaysFromTurnInToActive_LIFT() As Integer
+        Return adminDAO.GetAverageDaysFromTurnInToActive_LIFT()
+    End Function
+
+    Public Function GetAverageDaysFromTurnInToActive_ExtraHot() As Integer
+        Return adminDAO.GetAverageDaysFromTurnInToActive_ExtraHot()
+    End Function
+    Public Function GetSKUWithOHReceipt(ByVal startDate As Date, ByVal endDate As Date) As List(Of SKUDetail)
+        Dim ohReceiptTable As DataTable = Nothing
+        Dim skuDetails As List(Of SKUDetail) = Nothing
+
+        Try
+            ohReceiptTable = reportDAO.GetSKUWithOHReceipt(startDate, endDate)
+
+            Return skuDetails
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+    Private Sub UpdateAdTypeByAdDescription(ByRef skuDetails As DataTable)
+        If Not skuDetails Is Nothing AndAlso skuDetails.Rows.Count > 0 Then
+
+            'All records with ads
+            For Each vendorImageRow As DataRow In skuDetails.Select("ad_num >0")
+                vendorImageRow("ad_type") = "Other"
+            Next
+
+            'Vendor Images
+            For Each vendorImageRow As DataRow In skuDetails.Select("ad_desc NOT LIKE '%LIFT%' AND ad_desc LIKE '%VS Imgs%'")
+                vendorImageRow("ad_type") = "Vendor Image"
+            Next
+
+            'Turn in
+            For Each vendorImageRow As DataRow In skuDetails.Select("ad_desc NOT LIKE '%LIFT%' AND ad_desc LIKE '%TI%'")
+                vendorImageRow("ad_type") = "Turn In"
+            Next
+
+            'INFC
+            For Each vendorImageRow As DataRow In skuDetails.Select("ad_desc NOT LIKE '%LIFT%' AND ad_desc LIKE '%TXF%'")
+                vendorImageRow("ad_type") = "INFC Transfer"
+            Next
+
+            'LIFT
+            For Each vendorImageRow As DataRow In skuDetails.Select("ad_desc LIKE '%LIFT%'")
+                vendorImageRow("ad_type") = "LIFT"
+            Next
+
+            'Extra Hot
+            For Each vendorImageRow As DataRow In skuDetails.Select("ad_desc LIKE '%EC In FC VS Images%'")
+                vendorImageRow("ad_type") = "Extra Hot"
+            Next
+
+        End If
+    End Sub
+End Class

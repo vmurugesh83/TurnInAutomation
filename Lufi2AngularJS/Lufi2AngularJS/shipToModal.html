@@ -1,0 +1,45 @@
+﻿<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Ship To Addresses <span ng-show="isBigTicket">(Big Ticket Addresses Only)</span></h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-sm-6">
+                <button class="btn btn-primary shippingSelectButton hide" ng-click="" >Pick Up At Store</button>
+            </div>
+            <div class="col-sm-6">
+                <button class="btn btn-primary shippingSelectButton pull-right" ng-click="openEditAddress()">Add New Shipping Address</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="margintop20" id="ItemDetailWrapper" style="overflow-y: hidden;max-height:350px;min-height:90px;position:relative">
+
+
+                            <table class="table table-striped">
+                                <thead></thead>
+                                <tbody>
+                                    <tr ng-show="availableShippingAddresses.length < 1"><td>No shipping addresses available for selected item set.</td></tr>
+                                    <tr ng-repeat="address in availableShippingAddresses">
+                                        <td ng-click="saveAddress(address)">
+                                            <div ng-show="address.btLogic.isRegistryAddress">
+                                                Ship To Preferred Address for Registry: {{addressKeyToRegistryMap[address.PersonInfo._PersonInfoKey]}}
+                                            </div>
+                                            <div ng-show="!address.btLogic.isRegistryAddress">
+                                                {{address.PersonInfo | oneLineAddress:'long':'name':'id'}} <span class="errorSpan" ng-show="!address.btIsValid">Invalid Address. Please Edit</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-default shippingSelectButton pull-right" ng-click="openEditAddress(address)" style="margin-right:20px" ng-show="!address.btLogic.isRegistryAddress">Edit</button>
+                                        </td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{D183A3D8-5FD8-494B-B014-37F57B35E655}") = "PendingPrioritizationReport", "PendingPrioritizationReport\PendingPrioritizationReport.dtproj", "{3FD5D499-6276-4D88-BEF0-790F7787E458}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3FD5D499-6276-4D88-BEF0-790F7787E458}.Development|Default.ActiveCfg = Development
+		{3FD5D499-6276-4D88-BEF0-790F7787E458}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

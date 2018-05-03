@@ -1,0 +1,617 @@
+﻿Imports DocumentFormat.OpenXml.Spreadsheet
+Imports DocumentFormat.OpenXml.Packaging
+Imports DocumentFormat.OpenXml
+Imports PathToSiteReports.BusinessEntities
+
+Public Class ExcelHelper
+#Region "SKU Details Report"
+    Public Shared Sub ExportSKUDetailsReportToExcel(ByVal excelFileName As String, ByVal pageTitle As String, ByVal SKUDetails As List(Of SKUDetail))
+        Dim workbookPart As WorkbookPart = Nothing
+        Dim worksheetPart As WorksheetPart = Nothing
+        Dim stylesheetPart As WorkbookStylesPart = Nothing
+        Dim workbook As Workbook = Nothing
+        Dim sheets As Sheets = Nothing
+        Dim sheet As Sheet = Nothing
+        Dim worksheet As Worksheet = Nothing
+        Dim sheetData As SheetData = Nothing
+        Dim excelRow As Row = Nothing
+
+        Try
+            Using excelPackage As SpreadsheetDocument = SpreadsheetDocument.Create(excelFileName, SpreadsheetDocumentType.Workbook)
+
+                workbookPart = excelPackage.AddWorkbookPart()
+
+                workbook = New Workbook()
+                workbook.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships")
+
+                sheets = New Sheets()
+                sheet = New Sheet With {.Name = "Sheet1", .SheetId = 1, .Id = "r1"}
+
+                sheets.Append(sheet)
+                'workbook.Append(sheets)
+                'workbookPart.Workbook = workbook
+
+                worksheetPart = workbookPart.AddNewPart(Of WorksheetPart)("r1")
+
+                worksheet = New Worksheet()
+                sheetData = New SheetData()
+
+                WriteSKUDetailsListToExcelWorksheet(SKUDetails, worksheetPart, worksheet, sheetData)
+
+                sheet = New Sheet With {.Name = "Sheet2", .SheetId = 2, .Id = "r2"}
+                sheets.Append(sheet)
+                workbook.Append(sheets)
+                workbookPart.Workbook = workbook
+
+                worksheetPart = workbookPart.AddNewPart(Of WorksheetPart)("r2")
+
+                worksheet = New Worksheet()
+                sheetData = New SheetData()
+
+                WritePerfSummaryListToExcelWorksheet(SKUDetails, worksheetPart, worksheet, sheetData)
+
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Sub
+    Private Shared Sub WriteSKUDetailsListToExcelWorksheet(ByVal SKUDetails As List(Of SKUDetail), ByVal worksheetPart As WorksheetPart,
+                                                 ByVal worksheet As Worksheet, ByVal sheetData As SheetData)
+
+        Dim cellValue As String = String.Empty
+        Dim columnIndex As Integer = 0
+
+        '  Create a Header Row in our Excel file, containing one header for each Column of data in our DataTable.
+        '
+        '  We'll also create an array, showing which type each column of data is (Text or Numeric), so when we come to write the actual
+        '  cells of data, we'll know if to write Text values or Numeric cell values.
+        Dim numberOfColumns As Integer = 22
+        Dim IsNumericColumn(numberOfColumns) As Boolean
+
+        Dim excelColumnNames([numberOfColumns]) As String
+
+        For n As Integer = 0 To numberOfColumns
+            excelColumnNames(numberOfColumns) = GetExcelColumnName(n)
+        Next n
+
+        '
+        '  Create the Header row in our Excel Worksheet
+        '
+        Dim rowIndex As UInt32 = 1
+
+
+        'Append Headers
+        Dim headerRow As Row = New Row
+        headerRow.RowIndex = rowIndex            ' add a row at the top of spreadsheet
+        headerRow = GetSKUDetailsReportHeaders()
+        sheetData.Append(headerRow)
+
+        '
+        '  Now, step through each row of data in our DataTable...
+        '
+        Dim cellNumericValue As Double = 0
+
+        If Not SKUDetails Is Nothing AndAlso SKUDetails.Count > 0 Then
+
+            For Each item As SKUDetail In SKUDetails
+                ' ...create a new row, and append a set of this row's data to it.
+                rowIndex = rowIndex + 1
+                Dim newExcelRow As New Row
+                newExcelRow.RowIndex = rowIndex         '  add a row at the top of spreadsheet
+                sheetData.Append(newExcelRow)
+
+                columnIndex = 0
+                'FOB
+                cellValue = item.FOB
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'Department
+                columnIndex = columnIndex + 1
+                cellValue = item.Dept
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'Class
+                columnIndex = columnIndex + 1
+                cellValue = item.Dept_Class
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'ISN
+                columnIndex = columnIndex + 1
+                cellValue = item.ISN
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.Number)
+
+                'Color
+                columnIndex = columnIndex + 1
+                cellValue = item.Color
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.Number)
+
+                'SKU
+                columnIndex = columnIndex + 1
+                cellValue = item.SKU
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.Number)
+
+                'UPC
+                columnIndex = columnIndex + 1
+                cellValue = item.UPC
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.Number)
+
+                'Ad Details
+                columnIndex = columnIndex + 1
+                cellValue = If(item.AdNumber > 0 AndAlso Not String.IsNullOrEmpty(item.AdDesc), String.Concat(item.AdNumber, " - ", item.AdDesc), String.Empty)
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'AD Type
+                columnIndex = columnIndex + 1
+                cellValue = item.AdType
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'Style SKU Setup date
+                columnIndex = columnIndex + 1
+                cellValue = item.SSSetupDate
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'Sample Request DAte
+                columnIndex = columnIndex + 1
+                cellValue = If(item.SampleRequestDate <= Date.MinValue, "", item.SampleRequestDate.ToShortDateString())
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'Sample Receipt DAte
+                columnIndex = columnIndex + 1
+                cellValue = item.SampleReceiptDate
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'PO Approval DAte
+                columnIndex = columnIndex + 1
+                cellValue = item.POApprovalDate
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'PO Ship date
+                columnIndex = columnIndex + 1
+                cellValue = item.POShipDate
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'Turn in date
+                columnIndex = columnIndex + 1
+                cellValue = item.TurnInDate
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'Image Shot DAte
+                columnIndex = columnIndex + 1
+                cellValue = item.ImageShotDate
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'Final Image Ready DAte
+                columnIndex = columnIndex + 1
+                cellValue = item.FinalImageReadyDate
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'PO Receipt date
+                columnIndex = columnIndex + 1
+                cellValue = item.POReceiptDate
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'Copy Ready Date
+                columnIndex = columnIndex + 1
+                cellValue = item.CopyReadyDate
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'Product REady date
+                columnIndex = columnIndex + 1
+                cellValue = item.ProductReadyDate
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'Product Active date
+                columnIndex = columnIndex + 1
+                cellValue = item.ProductActiveDate
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+            Next
+        End If
+
+        worksheet.Append(sheetData)
+        worksheetPart.Worksheet = worksheet
+
+    End Sub
+    Private Shared Function GetSKUDetailsReportHeaders() As Row
+        Dim excelRow As Row = Nothing
+        Dim excelCell As Cell = Nothing
+        Dim headerString As InlineString = Nothing
+        Dim cellText As InlineString = Nothing
+        Dim cellValue As CellValue = Nothing
+        Dim runProp As RunProperties = Nothing
+        Dim runCell As Run = Nothing
+        Dim columnCount As Integer = 0
+        excelRow = New Row()
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("FOB", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Department", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Class", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("ISN", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Color Code", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("SKU", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("UPC", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("AD#", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Ad Type", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("SS Setup Date", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Sample Request Date", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Sample Receipt Date", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Sample Due Date", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("PO Approval Date", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Turn in Date", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Image Shot Date", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Final Image Ready Date", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("PO 1st Receipt Date", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Copy Ready Date", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Product Ready Date", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Product Active Date (1st Date)", GetExcelColumnName(columnCount)))
+
+        Return excelRow
+    End Function
+#End Region
+
+#Region "Stage Perf Report Summary"
+    Private Shared Sub WritePerfSummaryListToExcelWorksheet(ByVal SKUDetails As List(Of SKUDetail), ByVal worksheetPart As WorksheetPart,
+                                                 ByVal worksheet As Worksheet, ByVal sheetData As SheetData)
+
+
+        Dim cellValue As String = String.Empty
+        Dim columnIndex As Integer = 0
+
+        '  Create a Header Row in our Excel file, containing one header for each Column of data in our DataTable.
+        '
+        '  We'll also create an array, showing which type each column of data is (Text or Numeric), so when we come to write the actual
+        '  cells of data, we'll know if to write Text values or Numeric cell values.
+        Dim numberOfColumns As Integer = 13
+        Dim IsNumericColumn(numberOfColumns) As Boolean
+
+        Dim excelColumnNames([numberOfColumns]) As String
+
+        For n As Integer = 0 To numberOfColumns
+            excelColumnNames(numberOfColumns) = GetExcelColumnName(n)
+        Next n
+
+        Dim outputList = (From detail In SKUDetails
+                         Group By detail.FOB, detail.Dept, detail.Dept_Class
+                         Into SSSetupToSampleRequest = Average(detail.SSSetupToSampleRequest),
+                             SampleRequestToSampleReceipt = Average(detail.SampleRequestToSampleReceipt),
+                             SSSetupToPOApproval = Average(detail.SSSetupToPOApproval),
+                             SSSetupToTurnIn = Average(detail.SSSetupToTurnIn),
+                             POApprovalToTurnIn = Average(detail.POApprovalToTurnIn),
+                             SampleReceiptToTurnin = Average(detail.SampleReceiptToTurnIn),
+                             TurnInToFirstPOReceipt = Average(detail.TurnInToPOReceipt),
+                             TurnInToReadyStatus = Average(detail.TurnInToProductReady),
+                             TurnInToCopyReady = Average(detail.TurnInToCopyReady),
+                             TurnInToProductActive = Average(detail.TurnInToProductActive)
+                         Select FOB, Dept, Dept_Class,
+                         SSSetupToSampleRequest,
+                         SampleRequestToSampleReceipt,
+                         SSSetupToPOApproval,
+                         SSSetupToTurnIn,
+                         POApprovalToTurnIn,
+                         SampleReceiptToTurnin,
+                         TurnInToFirstPOReceipt,
+                         TurnInToReadyStatus,
+                         TurnInToCopyReady,
+                         TurnInToProductActive).ToList()
+
+        '
+        '  Create the Header row in our Excel Worksheet
+        '
+        Dim rowIndex As UInt32 = 1
+
+
+        'Append Headers
+        Dim headerRow As Row = New Row
+        headerRow.RowIndex = rowIndex            ' add a row at the top of spreadsheet
+        headerRow = GetStagePerfReportHeaders()
+        sheetData.Append(headerRow)
+
+        '
+        '  Now, step through each row of data in our DataTable...
+        '
+        Dim cellNumericValue As Double = 0
+
+        If Not outputList Is Nothing AndAlso outputList.Count > 0 Then
+
+            For Each item In outputList
+                ' ...create a new row, and append a set of this row's data to it.
+                rowIndex = rowIndex + 1
+                Dim newExcelRow As New Row
+                newExcelRow.RowIndex = rowIndex         '  add a row at the top of spreadsheet
+                sheetData.Append(newExcelRow)
+
+                columnIndex = 0
+                'FOB
+                cellValue = item.FOB
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'Department
+                columnIndex = columnIndex + 1
+                cellValue = item.Dept
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'Class
+                columnIndex = columnIndex + 1
+                cellValue = item.Dept_Class
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'SS Setup to Sample Request
+                columnIndex = columnIndex + 1
+                cellValue = item.SSSetupToSampleRequest
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'Sample Request To Sample Receipt
+                columnIndex = columnIndex + 1
+                cellValue = item.SampleRequestToSampleReceipt
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'Style SKU Setup To PO Approval
+                columnIndex = columnIndex + 1
+                cellValue = item.SSSetupToPOApproval
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'Style SKU Setup To TurnIn
+                columnIndex = columnIndex + 1
+                cellValue = item.SSSetupToTurnIn
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'PO Approval To Turn-In
+                columnIndex = columnIndex + 1
+                cellValue = item.POApprovalToTurnIn
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'AD Type
+                columnIndex = columnIndex + 1
+                cellValue = item.AdType
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'Style SKU Setup date
+                columnIndex = columnIndex + 1
+                cellValue = item.SSSetupDate
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                'Sample Request DAte
+                columnIndex = columnIndex + 1
+                cellValue = If(item.SampleRequestDate <= Date.MinValue, "", item.SampleRequestDate.ToShortDateString())
+                AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                ''Sample Receipt DAte
+                'columnIndex = columnIndex + 1
+                'cellValue = item.SampleReceiptDate
+                'AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                ''PO Approval DAte
+                'columnIndex = columnIndex + 1
+                'cellValue = item.POApprovalDate
+                'AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                ''PO Ship date
+                'columnIndex = columnIndex + 1
+                'cellValue = item.POShipDate
+                'AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                ''Turn in date
+                'columnIndex = columnIndex + 1
+                'cellValue = item.TurnInDate
+                'AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                ''Image Shot DAte
+                'columnIndex = columnIndex + 1
+                'cellValue = item.ImageShotDate
+                'AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                ''Final Image Ready DAte
+                'columnIndex = columnIndex + 1
+                'cellValue = item.FinalImageReadyDate
+                'AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                ''PO Receipt date
+                'columnIndex = columnIndex + 1
+                'cellValue = item.POReceiptDate
+                'AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                ''Copy Ready Date
+                'columnIndex = columnIndex + 1
+                'cellValue = item.CopyReadyDate
+                'AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                ''Product REady date
+                'columnIndex = columnIndex + 1
+                'cellValue = item.ProductReadyDate
+                'AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+                ''Product Active date
+                'columnIndex = columnIndex + 1
+                'cellValue = item.ProductActiveDate
+                'AppendCell(excelColumnNames(columnIndex) + rowIndex.ToString(), cellValue, newExcelRow, CellValues.String)
+
+            Next
+        End If
+
+        worksheet.Append(sheetData)
+        worksheetPart.Worksheet = worksheet
+
+    End Sub
+
+    Private Shared Function GetStagePerfReportHeaders() As Row
+        Dim excelRow As Row = Nothing
+        Dim excelCell As Cell = Nothing
+        Dim headerString As InlineString = Nothing
+        Dim cellText As InlineString = Nothing
+        Dim cellValue As CellValue = Nothing
+        Dim runProp As RunProperties = Nothing
+        Dim runCell As Run = Nothing
+        Dim columnCount As Integer = 0
+        excelRow = New Row()
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("FOB", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Department", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Class", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Average of SS Setup to Sample request days", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Average of Sample request to Sample Receipt Days", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Average of SS setup to PO Approval Days", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Average of SS Setup to Turn in Days", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Average of PO Approval to Turn in Days", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Average of Sample receipt to Turn in Days", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Average of Turn in to Date of first PO receipt", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Average of Turn in to Ready status ( Ttl Patht to Site Time?)", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Average of Turn in to Copy ready", GetExcelColumnName(columnCount)))
+
+        columnCount += 1
+        excelRow.Append(AddHeaderColumn("Average of Turn-in to Product Active status", GetExcelColumnName(columnCount)))
+
+        Return excelRow
+    End Function
+
+#End Region
+
+#Region "Common Functions"
+    Private Shared Function GetExcelColumnName(ByVal columnIndex As Integer) As String
+        If (columnIndex < 26) Then
+            Return Chr(Asc("A") + columnIndex)
+        End If
+
+        Dim firstChar As Char,
+            secondChar As Char
+
+        firstChar = Chr(Asc("A") + (columnIndex \ 26) - 1)
+        secondChar = Chr(Asc("A") + (columnIndex Mod 26))
+
+        Return firstChar + secondChar
+    End Function
+    Private Shared Sub AppendCell(ByVal cellReference As String, ByVal cellStringValue As String, ByVal excelRow As Row, ByVal cellDataType As CellValues)
+        '/  Add a new Excel Cell to our Row 
+        Dim cell As New Cell
+        cell.CellReference = cellReference
+        cell.DataType = cellDataType
+
+        Dim cellValue As New CellValue
+        cellValue.Text = cellStringValue
+
+        cell.Append(cellValue)
+
+        excelRow.Append(cell)
+    End Sub
+    Private Shared Function AddStyleSheet(ByVal spreadsheet As SpreadsheetDocument) As WorkbookStylesPart
+        Dim stylesheet As WorkbookStylesPart = spreadsheet.WorkbookPart.AddNewPart(Of WorkbookStylesPart)()
+
+        Dim workbookstylesheet As New Stylesheet()
+        Dim font0 As New Spreadsheet.Font()
+
+        'Dim font1 As New Spreadsheet.Font()
+        'Dim boldFont As New Spreadsheet.Bold()
+        'Dim underline As New Spreadsheet.Underline()
+        'font1.Append(boldFont)
+        'font1.Append(underline)
+        Dim fonts As New Fonts()
+        fonts.Append(font0)
+        'fonts.Append(font1)
+
+        Dim border0 As New Border()
+        Dim borders As New Borders()
+        borders.Append(border0)
+
+        Dim cellFormat0 As New CellFormat With {.FontId = 0, .BorderId = 0}
+        'Dim cellFormat1 As New CellFormat With {.FontId = 1}
+
+        Dim cellFormats As New CellFormats()
+        cellFormats.Append(cellFormat0)
+        'cellFormats.Append(cellFormat1)
+
+        'Append FONTS, FILLS , BORDERS & CellFormats to stylesheet <Preserve the ORDER>
+        workbookstylesheet.Append(fonts)
+        workbookstylesheet.Append(borders)
+        workbookstylesheet.Append(cellFormats)
+
+        'Finalize
+        stylesheet.Stylesheet = workbookstylesheet
+        stylesheet.Stylesheet.Save()
+
+        Return stylesheet
+
+    End Function
+
+    Private Shared Function AddHeaderColumn(ByVal columnHeader As String, ByVal cellReference As StringValue) As Cell
+        Dim excelCell As Cell = Nothing
+        Dim cellText As InlineString = Nothing
+        Dim cellValue As CellValue = Nothing
+        Dim runCell As Run = Nothing
+
+        excelCell = New Cell With {.CellReference = cellReference, .DataType = CellValues.InlineString}
+        runCell = New Run()
+        runCell.Append(New Text(columnHeader))
+        runCell.RunProperties = New RunProperties(New Bold, New Underline)
+        cellText = New InlineString()
+        cellText.Append(runCell)
+        excelCell.Append(cellText)
+
+        Return excelCell
+    End Function
+#End Region
+
+End Class

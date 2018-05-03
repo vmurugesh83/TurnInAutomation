@@ -1,0 +1,193 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TurnInAutomationBatch", "TurnInAutomationBatch\TurnInAutomationBatch.vbproj", "{FFBA38A6-FAD2-49AF-922F-B1E34AE8CB18}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TurnInAutomationBatch.BLL", "TurnInAutomationBatch.BLL\TurnInAutomationBatch.BLL.vbproj", "{F22BB262-56EC-4561-88D9-8A122D09FFE9}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TurnInAutomationBatch.MainframeDAL", "TurnInAutomationBatch.MainframeDAL\TurnInAutomationBatch.MainframeDAL.vbproj", "{15CF46C3-0659-4104-8E9F-B8E790BA267F}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TurnInAutomationBatch.SQLDAL", "TurnInAutomationBatch.SQLDAL\TurnInAutomationBatch.SQLDAL.vbproj", "{FF314642-5665-49A1-92BA-206D443F1F50}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BonTon.DBUtility", "..\Source\TurnInProcessAutomation.DBUtility\BonTon.DBUtility.vbproj", "{0D772986-EC58-401F-9578-D909F57C6392}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TurnInAutomationBatch.BusinessEntities", "TurnInAutomationBatch.BusinessEntities\TurnInAutomationBatch.BusinessEntities.vbproj", "{DB51348F-BE8D-4226-889D-0B33DDA5BAB3}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TurnInAutomationBatch.Model", "TurnInAutomationBatch.Model\TurnInAutomationBatch.Model.vbproj", "{E776F17D-6CB0-4B1B-8F44-F13CDE6CDC1E}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TurnInProcessAutomation.BLL", "..\Source\TurnInProcessAutomation.BLL\TurnInProcessAutomation.BLL.vbproj", "{6B7538BD-8EE5-4C1F-9E12-49655FFBD297}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TurnInProcessAutomation.BusinessEntities", "..\Source\TurnInProcessAutomation.BusinessEntities\TurnInProcessAutomation.BusinessEntities.vbproj", "{014F9B48-D9CE-48F6-9C2B-877C127B604F}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TurnInProcessAutomation.Factory", "..\Source\TurnInProcessAutomation.Factory\TurnInProcessAutomation.Factory.vbproj", "{A82F41F1-3CA7-47A2-BDD6-FF9D34345FFA}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TurnInProcessAutomation.MainframeDAL", "..\Source\TurnInProcessAutomation.MainframeDAL\TurnInProcessAutomation.MainframeDAL.vbproj", "{45EF7CA3-03F1-4177-945F-764B23086213}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TurnInProcessAutomation.SqlDAL", "..\Source\TurnInProcessAutomation.SqlDAL\TurnInProcessAutomation.SqlDAL.vbproj", "{9779AA21-97AF-4FB3-AE43-A346AC133BEB}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TurnInAutomationBatch.Common", "TurnInAutomationBatch.Common\TurnInAutomationBatch.Common.vbproj", "{DE9C47AE-F7B0-4B8C-ACCF-C8A4FC5ABEA8}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BonTon.Common", "..\Source\Common.Utilities\BonTon.Common.vbproj", "{C9B2AAC6-0004-403B-B4D2-DD603573FEEC}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 15
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs2013.internal.bonton.com:8080/tfs2013/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ..\\Source\\TurnInProcessAutomation.DBUtility\\BonTon.DBUtility.vbproj
+		SccProjectName1 = ../Source/TurnInProcessAutomation.DBUtility
+		SccLocalPath1 = ..\\Source\\TurnInProcessAutomation.DBUtility
+		SccProjectUniqueName2 = ..\\Source\\TurnInProcessAutomation.BLL\\TurnInProcessAutomation.BLL.vbproj
+		SccProjectName2 = ../Source/TurnInProcessAutomation.BLL
+		SccLocalPath2 = ..\\Source\\TurnInProcessAutomation.BLL
+		SccProjectUniqueName3 = ..\\Source\\TurnInProcessAutomation.BusinessEntities\\TurnInProcessAutomation.BusinessEntities.vbproj
+		SccProjectName3 = ../Source/TurnInProcessAutomation.BusinessEntities
+		SccLocalPath3 = ..\\Source\\TurnInProcessAutomation.BusinessEntities
+		SccProjectUniqueName4 = ..\\Source\\TurnInProcessAutomation.Factory\\TurnInProcessAutomation.Factory.vbproj
+		SccProjectName4 = ../Source/TurnInProcessAutomation.Factory
+		SccLocalPath4 = ..\\Source\\TurnInProcessAutomation.Factory
+		SccProjectUniqueName5 = ..\\Source\\TurnInProcessAutomation.MainframeDAL\\TurnInProcessAutomation.MainframeDAL.vbproj
+		SccProjectName5 = ../Source/TurnInProcessAutomation.MainframeDAL
+		SccLocalPath5 = ..\\Source\\TurnInProcessAutomation.MainframeDAL
+		SccProjectUniqueName6 = ..\\Source\\TurnInProcessAutomation.SqlDAL\\TurnInProcessAutomation.SqlDAL.vbproj
+		SccProjectName6 = ../Source/TurnInProcessAutomation.SqlDAL
+		SccLocalPath6 = ..\\Source\\TurnInProcessAutomation.SqlDAL
+		SccProjectUniqueName7 = TurnInAutomationBatch\\TurnInAutomationBatch.vbproj
+		SccProjectName7 = TurnInAutomationBatch
+		SccLocalPath7 = TurnInAutomationBatch
+		SccProjectUniqueName8 = TurnInAutomationBatch.BLL\\TurnInAutomationBatch.BLL.vbproj
+		SccProjectName8 = TurnInAutomationBatch.BLL
+		SccLocalPath8 = TurnInAutomationBatch.BLL
+		SccProjectUniqueName9 = TurnInAutomationBatch.MainframeDAL\\TurnInAutomationBatch.MainframeDAL.vbproj
+		SccProjectName9 = TurnInAutomationBatch.MainframeDAL
+		SccLocalPath9 = TurnInAutomationBatch.MainframeDAL
+		SccProjectUniqueName10 = TurnInAutomationBatch.SQLDAL\\TurnInAutomationBatch.SQLDAL.vbproj
+		SccProjectName10 = TurnInAutomationBatch.SQLDAL
+		SccLocalPath10 = TurnInAutomationBatch.SQLDAL
+		SccProjectUniqueName11 = TurnInAutomationBatch.BusinessEntities\\TurnInAutomationBatch.BusinessEntities.vbproj
+		SccProjectName11 = TurnInAutomationBatch.BusinessEntities
+		SccLocalPath11 = TurnInAutomationBatch.BusinessEntities
+		SccProjectUniqueName12 = TurnInAutomationBatch.Model\\TurnInAutomationBatch.Model.vbproj
+		SccProjectName12 = TurnInAutomationBatch.Model
+		SccLocalPath12 = TurnInAutomationBatch.Model
+		SccProjectUniqueName13 = TurnInAutomationBatch.Common\\TurnInAutomationBatch.Common.vbproj
+		SccProjectName13 = TurnInAutomationBatch.Common
+		SccLocalPath13 = TurnInAutomationBatch.Common
+		SccProjectUniqueName14 = ..\\Source\\Common.Utilities\\BonTon.Common.vbproj
+		SccProjectName14 = ../Source/Common.Utilities
+		SccLocalPath14 = ..\\Source\\Common.Utilities
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFBA38A6-FAD2-49AF-922F-B1E34AE8CB18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFBA38A6-FAD2-49AF-922F-B1E34AE8CB18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFBA38A6-FAD2-49AF-922F-B1E34AE8CB18}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FFBA38A6-FAD2-49AF-922F-B1E34AE8CB18}.Debug|x86.Build.0 = Debug|Any CPU
+		{FFBA38A6-FAD2-49AF-922F-B1E34AE8CB18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFBA38A6-FAD2-49AF-922F-B1E34AE8CB18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFBA38A6-FAD2-49AF-922F-B1E34AE8CB18}.Release|x86.ActiveCfg = Release|Any CPU
+		{F22BB262-56EC-4561-88D9-8A122D09FFE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F22BB262-56EC-4561-88D9-8A122D09FFE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F22BB262-56EC-4561-88D9-8A122D09FFE9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F22BB262-56EC-4561-88D9-8A122D09FFE9}.Debug|x86.Build.0 = Debug|Any CPU
+		{F22BB262-56EC-4561-88D9-8A122D09FFE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F22BB262-56EC-4561-88D9-8A122D09FFE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F22BB262-56EC-4561-88D9-8A122D09FFE9}.Release|x86.ActiveCfg = Release|Any CPU
+		{15CF46C3-0659-4104-8E9F-B8E790BA267F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15CF46C3-0659-4104-8E9F-B8E790BA267F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15CF46C3-0659-4104-8E9F-B8E790BA267F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{15CF46C3-0659-4104-8E9F-B8E790BA267F}.Debug|x86.Build.0 = Debug|Any CPU
+		{15CF46C3-0659-4104-8E9F-B8E790BA267F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15CF46C3-0659-4104-8E9F-B8E790BA267F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15CF46C3-0659-4104-8E9F-B8E790BA267F}.Release|x86.ActiveCfg = Release|Any CPU
+		{FF314642-5665-49A1-92BA-206D443F1F50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF314642-5665-49A1-92BA-206D443F1F50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF314642-5665-49A1-92BA-206D443F1F50}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FF314642-5665-49A1-92BA-206D443F1F50}.Debug|x86.Build.0 = Debug|Any CPU
+		{FF314642-5665-49A1-92BA-206D443F1F50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF314642-5665-49A1-92BA-206D443F1F50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF314642-5665-49A1-92BA-206D443F1F50}.Release|x86.ActiveCfg = Release|Any CPU
+		{0D772986-EC58-401F-9578-D909F57C6392}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D772986-EC58-401F-9578-D909F57C6392}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D772986-EC58-401F-9578-D909F57C6392}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0D772986-EC58-401F-9578-D909F57C6392}.Debug|x86.Build.0 = Debug|Any CPU
+		{0D772986-EC58-401F-9578-D909F57C6392}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D772986-EC58-401F-9578-D909F57C6392}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D772986-EC58-401F-9578-D909F57C6392}.Release|x86.ActiveCfg = Release|x86
+		{0D772986-EC58-401F-9578-D909F57C6392}.Release|x86.Build.0 = Release|x86
+		{DB51348F-BE8D-4226-889D-0B33DDA5BAB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB51348F-BE8D-4226-889D-0B33DDA5BAB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB51348F-BE8D-4226-889D-0B33DDA5BAB3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DB51348F-BE8D-4226-889D-0B33DDA5BAB3}.Debug|x86.Build.0 = Debug|Any CPU
+		{DB51348F-BE8D-4226-889D-0B33DDA5BAB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB51348F-BE8D-4226-889D-0B33DDA5BAB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB51348F-BE8D-4226-889D-0B33DDA5BAB3}.Release|x86.ActiveCfg = Release|Any CPU
+		{E776F17D-6CB0-4B1B-8F44-F13CDE6CDC1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E776F17D-6CB0-4B1B-8F44-F13CDE6CDC1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E776F17D-6CB0-4B1B-8F44-F13CDE6CDC1E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E776F17D-6CB0-4B1B-8F44-F13CDE6CDC1E}.Debug|x86.Build.0 = Debug|Any CPU
+		{E776F17D-6CB0-4B1B-8F44-F13CDE6CDC1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E776F17D-6CB0-4B1B-8F44-F13CDE6CDC1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E776F17D-6CB0-4B1B-8F44-F13CDE6CDC1E}.Release|x86.ActiveCfg = Release|Any CPU
+		{6B7538BD-8EE5-4C1F-9E12-49655FFBD297}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B7538BD-8EE5-4C1F-9E12-49655FFBD297}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B7538BD-8EE5-4C1F-9E12-49655FFBD297}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6B7538BD-8EE5-4C1F-9E12-49655FFBD297}.Debug|x86.Build.0 = Debug|Any CPU
+		{6B7538BD-8EE5-4C1F-9E12-49655FFBD297}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B7538BD-8EE5-4C1F-9E12-49655FFBD297}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B7538BD-8EE5-4C1F-9E12-49655FFBD297}.Release|x86.ActiveCfg = Release|Any CPU
+		{014F9B48-D9CE-48F6-9C2B-877C127B604F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{014F9B48-D9CE-48F6-9C2B-877C127B604F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{014F9B48-D9CE-48F6-9C2B-877C127B604F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{014F9B48-D9CE-48F6-9C2B-877C127B604F}.Debug|x86.Build.0 = Debug|Any CPU
+		{014F9B48-D9CE-48F6-9C2B-877C127B604F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{014F9B48-D9CE-48F6-9C2B-877C127B604F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{014F9B48-D9CE-48F6-9C2B-877C127B604F}.Release|x86.ActiveCfg = Release|Any CPU
+		{A82F41F1-3CA7-47A2-BDD6-FF9D34345FFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A82F41F1-3CA7-47A2-BDD6-FF9D34345FFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A82F41F1-3CA7-47A2-BDD6-FF9D34345FFA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A82F41F1-3CA7-47A2-BDD6-FF9D34345FFA}.Debug|x86.Build.0 = Debug|Any CPU
+		{A82F41F1-3CA7-47A2-BDD6-FF9D34345FFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A82F41F1-3CA7-47A2-BDD6-FF9D34345FFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A82F41F1-3CA7-47A2-BDD6-FF9D34345FFA}.Release|x86.ActiveCfg = Release|Any CPU
+		{45EF7CA3-03F1-4177-945F-764B23086213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45EF7CA3-03F1-4177-945F-764B23086213}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45EF7CA3-03F1-4177-945F-764B23086213}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{45EF7CA3-03F1-4177-945F-764B23086213}.Debug|x86.Build.0 = Debug|Any CPU
+		{45EF7CA3-03F1-4177-945F-764B23086213}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45EF7CA3-03F1-4177-945F-764B23086213}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45EF7CA3-03F1-4177-945F-764B23086213}.Release|x86.ActiveCfg = Release|Any CPU
+		{9779AA21-97AF-4FB3-AE43-A346AC133BEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9779AA21-97AF-4FB3-AE43-A346AC133BEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9779AA21-97AF-4FB3-AE43-A346AC133BEB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9779AA21-97AF-4FB3-AE43-A346AC133BEB}.Debug|x86.Build.0 = Debug|Any CPU
+		{9779AA21-97AF-4FB3-AE43-A346AC133BEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9779AA21-97AF-4FB3-AE43-A346AC133BEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9779AA21-97AF-4FB3-AE43-A346AC133BEB}.Release|x86.ActiveCfg = Release|Any CPU
+		{DE9C47AE-F7B0-4B8C-ACCF-C8A4FC5ABEA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE9C47AE-F7B0-4B8C-ACCF-C8A4FC5ABEA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE9C47AE-F7B0-4B8C-ACCF-C8A4FC5ABEA8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DE9C47AE-F7B0-4B8C-ACCF-C8A4FC5ABEA8}.Debug|x86.Build.0 = Debug|Any CPU
+		{DE9C47AE-F7B0-4B8C-ACCF-C8A4FC5ABEA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE9C47AE-F7B0-4B8C-ACCF-C8A4FC5ABEA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE9C47AE-F7B0-4B8C-ACCF-C8A4FC5ABEA8}.Release|x86.ActiveCfg = Release|Any CPU
+		{C9B2AAC6-0004-403B-B4D2-DD603573FEEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9B2AAC6-0004-403B-B4D2-DD603573FEEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9B2AAC6-0004-403B-B4D2-DD603573FEEC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C9B2AAC6-0004-403B-B4D2-DD603573FEEC}.Debug|x86.Build.0 = Debug|Any CPU
+		{C9B2AAC6-0004-403B-B4D2-DD603573FEEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9B2AAC6-0004-403B-B4D2-DD603573FEEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9B2AAC6-0004-403B-B4D2-DD603573FEEC}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

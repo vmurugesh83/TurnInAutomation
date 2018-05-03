@@ -1,0 +1,77 @@
+﻿<div class="doNotPrint row">
+    <div class="col-sm-4">
+        <button class="btn btn-default btn-block skinnyMarginVert" ng-click="refreshPickList()">Refresh List</button>
+    </div>
+    <div class="col-sm-4 col-sm-offset-3">
+        <button class="btn btn-success btn-block skinnyMarginVert" ng-click="print()" ; return false;">Print Pick List</button>
+    </div>
+</div>
+<div class="doNotPrint row">
+    <div class="col-sm-12">
+        <span class="textBold">Pick Confirmations</span>
+        <span> (Only values entered will be confirmed)</span>
+    </div>
+</div>
+<div class="row clearfix" ng-show="!isLoading && !isZeroItemsToPick">
+    <div class="col-sm-12 printRemoveHeight printFont scrollResults" id="ItemDetailWrapper" style="overflow-y: hidden" iscroll>
+        <table class="table table-striped">
+            <thead id="scrollTableHeader">
+                <tr>
+                    <th>
+                        FOB
+                    </th>
+                    <th>
+                        Brand
+                    </th>
+                    <th>
+                        UPC
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        QTY in Store
+                    </th>
+                    <th>
+                        QTY to Pick
+                    </th>
+                    <th>
+                        Price Status
+                    </th>
+                    <th>
+                        Picked
+                    </th>
+                    <th>
+                        Order No
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in pickList" on-finish-render="refreshIScroll()" ng-class="{'printPickListOddFob':!item._sorting.isEvenFob }">
+
+                    <td>{{item.Fob}}</td>
+                    <td>{{item.Brand}}</td>
+                    <td ng-class="{'pickListFirstUpc':item._sorting.isFirstOfUpc, 'printPickListNotFirstUpc':!item._sorting.isFirstOfUpc }">{{item.Upc}}</td>
+                    <td ng-bind-html="item.Description"></td>
+                    <td>{{item.QtyInStore}}</td>
+                    <td>{{item.QtyToPick}}</td>
+                    <td>{{item._solrData.pricestatus}}</td>
+                    <td class="printPickListPickedBox"><input name="pickedQty" ng-model="item.QtyPicked" ng-keypress="numberValidator(event)" type="text" maxlength="6" class="form-control doNotPrint smallInput" ng-class="{'redInput':!validatePickBounds(item), 'yellowInput':validatePickIsShorting(item)}" /></td>
+                    <td>{{item.OrderNo}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row clearfix" style="margin:20px" >
+    <div class="col-sm-12 text-center" ng-show="isLoading"><h2>Refreshing Pick List...</h2></div>
+    <div class="col-sm-12 text-center" ng-show="isZeroItemsToPick"><h2>There Are No Items To Pick At This Time.</h2></div>
+</div>
+<div class="doNotPrint row">
+    <div class="col-sm-4">
+        <button class="btn btn-default btn-block margintop20" ng-click="goBack()">Back</button>
+    </div>
+    <div class="col-sm-4 col-sm-offset-3">
+        <button class="btn btn-primary btn-block margintop20" ng-click="confirmPick()">Confirm Picks</button>
+    </div>
+</div>

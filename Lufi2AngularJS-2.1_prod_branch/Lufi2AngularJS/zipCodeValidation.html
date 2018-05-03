@@ -1,0 +1,40 @@
+﻿
+<div class="modal-header">
+    <h4 class="modal-title">
+        <span ng-show="!isBigTicketPurchaseDisabled">Big Ticket Zip Code Validation</span>
+        <span ng-show="isBigTicketPurchaseDisabled">Big Ticket Items Disabled</span>
+    </h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12" ng-show="!isBigTicketPurchaseDisabled">
+            <div class="col-sm-12" ng-show="isValid == false">
+                </br>
+                <div>Delivery is unavailable for this zip code</div>
+            </div>
+            <form ng-submit="validate()">
+                <div class="col-sm-12">
+                    </br>
+                    <div class="col-sm-8 column">
+                        <input autofocus ng-model="txtZip" bt-focus="true" placeholder="Enter 5 Digit Zip Code" class="form-control" type="text" ng-keypress="numberValidator(event)" maxlength="5">
+                    </div>
+                </div>
+            </form>
+            <button ng-show="false" type="submit" class="btn btn-primary  btn-block">Submit</button>
+        </div>
+        <div class="col-sm-12" ng-show="isBigTicketPurchaseDisabled">Big Ticket items cannot be added to LUFI orders at this time.</div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="row clearfix">
+        </br>
+        <div class="col-sm-2 column">
+        </div>
+        <div class="col-sm-5 column">
+            <button ng-disabled="txtZip.length < 5" class="btn btn-success btn-block" ng-click="validate()" type="button" ng-show="!isBigTicketPurchaseDisabled">Validate</button>
+        </div>
+        <div class="col-sm-5 column">
+            <button ng-click="close()" class="btn btn-warning btn-block" type="button">Cancel</button>
+        </div>
+    </div>
+</div>

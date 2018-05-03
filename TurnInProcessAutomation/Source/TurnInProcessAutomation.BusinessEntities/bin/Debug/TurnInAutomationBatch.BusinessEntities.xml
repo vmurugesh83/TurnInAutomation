@@ -1,0 +1,154 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+TurnInAutomationBatch.BusinessEntities
+</name>
+</assembly>
+<members>
+<member name="P:TurnInAutomationBatch.BusinessEntities.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:TurnInAutomationBatch.BusinessEntities.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.WorkhorseRequest.RequestHeader">
+	<summary>
+	</summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.WorkhorseRequest.RequestDetail">
+	<summary>
+	</summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.RequestHeader.SecurityInfo">
+	<summary>
+	</summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.RequestHeader.Operation">
+	<summary>
+	</summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.SecurityInfo.workhorseLogin">
+	<summary>
+	</summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.SecurityInfo.encryptedPassword">
+	<summary>
+	</summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.SecurityInfo.mutualToken">
+	<summary>
+	</summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.RequestDetail.MerchInfo">
+	<summary>
+	</summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.MerchandiseSample.MerchID">
+	<summary>
+ MerchandiseID for a sample. 
+ Unique identifier for tracing a sample anywhere in the system.
+ Generate from WorkHorse / NERVE
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.MerchandiseSample.ColorCode">
+	<summary>
+ Code for color
+ </summary>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.MerchandiseSample.SizeCode">
+	<summary>
+ Code for size
+ </summary>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.MerchandiseSample.SampleStatus">
+	<summary>
+ Status coming from WorkHorse
+ This is different from SampleApprovalStatus
+ Valid Values : R - Requested, C - Received, I - InTransit, S - Studio
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.MerchandiseSample.SampleSource">
+	<summary>
+ VendorSample as default, WH can put in Store, fulfillment location etc.
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.MerchandiseSample.BoxNumber">
+	<summary>
+	</summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.MerchandiseSample.ApprovalStatus">
+	<summary>
+  This will map to the SAMPLE_APVL_FLG
+ This is different from SampleStatus
+ Valid Values : P-Pending, A-Approved (TBD)
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.MerchandiseSample.UPC">
+	<summary>
+	</summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.MerchandiseSample.LabelDesc">
+	<summary>
+	</summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.MerchandiseSample.ISNChanged">
+	<summary>
+	</summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInAutomationBatch.BusinessEntities.MerchandiseSample.IsWebEligible">
+	<summary>
+	</summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="F:TurnInAutomationBatch.BusinessEntities.DCTransferReportInfo._UPCDisplay">
+	<summary>
+ Display Size with UPC number in dropdown.
+ </summary>
+	<remarks></remarks>
+</member><member name="F:TurnInAutomationBatch.BusinessEntities.DCTransferReportInfo._SelectedUPC">
+	<summary>
+ SelectedUPC
+ </summary>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

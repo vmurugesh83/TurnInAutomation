@@ -1,0 +1,71 @@
+	GROUP #1
+	========
+assoc_databasetype
+est_componenttype
+est_costcodes
+est_estimatemediatype
+est_season
+est_status
+ppr_papergrade
+ppr_paperweight
+pst_postalcategory
+pst_postalclass
+pst_postalmailertype
+prt_printerratetype
+pub_insertscenario
+pub_pubgroup
+pub_pubquantitytype
+pub_ratetype
+rpt_reporttype
+vnd_vendor
+vnd_vendortype
+-----------------------------------------------------------------
+	GROUP #2
+	========
+assoc_databases
+est_estimate
+pst_postalscenario
+pst_postalweights
+pub_groupinsertscenario_map
+pub_pubrate_map
+rpt_report
+vnd_vendorvendortype_map
+vnd_mailhouserate
+vnd_maillistresourcerate
+vnd_mailtrackingrate
+vnd_paper
+vnd_printer
+-----------------------------------------------------------------
+	GROUP #3
+	========
+est_assemdistriboptions
+est_package
+est_pubissuedates
+est_samples
+ppr_paper_map
+prt_printerrate
+pst_postalcategoryrate_map
+pub_pubpubgroup_map
+pub_pubquantity
+pub_pubrate
+pub_pubrate_map_activate
+-----------------------------------------------------------------
+	GROUP #4
+	========
+est_component
+est_polybaggroup
+pst_postalcategoryscenario_map
+pub_dayofweekquantity
+pub_dayofweekratetypes
+pub_insertdiscounts
+-----------------------------------------------------------------
+	GROUP #5
+	========
+est_estimatepolybaggroup_map
+est_packagecomponentmapping
+est_polybag
+pub_dayofweekrates
+-----------------------------------------------------------------
+	GROUP #6
+	========
+est_packagepolybag_map

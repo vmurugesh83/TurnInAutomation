@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>...LUFI2...</title>
+    <script>
+        //var PROD_SERVER = 'http://internal.bonton.com/';
+        //var baseURI = window.document.baseURI;
+        var fullHostURL = window.location.protocol + "//" + window.location.host;
+
+        if ((/internal.bonton.com/).test(window.location.hostname)) {
+            fullHostURL = fullHostURL + "/IndexPROD.html" + window.location.search;
+            window.location.replace(fullHostURL);
+            //window.location = baseURI.replace('Index.html', 'IndexPROD.html');
+        } else {
+            fullHostURL = fullHostURL + "/IndexQA.html" + window.location.search;
+            window.location.replace(fullHostURL);
+            //window.location = baseURI.replace('Index.html', 'IndexQA.html');
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

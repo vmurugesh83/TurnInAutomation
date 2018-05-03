@@ -1,0 +1,29 @@
+﻿    <div class="panel-heading" role="tab" data-toggle="collapse" data-parent="#accordion" href="#collapseBrand" ng-click="refreshScroll('FacetBrandWrapper')">
+    <h4 class="panel-title">
+        <a ng-click="refreshScroll('FacetBrandWrapper')" data-toggle="collapse" data-parent="#accordion" target="_self" href="#collapseBrand" aria-expanded="true" aria-controls="collapseOne">
+            <span>Brand</span>
+            <span ng-show="selectedBrands.length>0" class="glyphicon glyphicon-ok facetSelectionColor" aria-hidden="true"></span>
+        </a>
+    </h4>
+</div>
+    <div id="collapseBrand" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+            <div class="facetWrapper" id="FacetBrandWrapper">
+                <table class="table table-striped">
+                    <thead></thead>
+                    <tbody>
+                        <tr ng-repeat="brand in response.brands" on-finish-render="refreshScroll('FacetBrandWrapper')">
+                            <td>
+                                <div class="col col-sm-8">
+                                    <button ng-click="facetItemClicket(selectedBrands,brand,'brand')" class="btn-block btn"><span ng-show="itemExist(selectedBrands,brand)" class="glyphicon glyphicon-ok facetSelectionColor" aria-hidden="true"></span>{{brand.name}}</button>
+                                </div>
+                                <div class="col col-sm-4">
+                                    <span class="badge pull-right">{{brand.count | number }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

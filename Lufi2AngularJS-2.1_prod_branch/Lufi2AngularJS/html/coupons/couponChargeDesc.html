@@ -1,0 +1,35 @@
+﻿
+<div class="modal-header">
+    <h4 class="modal-title">Coupon Discount</h4>
+</div>
+<td class="col-sm-4" ng-bind-html="orderLine.btDisplay.defaultItemDescription"></td>
+<div class="modal-footer">
+    <div class="row">
+        <div class="col-sm-12 column scrollResults" style="overflow-y: auto"
+             on-finish-render="refreshIScroll()">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="col-sm-4">Name</th>
+                        <th class="col-sm-8">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="charge in lineChargeArray">
+                        <td ng-if="charge._ChargeCategory =='BTN_CPN_DISC'" class="col-sm-4">
+                            {{charge._ChargeName}}
+                        </td>
+                        <td ng-if="charge._ChargeCategory =='BTN_CPN_DISC'" class="col-sm-8">
+                            {{charge._ChargeAmount}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-3 column">
+            <button ng-click="close()" class="btn btn-warning btn-block" type="button">Close</button>
+        </div>
+    </div>
+</div>
+
+

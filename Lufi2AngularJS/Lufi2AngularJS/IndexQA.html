@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Lufi2 QA</title>
+    <link href="assets/styles/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/styles/ng-table.min.css">
+    <link rel="stylesheet" href="assets/styles/styles.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="assets/styles/custom.css">
+    <link rel="stylesheet" href="assets/styles/sweetalert.css">
+    <link rel="stylesheet" href="assets/styles/ui-router-animation.css">
+    
+            <script>
+                if ((/internal.bonton.com/).test(window.location.hostname)) {
+                    document.write('<script src="assets/app/endpoints/prodendpoints.js"><\/script>');
+                } else if ((/qa.bonton.com/).test(window.location.hostname)) {
+                    document.write('<script src="assets/app/endpoints/qaendpoint.js"><\/script>');
+                }else if ((/test.bonton.com/).test(window.location.hostname)) {
+                   document.write('<script src="assets/app/endpoints/testendpoints.js"><\/script>');
+                } else if ((/scint.bonton.com/).test(window.location.hostname)) {
+                    document.write('<script src="assets/app/endpoints/scintendpoints.js"><\/script>');
+                } else {
+                    //document.write('<script src="assets/app/endpoints/scintendpoints.js"><\/script>');
+                    document.write('<script src="assets/app/endpoints/qaendpoint.js"><\/script>');
+        }
+    </script>
+
+    <script src="assets/jquery/jquery.min.js"></script>
+    <script src="assets/ng/angular.min.js"></script>
+    <script src="assets/ng/angular-resource.min.js"></script>
+    <script src="assets/ng/angular-sanitize.js"></script>
+    <script src="assets/ng/angular-ui-router.min.js"></script>
+    <script src="assets/ng/angular-animate.min.js"></script>
+    <script src="assets/ng/ui-bootstrap-tpls.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/ng/ng-table.min.js"></script>
+    <script src="assets/ng/clipboard.min.js"></script>
+    <script src="assets/ng/ngclipboard.min.js"></script>
+    <script src="assets/ng/sweetalert.min.js"></script>
+    <script src="assets/ng/uiBreadcrumbs.js"></script>
+    <script src="assets/scroller/iscroll-probe.js"></script>
+    <script src="assets/scroller/iscroll.stickyheaders.js"></script>
+    <script src="assets/app/app.js"></script>
+    <script src="assets/app/appDirectives.js"></script>
+    <script src="assets/app/appServicesCustomer.js"></script>
+    <script src="assets/app/appServicesOrder.js"></script>
+    <script src="assets/app/appServiceOrderCart.js"></script>
+    <script src="assets/app/appServicesItem.js"></script>
+    <script src="assets/app/appServicesPayment.js"></script>
+    <script src="assets/app/appUtilities.js"></script>
+    <script src="assets/app/appservicesWebSocket.js"></script>
+    <script src="assets/app/appservicesAnnouncements.js"></script>
+    <script src="assets/app/appFilters.js"></script>
+    <script src="assets/app/appServicespickUpInStore.js"></script>
+    <script src="assets/app/controllers/couponsCtrl.js"></script>
+    <script src="assets/app/controllers/couponCtrl.js"></script>
+    <script src="assets/app/controllers/indexCtrl.js"></script>
+    <script src="assets/app/controllers/homeCtrl.js"></script>
+    <script src="assets/app/controllers/swipeCardCtrl.js"></script>
+    <script src="assets/app/controllers/itemLocateCtrl.js"></script>
+    <script src="assets/app/controllers/customerSearchCtrl.js"></script>
+    <script src="assets/app/controllers/customerDetailCtrl.js"></script>
+    <script src="assets/app/controllers/modifyCustomerCtrl.js"></script>
+    <script src="assets/app/controllers/orderSearchCtrl.js"></script>
+    <script src="assets/app/controllers/orderDetailCtrl.js"></script>
+    <script src="assets/app/controllers/itemDetailCtrl.js"></script>
+    <script src="assets/app/controllers/addModifyAddress.js"></script>
+    <script src="assets/app/controllers/itemResultsCtrl.js"></script>
+    <script src="assets/app/controllers/itemSearchCtrl.js"></script>
+    <script src="assets/app/controllers/orderCartCtrl.js"></script>
+    <script src="assets/app/controllers/shippingSelectionCtrl.js"></script>
+    <script src="assets/app/controllers/paymentSummaryCtrl.js"></script>
+    <script src="assets/app/propertiesService.js"></script>
+    <script src="assets/app/appServicesCommonCode.js"></script>
+    <script src="assets/ng/angular-pageslide-directive.js"></script>
+    <script src="assets/app/appServicesGiftRegistry.js"></script>
+    <script src="assets/app/appServiceReprice.js"></script>
+    <script src="assets/app/controllers/addModifyAddress.js"></script>
+    <script src="assets/app/appServiceAppState.js"></script>
+    <script src="assets/app/controllers/orderNotesCtrl.js"></script>
+    <script src="assets/app/controllers/returnSummaryCtrl.js"></script>
+    <script src="assets/app/controllers/pickUpInStoreCtrl.js"></script>
+    <script src="assets/app/controllers/orderPickupCtrl.js"></script>
+    <script src="assets/app/controllers/pickingConfirmCtrl.js"></script>
+    <script src="assets/app/controllers/packConfirmCtrl.js"></script>
+</head>
+
+<body ng-class="{noselect:!isCsr()}" ng-controller="appCtrl">
+    <div id="loadDIV">
+        <img src="assets/images/ajax-loader.gif" class="ajax-loader" />
+    </div>
+    <div id="content-wrapper">
+        <div class="container printNoPad topPad3" ng-cloak>
+            <div ng-controller="indexCtrl">
+                <div class="doNotPrint row">
+                        <div class="col-sm-2">
+                            <img src="assets/images/bordered_lufi_logo_QA.jpg" ng-click="goToState('home')">
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="row ">
+                                <div class="col-sm-5" style="background-color:yellow">
+                                <span style="font-size: 1.5em;font-weight: 700;">{{headerWarningText}}{{csrText}}</span>
+                                </div>
+                                <div class="col-sm-7">
+                                    <div class="row">
+                                        <div class="col-sm-8 ">
+                                            <h5>
+                                                Associate/Store : {{posParam.associateId}} / {{posParam.storeNumber == 192 ? "Contact Center" : posParam.storeNumber}}
+                                            </h5>
+                                        </div>
+                                        <div class="col-sm-4 column" ng-show="{{false}}">
+                                            <button class="btn btn-default btn-xs" ng-click="managerLogin()" ng-hide="posParam.roles">Manager Login</button>
+                                            <button class="btn btn-danger btn-xs" ng-click="managerLogout()" ng-show="posParam.roles">Manager Logout</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-sm-12 ">
+                                    <div id="IndexControlsBackdropForPopup" style="top: 0; left: 0;  right: 0; bottom: 0; position: fixed; z-index: 2; background-color:black;  opacity: 0.2;" ng-show="isShowCartPopup || isShowCustomerPopup " ng-click="hideIndexPopups()"></div>
+                                    <div class="row ">
+
+                                        <div class="col-sm-3 col-sm-offset-2">
+                                            <div class="row">
+                                                <!-- START customer div-->
+                                                <div class="col-sm-12">
+                                                    <button type="button" class="btn btn-default btn-lg btn-block" ng-click="toggleCustomerPopup()" style="position:relative;z-index:30"><i class="fa fa-user fa-2x" ng-class="{iconUnset:!isCustomerSet(), iconSet:isCustomerSet()}"></i> <span ng-class="{iconSet:isCustomerSet()}">Customer</span></button>
+                                                    <div class="customerPopup" ng-show="isShowCustomerPopup">
+                                                        <div class="container-fluid">
+                                                            <div class="row" style="padding:2px">
+                                                                <div class="col-sm-12">
+                                                                    <span ng-show="isCustomerSet()">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-5 col-sm-offset-7">
+                                                                                <button class="btn btn-danger btn-block" ng-click="removeCustomer()">Remove Customer</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <table class="table">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>
+                                                                                                Shipping Address
+                                                                                            </th>
+                                                                                            <th>
+                                                                                                Billing Address
+                                                                                            </th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <customeraddress address="selectedCustomer.defaultAddresses.PersonInfoShipTo" addressclass="'customerPopupAddress'"></customeraddress>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <customeraddress address="selectedCustomer.defaultAddresses.PersonInfoBillTo" addressclass="'customerPopupAddress'"></customeraddress>
+                                                                                            </td>
+                                                                                            <td></td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </span>
+
+                                                                    <span ng-show="!isCustomerSet()"> No customer selected.</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-sm-5">
+                                                                    <button class="btn btn-default btn-block" ng-click="goToState('customerDetail')" ng-show="isCustomerSet()">Details</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+
+                                                                </div>
+                                                                <div class="col-sm-5">
+
+                                                                    <button class="btn btn-default btn-block" ng-click="goToState('customerSearch')">Search</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <!-- END customer div-->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col">
+
+                                            <div class="row">
+                                                <!-- START order cart div-->
+                                                <div class="col-sm-12">
+                                                <button type="button" class="btn btn-default btn-lg btn-block" ng-click="toggleCartPopup()" style="position:relative;z-index:30"><i class="fa fa-shopping-cart fa-2x iconSet"></i> <span class="iconSet">{{itemCount()}}</span> </button>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="cartPopup col-sm-12" ng-show="isShowCartPopup" style="width:450px;">
+                                                    <div class="row" style="padding-bottom: 6px;">
+
+                                                        <div class="col-sm-4 col-sm-offset-8">
+                                                            <button class="btn btn-danger btn-block" ng-click="deleteCart()">Delete Cart</button>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" ng-show="orderCart.OrderLines.OrderLine.length<1">
+                                                        <div class="col-sm-12" style="height:30px"> No items in cart.</div>
+                                                    </div>
+
+                                                    <div class="row scrollresults" id="HeaderiScrollWrapper" style="overflow-y: hidden;max-height:313px;min-height:116px;position:relative">
+                                                        <div class="col-sm-12">
+                                                            <div class="row" ng-repeat="orderLine in orderCart.OrderLines.OrderLine" on-finish-render="refreshIScroll()" ng-class="{stripedRow: $even, nonstripedRow: $odd, stripedRowFirst: $first, cartLineHighlight: compareCurrentOrderline(orderLine) }">
+                                                                <div class="col-sm-3">
+                                                                    <img class="img-responsive" ng-src="{{orderLine.btDisplay.defaultImageUrl}}" />
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-8" ng-bind-html="orderLine.btDisplay.defaultItemDescription"></div>
+                                                                        <div class="col-sm-4">
+                                                                            Qty: {{orderLine._OrderedQty | number:0}}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-8">
+                                                                            <span ng-show="orderLine.btDisplay.colorlongdesc && orderLine.btDisplay.colorlongdesc.toString().trim()"><span style="font-weight:700">Color: </span>{{orderLine.btDisplay.colorlongdesc}} </span><span ng-show="orderLine.btDisplay.itemsize && orderLine.btDisplay.itemsize.toString().trim()"><span style="font-weight:700">Size: </span>{{orderLine.btDisplay.itemsize}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row" style="padding-top: 6px; border-top-style: solid; border-top-width: 1px; border-top-color: lightgrey;">
+
+                                                        <div class="col-sm-4 col-sm-offset-8">
+
+                                                            <button class="btn btn-default btn-block" ng-click="goToState('orderCart')">Cart Summary</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <!-- END order cart div-->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col-sm-offset-1 col">
+                                            <a ng-click="exit()" class="btn btn-default btn-lg btn-block" style="padding-top: 15px; padding-bottom: 15px;">Exit</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            <div class="doNotPrint row" ng-controller="checkoutProgressCtl">
+                <div class="col-sm-12">
+                    <ui-checkout-progress stepobjectarray="progressSteps" isstepdisplay="checkoutDisplay"></ui-checkout-progress>
+                </div>
+            </div>
+            <div class="doNotPrint row" ng-controller="breadCtl">
+                <div class="col-sm-12">
+                    <ui-breadcrumbs displayname-property="data.displayName" abstract-proxy-property="data.proxy" template-url="uiBreadcrumbs.tpl.html"></ui-breadcrumbs>
+                </div>
+            </div>
+            <div class="ui-view-container">
+                <div ui-view="main"></div>
+            </div>
+            <div class="doNotPrint sitefooter-wrap row" ng-controller="footerCtrl">
+                <div class="sitefooter text-center col-sm-12">
+                    <div class="sitefootercontent" ng-cloak> {{footerText}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Not Found Alert Modal-->
+    <div class="modal fade not-found-alert" tabindex="-1" role="dialog" aria-labelledby="noResultFoundLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <img src="assets/images/bonton.png" />
+                </div>
+                <div class="modal-body">
+                    No Results Found!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MSR Error Modal-->
+    <div class="modal fade msr-alert" tabindex="-1" role="dialog" aria-labelledby="msrAlertLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <img src="assets/images/bonton.png" />
+                </div>
+                <div class="modal-body">
+                    Invalid Card Type!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

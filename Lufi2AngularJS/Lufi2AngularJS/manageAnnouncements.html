@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html ng-app="announcementApp">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Manage Announcements</title>
+
+    <link href="assets/styles/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/styles/ng-table.min.css">
+    <link rel="stylesheet" href="assets/styles/styles.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="assets/styles/custom.css">
+    <link rel="stylesheet" href="assets/styles/sweetalert.css">
+    <link rel="stylesheet" href="assets/styles/ui-router-animation.css">
+
+    <script>
+
+        if ((/internal.bonton.com/).test(window.location.hostname)) {
+            document.write('<script src="assets/app/endpoints/prodendpoints.js"><\/script>');
+        } else if((/qa.bonton.com/).test(window.location.hostname)){
+            document.write('<script src="assets/app/endpoints/qaendpoint.js"><\/script>');
+        } else if ((/scint.bonton.com/).test(window.location.hostname)) {
+            document.write('<script src="assets/app/endpoints/scintendpoints.js"><\/script>');
+        } else {
+            document.write('<script src="assets/app/endpoints/scintendpoints.js"><\/script>');
+        }
+    </script>
+
+    <script src="assets/jquery/jquery.min.js"></script>
+    <script src="assets/ng/angular.min.js"></script>
+    <script src="assets/ng/angular-resource.min.js"></script>
+    <script src="assets/ng/angular-sanitize.js"></script>
+    <script src="assets/ng/angular-ui-router.min.js"></script>
+    <script src="assets/ng/angular-animate.min.js"></script>
+    <script src="assets/ng/ui-bootstrap-tpls.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/ng/ng-table.min.js"></script>
+    <script src="assets/ng/sweetalert.min.js"></script>
+    <script src="assets/ng/uiBreadcrumbs.js"></script>
+    <script src="assets/scroller/iscroll-probe.js"></script>
+    <script src="assets/scroller/iscroll.stickyheaders.js"></script>
+    <script src="assets/app/announcementApp.js"></script>
+    <script src="assets/app/controllers/announcementCtrl.js"></script>
+
+    <script src="assets/app/appDirectives.js"></script>
+    <script src="assets/app/appServicesItem.js"></script>
+    <script src="assets/app/appUtilities.js"></script>
+    <script src="assets/app/appservicesWebSocket.js"></script>
+    <script src="assets/app/appservicesAnnouncements.js"></script>
+    <script src="assets/app/appFilters.js"></script>
+
+    <script src="assets/app/propertiesService.js"></script>
+    <script src="assets/app/appServicesCommonCode.js"></script>
+    <script src="assets/ng/angular-pageslide-directive.js"></script>
+
+    <script src="assets/app/appServiceAppState.js"></script>
+
+</head>
+<body>
+    <div ng-controller="announcementCtrl" class="container">
+        <div class="panel panel-primary">
+            <h4 class="row clearfix" style="padding-left: 20px;">Manage Announcements</h4>
+        </div>
+        <div class="row clearfix">
+            <div class="row clearfix">
+                <div class="col-sm-12 column">
+                    Active Announcements
+                </div>
+            </div>
+            <div class="row clearfix scrollDefaultTable">
+                <div class="col-sm-12 column">
+                    <table class="table table-condensed table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Created Date
+                                </th>
+                                <th>
+                                    Header
+                                </th>
+                                <th>
+                                    Detail
+                                </th>
+                                <th>
+                                    Expiration Date
+                                </th>
+                                <th>
+                                    Locations
+                                </th>
+                                <th ng-show="hideColumns">
+                                    Delete
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-model="announcements" ng-repeat="item in announcements track by $index | orderBy:'-resolutionDate'">
+                                <td>
+                                    {{item.date | date : 'M/d/yy h:mm a'}}
+                                </td>
+                                <td>
+                                    {{item.header}}
+                                </td>
+                                <td>
+                                    {{item.detail}}
+                                </td>
+                                <td>
+                                    {{item.resolutionDate | date : 'M/d/yy h:mm a'}}
+                                </td>
+                                <td>
+                                    {{item.locations}}
+                                </td>
+                                <td ng-show="hideColumns" ng-click="deleteItem(item)">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </td>
+                                <td ng-show="hideColumns">
+                                    {{item.expDate}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br />
+            <p />
+            <p />
+            <div class="row clearfix">
+                <div class="col-sm-12 column">
+                    Add Announcement
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-1 column">
+                    Header
+                </div>
+                <div class="col-sm-5 column">
+                    <input class="form-control" type="text" ng-model="header" />
+                </div>
+                <div class="col-sm-6 column">
+                    <div class="row clearfix">
+                        <div class="col-sm-6 column">
+                            Expiration Date
+                        </div>
+                        <div class="col-sm-6 column">
+                            <!--input id="datepicker" ng-model="expDate" type="date" class="form-control" placeholder="dd-MM-yyyy" />-->
+                            <!--//Fix Issue 445 minlength="10" maxlength="10" required="true" ng-pattern="datePattern" datevalidator-->
+                            <span class="input-group my-datepicker">
+                                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="expDate" placeholder="MM-dd-yyyy" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" required />
+                                <span class="input-group-btn"><button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-1 column">
+                    Detail
+                </div>
+                <div class="col-sm-5 column">
+                    <textarea class="form-control" ng-model="detail"></textarea>
+                </div>
+                <div class="col-sm-6 column">
+                    <div class="row clearfix">
+                        <div class="col-sm-6 column">
+                            Display for
+                        </div>
+                        <div class="col-sm-6 column" ng-scr>
+                            <select id="nodeTypes" multiple="multiple" ng-multiple="true" ng-model="displayFor" ng-change="nodeSelectionChanged()" class="form-control">
+                                <option id="allStores" ng-selected="allStoresSelected">All Stores</option>
+                                <option ng-repeat="selectedNode in selectedNodes track by $index | orderBy:'+key'" on-finish-render="refreshIScroll()" value="{{selectedNode.key}}">{{selectedNode.descrip}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-footer">
+            <div class="row clearfix">
+                <div class="col-sm-6 column">
+                </div>
+                <div class="col-sm-3 column">
+                    <button ng-disabled="!detail || !header || !expDate " class="btn btn-success btn-block" ng-click="save()" type="button">Save</button>
+                </div>
+
+                <div class="col-sm-3 column">
+                    <button class="btn btn-warning btn-block" ng-click="close()" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

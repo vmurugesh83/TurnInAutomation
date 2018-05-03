@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/27/2018 1:34:29 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PC82811"
+  DTS:CreatorName="INTERNAL\034846"
+  DTS:DTSID="{E6C391E9-F454-4EBA-9D2D-E75AE9EF09DD}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.2430.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="SendEmail"
+  DTS:PackageType="5"
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{A00ACE7D-F8F8-4B6A-A755-BE9F3F247A72}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:Description="SMTP"
+      DTS:DTSID="{0917F903-513E-4F8F-910D-9804A6DDE18E}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=smtp.internal.bonton.com;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{A61D62D8-D2DF-44B8-936A-BED823A107CC}"
+      DTS:ObjectName="CCEmailAddress">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue"
+        xml:space="preserve"></DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{FBCDA0CA-8793-43A0-ADC0-288E92B7AD87}"
+      DTS:ObjectName="EmailAttachmentFileName">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue"
+        xml:space="preserve"></DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{3EA077C9-A8D6-42ED-9393-563B2158D1F7}"
+      DTS:ObjectName="EmailBody">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue"
+        xml:space="preserve"></DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{0E4B2AB5-B522-47A7-8B22-39208B8F8E96}"
+      DTS:ObjectName="EmailSubject">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue"
+        xml:space="preserve"></DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{52180D8E-A53B-4671-A824-13D914FF3247}"
+      DTS:ObjectName="FromEmailAddress">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue"
+        xml:space="preserve"></DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="Comma separated email addresses"
+      DTS:DTSID="{73C96F0C-C4B5-4211-A130-607B378B772C}"
+      DTS:ObjectName="ToEmailAddresses">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue"
+        xml:space="preserve"></DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{49637258-FCE9-4D5B-A392-373750413CC0}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Package::CCEmailAddress]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CCEmailAddress">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6623E967-795A-4DE4-82D2-D0E33D0FDD09}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Package::EmailAttachmentFileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailAttachmentFileName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BBEBBDBD-CF89-4330-B325-5FDAA5EB2751}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Package::EmailBody]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailBody">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CB67C120-3B9B-45AF-B7BB-9432D408065A}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Package::EmailSubject]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmailSubject">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{042C4D08-1C11-4442-B9DB-E47809069E8B}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Package::FromEmailAddress]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FromEmailAddress">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{78A4B4CC-818B-419E-976C-D251A1F05754}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Package::ToEmailAddresses]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ToEmailAddresses">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Send BigTicket Reports"
+      DTS:CreationName="Microsoft.SendMailTask"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{DE1985BF-1531-4837-9C8C-F6DB09A56513}"
+      DTS:ExecutableType="Microsoft.SendMailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send BigTicket Reports"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="CCLine">@[User::CCEmailAddress]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="FileAttachments">@[User::EmailAttachmentFileName]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="FromLine">@[User::FromEmailAddress]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="Subject">@[User::EmailSubject]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ToLine">@[User::ToEmailAddresses]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{0917F903-513E-4F8F-910D-9804A6DDE18E}"
+          SendMailTask:MessageSourceType="Variable"
+          SendMailTask:MessageSource="User::EmailBody" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Send BigTicket Reports"
+          TopLeft="74,34" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

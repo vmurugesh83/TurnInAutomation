@@ -1,0 +1,63 @@
+﻿<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Pick Confirm Error</h3>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12"><span style="font-size:2em">These items have already been picked.</span> <br />(Another associate may be currently picking items.)</div>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-sm-12 scrollResults" id="ModalAlreadyPickedWrapper" style="overflow-y: hidden" iscroll>
+                <table class="table table-striped">
+                    <thead style="background-color:white">
+                        <tr>
+                            <th>
+                                FOB
+                            </th>
+                            <th>
+                                Brand
+                            </th>
+                            <th>
+                                UPC
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                            <th>
+                                QTY in Store
+                            </th>
+                            <th>
+                                QTY to Pick
+                            </th>
+                            <th>
+                                Picked
+                            </th>
+                            <th>
+                                Order No
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in pickList" on-finish-render="refreshIScroll()" ng-class="{'printPickListOddFob':!item._sorting.isEvenFob }">
+
+                            <td>{{item.Fob}}</td>
+                            <td>{{item.Brand}}</td>
+                            <td ng-class="{'printPickListFirstUpc':item._sorting.isFirstOfUpc, 'printPickListNotFirstUpc':!item._sorting.isFirstOfUpc }">{{item.Upc}}</td>
+                            <td ng-bind-html="item.Description"></td>
+                            <td>{{item.QtyInStore}}</td>
+                            <td>{{item.QtyToPick}}</td>
+                            <td>{{item.QtyPicked}}</td>
+                            <td>{{item.OrderNo}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

@@ -1,0 +1,242 @@
+/*------------------------------------------------------------------
+Supports the controls of the DES Validation Framework, including validators
+ValidationSummary, RequiredFieldMarker, and RequiredFieldsDescription.
+Many properties are assigned globally or at the page-level (PeterBlum.DES.Globals.Page)
+
+NOTE: By default, DES compresses this file to remove comments.
+You can also have it remove most whitespace or omit compression with this key
+in the <appSettings> section of web.config:
+<add key="DES_StyleSheetCompression" value="none|full" />
+-------------------------------------------------------------------*/
+
+/* ---- VALIDATOR ERRORFORMATTERS ---- */
+/* Property: Validator.ErrorFormatter.CssClass
+The default appearance of the Validator's error formatter. */
+.DESVALErrorText
+{
+   color: Red !important;
+}
+
+/* Property: Validator.ErrorFormatter.BlinkCssClass
+When a Validation error message is blinking, this is the 
+alternative color to give the blink effect. */
+.DESVALBlinkText
+{
+   color: White;
+}
+
+/* ---- PAGE-LEVEL AND GLOBAL PROPERTIES FOR VALIDATORS ---- */
+/* Property: PeterBlum.DES.Globals.Page.ControlErrorCssClass
+Changes a TextBox's appearance to indicate it has an error.
+See also DESVALListWithError and DESVALCheckBoxWithError */
+.DESVALFieldWithError
+{
+   background-color: #ffb6c1 !important; /* lightpink */
+}
+
+/* Property: PeterBlum.DES.Globals.Page.ListErrorCssClass
+Changes a List and DropDownList appearance to indicate it has an error.
+See also DESVALFieldWithError and DESVALCheckBoxWithError */
+.DESVALListWithError
+{
+   color: red !important;
+}
+
+/* Property: PeterBlum.DES.Globals.Page.CheckboxErrorCssClass
+Changes a CheckBox and RadioButton appearance to indicate it has an error.
+See also DESVALListWithError and DESVALFieldWithError */
+.DESVALCheckBoxWithError
+{
+   color: red !important;
+}
+
+/* Property: PeterBlum.DES.Globals.Page.ControlErrorCssClass_Alt
+Changes a TextBox's appearance to indicate it has an error.
+See also DESVALListWithErrorAlt and DESVALCheckBoxWithErrorAlt */
+.DESVALFieldWithErrorAlt
+{
+   background-color: #ffb6c1 !important; /* light yellow */
+}
+
+/* Property: PeterBlum.DES.Globals.Page.ListErrorCssClass_Alt
+Changes a List and DropDownList appearance to indicate it has an error.
+See also DESVALFieldWithErrorAlt and DESVALCheckBoxWithErrorAlt */
+.DESVALListWithErrorAlt
+{
+   color: #ffb6c1 !important; /* dark orange */
+}
+
+/* Property: PeterBlum.DES.Globals.Page.CheckboxErrorCssClass_Alt
+Changes a CheckBox and RadioButton appearance to indicate it has an error.
+See also DESVALListWithErrorAlt and DESVALFieldWithErrorAlt */
+.DESVALCheckBoxWithErrorAlt
+{
+   color: #ffb6c1 !important; /* dark orange */
+}
+
+/* Property: PeterBlum.DES.Globals.Page.TextHiliteFieldsCssClass
+Changes textual fields that are identified by a validator
+in its HiliteFields list or as a Label. 
+It can merge with the field's existing style. */
+.DESVALTextHiliteFields
+{
+   font-weight: bold !important;
+   background-color: #ffb6c1 !important; /* lightpink */
+}
+
+/* Property: PeterBlum.DES.Globals.Page.TextHiliteFieldsCssClass
+Changes non-textual fields that are identified by a validator
+in its HiliteFields list. 
+It can merge with the field's existing style. */
+.DESVALNonTextHiliteFields
+{
+   background-color: #ffb6c1 !important; /* blanchedalmond */
+}
+
+/* ---- VALIDATIONSUMMARY CONTROL ---- */
+
+/* Property: ValidationSummary.CssClass
+Overall appearance of the ValidationSummary control.
+Consider background, font, and border attributes. */
+.DESVALSummary
+{
+   color: red;
+}
+
+/* Property: ValidationSummary.HeaderCssClass
+The ValidationSummary header area. */
+.DESVALSummaryHeader
+{
+   color: red;
+}
+.DESVALSummaryHeader TR
+{
+   color: red;
+}
+
+/* Property: ValidationSummary.ErrorMessageCssClass
+Applied to each error message listed in the ValidationSummary.*/
+.DESVALSummaryErrors
+{
+   color: red;
+   margin-top:6px;
+}
+
+/* Property: ValidationSummary.ErrorMessageCssClass
+Applied to each error message listed in the ValidationSummary
+when the HyperlinkToField property is used. */
+.DESVALSummaryErrors A
+{
+   color: red;
+   margin-top:6px;
+}
+
+/* Property: ValidationSummary.ErrorMessageCssClass_Alt
+Applied to each error message listed in the ValidationSummary.*/
+.DESVALSummaryErrorsAlt
+{
+   color: #ff8c00; /* dark orange */
+   margin-top:6px;
+}
+
+/* Property: ValidationSummary.ErrorMessageCssClass_Alt
+Applied to each error message listed in the ValidationSummary
+when the HyperlinkToField property is used. */
+.DESVALSummaryErrorsAlt A
+{
+   color: #ff8c00; /* dark orange */
+   margin-top:6px;
+}
+
+/* Property: ValidationSummary.TableAltRowCssClass
+Applied to alternating error message listed in the ValidationSummary
+when using DisplayMode=Table.*/
+.DESVALSummaryAltRows
+{
+   color: red;
+   background-color: #add8e6; /* lightblue */
+}
+
+/* Property: ValidationSummary.TableAltRowCssClass
+Applied to alternating error message listed in the ValidationSummary
+when using DisplayMode=Table and the HyperlinkToField property is used.*/
+.DESVALSummaryAltRows A
+{
+   color: red;
+   background-color: #add8e6; /* lightblue */
+}
+
+
+/* Property: ValidationSummary.FooterCssClass
+The ValidationSummary footer area. */
+.DESVALSummaryFooter
+{
+   color: red;
+}
+.DESVALSummaryFooter TR
+{
+   color: red;
+}
+
+/* ---- REQUIRED FIELD MARKER/DESCRIPTION ---- */
+
+/* Property: RequiredFieldMarker.CssClass
+Appearance of the RequiredFieldMarker.
+Also used by validators that have ShowRequiredFieldMarker=true. */
+.DESVALRequiredFieldMarker
+{
+}
+
+/* Property: RequiredFieldsDescription.CssClass
+Appearance of the RequiredFieldsDescription.
+ */
+.DESVALRequiredFieldsDescription
+{
+   font-size: 8pt;
+   font-style: italic;
+}
+
+/* ---- Tokens in ErrorMessages and SummaryErrorMessages ---- */
+/* Property: PeterBlum.DES.Globals.Page.LabelTokenCssClass
+{LABEL} tokens in the ErrorMessage
+*/
+.DESVALLabelToken
+{
+   font-weight:bold;
+}
+
+/* Property: PeterBlum.DES.Globals.Page.RuntimeTokenCssClass
+Tokens showing runtime values, like {COUNT} and {TEXTVALUE} in the ErrorMessage
+*/
+.DESVALRuntimeToken
+{
+}
+
+/* Property: PeterBlum.DES.Globals.Page.PropertyTokenCssClass 
+Tokens showing property values, like {MINIMUM} and {DIFFVALUE} in the ErrorMessage
+*/
+.DESVALPropertyToken
+{
+}
+
+/* Property: PeterBlum.DES.Globals.Page.LabelTokenCssClass 
+{LABEL} tokens in the SummaryErrorMessage
+*/
+.DESVALSummaryLabelToken
+{
+   font-weight:bold;
+}
+
+/* Property: PeterBlum.DES.Globals.Page.RuntimeTokenCssClass
+Tokens showing runtime values, like {COUNT} and {TEXTVALUE} in the SummaryErrorMessage
+*/
+.DESVALSummaryRuntimeToken
+{
+}
+
+/* Property: PeterBlum.DES.Globals.Page.PropertyTokenCssClass
+Tokens showing property values, like {MINIMUM} and {DIFFVALUE} in the SummaryErrorMessage
+*/
+.DESVALSummaryPropertyToken
+{
+}

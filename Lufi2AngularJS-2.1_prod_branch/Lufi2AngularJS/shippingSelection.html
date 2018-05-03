@@ -1,0 +1,147 @@
+﻿<form name="cartForm" novalidate class="form" ng-show="isPageDataLoaded">
+    <div class="row" style="margin-bottom:20px">
+        <div class="col-sm-5 col-sm-offset-1 " style="margin-right:30px;">
+            <div style="padding: 7px 15px;">
+                <div class="row" style="height:30px"><span style="font-weight:bold;padding-right:20px">Shipping Address (Default)</span></div>
+                <div class="row" ng-show="cart.PersonInfoShipTo._AddressID">{{cart.PersonInfoShipTo._AddressID}}</div>
+                <div class="row">{{cart.PersonInfoShipTo._FirstName}} {{cart.PersonInfoShipTo._LastName}}</div>
+                <div class="row">{{cart.PersonInfoShipTo | oneLineAddress:'short'}}</div>
+                <div class="row"><span class="text-capitalize">{{cart.PersonInfoShipTo._City}}</span>,{{cart.PersonInfoShipTo._State}} {{cart.PersonInfoShipTo._ZipCode}} {{cart.PersonInfoShipTo._Country}}</div>
+                <div class="row">{{cart.PersonInfoShipTo._EMailID}}</div>
+            </div>
+        </div>
+        <div class="col-sm-5 ">
+            <div style="padding: 7px 15px;">
+                <div class="row" style="height:30px"><span style="font-weight:bold;padding-right:20px">Billing Address</span><button class="btn btn-sm btn-info" ng-click="updateBillingAddress()">Update</button><button class="btn btn-sm btn-info" style="margin-left:20px" ng-click="updateTaxExempt()">Tax Exempt</button></div>
+                <div class="row" ng-show="cart.PersonInfoShipTo._AddressID">{{cart.PersonInfoShipTo._AddressID}}</div>
+                <div class="row">{{cart.PersonInfoBillTo._FirstName}} {{cart.PersonInfoBillTo._LastName}}</div>
+                <div class="row">{{cart.PersonInfoBillTo | oneLineAddress:'short'}}</div>
+                <div class="row"><span class="text-capitalize">{{cart.PersonInfoBillTo._City}}</span>,{{cart.PersonInfoBillTo._State}} {{cart.PersonInfoBillTo._ZipCode}} {{cart.PersonInfoBillTo._Country}}</div>
+                <div class="row">{{cart.PersonInfoBillTo._EMailID}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="closePadCol col-sm-2" style="padding-left:8px;padding-bottom:5px;">
+            <button class="btn btn-primary shippingSelectAllBlock shippingSelectButton" ng-click="checkAll(null);$event.stopPropagation();" ng-show="!allLinesChecked()">Select All</button>
+            <button class="btn btn-primary shippingSelectAllBlock shippingSelectButton" ng-click="uncheckAll(null);$event.stopPropagation();" ng-show="allLinesChecked()">Deselect All</button>
+        </div>
+        <div class="col-sm-10">
+            <button class="btn btn-primary shippingSelectButton" ng-click="updateMultiGiftMessage()" ng-disabled="!isLineSelected">Update Gift Message</button>
+            <button class="btn btn-primary shippingSelectButton" ng-click="updateMultiGiftRegistry()" ng-disabled="!isLineSelected">Update Gift Registry</button>
+            <button class="btn btn-primary shippingSelectButton" ng-click="addMultiGiftBox()" ng-disabled="!isLineSelected" ng-if="isDisplayGiftBoxComponents">Add Gift Box</button>
+            <button class="btn btn-primary shippingSelectButton" ng-click="deleteMultiGiftBox()" ng-disabled="!isLineSelected" ng-if="isDisplayGiftBoxComponents">Remove Gift Box</button>
+
+            <button class="btn btn-primary shippingSelectButton marginLeft36" ng-click="updateMultiShipTo()" ng-disabled="!isLineSelected">Update Ship To</button>
+            <button class="btn btn-primary shippingSelectButton" ng-click="updateMultiShippingSpeed()" ng-disabled="!isLineSelected">Update Shipping Method</button>
+        </div>
+    </div>
+    <div class="row scrollresults" id="GroupWrapper" style="overflow-y: hidden;max-height:260px;min-height:90px;position:relative">
+        <div class="col-sm-12 backgroundLtGray backgroundLtGrayBox" style="padding: 7px 22px;">
+            <div class="row" ng-repeat="addressFilterObj in orderedOrderLineAddressPersonKey">
+                <div class="col-sm-12 shippingOuterBorder" style="font-size:12px;">
+                    <div class="row shippingSelectGroupHeader" ng-click="collapseGroup($event)" style="font-size: 1.2em;">
+                        <div class="closePadCol col-sm-1">
+                            <button class="shippingGroupSelectButton" ng-click="checkAll(addressFilterObj);$event.stopPropagation();" ng-show="!isAllAddressGroupChecked(addressFilterObj)"><i class="fa"></i></button>
+                            <button class="shippingGroupSelectButton" ng-click="uncheckAll(addressFilterObj);$event.stopPropagation();" ng-show="isAllAddressGroupChecked(addressFilterObj)"><i class="fa" ng-class="checkedButtonFont"></i></button>
+                        </div>
+                        <div class="col-sm-11">
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <div class="row">
+                                        <div class="col-sm-3 font700 text-right" style="font-size:1.08em;">Ship to:</div>
+                                        <div class="col-sm-9">
+                                            <span ng-show="!addressFilterObj.isRegistryAddress">
+                                                {{availableShippingAddresses[addressFilterObj.key].PersonInfo | oneLineAddress:'none':'name':'id'}}<br/>
+                                                {{availableShippingAddresses[addressFilterObj.key].PersonInfo | oneLineAddress:'long'}}
+                                            </span>
+                                            <span ng-show="addressFilterObj.isRegistryAddress">
+                                                Preferred Address for Registry {{addressFilterObj.registryNo}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="row">
+                                        <div class="col-sm-3 font700 text-right" style="font-size:1.08em;">Method:</div>
+                                        <div class="col-sm-9">
+                                            {{addressFilterObj.carrierServiceDescription}} <span ng-show="addressFilterObj.carrierServicePrice">{{addressFilterObj.carrierServicePrice | currency}}</span>
+                                            <span class="minIcon" style="float:right"><i class="fa fa-minus fa-2x shippingCollapseIcon"></i></span>
+                                            <span class="maxIcon" style="float:right;display:none;"><i class="fa fa-plus fa-2x shippingCollapseIcon"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row groupRow" ng-repeat="orderLine in orderLinesArray | filterShipToList:addressFilterObj" ng-class="{'shippingSelectionOrderLineOdd' : $odd,  'shippingSelectionOrderLineEven':$even, 'bottomBorderRounded':$last, 'shippingSelectionChecked':orderLine.btLogic.isSelected }">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12">
+
+                                    <div class="row" style="font-size:1.2em">
+                                        <div class="col-sm-8 textEllipsis">
+                                            <button class="shippingLineSelectButton" style="margin-right:6px" ng-click="selectLine(orderLine);$event.stopPropagation();"><i class="fa" ng-class="orderLine.btLogic.isSelected ? checkedButtonFont : ''"></i></button>
+
+
+                                            <strong ng-bind-html="orderLine.btDisplay.defaultItemDescription"></strong>
+                                        </div><div class="col-sm-4"><span class="pull-right" style="font-size:1.1em"><strong> Expected Delivery Date: </strong>{{expectedDeliveryDateMap[orderLine._CarrierServiceCode] || 'N/A'}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row" style="padding-bottom:8px">
+                                <div class="col-sm-2">
+                                    <img alt="" class="imageSmall pull-right img-responsive" ng-src="{{orderLine.btDisplay.defaultImageUrl}}">
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                        <div class="col-sm-5" >
+                                            <div class="btn btn-default btn-block slimButton" ng-click="updateShipTo(orderLine)" ng-class="{'shippingBadAddressRed':!isValidNonRegistryAddressObject(availableShippingAddresses[addressFilterObj.key])}">
+                                                Ship To:<br />
+                                                <div class="textEllipsis" ng-show="!addressFilterObj.isRegistryAddress">
+                                                    {{availableShippingAddresses[addressFilterObj.key].PersonInfo | oneLineAddress:'long'}}
+                                                </div>
+                                                <span ng-show="addressFilterObj.isRegistryAddress">
+                                                    Preferred Address for Registry {{addressFilterObj.registryNo}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4"><div class="btn btn-default btn-block slimButton" ng-click="updateShippingSpeed(orderLine)">Shipping Method:<br /><span ng-class="{textBold: !addressFilterObj.carrierServicePrice}">{{orderLine.btDisplay.shippingMethodDescription}}</span> <span ng-show="addressFilterObj.carrierServicePrice">{{printPrice(orderLine.btDisplay.shippingMethodPrice)}}</span></div> </div>
+
+                                        <div class="col-sm-3"><div class="btn btn-default btn-block slimButton" ng-click="giftOpen(orderLine, true, true, false)">Gift <img ng-src="{{orderLine.btLogic.giftImgUrl}}" /> <img ng-src="{{orderLine.btLogic.giftBoxImgUrl}}" ng-if="isDisplayGiftBoxComponents" /><br /> Registry: {{orderLine.Extn._ExtnGiftRegistryNo}}</div></div>
+                                    </div>
+                                    <div class="row" style="font-size:1.2em">
+                                        <div class="col-sm-5">
+                                            <img src="assets/images/rsz_twomenbigticket.png" ng-show="orderLine.btDisplay.itemtype === 'BGT'" style="float:left;padding-top:3px" /> <span ng-show="orderLine.btDisplay.itemtype === 'BGT'" style="padding-top: 10px;display: inline-flex; padding-left: 9px;"> <strong>Big Ticket</strong></span> <span class="bulletPad" ng-show="orderLine.Extn._btIsSpecialHandling === 'true' && orderLine.btDisplay.itemtype === 'BGT'"> &#8226 </span> <span ng-show="orderLine.Extn._btIsSpecialHandling === 'true'" style="padding-top: 10px;display: inline-flex;"><strong>Handling Fee:</strong> {{orderLine.Extn._btSpecialHandlingFee | currency}}</span>
+                                        </div>
+                                        <div class="col-sm-7 text-right" style="padding-top:10px">
+
+
+                                            <span><strong>UPC:</strong> {{orderLine.Item._UPCCode}} </span>
+
+
+                                            <span style="padding-left:10px"><strong>Qty:</strong> {{orderLine._OrderedQty | number:0}} @ {{getLowestPrice(orderLine) | currency}}</span>
+
+                                            <span style="padding-left:26px;color:green;"><strong>Line Total: {{getLineTotal(orderLine) | currency}}</strong></span>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:20px">
+        <div class="col-sm-2 col-sm-offset-10">
+            <button ng-click="goToPayment()" class="btn btn-primary btn-block" ng-disabled="isCheckOutButtonDisabled">Checkout</button>
+        </div>
+    </div>
+</form>

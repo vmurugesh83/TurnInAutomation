@@ -1,0 +1,94 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PathToSiteReports", "PathToSiteReports\PathToSiteReports.vbproj", "{6351E0D1-5BB4-4196-B4DD-31E027C3A644}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PathToSiteReports.BLL", "PathToSiteReports.BLL\PathToSiteReports.BLL.vbproj", "{AEC2E28D-C321-4D79-B014-5CB7B159F1B8}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PathToSiteReports.MainframeDAL", "PathToSiteReports.MainframeDAL\PathToSiteReports.MainframeDAL.vbproj", "{0375E03B-D805-42A8-9D46-EC2457899DAE}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PathToSiteReports.SQLDAL", "PathToSiteReports.SQLDAL\PathToSiteReports.SQLDAL.vbproj", "{85DCFBEE-D083-45D1-8B30-ECE3D20B458D}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PathToSiteReports.BusinessEntities", "PathToSiteReports.BusinessEntities\PathToSiteReports.BusinessEntities.vbproj", "{F1D34E45-E396-4746-9616-0C4C993ABE84}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BonTon.DBUtility", "..\..\..\..\..\..\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\Source\TurnInProcessAutomation.DBUtility\BonTon.DBUtility.vbproj", "{0D772986-EC58-401F-9578-D909F57C6392}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PathToSiteReports.Factory", "PathToSiteReports.Factory\PathToSiteReports.Factory.vbproj", "{F8A28021-D25C-47FC-9E3C-1B71092C74B4}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PathToSiteReports.Common", "PathToSiteReports.Common\PathToSiteReports.Common.vbproj", "{FB8E785F-9C56-45B7-A401-9DA5A8CE6BA9}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 1
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs2013.internal.bonton.com:8080/tfs2013/defaultcollection
+		SccProjectUniqueName0 = ..\\..\\..\\..\\..\\..\\Repository\\2013\\ADVMarketing.TurnIn\\Dev\\TurnInProcessAutomation\\Source\\TurnInProcessAutomation.DBUtility\\BonTon.DBUtility.vbproj
+		SccProjectName0 = $/ADVMarketing.TurnIn/Dev/TurnInProcessAutomation/Source/TurnInProcessAutomation.DBUtility
+		SccAuxPath0 = http://tfs2013.internal.bonton.com:8080/tfs2013/defaultcollection
+		SccLocalPath0 = ..\\..\\..\\..\\..\\..\\Repository\\2013\\ADVMarketing.TurnIn\\Dev\\TurnInProcessAutomation\\Source\\TurnInProcessAutomation.DBUtility
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6351E0D1-5BB4-4196-B4DD-31E027C3A644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6351E0D1-5BB4-4196-B4DD-31E027C3A644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6351E0D1-5BB4-4196-B4DD-31E027C3A644}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6351E0D1-5BB4-4196-B4DD-31E027C3A644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6351E0D1-5BB4-4196-B4DD-31E027C3A644}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6351E0D1-5BB4-4196-B4DD-31E027C3A644}.Release|x86.ActiveCfg = Release|Any CPU
+		{AEC2E28D-C321-4D79-B014-5CB7B159F1B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEC2E28D-C321-4D79-B014-5CB7B159F1B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEC2E28D-C321-4D79-B014-5CB7B159F1B8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AEC2E28D-C321-4D79-B014-5CB7B159F1B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEC2E28D-C321-4D79-B014-5CB7B159F1B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEC2E28D-C321-4D79-B014-5CB7B159F1B8}.Release|x86.ActiveCfg = Release|Any CPU
+		{0375E03B-D805-42A8-9D46-EC2457899DAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0375E03B-D805-42A8-9D46-EC2457899DAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0375E03B-D805-42A8-9D46-EC2457899DAE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0375E03B-D805-42A8-9D46-EC2457899DAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0375E03B-D805-42A8-9D46-EC2457899DAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0375E03B-D805-42A8-9D46-EC2457899DAE}.Release|x86.ActiveCfg = Release|Any CPU
+		{85DCFBEE-D083-45D1-8B30-ECE3D20B458D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85DCFBEE-D083-45D1-8B30-ECE3D20B458D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85DCFBEE-D083-45D1-8B30-ECE3D20B458D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{85DCFBEE-D083-45D1-8B30-ECE3D20B458D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85DCFBEE-D083-45D1-8B30-ECE3D20B458D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85DCFBEE-D083-45D1-8B30-ECE3D20B458D}.Release|x86.ActiveCfg = Release|Any CPU
+		{F1D34E45-E396-4746-9616-0C4C993ABE84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1D34E45-E396-4746-9616-0C4C993ABE84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1D34E45-E396-4746-9616-0C4C993ABE84}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F1D34E45-E396-4746-9616-0C4C993ABE84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1D34E45-E396-4746-9616-0C4C993ABE84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1D34E45-E396-4746-9616-0C4C993ABE84}.Release|x86.ActiveCfg = Release|Any CPU
+		{0D772986-EC58-401F-9578-D909F57C6392}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D772986-EC58-401F-9578-D909F57C6392}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D772986-EC58-401F-9578-D909F57C6392}.Debug|x86.ActiveCfg = Debug|x86
+		{0D772986-EC58-401F-9578-D909F57C6392}.Debug|x86.Build.0 = Debug|x86
+		{0D772986-EC58-401F-9578-D909F57C6392}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D772986-EC58-401F-9578-D909F57C6392}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D772986-EC58-401F-9578-D909F57C6392}.Release|x86.ActiveCfg = Release|x86
+		{0D772986-EC58-401F-9578-D909F57C6392}.Release|x86.Build.0 = Release|x86
+		{F8A28021-D25C-47FC-9E3C-1B71092C74B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8A28021-D25C-47FC-9E3C-1B71092C74B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8A28021-D25C-47FC-9E3C-1B71092C74B4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F8A28021-D25C-47FC-9E3C-1B71092C74B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8A28021-D25C-47FC-9E3C-1B71092C74B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8A28021-D25C-47FC-9E3C-1B71092C74B4}.Release|x86.ActiveCfg = Release|Any CPU
+		{FB8E785F-9C56-45B7-A401-9DA5A8CE6BA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB8E785F-9C56-45B7-A401-9DA5A8CE6BA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB8E785F-9C56-45B7-A401-9DA5A8CE6BA9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FB8E785F-9C56-45B7-A401-9DA5A8CE6BA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB8E785F-9C56-45B7-A401-9DA5A8CE6BA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB8E785F-9C56-45B7-A401-9DA5A8CE6BA9}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,59 @@
+﻿<div class="modal-header">
+    <h4 class="modal-title">Customer Info</h4>
+</div>
+<div class="modal-body">
+    <div ng-show="showSwipping">
+        <div class="row">
+            <div class="col col-sm-12">
+                <img ng-click="disableSwipeCard()" class="ccSwipe" src="assets/images/credit-card.gif" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-sm-12">
+                <button ng-click="disableSwipeCard()" class="btn btn-default btn-block">Cancel</button>
+            </div>
+        </div>
+    </div>
+        <div ng-show="!showSwipping">
+            <div class="row">
+                <div class="col col-sm-12">
+                    Will you be using your Store Card for this purchase?
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-sm-12">
+                    <button ng-click="swipeCard('PLCC')" class="btn btn-default btn-block" ng-disabled="isProcessingMSREnable">Swipe Store Card</button>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col col-sm-12">
+                    Will you be using your bankcard for this purchase ?
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-sm-12">
+                    <button ng-click="swipeCard('BankCard')" class="btn btn-default btn-block" ng-disabled="isProcessingMSREnable">Swipe Bankcard</button>
+                </div>
+            </div>
+            <hr />
+            <div ng-show="!showSwipping" class="row">
+                <div class="col col-sm-12">
+                    Associate ?
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-sm-12">
+                    <button ng-click="swipeCard('AssociateDiscountCard')" class="btn btn-default btn-block" ng-disabled="isProcessingMSREnable">Swipe Associate Discount Card</button>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="row">
+                <div class="col col-sm-12">
+                    <button ng-click="close()" class="btn btn-warning btn-block">Manual Search</button>
+                </div>
+            </div>
+        </div>
+    </div>

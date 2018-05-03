@@ -1,0 +1,72 @@
+	LOOKUPS
+	========
+J	assoc_databases
+B	est_componenttype
+identy B	est_costcodes
+B	est_estimatemediatype
+B	est_season
+B	est_status
+identy B	ppr_papergrade
+identy B	ppr_paperweight
+identy B	pst_postalcategory
+B	pst_postalclass
+B	pst_postalmailertype
+B	prt_printerratetype
+B	pub_pubquantitytype
+B	pub_ratetype
+B	rpt_parametertype
+B	rpt_reporttype
+vnd_vendor
+B	vnd_vendortype
+-----------------------------------------------------------------
+	GROUP #2
+	========
+est_estimate
+est_costcodevendortype_map
+pst_postalscenario
+					pst_postalweights
+pub_groupinsertscenario_map
+pub_pubrate_map
+rpt_parameter
+rpt_report
+vnd_vendorvendortype_map
+vnd_mailhouse
+vnd_maillistresource
+vnd_mailtracker
+vnd_paper
+vnd_printer
+-----------------------------------------------------------------
+	GROUP #3
+	========
+est_assemdistriboptions
+est_estimateinsertscenario_map
+est_package
+est_pubinsertdates
+est_samples
+ppr_paper_map
+prt_printerrate
+					pst_postalcategory_map
+pub_pubpubgroup_map
+pub_pubquantity
+pub_pubrate
+pub_pubrate_map_activate
+-----------------------------------------------------------------
+	GROUP #4
+	========
+est_component
+est_polybaggroup
+pst_postalcategoryscenario_map
+pub_dayofweekquantity
+pub_dayofweekratetypes
+pub_insertdiscounts
+-----------------------------------------------------------------
+	GROUP #5
+	========
+est_estimatepolybaggroup_map
+est_packagecomponentmapping
+est_polybag
+pub_dayofweekrates
+-----------------------------------------------------------------
+	GROUP #6
+	========
+est_packagepolybag_map

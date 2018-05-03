@@ -1,0 +1,43 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+TurnInAutomationBatch.MainframeDAL
+</name>
+</assembly>
+<members>
+<member name="P:TurnInAutomationBatch.MainframeDAL.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:TurnInAutomationBatch.MainframeDAL.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:TurnInAutomationBatch.MainframeDAL.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:TurnInAutomationBatch.MainframeDAL.EcommResultsDAO.GetApprovedColorDetailsByISN(System.Decimal,System.DateTime)">
+	<summary>
+ Calls the stored procedure to get color level results for the ISN passed
+ </summary>
+	<param name="InternalStyleNumber">ISN for which color level results to be retrieved</param>
+	<param name="StartShipDate">Start ship date to be matched with PO ship date</param>
+	<returns>Returns the color level results for the ISN passed</returns>
+	<remarks></remarks>
+</member><member name="M:TurnInAutomationBatch.MainframeDAL.EcommResultsDAO.GetWebCategory(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+	<summary>
+ Gets the maximum used web category for the department, vendor, generic class, generic sub class and sub class
+ </summary>
+	<param name="DeptID"></param>
+	<param name="VendorID"></param>
+	<param name="GenericClassID"></param>
+	<param name="GenericSubClassID"></param>
+	<param name="SubClassID"></param>
+	<returns>Returns the maximum used web category</returns>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

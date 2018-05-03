@@ -1,0 +1,114 @@
+﻿<div class="row clearfix" ng-cloak>
+    <div class="col-sm-3 column">
+        <img style="max-width:100%" ng-src="{{ImageURL}}" />
+            <h3>
+                UPC: {{currentItem.id}}
+            </h3>
+            <dl>
+                <dt>
+                    Description
+                </dt>
+                <dd>
+                    <span ng-show="showProductName" ng-bind-html="currentItem.productname"></span>
+                    <span ng-hide="showProductName">{{currentItem.isnlongdesc}}</span>
+                </dd>
+            </dl>
+    </div>
+    <div class="col-sm-9 column">
+        <div class="col-sm-5 column">
+            <br />
+            <div class="col-sm-4 column">
+                Zip
+            </div>
+            <div class="col-sm-8 column">
+                <input ng-disabled="notZipSearch" ng-change="SearchType()" type="text" class="form-control" ng-model="itemLocateZip" ng-init="getZip()" />
+            </div>
+            <div class="col-sm-4 column">
+                City
+            </div>
+            <div class="col-sm-8 column">
+                <input type="text" ng-disabled="notCityStateSearch" ng-change="SearchType()" class="form-control" ng-model="itemLocateCity" />
+            </div>
+        </div>
+        <div class="col-sm-5 column">
+            <br />
+            <div class="col-sm-4 column">
+                Radius
+            </div>
+            <div class="col-sm-8 column">
+                <select ng-model="itemLocateRadius" class="form-control" ng-init="itemLocateRadius ='25'" ng-options="r.radius as r.name for r in radiusOptions"></select>
+            </div>
+            <div class="col-sm-4 column">
+                State
+            </div>
+            <div class="col-sm-8 column">
+                <select class="form-control" ng-disabled="notCityStateSearch" ng-change="SearchType()" ng-init="itemLocateState = ''" ng-model="itemLocateState" ng-options="s.state as s.name for s in stateOptions"></select>
+            </div>
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-12 column">
+            <br />
+            <div class="col-sm-6">
+                    <span ng-show="noNodesToDisplay" style="font-weight:bolder; font-size:x-large">There are no results</span>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-5 column">
+                    <br />
+                    <button ng-click="close()" class="btn btn-warning btn-block  btn-block btn-lg" type="button">Close</button>
+                </div>
+                <div class="col-sm-5 column">
+                    <br />
+                    <button type="button" class="btn btn-default  btn-block btn-lg" ng-click="search()">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">        
+            <div class="col-sm-12 column scrollResults" id="ItemDetailWrapper" style="overflow-y: hidden">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Store Name
+                            </th>
+                            <th>
+                                Address
+                            </th>
+                            <th>
+                                City
+                            </th>
+                            <th>
+                                Phone
+                            </th>
+                            <th>
+                                Inventory
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="Store in Stores"
+                            on-finish-render="refreshIScroll()">
+                            <td>
+                                {{Store.StoreName}}
+                            </td>
+                            <td>
+                                {{Store.Address}}
+                            </td>
+                            <td>
+                                {{Store.City}}
+                            </td>
+                            <td>
+                                {{Store.Phone}}
+                            </td>
+                            <td>
+                                {{Store.Inventory}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    </div>

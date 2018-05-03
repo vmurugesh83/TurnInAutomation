@@ -1,0 +1,32 @@
+﻿    <div class="panel-heading" role="tab" data-toggle="collapse" data-parent="#accordion" href="#collapseSize" ng-click="refreshScroll('FacetItemSizeWrapper')">
+    <h4 class="panel-title">
+        <a ng-click="refreshScroll('FacetItemSizeWrapper')" class="collapsed" data-toggle="collapse" target="_self" data-parent="#accordion" href="#collapseSize" aria-expanded="false" aria-controls="collapseThree">
+            <span>Size</span>
+            <span ng-show="selectedItemSizes.length>0" class="glyphicon glyphicon-ok facetSelectionColor" aria-hidden="true"></span>
+
+        </a>
+    </h4>
+</div>
+    <div id="collapseSize" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+        <div class="panel-body">
+            <div class="facetWrapper" id="FacetItemSizeWrapper">
+                <table class="table table-striped">
+                    <thead></thead>
+                    <tbody>
+                        <tr ng-repeat="itemSize in response.itemSizes" on-finish-render="refreshScroll('FacetItemSizeWrapper')">
+                            <td>
+                                <div class="col col-sm-8">
+
+                                    <button ng-click="facetItemClicket(selectedItemSizes,itemSize,'itemSize')" class="btn-block btn"><span ng-show="itemExist(selectedItemSizes,itemSize)" class="glyphicon glyphicon-ok facetSelectionColor" aria-hidden="true"></span>{{itemSize.name}}</button>
+                                </div>
+                                <div class="col col-sm-4">
+                                    <span class="badge pull-right">{{itemSize.count | number }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+

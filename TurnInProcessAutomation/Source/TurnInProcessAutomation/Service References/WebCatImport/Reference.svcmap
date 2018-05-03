@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="24eaf6cf-7f94-4207-b905-de576a67da2e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://webcatservice.test.bonton.com/webcatimportservice/webcatimport.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WebCatImport.wsdl" MetadataType="Wsdl" ID="dcd43edd-7257-4d31-9213-d8f02be17ead" SourceId="1" SourceUrl="http://webcatservice.test.bonton.com/webcatimportservice/WebCatImport.svc?wsdl" />
+    <MetadataFile FileName="WebCatImport.disco" MetadataType="Disco" ID="b893ab7a-2fc0-4bb7-96fb-13ee6b1597b9" SourceId="1" SourceUrl="http://webcatservice.test.bonton.com/webcatimportservice/WebCatImport.svc?disco" />
+    <MetadataFile FileName="WebCatImport1.wsdl" MetadataType="Wsdl" ID="ec891b1d-0852-47e8-b414-8521e9f68115" SourceId="1" SourceUrl="http://webcatservice.test.bonton.com/webcatimportservice/WebCatImport.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="WebCatImport.xsd" MetadataType="Schema" ID="1c96cbb3-4091-48c4-95c4-3e192edca077" SourceId="1" SourceUrl="http://webcatservice.test.bonton.com/webcatimportservice/WebCatImport.svc?xsd=xsd3" />
+    <MetadataFile FileName="WebCatImport1.xsd" MetadataType="Schema" ID="c7545450-cba6-449c-9a82-107164b8b977" SourceId="1" SourceUrl="http://webcatservice.test.bonton.com/webcatimportservice/WebCatImport.svc?xsd=xsd2" />
+    <MetadataFile FileName="WebCatImport2.xsd" MetadataType="Schema" ID="c835a97b-b87a-4829-9726-4f5b8254e65e" SourceId="1" SourceUrl="http://webcatservice.test.bonton.com/webcatimportservice/WebCatImport.svc?xsd=xsd1" />
+    <MetadataFile FileName="WebCatImport3.xsd" MetadataType="Schema" ID="72764022-10b0-412d-8be8-113eac676421" SourceId="1" SourceUrl="http://webcatservice.test.bonton.com/webcatimportservice/WebCatImport.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

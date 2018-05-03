@@ -1,0 +1,110 @@
+<%-- 
+Name: 
+Author: Kimberly Lehman
+Description: 
+--%>
+
+<%@ CodeTemplate Language="VB" TargetLanguage="Text" Src="ICCHelper.cst.vb" Inherits="ICCHelper" Debug="True" Description="Template description here." %>
+<%@ Property Name="SQLServerConnect" Type="System.String" Default="<SQL>" Optional="False" Category="Strings" Description="SQL Server Connection string." %>
+<%@ Property Name="Table" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow." %>
+<%@ Property Name="className" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow Formatted." %>
+<%@ Property Name="projectName" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow Formatted." %>
+
+<%@ Assembly Name="System.Data" %>
+
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Data.OleDb" %>
+<%@ Import Namespace="System.Collections.Generic" %>
+
+<%    
+    Dim ColumnsSQL as string = "select COLUMN_NAME, DATA_TYPE, IS_NULLABLE, ISNULL(CHARACTER_OCTET_LENGTH,0) as LENGTH from information_schema.columns where table_name = '{0}' order by ordinal_position"
+    Dim PrimaryKeyColumnsSQL as string = "SELECT Col.Column_Name as COLUMN_NAME from INFORMATION_SCHEMA.TABLE_CONSTRAINTS Tab, INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE Col WHERE Col.Constraint_Name = Tab.Constraint_Name AND Col.Table_Name = Tab.Table_Name AND Constraint_Type = 'PRIMARY KEY' AND Col.Table_Name = '{0}'"
+    Dim ForeignKeyColumnsSQL as string = "SELECT Col.Column_Name as COLUMN_NAME from INFORMATION_SCHEMA.TABLE_CONSTRAINTS Tab, INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE Col WHERE Col.Constraint_Name = Tab.Constraint_Name AND Col.Table_Name = Tab.Table_Name AND Constraint_Type = 'FOREIGN KEY' AND Col.Table_Name = '{0}'"
+
+    Dim columnsDT As DataTable
+    Dim primaryKeyColumnsDT As DataTable
+    Dim foreignKeyColumnsDT As DataTable
+    
+ 	columnsDT = GetDataSet(SQLServerConnect, String.Format(ColumnsSQL, table)).Tables(0) 
+    primaryKeyColumnsDT = GetDataSet(SQLServerConnect, String.Format(PrimaryKeyColumnsSQL, table)).Tables(0) 
+    foreignKeyColumnsDT = GetDataSet(SQLServerConnect, String.Format(ForeignKeyColumnsSQL, table)).Tables(0) 
+    
+    dim columns as new List(Of String)
+    for each keyRow as DataRow in columnsDT.Rows        
+        columns.Add(keyRow("COLUMN_NAME"))            
+    next 
+    
+    dim primaryKeys as new List(Of String)
+    for each keyRow as DataRow in primaryKeyColumnsDT.Rows        
+        primaryKeys.Add(keyRow("COLUMN_NAME"))
+        columns.Remove(keyRow("COLUMN_NAME"))            
+    next 
+    
+    dim foreignKeys as new List(Of String)
+    for each keyRow as DataRow in foreignKeyColumnsDT.Rows        
+        foreignKeys.Add(keyRow("COLUMN_NAME"))            
+        columns.Remove(keyRow("COLUMN_NAME"))            
+    next 
+%>
+Imports System.Data.SqlClient
+Imports <%=projectName%>.BusinessEntities
+
+Public Interface I<%=className%>
+        
+    ''' <summary>
+    ''' Method to get all <%=className%>Info records.
+    ''' </summary>	    	 
+    Function GetAllFrom<%=className%>() as IList(Of <%=className%>Info)
+
+<%  dim primaryKeyTypes as new List(Of String)
+    dim primaryKeyNullables as new List(Of String)
+    dim primaryKeyLengths as new List(Of String)
+
+    for each primaryKey as String in primaryKeys
+        for each row as DataRow in columnsDT.Rows
+            if row("COLUMN_NAME") = primaryKey then
+                primaryKeyTypes.Add(row("DATA_TYPE"))
+                primaryKeyNullables.Add(row("IS_NULLABLE"))        
+                primaryKeyLengths.Add(row("LENGTH"))
+            end if
+        next
+    next
+%>    
+    ''' <summary>
+    ''' Method to get a <%=className%>Info record by its primary key column(s).
+    ''' </summary>	    	 
+    Function Get<%=className%>By<%for i as integer = 0 to primaryKeys.Count - 1%><%=ToPascalCase(primaryKeys(i))%><%if i = primaryKeys.Count - 1%><%else%>And<%end if%><%next%>(<%for i as integer = 0 to primaryKeys.Count - 1%>ByVal <%=ToCamelCase(primaryKeys(i))%> as <%=ConvertType(primaryKeyTypes(i), primaryKeyNullables(i))%><%if not i = primaryKeys.Count - 1 then%>, <%end if%><%next%>) as <%=className%>Info
+	
+<%for each foreignKey as String in foreignKeys%>    
+    <%dim foreignKeyType as String = String.Empty
+    dim foreignKeyNullable as String = String.Empty
+    dim foreignKeyLength as String = String.Empty
+    for each row as DataRow in columnsDT.Rows
+        if row("COLUMN_NAME") = foreignKey then
+            foreignKeyType = row("DATA_TYPE")
+            foreignKeyNullable = row("IS_NULLABLE")
+            foreignKeyLength = row("LENGTH")
+        end if
+next%>
+    
+    ''' <summary>
+    ''' Method to get a list of <%=className%>Info records related to foreign key "<%=foreignKey%>".
+    ''' </summary>	    	 
+    Function Get<%=className%>By<%=ToPascalCase(foreignKey)%>(ByVal <%=ToCamelCase(foreignKey)%> as <%=ConvertType(foreignKeyType, foreignKeyNullable)%>) as IList(Of <%=className%>Info)
+    <%next%>    
+    ''' <summary>
+    ''' Method to add a <%=className%>Info record to the database.
+    ''' </summary>	    	 
+    Sub Insert<%=className%>(<% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("COLUMN_NAME").ToString.Trim %>ByVal <%=ToCamelCase(name)%> As <%=ConvertType(columnsDT.rows(i)("DATA_TYPE").ToString.Trim, columnsDT.rows(i)("IS_NULLABLE").ToString.Trim)%><% IF i=columnsDT.rows.Count - 1 then %><%else%>, <%end if%><% Next i %>, Optional ByVal tran As SqlTransaction = Nothing)
+    
+    ''' <summary>
+    ''' Method to update a <%=className%>Info record to the database.
+    ''' </summary>	    	 
+    Sub Update<%=className%>(ByVal <%=ToCamelCase(className)%>Info as <%=className%>Info, Optional ByVal tran As SqlTransaction = Nothing)
+    
+    ''' <summary>
+    ''' Method to delete a <%=className%>Info record.
+    ''' </summary>	    	 
+    Sub Delete<%=className%>(<%for i as integer = 0 to primaryKeys.Count - 1%>ByVal <%=ToCamelCase(primaryKeys(i))%> as <%=ConvertType(primaryKeyTypes(i), primaryKeyNullables(i))%><%if not i = primaryKeys.Count - 1 then%>, <%end if%><%next%>, Optional ByVal tran As SqlTransaction = Nothing)
+	                    
+End Interface

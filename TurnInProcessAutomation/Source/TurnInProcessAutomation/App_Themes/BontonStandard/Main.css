@@ -1,0 +1,706 @@
+﻿/* PERS */
+html, body, form
+{
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    font: 10pt Arial;
+}
+/*td {white-space: nowrap;}*/
+
+/* Application Layout */
+#adjustScrollHeight
+{
+    height: 100%;
+    overflow: auto;
+}
+
+@media screen
+{
+    #appFooter
+    {
+        width: 100%;
+        position: absolute;
+        clear: both;
+        left: 0px;
+        bottom: 20px;
+        text-align: center;
+    }
+}
+@media print
+{
+    #appFooter
+    {
+        display: none;
+    }
+}
+
+@media screen
+{
+    #appHeader
+    {
+        height: 25px;
+        text-align: center;
+        font: bold 16pt arial;
+    }
+}
+@media print
+{
+    #appHeader
+    {
+        display: none;
+    }
+}
+
+@media screen
+{
+    #appMenu
+    {
+        height: 26px;
+        border-bottom: solid 3px #FFFFFF;
+        background-color: #336699;
+    }
+}
+@media print
+{
+    #appMenu
+    {
+        display: none;
+    }
+}
+
+#appMessageArea
+{
+    height: 30px;
+    text-align: right;
+}
+
+/* ContentPage Layout */
+@media screen
+{
+    #pageActionBar
+    {
+        height: 32px;
+        background-color: #B0C4DE;
+    }
+}
+@media print
+{
+    #pageActionBar
+    {
+        display: none;
+    }
+}
+
+@media screen
+{
+    #pageHeader
+    {
+        height: 25px;
+        text-align: center;
+        font: bold 12pt arial;
+        margin-bottom: 10px;
+    }
+}
+@media print
+{
+    #pageHeader
+    {
+        display: none;
+    }
+}
+.autoScroll
+{
+    overflow: auto;
+}
+.gridImgBtn
+{
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    background-color: Transparent;
+}
+.gridImgBtn li
+{
+    display: inline;
+    padding-right: 3px;
+}
+.inclComboButton
+{
+    margin: 15px 0px 5px 10px;
+}
+.label
+{
+    font-weight: bold;
+}
+.smallLabel
+{
+    font-weight: bold;
+    font-size: 8pt;
+}
+.bigLabel
+{
+    font-weight: bold;
+    font: bold 12pt;
+}
+
+.nowrap
+{
+    white-space: nowrap;
+}
+.lineBreak
+{
+    height: 10px;
+}
+.pageError
+{
+    padding-left: 5px;
+    font-weight: bold;
+    vertical-align: middle;
+}
+.pageTabStrip
+{
+    background-color: #b0c4de;
+    margin-bottom: 15px;
+}
+.subMenu
+{
+    width: 33%;
+    float: left;
+    margin-top: 10px;
+}
+.subMenu h1
+{
+    font: bold 14pt arial;
+    margin: 0px 0px 5px 20px;
+}
+.tableContentPage
+{
+    margin-left: 15px;
+    margin-bottom: 15px;
+    border-collapse: collapse;
+}
+.tableContentPageNoLeftMargin
+{
+    margin-bottom: 15px;
+    border-collapse: collapse;
+}
+.tableContentPage td
+{
+    margin: 0px;
+    padding: 4px 10px;
+    white-space: nowrap;
+}
+.tablePCStyle
+{
+    margin: 0px auto 15px auto;
+    border-collapse: collapse;
+}
+.tablePCStyle td
+{
+    margin: 0px;
+    padding: 10px;
+    white-space: nowrap;
+}
+.titleReportDateControl
+{
+    margin-left: 15px;
+    padding-bottom: 10px;
+    font: bold 10pt arial;
+}
+
+/*.content {margin-left:auto;margin-right:auto;border-collapse:collapse;}*/
+.content
+{
+    border-collapse: collapse;
+    width: 100%;
+}
+/*.content {width:100%; border-collapse:collapse;}*/
+.content td
+{
+    padding: 0px 0px 0px 0px;
+    margin: 0;
+}
+
+/* Sidebar Layout */
+.panelSidebar
+{
+    width: 222px;
+}
+.tableSidebar
+{
+    width: 95%;
+    margin-top: 5px;
+    color: #000000;
+}
+.tableSidebar .cellCategory
+{
+    font: bold 8pt arial;
+    padding: 0px 0px 4px 4px;
+}
+.tableSidebar .cellInput
+{
+    padding: 0px 0px 4px 0px;
+}
+.tableSidebar .cellInputHeader
+{
+    font: bold 8pt arial;
+    text-align: right;
+    padding: 0px 5px 4px 4px;
+}
+.tableSidebar .rowBreak
+{
+    height: 15px;
+}
+
+/* Pop-up Layout */
+#popupActionBar
+{
+    height: 50px;
+    text-align: right;
+}
+#popupActionBar input
+{
+    width: 72px;
+    height: 24px;
+    font: 10pt arial;
+    margin: 10px 3px;
+}
+#popupHeader
+{
+    height: 25px;
+    text-align: center;
+    font: bold 12pt arial;
+}
+#popupFooter
+{
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    bottom: 20px;
+    text-align: center;
+}
+#popupFooter a
+{
+    color: #B0C4DE;
+    font-weight: normal;
+    text-decoration: underline;
+}
+#popupFooter a span
+{
+    text-decoration: none;
+}
+
+.popup-wrapper {
+	margin:5px auto;        	
+	text-align:center;
+}
+
+.popup-wrapper h2 {
+	font-size: small;        	
+	text-decoration: underline;
+}
+
+.popup-wrapper table.entry {        
+	border-collapse:collapse;
+	padding:0;
+	margin:10px auto;        	
+}
+
+.popup-wrapper table.entry > tbody > tr > td {
+    padding:5px;
+}
+
+.popup-wrapper table.entry .label {
+	font-weight:bold;        	
+	text-align:right;
+}
+
+.popup-wrapper table.entry .input {
+	text-align:left;
+}
+
+.popup-wrapper .nav-buttons {
+    margin:5px;
+}
+
+.popup-wrapper .nav-buttons a {
+    padding:0 10px;
+}
+        
+.rowBreak
+{
+    height: 30px;
+}
+.tablePopup
+{
+    margin: 15px;
+    border-collapse: collapse;
+}
+.tablePopupPCCopy
+{
+    margin: 15px auto;
+    border-collapse: collapse;
+}
+.tablePopup td, .tablePopupPCCopy td
+{
+    margin: 0px;
+    padding: 4px 10px;
+}
+
+/* Collapsible Panel */
+.collapsiblePanel {
+    background:white;
+    line-height:1.4;
+    margin:5px 20px 0 240px; /* Large left margin to account for sidebar. */
+    position:absolute;
+    right:0;
+    text-align:right;
+    z-index:2000;
+}
+
+.collapsiblePanel .message-informational,
+.collapsiblePanel .message-warning,
+.collapsiblePanel .message-error {
+	font-size:10pt;
+	font-weight:bold;
+}
+
+.collapsiblePanel .message-larger {
+	font-size:12pt;
+}
+
+.collapsiblePanel .message-informational { background-color:inherit; color:Green; }
+.collapsiblePanel .message-warning { background-color:inherit; color:Orange; }
+.collapsiblePanel .message-error { background-color:inherit; color:Red; }
+
+.collapsiblePanel img.toggler-collapsed,
+.collapsiblePanel img.toggler-expanded {
+	cursor:pointer;
+}
+
+.collapsiblePanel img.toggler-collapsed { padding:4px 2px; }
+.collapsiblePanel img.toggler-expanded { padding:2px 4px; }
+
+/* Validation Summary */
+.validationSummary
+{
+    position: absolute;
+    top: 125px;
+    right: 10px;
+    width: 300px;
+}
+
+/* AutoComplete Flyout */
+.autoComplete
+{
+    visibility: hidden;
+    margin: 0px !important;
+    background-color: #FFFFFF;
+    border: solid 1px;
+    overflow: auto;
+    height: 200px;
+    text-align: left;
+    list-style-type: none;
+}
+.autoCompleteHighlightedItem
+{
+    background-color: #FAF0CD;
+    color: black;
+    padding: 1px;
+}
+.autoCompleteItem
+{
+    background-color: #FFFFFF;
+    padding: 1px;
+    white-space: nowrap;
+}
+
+/* ASP Controls*/
+.aspButton
+{
+    width: 55px;
+    height: 20px;
+    font: 10pt arial;
+}
+.aspMenu
+{
+    font-size: 12pt;
+    margin-left: 40px;
+}
+.aspRadioButtonListFlow label
+{
+    padding-right: 6px;
+}
+.aspTextBox
+{
+    width: 125px;
+    border: solid 1px;
+    border-color: #ABADB3 #DBDFE6 #E3E9EF #E2E3EA;
+    padding: 3px 0 3px 1px;
+}
+
+/* Static ContentPage */
+#content
+{
+    width: 650px;
+    margin: 5px;
+}
+#content .label, #content .input
+{
+    display: block;
+    float: left;
+    margin: 4px 0;
+}
+#content .label
+{
+    width: 100px;
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 4px;
+    font-weight: bold;
+    text-align: right;
+}
+#content br
+{
+    clear: left;
+}
+
+/* Rad Date Picker */
+#RADDatePicker
+{
+    width: 200px;
+}
+
+/* First Column */
+.firstColumn
+{
+    float: left;
+    width: 659px;
+}
+
+/* Second Column */
+.secondColumn
+{
+    float: right;
+    width: 350px;
+    position: relative;
+    right: 500px;
+    top: 100px;
+}
+
+.validationHighlight
+{
+    background-color: #FFC0CB;
+}
+
+.StripWhiteSpace
+{
+    border-collapse: collapse;
+    empty-cells: hide;
+    border: 1.5px;
+    border-spacing: 5px;
+}
+
+
+ .ToolText
+ {position:relative; } 
+ 
+.ToolTextHover
+{
+    display: block;
+    position: absolute;
+    border: 1px solid black;
+    top: 1.3em;
+    left: 5px;
+    background-color: #99FFCC;
+    color: #000000;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.readOnlyReset
+{
+    background-color: #FFFFFF;
+}
+
+.pageHeaderLabel
+{
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+ .gridtemplateLabel
+{
+    text-align: right;
+}
+
+div.RadGridCustomClass  .rgHeader,   
+div.RadGridCustomClass  th.rgResizeCol,   
+div.RadGridCustomClass  .rgRow  td,   
+div.RadGridCustomClass  .rgAltRow  td,   
+div.RadGridCustomClass  .rgFooter  td   
+{   
+     border-left:1px solid #828282 !important;   
+     border-right:1px solid #828282 !important;   
+     border-top:1px solid #828282 !important;   
+     border-bottom:1px solid #828282 !important;   
+}   
+
+span.rightJustifiedLabel {
+	display:block;
+	margin-left:1em;
+	margin-right:1em;
+	text-align:right;
+}
+
+.compressed-form-height p {
+	margin-top:0;
+	margin-bottom:.5em;
+}
+
+.column-one-of-two {
+	/* It would be better to use display:inline-block here instead of float, but IE7
+	doesn't recognize inline-block on elements that aren't naturally display:inline. */
+	float:left;
+}
+
+.column-one-of-two,
+.column-two-of-two {
+	width:50%;
+}
+ 
+ /* Table Layouts */
+table.labels-horizontal,
+table.labels-vertical {
+	border-collapse:collapse;
+	margin-top:10px;
+	margin-bottom:10px;	
+}
+
+table.labels-horizontal > tbody > tr > td,
+table.labels-horizontal > thead > tr > th,
+table.labels-vertical > thead > tr > th,
+table.labels-vertical > tbody > tr > td {
+	padding:5px;
+	white-space:nowrap;	
+}
+
+table.labels-horizontal td.column-separator,
+table.labels-vertical td.column-separator {
+	padding-left:20px;
+}
+
+table.labels-horizontal > thead > tr > th {
+	background-color: #999999;	
+	font-weight: bold;	
+}
+
+table.labels-horizontal > tbody > tr > td 
+{
+	text-align:center;	
+}
+
+table.labels-vertical > tbody > tr > td:first-child,
+table.labels-vertical > tbody > tr > td.label {
+	text-align:right;
+	font-weight:bold;
+}
+
+table.centered  {
+ 	margin-left:auto; 
+ 	margin-right:auto; 
+}
+
+table.centered > thead > tr > th,
+table.centered > tbody > tr > td 
+{
+	text-align:center;
+}
+
+table.borders, 
+table.borders > thead > tr > th,
+table.borders > tbody > tr > td,
+table.border-outer,
+table.border-inner > thead > tr > th,
+table.border-inner > tbody > tr > td {
+	border:1px solid #000000;
+} 
+
+table.side-bar > tbody > tr > td:first-child {
+	font-size:8pt;
+}
+
+table.side-bar > tbody > tr > td {
+	padding:1px 3px;
+}
+
+.force-borderless {
+	border:none !important;
+}
+
+.gridformat   
+{   
+             background-color:Silver;	
+    
+}   
+
+/* Controls */
+.Label {
+    font: 8pt arial;
+    padding-right: 5px;
+    text-align: left;
+}
+.labelright {
+    text-align: right;
+}
+.TextBox {
+    height: 14px !important;
+    line-height: 14px !important;
+    padding: 2px !important;
+    font: 8pt arial !important;
+    border-bottom: solid 1px #e3e9ef !important;
+    border-top: solid 1px #abadb3 !important;
+    border-left: solid 1px #e2e3ea !important;
+    border-right: solid 1px #dbdfe6 !important; /*  background-color: #F5F5F5; */
+}
+.TextBox:hover {
+    border-bottom-color: #c7e2f1 !important;
+    border-top-color: #5794bf !important;
+    border-left-color: #c5daed !important;
+    border-right-color: #b7d5ea !important; /*  background-color: #F5F5F5; */
+}
+.ListBox {
+    font: 8pt arial;
+}
+.DropDown {
+    font: 8pt arial; /*  background-color: #F5F5F5; */
+}
+.Button {
+    font: 8pt arial;
+}
+.Link {
+    font: 8pt arial;
+}
+.CheckBox {
+    font: 8pt arial;
+}
+.CheckBox input {
+    height: 13px !important;
+    width: 13px !important;
+}
+.ie8 .CheckBox {
+    background-color: transparent !important;
+}
+.ie8 .CheckBox input {
+    background-color: transparent !important;
+}
+/* End Controls */
+.ChkLabel
+{
+    font: 7pt arial;
+    text-align: left;
+    font-weight:bold;
+}

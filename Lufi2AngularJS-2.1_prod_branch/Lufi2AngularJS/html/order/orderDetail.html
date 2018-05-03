@@ -1,0 +1,182 @@
+﻿<div class="row clearfix">
+    <div class="col-sm-6 column">
+        <div class="row">
+            <div class="col-sm-4 column">
+                Order Number:
+            </div>
+            <div class="col-sm-8 column">
+                {{orderDetail._OrderNo}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 column">
+                Order Date:
+            </div>
+            <div class="col-sm-8 column">
+                {{orderDetail._OrderDate | date:"EEEE, MMMM d, y '@' h:mm a"}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 column">
+                Order Status:
+            </div>
+            <div class="col-sm-8 column">
+                {{orderDetail._Status}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 column">
+                Order Total:
+            </div>
+            <div class="col-sm-8 column">
+                <a href="" ng-click="openOrderPricingDetail()">{{orderDetail.OverallTotals._GrandTotal | currency}}</a>
+            </div>
+        </div>
+        <div class="row margin-top-5">
+            <div class="col-sm-4">
+                <button ng-click="cancelOrder(orderDetail)" ng-show="showCancelOrderButton()" type="button" class="btn btn-block btn-danger" style="margin-top:10px;">Cancel Order</button>
+            </div>
+            <div class="col-sm-6 col-sm-offset-1">
+                <img class="img-responsive" src="../../assets/images/Shoprunner.jpg" ng-show="isShopRunnerOrder()" />
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 column scrollDefaultTable">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Shipping Address
+                    </th>
+                    <th>
+                        Billing Address
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div ng-if="orderDetail.multipleShipTo">
+                            <strong>Multiple Ship To</strong><br>
+                        </div>
+                        <div ng-if="!orderDetail.multipleShipTo">
+                            <customeraddress address="orderDetail.PersonInfoShipTo"></customeraddress>
+                        </div>
+                    </td>
+                    <td>
+                        <customeraddress address="orderDetail.PersonInfoBillTo"></customeraddress>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row" ng-show="!isLoaded" style="min-height:90px;border-style: solid;border-width: 1px;">
+    Loading data. . .
+</div>
+<div class="row" ng-show="!isReturnOrder && isLoaded">
+    <div class="col-md-12 column">
+        <div id="orderLineWrapper" style="overflow-y: hidden;max-height:260px;min-height:90px;position:relative;overflow-x: hidden;border-style: solid;border-width: 1px;">
+            <table ng-table="orderlineTableParams" class="confirmedWidth table">
+                <tr ng-repeat="orderline in $data">
+                    <td data-title="'Details'" ng-click="openOrderLineDetail(orderline)">
+                        <i class="fa fa-info-circle fa-2x" style="color:blue"></i>
+                    </td>
+                    <td data-title="'Image'">
+                        <img class="img-responsive" style="max-height:90px;" ng-src="{{orderline.btDisplay.defaultImageUrl}}" />
+                    </td>
+                    <td data-title="'Returns'" sortable="'btLogic.orderDetail.isReturned'">
+                        <img ng-show="orderline.btLogic.orderDetail.isReturned" src="../../assets/images/ReturnCart.png" />
+                    </td>
+                    <td data-title="'UPC'" sortable="'btLogic.orderDetail.sortableUpc'">
+                        <a ng-show="isBuyablePriceStatusFOrP(orderline)" ng-click="itemDetail(orderline.btDisplay.id)" href="">{{orderline.btDisplay.id}}</a>
+                        <span ng-show="!isBuyablePriceStatusFOrP(orderline)" href="">{{orderline.btDisplay.id}}</span>
+                    </td>
+                    <td data-title="'Description'" sortable="'btDisplay.defaultItemDescription'">
+                        <span ng-bind-html="orderline.btDisplay.defaultItemDescription"></span>
+                    </td>
+                    <td data-title="'TKT Price'" sortable="'btLogic.orderDetail.sortableUnitPrice'">
+                        {{orderline.LinePriceInfo._UnitPrice | currency}}
+                    </td>
+                    <td data-title="'Quantity'" sortable="'btLogic.orderDetail.sortableQuantity'">
+                        {{orderline._OrderedQty}}
+                    </td>
+                    <td data-title="'Fullfillment Method'" sortable="'_DeliveryMethod'">
+                        {{orderline._DeliveryMethod | deliveryText}}
+                    </td>
+                    <td data-title="'Tracking Number'" sortable="'btLogic.orderDetail.trackingNoString'">
+                        {{orderline.btLogic.orderDetail.trackingNoString}}
+                    </td>
+                    <td data-title="'Ship Date'" sortable="'btLogic.orderDetail.ShipDate'">
+                        {{orderline.btLogic.orderDetail.ShipDate | date:"EEEE, MMMM d, y"}}
+                    </td>
+                    <td data-title="'Carrier Service'" sortable="'_CarrierServiceCode'">
+                        {{orderline._CarrierServiceCode}}
+                    </td>
+                    <td data-title="'Status'" sortable="'_Status'">
+                        {{orderline._Status}}
+                    </td>
+                    <td data-title="'Gift Registry'" sortable="'Extn._ExtnGiftRegistryNo'">
+                        {{orderline.Extn._ExtnGiftRegistryNo}}
+                    </td>
+                    <td ng-click="goToNotes(orderline)" data-title="'Notes'" sortable="'Notes.Note.length'">
+                        <span class="badge">{{orderline.Notes.Note.length || 0}}</span>
+                    </td>
+                    <td data-title="'Gift Message'" sortable="'btLogic.orderDetail.isGiftMessage'">
+                        <img ng-show="orderline.btLogic.orderDetail.isGiftMessage" src="../assets/images/GiftMessage.gif" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row" ng-show="isReturnOrder && isLoaded">
+    <div class="col-md-12 column">
+        <div id="orderLineWrapperReturns" style="overflow-y: hidden;max-height:260px;min-height:90px;position:relative;overflow-x: hidden;border-style: solid;border-width: 1px;">
+            <table ng-table="orderlineTableReturnParams" class="table">
+                <tr ng-repeat="orderline in $data">
+                    <td data-title="'Details'" ng-click="openOrderLineDetail(orderline)">
+                        <i class="fa fa-info-circle fa-2x" style="color:blue"></i>
+                    </td>
+                    <td data-title="'Image'">
+                        <img class="img-responsive" style="max-height:90px;" ng-src="{{orderline.btDisplay.defaultImageUrl}}" />
+                    </td>
+                    <td data-title="'UPC'" sortable="'btLogic.orderDetail.sortableUpc'">
+                        <a ng-show="isBuyablePriceStatusFOrP(orderline)" ng-click="itemDetail(orderline.btDisplay.id)" href="">{{orderline.btDisplay.id}}</a>
+                        <span ng-show="!isBuyablePriceStatusFOrP(orderline)" href="">{{orderline.btDisplay.id}}</span>
+                    </td>
+                    <td data-title="'Description'" sortable="'btDisplay.defaultItemDescription'">
+                        <span ng-bind-html="orderline.btDisplay.defaultItemDescription"></span>
+                    </td>
+                    <td data-title="'TKT Price'" sortable="'btLogic.orderDetail.sortableUnitPrice'">
+                        {{orderline.LinePriceInfo._UnitPrice | currency}}
+                    </td>
+                    <td data-title="'Quantity'" sortable="'btLogic.orderDetail.sortableQuantity'">
+                        {{orderline._OrderedQty}}
+                    </td>
+                    <td data-title="'Original Order'" sortable="'DerivedFromOrder._OrderNo'">
+                        <a target="_self" href="" ng-show="orderline.DerivedFromOrder._OrderNo" ng-click="openOrderDetail(orderline.DerivedFromOrder._OrderNo)">{{orderline.DerivedFromOrder._OrderNo}}</a>
+                    </td>
+                    <td data-title="'Status'" sortable="'_Status'">
+                        {{orderline._Status}}
+                    </td>
+                    <td ng-click="goToNotes(orderline)" data-title="'Notes'" sortable="'Notes.Note.length'">
+                        <span class="badge">{{orderline.Notes.Note.length || 0}}</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row margin-top-5 clearfix">
+    <div class="col-sm-6">
+        <button ng-click="goToNotes()" class="btn btn-default">Notes</button>
+        <button ng-click="printOrderSummary()" ng-disabled="!isOrderPrintable()" type="button" class="btn btn-default">Print Order Summary</button>
+        <button ng-click="returnSummary()" ng-disabled="!isOrderHasReturns()" type="button" class="btn btn-default">Return Summary</button>
+    </div>
+    <div class="col-sm-6">
+        <button ng-click="modifyOrder()" type="button" class="btn btn-default" style="display:none">Modify Order</button>
+        <button ng-click="loadDraftOrder()" type="button" ng-disabled="!isLoaded" class="btn btn-default" ng-show="showDraftReOrderButton()">{{draftButtonText()}}</button>
+    </div>
+</div>

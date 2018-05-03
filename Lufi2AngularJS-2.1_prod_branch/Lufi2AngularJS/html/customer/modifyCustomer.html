@@ -1,0 +1,93 @@
+﻿
+<form name="searchForm" novalidate class="form" ng-submit="save()">
+    <div class="modal-header">
+        <h4 class="modal-title">Update Customer Contact</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+                <div class="col-sm-12">
+                    <div class="row clearfix">
+                        <div class="col-sm-2">
+                            First Name:
+                        </div>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text" ng-model="contact._FirstName" ng-change="validate();" ng-keypress="keyPressValidator(event)" />
+                        </div>
+                        <div class="col-sm-6">
+                            <span ng-show="!isValid._FirstName.isValid && isShowValidationMessages">{{isValid._FirstName.errorText}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            MI:
+                        </div>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text" ng-model="contact._MiddleName" ng-change="validate();" ng-keypress="keyPressValidator(event)" />
+                        </div>
+                        <div class="col-sm-6">
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            Last Name:
+                        </div>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text" ng-model="contact._LastName" ng-change="validate();" ng-keypress="keyPressValidator(event)" />
+                        </div>
+                        <div class="col-sm-6">
+                            <span ng-show="!isValid._LastName.isValid  && isShowValidationMessages">{{isValid._LastName.errorText}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            E-mail:
+                        </div>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text" ng-model="contact._EmailID" ng-change="validate();" ng-keypress="keyPressValidator(event)" />
+                        </div>
+                        <div class="col-sm-6">
+                            <span ng-show="!isValid._EmailID.isValid  && isShowValidationMessages">{{isValid._EmailID.errorText}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            Primary Phone:
+                        </div>
+                        <div class="col-sm-4">
+                            <input ng-change="formatPhone('_DayPhone');validate();" maxlength="13" class="form-control" type="text" ng-model="contact._DayPhone" />
+                        </div>
+                        <div class="col-sm-6">
+                            <span ng-show="!isValid._DayPhone.isValid  && isShowValidationMessages">{{isValid._DayPhone.errorText}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            Secondary Phone:
+                        </div>
+                        <div class="col-sm-4">
+                            <input ng-change="formatPhone('_EveningPhone');validate();" maxlength="13" class="form-control" type="text" ng-model="contact._EveningPhone" />
+                        </div>
+                        <div class="col-sm-6">
+                            <span ng-show="!isValid._EveningPhone.isValid  && isShowValidationMessages">{{isValid._EveningPhone.errorText}}</span>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+        <div class="modal-footer">
+            <div class="row clearfix">
+                <div class="col-sm-3 ">
+                    <button class="btn btn-default btn-block" ng-click="reset()" type="button">Reset</button>
+                </div>
+                <div class="col-sm-3 ">
+                </div>
+                <div class="col-sm-3 ">
+                    <button ng-click="Save()" class="btn btn-success btn-block" type="submit">Save</button>
+                </div>
+                <div class="col-sm-3 ">
+                    <button ng-click="cancel()" class="btn btn-warning btn-block" type="button">Cancel</button>
+                </div>
+            </div>
+        </div>
+</form>

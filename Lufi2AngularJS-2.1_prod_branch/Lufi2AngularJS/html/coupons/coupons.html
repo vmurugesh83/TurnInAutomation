@@ -1,0 +1,113 @@
+﻿<div class="row" ng-cloak>
+    <div class="col col-sm-2">Scan or Enter Coupon:</div>
+    <div class="col col-sm-2">
+        <form ng-submit="addCoupon(txtCouponInput)">
+            <input ng-model="txtCouponInput" bt-focus="true" class="form-control" type="text" placeholder="" /><input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" />
+        </form>
+    </div>
+    <div class="col col-sm-1">
+    <button ng-disabled="txtCouponInput.length == 0" ng-click="addCoupon(txtCouponInput)" class="btn btn-success">Add Coupon</button>
+    </div>
+    <div class="col col-sm-2">
+    </div>
+    <div class="col col-sm-2">
+        <!--<button ng-click="showPaperless()" class="btn btn-success">Paperless Coupons/Special Discounts</button>-->
+    </div>
+</div>
+<br />
+<br />
+<div class="row" ng-hide="orderPromotionArray">
+    <div class="col-sm-12">
+        <div class="col-sm-12" style="font-weight: bolder; font-size:x-large;">
+            There are no coupons on this order
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col col-sm-12">
+        <table class="table table-condensed table-bordered" ng-show="orderPromotionArray">
+            <thead>
+                <tr>
+                    <th class="col-sm-3">Coupon Code</th>
+                    <th class="col-sm-9">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="promotion in orderPromotionArray" on-finish-render="refreshIScroll()" ng-init="rowIndex = $index">
+                    <td class="col-sm-3" style="font-weight:bolder">
+                        {{promotion._PromotionId}}
+                    </td>
+                    <td ng-show="promotion._PromotionApplied == 'Y'" class="col-sm-7" style="color:Green; font-weight:bolder">
+                        Coupon applies to order
+                        <div class="orderCartDeleteCss pull-right" ng-click="deleteCoupon(rowIndex)"><i class="fa fa-2x fa-times" style="color:rgb(255, 57, 57)"></i></div>
+                    </td>
+                    <td ng-show="promotion._PromotionApplied == 'N'" class="col-sm-7" style="color:Red; font-weight:bolder">
+                        {{promotion._DenialReason}}
+                        <div class="orderCartDeleteCss pull-right" ng-click="deleteCoupon(rowIndex)"><i class="fa fa-2x fa-times" style="color:rgb(255, 57, 57)"></i></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="col-sm-9"></div>
+        <div class="col-sm-3" style="font-weight: bolder; font-size:x-large" ng-show="TotalSavings > 0">
+            Total Savings: {{TotalSavings | currency}}
+        </div>
+    </div>
+</div>
+
+<br />
+<div class="row">
+    <div class="col col-sm-12">
+        <table class="table table-condensed table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th class="col-sm-1">Image</th>
+                    <th class="col-sm-5">Product</th>
+                    <th class="col-sm-1">UPC</th>
+                    <th class="col-sm-1">Qty</th>
+                    <th class="col-sm-1">TKT Price</th>
+                    <th class="col-sm-1">Sale Price</th>
+                    <th class="col-sm-1">Line Total</th>
+                    <th class="col-sm-1">Line Savings</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="orderLine in orderLinesArray"
+                    ng-click="openCouponChargeDetail(orderLine)"
+                    on-finish-render="refreshIScroll()">
+                    <td class="col-sm-1">
+                        <img class="imageSmall" ng-src="{{orderLine.btDisplay.defaultImageUrl}}" />
+                    </td>
+                    <td class="col-sm-5" ng-bind-html="orderLine.btDisplay.defaultItemDescription"></td>
+                    <td class="col-sm-1">
+                        {{orderLine.Item._UPCCode}}
+                    </td>
+                    <td class="col-sm-1">
+                        {{orderLine._OrderedQty | number:0}}
+                    </td>
+                    <td class="col-sm-1">
+                        {{ orderLine.LinePriceInfo._UnitPrice | currency}}
+                    </td>
+                    <td class="col-sm-1">
+                        {{orderLine.LinePriceInfo._RetailPrice | currency}}
+                    </td>
+                    <td class="col-sm-1">
+                        {{(orderLine.LinePriceInfo._btAdjustedPrice | number) * (orderLine._OrderedQty| number) | currency}}
+                    </td>
+                    <td class="col-sm-1">
+                        {{getLineDiscTotal(orderLine) | currency}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col col-sm-11">
+     </div>
+    <div class="col col-sm-1"><button class="btn btn-alert" ng-click="close()">Close</button></div>
+</div>

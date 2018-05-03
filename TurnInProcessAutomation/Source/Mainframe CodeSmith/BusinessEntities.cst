@@ -1,0 +1,89 @@
+<%-- 
+Name: 
+Author: PC Mani
+Description: 
+--%>
+
+<%@ CodeTemplate Language="VB" TargetLanguage="Text" Inherits="ICCHelper" Src="ICCHelper.cst.vb" Debug="True" Description="Template description here." %>
+<%@ Property Name="DB2Connect" Type="System.String" Default="<SQL>" Optional="False" Category="Strings" Description="DB2 Connection string." %>
+<%@ Property Name="Table" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow." %>
+<%@ Property Name="ClassName" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow Formatted." %>
+
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Data.OleDb" %>
+<%@ Import Namespace="System.Collections.Generic" %>
+
+<%
+    Dim DB2ColumnsSQL as string = "SELECT NAME, COLTYPE, LENGTH, SCALE, NULLS, DEFAULT, KEYSEQ FROM SYSIBM.SYSCOLUMNS WHERE TBNAME = '{0}' AND TBCREATOR = 'MRSSI' ORDER BY COLNO"
+    Dim DB2KeyColumnsSQL as string = "SELECT NAME, COLTYPE, LENGTH, SCALE, NULLS, DEFAULT, KEYSEQ FROM SYSIBM.SYSCOLUMNS WHERE TBNAME = '{0}' AND KEYSEQ > 0 AND TBCREATOR = 'MRSSI'  ORDER BY KEYSEQ"
+    Dim DB2NonKeyColumnsSQL as string = "SELECT NAME, COLTYPE, LENGTH, SCALE, NULLS, DEFAULT, KEYSEQ FROM SYSIBM.SYSCOLUMNS WHERE TBNAME = '{0}' AND KEYSEQ = 0 AND TBCREATOR = 'MRSSI' ORDER BY COLNO"
+
+    Dim columnsDT As DataTable
+    Dim keyColumnsDT As DataTable
+    dim nonKeyColumnsDT as DataTable
+    
+ 	columnsDT = GetDataSet(DB2Connect, String.Format(DB2ColumnsSQL, table)).Tables(0) 
+    keyColumnsDT = GetDataSet(DB2Connect, String.Format(DB2KeyColumnsSQL, table)).Tables(0) 
+    nonKeyColumnsDT = GetDataSet(DB2Connect, String.Format(DB2NonKeyColumnsSQL, table)).Tables(0) 
+    
+    dim primaryKeys as new List(Of String)
+    dim foreignKeys as new List(Of String)
+    for each keyRow as DataRow in keyColumnsDT.Rows        
+        if CINT(keyRow("KEYSEQ")) > 0 Then
+            primaryKeys.Add(keyRow("NAME"))            
+        else if keyRow("FOREIGNKEY").ToString().TRIM <> "" Then
+            foreignKeys.Add(keyRow("NAME"))
+        end if
+    next 
+%>
+Imports System.ComponentModel
+
+<Serializable()> _
+Partial Public Class <%=className%>Info
+
+    'Internal member variables
+	<% For i as integer = 0 to columnsDT.rows.Count - 1 %>
+	<% Dim name as string = columnsDT.rows(i)("NAME").ToString.Trim %>
+        Private _<%=ToCamelCase(name)%> As <%=ConvertType(columnsDT.rows(i)("COLTYPE").ToString.Trim, columnsDT.rows(i)("NULLS").ToString.Trim)%>
+	<% Next i %>
+	
+    'Default constructor
+    Public Sub New()
+    End Sub
+
+    'Constructor with initialized values
+	Public Sub New(<% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("NAME").ToString.Trim %>ByVal <%=ToCamelCase(name)%> As <%=ConvertType(columnsDT.rows(i)("COLTYPE").ToString.Trim, columnsDT.rows(i)("NULLS").ToString.Trim)%><% IF i=columnsDT.rows.Count - 1 then %><%Response.Write(")")%><%else%><%Response.Write(", _" & Environment.Newline & "                   ")%><%end if %><% Next i %> 
+    <% For i as integer = 0 to columnsDT.rows.Count - 1 %>
+    <% Dim name as string = columnsDT.rows(i)("NAME").ToString.Trim %>
+        Me._<%=ToCamelCase(name)%> = <%=ToCamelCase(name)%> 
+	<% Next i %>
+    End Sub
+   
+	<% For i as integer = 0 to columnsDT.rows.Count - 1 %>
+	<% Dim name as string = columnsDT.rows(i)("NAME").ToString.Trim %>
+	<% If (table = "TPM130EVT_PCAUD" And name <> "USER_ID") OrElse (name <> "USER_ID" And name <> "MODIFY_TS") Then %>
+    <% for each primaryKey as String in primaryKeys%>
+    <% if name = primaryKey %>
+    <DataObjectField(True)> _
+    <% end if %>
+    <% next %>
+    Public Property <%=ToPascalCase(columnsDT.rows(i)("NAME").ToString.Trim)%>() As <%=ConvertType(columnsDT.rows(i)("COLTYPE").ToString.Trim, columnsDT.rows(i)("NULLS").ToString.Trim)%>
+        Get
+            Return _<%=ToCamelCase(columnsDT.rows(i)("NAME").ToString.Trim)%>
+        End Get
+        Set(ByVal value As <%=ConvertType(columnsDT.rows(i)("COLTYPE").ToString.Trim, columnsDT.rows(i)("NULLS").ToString.Trim)%>)
+            _<%=ToCamelCase(columnsDT.rows(i)("NAME").ToString.Trim)%> = value
+        End Set
+    End Property
+    
+	<% End If %>
+	<% Next i %>    
+End Class
+
+<script runat="template">
+
+
+
+
+
+</script>

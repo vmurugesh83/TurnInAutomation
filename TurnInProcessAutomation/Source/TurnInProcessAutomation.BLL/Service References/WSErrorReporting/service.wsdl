@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://iChoose.test.bonton.com/WebServices/WSErrorReporting\Service.asmx" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://iChoose.test.bonton.com/WebServices/WSErrorReporting\Service.asmx" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update open system error table for reporting. &lt;br&gt;  * All parameters are sent as strings.&lt;br&gt;&lt;br&gt;Input parameters:&lt;br&gt;Path = Request.Path&lt;br&gt;RawURL = Request.RawUrl&lt;br&gt;openSystemApplication = Your App Name&lt;br&gt;LastSQLString = The SQL that caused the error (database_error only)&lt;br&gt;LastSQLString = The SQL Parms that caused the error (database_error only)&lt;br&gt;Machine Name =  Environment.MachineName&lt;br&gt;UserIP = Request.ServerVariables("REMOTE_ADDR")&lt;br&gt;LogonUser = Request.ServerVariables("LOGON_USER")&lt;br&gt;FullExc = The database error or Server.GetLastError().Tostring&lt;br&gt;StackTrace = Server.GetLastError.StackTrace.Tostring (application_error only)&lt;br&gt;OwnershipID = MRSPC and PROD update the Prod Error Report, all others update Test.&lt;br&gt;&lt;br&gt;Output:&lt;br&gt;Success = String.Empty&lt;br&gt;Failure = Failed Update SQL</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://iChoose.test.bonton.com/WebServices/WSErrorReporting\Service.asmx">
+      <s:element name="database_error">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Path" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RawURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="openSystemApplication" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastSQLString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastSQLParms" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MachineName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserIP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LogonUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FullExc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OwnershipID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="database_errorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="database_errorResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="application_error">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Path" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RawURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="openSystemApplication" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StackTrace" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MachineName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserIP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LogonUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FullExc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OwnershipID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="application_errorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="application_errorResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="database_errorSoapIn">
+    <wsdl:part name="parameters" element="tns:database_error" />
+  </wsdl:message>
+  <wsdl:message name="database_errorSoapOut">
+    <wsdl:part name="parameters" element="tns:database_errorResponse" />
+  </wsdl:message>
+  <wsdl:message name="application_errorSoapIn">
+    <wsdl:part name="parameters" element="tns:application_error" />
+  </wsdl:message>
+  <wsdl:message name="application_errorSoapOut">
+    <wsdl:part name="parameters" element="tns:application_errorResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WSErrorReportingSoap">
+    <wsdl:operation name="database_error">
+      <wsdl:input message="tns:database_errorSoapIn" />
+      <wsdl:output message="tns:database_errorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="application_error">
+      <wsdl:input message="tns:application_errorSoapIn" />
+      <wsdl:output message="tns:application_errorSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSErrorReportingSoap" type="tns:WSErrorReportingSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="database_error">
+      <soap:operation soapAction="http://iChoose.test.bonton.com/WebServices/WSErrorReporting\Service.asmx/database_error" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="application_error">
+      <soap:operation soapAction="http://iChoose.test.bonton.com/WebServices/WSErrorReporting\Service.asmx/application_error" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSErrorReportingSoap12" type="tns:WSErrorReportingSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="database_error">
+      <soap12:operation soapAction="http://iChoose.test.bonton.com/WebServices/WSErrorReporting\Service.asmx/database_error" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="application_error">
+      <soap12:operation soapAction="http://iChoose.test.bonton.com/WebServices/WSErrorReporting\Service.asmx/application_error" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSErrorReporting">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update open system error table for reporting. &lt;br&gt;  * All parameters are sent as strings.&lt;br&gt;&lt;br&gt;Input parameters:&lt;br&gt;Path = Request.Path&lt;br&gt;RawURL = Request.RawUrl&lt;br&gt;openSystemApplication = Your App Name&lt;br&gt;LastSQLString = The SQL that caused the error (database_error only)&lt;br&gt;LastSQLString = The SQL Parms that caused the error (database_error only)&lt;br&gt;Machine Name =  Environment.MachineName&lt;br&gt;UserIP = Request.ServerVariables("REMOTE_ADDR")&lt;br&gt;LogonUser = Request.ServerVariables("LOGON_USER")&lt;br&gt;FullExc = The database error or Server.GetLastError().Tostring&lt;br&gt;StackTrace = Server.GetLastError.StackTrace.Tostring (application_error only)&lt;br&gt;OwnershipID = MRSPC and PROD update the Prod Error Report, all others update Test.&lt;br&gt;&lt;br&gt;Output:&lt;br&gt;Success = String.Empty&lt;br&gt;Failure = Failed Update SQL</wsdl:documentation>
+    <wsdl:port name="WSErrorReportingSoap" binding="tns:WSErrorReportingSoap">
+      <soap:address location="http://webservices.test.bonton.com/webservices/wserrorreporting/service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSErrorReportingSoap12" binding="tns:WSErrorReportingSoap12">
+      <soap12:address location="http://webservices.test.bonton.com/webservices/wserrorreporting/service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

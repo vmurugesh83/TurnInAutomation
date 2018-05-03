@@ -1,0 +1,61 @@
+﻿<div>
+    <div class="modal-header">
+        <div class="row" style="font-size:2em">
+            <div class="col-sm-6">New Quantity</div>
+            <div class="col-sm-6 text-right">Available: {{maxAvailable}}</div>
+        </div>
+    </div>
+    <div class="modal-body" id="quantEntryButtonWrap">
+
+        <div class="row">
+            <div class="col-sm-9 col-sm-offset-1">
+                <div class="text-right entryFormat">{{display()}}</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-1">
+                <button class="btn btn-block btn-default" ng-click="input('7')">7</button>
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-block btn-default" ng-click="input('8')">8</button>
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-block btn-default" ng-click="input('9')">9</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-1">
+                <button class="btn btn-block btn-default" ng-click="input('4')">4</button>
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-block btn-default" ng-click="input('5')">5</button>
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-block btn-default" ng-click="input('6')">6</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-1">
+                <button class="btn btn-block btn-default" ng-click="input('1')">1</button>
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-block btn-default" ng-click="input('2')">2</button>
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-block btn-default" ng-click="input('3')">3</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-1">
+                <button class="btn btn-block btn-default" ng-click="input('0')">0</button>
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-block btn-default" ng-click="backspace()"><i class="fa fa-long-arrow-left"></i></button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

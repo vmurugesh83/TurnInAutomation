@@ -1,0 +1,62 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+AdUpdates
+</name>
+</assembly>
+<members>
+<member name="T:AdUpdates.WorkhorseAdminChange">
+	<summary>
+ POCO for the Tally Table in the Admin Database
+ </summary>
+	<remarks></remarks>
+</member><member name="M:AdUpdates.WorkhorseAdminDao.GetChangesForAd(System.Int32)">
+	<summary>
+  Get all changes from the tally table for an ad
+ </summary>
+	<param name="adNumber"> AdNumber requested by Message Broker </param>
+	<returns>List of all changes on the Ad.</returns>
+	<remarks> This function drives the service to generate records for individual changes. </remarks>
+</member><member name="M:AdUpdates.WorkhorseAdminDao.GetFullDataForAd(System.Int32)">
+	<summary>
+ Get full Admin Data for the Ad requested by Message Broker
+ </summary>
+	<param name="adNumber">Ad requested by Message Broker</param>
+	<returns>List of Admin Full Data</returns>
+	<remarks></remarks>
+</member><member name="M:AdUpdates.WorkhorseAdminDao.BuildWorkhorseAdminChange(System.Data.SqlClient.SqlDataReader)">
+	<summary>
+  Populate the WorkhorseAdminChange list.
+ </summary>
+	<param name="reader"> Data for the list</param>
+	<returns> A record for the Workhorse Admin Change List.</returns>
+	<remarks></remarks>
+</member><member name="M:AdUpdates.WorkhorseAdminDao.BuildAdminFullData(System.Data.SqlClient.SqlDataReader)">
+	<summary>
+  Populate the AdminFullData list.
+ </summary>
+	<param name="reader"> Data for the list</param>
+	<returns> A record for the Full Admin Data List.</returns>
+	<remarks></remarks>
+</member><member name="P:AdUpdates.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:AdUpdates.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:AdUpdates.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="T:AdUpdates.AdminFullData">
+	<summary>
+  POCO for Admin Data returned by the CMR_ stored procedures on the Admin Database.
+ </summary>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

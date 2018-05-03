@@ -1,0 +1,79 @@
+﻿<div class="row">
+    <div class="col-sm-8 col-sm-offset-2 backgroundLtGray backgroundLtGrayBox">
+        <div class="row" >
+            <div class="col-sm-12" style="border-bottom-style:solid;border-bottom-color:lightgray;padding-bottom:9px">
+                <div class="textBold">
+                    Alternate Pick / Pack
+                </div>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="row skinnyMarginVert">
+                    <div class="col-sm-12 textBold">1 - Pick Items</div>
+                    <div class="col-sm-5 skinnyMarginVert">
+                        <button class="btn btn-default btn-block" ng-click="navigateToPickListPage()">Pick</button>
+                    </div>
+                </div>
+                <div class="row margintop20 skinnyMarginVert">
+                    <div class="col-sm-12 textBold">2 - Print Packing Receipts</div>
+                    <div class="col-sm-12">
+                        {{batchLength}} Shipment{{(batchLength == "1")? "" :"s" }} Pending Receipt Generation
+                    </div>
+                    <div class="col-sm-5 skinnyMarginVert">
+                        <button class="btn btn-default btn-block" ng-click="printPendingReceipts('Receipt')" ng-disabled="isPrintingPackReceipts">Print Packing Receipts</button>
+                    </div>
+                </div>
+                <div class="row margintop20 skinnyMarginVert">
+                    <div class="col-sm-12 textBold">3 - Confirm Orders</div>
+                    <div class="col-sm-5 skinnyMarginVert">
+                        <button class="btn btn-default btn-block" ng-click="navigateToPackConfirmPage()">Confirm</button>
+                    </div>
+                </div>
+
+ <!--               <div class="row margintop20 skinnyMarginVert">
+                    <div class="col-sm-12 textBold">4 - Give Customer Order and Verify</div>
+                    <form ng-submit="openOrder()">
+                        <div class="col-sm-8 skinnyMarginVert">
+                            <input name="orderNo" ng-model="formInput.orderNo" ng-keypress="numberValidator(event)" type="text" placeholder="Scan or Enter Receipt Barcode" class="form-control" id="scanReceipt" bt-focus="true" maxlength="20" />
+                            <input type="submit" style="display:none" />
+                        </div>
+                        <div class="col-sm-3 skinnyMarginVert">
+                            <button class=" btn btn-default btn-block"> Go </button>
+                        </div>
+                    </form>
+                </div>
+ 
+                <div class="row">
+                    <div class="col-sm-5 skinnyMarginVert">
+                        <button class="btn btn-default btn-block" ng-click="navigateToOrderSearchPage()">Manual Order Search</button>
+                    </div>
+                </div>
+
+ -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3 col-sm-offset-1 margintop20">
+        <button class="btn btn-default btn-block margintop20" ng-click="goBack()">Back</button>
+    </div>
+</div>
+<!--<div class="row clearfix">
+    <div id="wrapper" iscroll class="col-sm-12 column" style="overflow-y: hidden;max-height:320px;min-height:90px;position:relative">
+        <table ng-table="tableParams" class="table table-striped">
+            <tr ng-repeat="shipment in $data">
+                <td iscrolltap="openOrderDetail(shipment.ShipmentLines.ShipmentLine[0]._OrderNo)" data-title="'Order Number'" sortable="'_orderNumber'" ng-class=" {'sorted': params.sorting()['_orderNumber']}">
+                    <a href=""> {{shipment.ShipmentLines.ShipmentLine[0]._OrderNo}} </a>
+                </td>
+                <td data-title="'Customer Name'" sortable="'_customerName'" ng-class=" {'sorted': params.sorting()['_customerName']}">
+                    {{shipment._customerName}}
+                </td>
+                <td data-title="'Quantity'" sortable="'_totalQuantity'" ng-class=" {'sorted': params.sorting()['_totalQuantity']}">
+                    {{shipment._totalQuantity}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>-->

@@ -1,0 +1,9 @@
+﻿<div class="panel-group margin-top-5" id="accordion" role="tablist" aria-multiselectable="true">
+    <div ng-include src="'html/item/facetBrandCollapse.tpl.html'" class="panel panel-default"></div>
+    <div ng-include src="'html/item/facetColorCollapse.tpl.html'" class="panel panel-default"></div>
+    <div ng-show="response.itemSizes.length>0" ng-include src="'html/item/facetSizeCollapse.tpl.html'" class="panel panel-default"></div>
+    <div ng-include src="'html/item/facetFOBCollapse.tpl.html'" class="panel panel-default"></div>
+</div>
+<label ng-click="showAvailableItemsAction()" class="btn btn-success btn active btn-block">
+    <span ng-show="showAvailableItems" class="glyphicon glyphicon-ok" aria-hidden="true"></span> Show Available Items
+</label>

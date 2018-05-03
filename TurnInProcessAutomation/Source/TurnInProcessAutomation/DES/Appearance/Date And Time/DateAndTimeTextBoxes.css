@@ -1,0 +1,52 @@
+/*------------------------------------------------------------------
+Supports the Textboxes from the Peter's Date and Time module.
+The Popups -- Calendar, MonthYearPicker, TimePicker, and ContextMenu --
+are supported in other style sheet files.
+
+NOTE: By default, DES compresses this file to remove comments.
+You can also have it remove most whitespace or omit compression with this key
+in the <appSettings> section of web.config:
+<add key="DES_StyleSheetCompression" value="none|full" />
+-------------------------------------------------------------------*/
+
+/* Property: HelpButtonCssClass
+Help button when using a textual button (HelpButtonImageUrl is unassigned.)
+*/
+.DES_DATHelpButton
+{
+}
+
+/* Mouse pressed effect for elements using DES_DATHelpButton.
+This will be merged with DES_DATHelpButton 
+and override only the attributes specified */
+.DES_DATHelpButtonPressed
+{
+}
+/* Mouse over effect for elements using DES_DATHelpButton.
+This will be merged with DES_DATHelpButton 
+and override only the attributes specified */
+.DES_DATHelpButtonMouseOver
+{
+}
+
+
+/* prevent external img styles from affecting these styles */
+.DES_DATHelpButton img
+{
+   background-color:transparent; 
+   margin-left: 0px; 
+   margin-top: 0px; 
+   margin-bottom:0px; 
+   margin-right:0px;
+}
+/* When the mouse is pressed, this will be merged with DES_DATHelpButton img
+and override only the attributes specified */
+.DES_DATHelpButtonPressed img
+{
+}
+
+/* When the mouse is over, this will be merged with DES_DATHelpButton img
+and override only the attributes specified */
+.DES_DATHelpButtonMouseOver img
+{
+}

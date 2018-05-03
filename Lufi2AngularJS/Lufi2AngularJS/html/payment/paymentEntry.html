@@ -1,0 +1,121 @@
+﻿<div class="modal-header">
+    <h4 class="modal-title">Payment Entry</h4>
+</div>
+<div class="modal-body">
+    <div ng-show="swipping">
+        <div class="row">
+            <div class="col col-sm-3">
+            </div>
+            <div class="col col-sm-6">
+                <img ng-click="disableSwipeCard()" class="ccSwipe" src="assets/images/credit-card.gif" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-sm-4">
+            </div>
+            <div class="col col-sm-6">
+                <img src="assets/images/ajax-loader.gif" /> Waiting for swipe...
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-sm-3">
+            </div>
+            <div class="col col-sm-6">
+                <button ng-click="disableSwipeCard()" class="btn btn-default btn-block">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div ng-show="!swipping">
+        <div ng-show="paymentTypes.length > 0">
+            <div class="row">
+                <div class="col col-sm-3">
+                    Payment Type
+                </div>
+                <div class="col col-sm-6">
+                    <select ng-disabled="ccDisabled" ng-model="ccData.paymentType" ng-change="paymentTypeChange()" class="form-control selectClass" ng-selected="paymentType" ng-options="paymentType as paymentType.label for paymentType in paymentTypes"></select>
+                </div>
+                <div class="col col-sm-3">
+                    <button ng-disabled="ccDisabled" ng-click="swipeCard()" ng-show="!isCsr" class="btn btn-default btn-block">Swipe Card</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-sm-3">
+                    Card Number
+                </div>
+                <form ng-submit="tokenize()">
+                    <div ng-disabled="ccDisabled" ng-click="ccClicked()" class="col col-sm-6">
+                        <input id="cardNumInput" ng-disabled="ccDisabled" ng-blur="tokenize()" ng-keypress="numberValidator(event)" maxlength="16" ng-model="ccData.cardNumber" class="form-control" type="text">
+                    </div>
+                    <button type="submit" hidden></button>
+                </form>
+            </div>
+
+            <div ng-if="showNameField()" class="row">
+                <div class="col col-sm-3">
+                    Name on Card
+                </div>
+                <div class="col col-sm-6">
+                    <input class="form-control" ng-model="ccData.name" type="text">
+                </div>
+            </div>
+            <div ng-if="giftCardPin()" class="row">
+                <div class="col col-sm-3">
+                    Gift Card Pin
+                </div>
+                <div class="col col-sm-6">
+                    <input maxlength="6" ng-keypress="numberValidator(event)" ng-model="ccData.giftCardPin" class="form-control" type="text">
+                </div>
+                <button type="submit" hidden></button>
+                <div class="col col-sm-3">
+                    <button ng-disabled="!isCheckBalanceEnabled()" ng-click="gcBalance()" class="btn btn-default btn-block">Check Balance</button>
+                </div>
+            </div>
+
+            <div ng-if="giftCardPin()" class="row">
+                <hr />
+                <div class="col col-sm-3">
+                    Open to Buy
+                </div>
+                <div class="col col-sm-6">
+                    {{ccData.gcBalance | currency}}
+                </div>
+            </div>
+
+            <div ng-if="showExpCIDFields()" class="row">
+                <div class="col col-sm-3">
+                    Expiration Date
+                </div>
+                <div class="col col-sm-6">
+                    <input placeholder="MMYY" ng-keypress="numberValidator(event)" maxlength="4" ng-model="ccData.exp" class="form-control" type="text">
+                </div>
+                <div class="col col-sm-3" ng-show="isExpError">
+                    <span class="errorSpan">Format: MMYY</span>
+                </div>
+            </div>
+            <div ng-if="showExpCIDFields()" class="row">
+                <div class="col col-sm-3">
+                    CID
+                </div>
+                <div class="col col-sm-4">
+                    <input maxlength="4" ng-keypress="numberValidator(event)" placeholder="<<CVV>>" ng-model="ccData.cid" class="form-control" type="text">
+                </div>
+            </div>
+        </div> 
+        <div ng-hide="paymentTypes.length > 0">
+            <h2 style="text-align: center">No more payment tenders may be added</h2>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col col-sm-4">
+                </div>
+                <div class="col col-sm-4">
+                    <button ng-disabled="!canSave()" ng-click="save()" class="btn btn-success btn-block">Save</button>
+                </div>
+                <div class="col col-sm-4">
+                    <button ng-click="close()" class="btn btn-warning btn-block">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

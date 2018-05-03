@@ -1,0 +1,43 @@
+﻿
+<div class="modal-header">
+    <h4>Address Suggestions</h4>
+    <h5>Please enter complete house number</h5>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table" ng-hide="onlySuggestion">
+            <thead>
+            </thead>
+            <tbody style="overflow-y: hidden">
+                <tr ng-repeat="address in addressPickList.PicklistEntry.slice(0,5)"
+                    on-finish-render="refreshIScroll()">
+                    <td>
+                        {{address.Picklist}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table" ng-show="onlySuggestion">
+            <thead>
+            </thead>
+            <tbody style="overflow-y: hidden">
+                <tr>
+                    <td>
+                        {{addressPickList.PicklistEntry.Picklist}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <div class="col-sm-3 column">
+        <button ng-click="close()" class="btn btn-warning btn-block" type="button">Close</button>
+    </div>
+</div>
+
+
+
+
+

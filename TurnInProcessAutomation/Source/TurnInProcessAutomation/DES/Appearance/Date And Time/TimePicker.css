@@ -1,0 +1,213 @@
+/*------------------------------------------------------------------
+Supports the TimePicker control including inside of a popup.
+Supports the toggle button to popup the TimePicker.
+
+NOTE: By default, DES compresses this file to remove comments.
+You can also have it remove most whitespace or omit compression with this key
+in the <appSettings> section of web.config:
+<add key="DES_StyleSheetCompression" value="none|full" />
+-------------------------------------------------------------------*/
+
+/* Property: CssClass
+Affects its overall appearance including border, main font, and background color.
+Set up a TABLE, IMG, and A tag version of these to transfer
+its settings into those aspects of this control */
+.DES_TPControl
+{
+   border-right: gray 1px solid;
+   border-top: gray 1px solid;
+   border-left: gray 1px solid;
+   border-bottom: gray 1px solid;
+   font-family: Arial;
+   font-size: 8pt;
+   background-color: white;
+}
+
+/* default font for nested tables in the control */
+.DES_TPControl TABLE
+{
+   font-family: Arial;
+   font-size: 8pt;
+   background-color: transparent;
+}
+
+/* used on server side only version, which uses <a> tags for selecting times */
+.DES_TPControl A
+{
+   color:black;
+   text-decoration:none;
+}
+
+/* Property: TimeValueCssClass
+Appearance of selectable time cells.
+(Cells setup with TimePickerTimeValue objects)*/
+.DES_TPTimeCell
+{
+   cursor: pointer; /* w3c cursor */
+   cursor: hand; /* IE cursor */
+   white-space : nowrap;	/* recommended */
+/* remove these comments if you want a border    
+   border-right: #C0C0C0 1px solid;
+   border-top: #C0C0C0 1px solid;
+   border-left: #C0C0C0 1px solid;
+   border-bottom: #C0C0C0 1px solid;
+*/   
+}
+
+/* Property: SelectedTimeValueCssClass
+Appearance of selected time cells.*/
+.DES_TPSelected
+{
+   cursor: pointer;
+   cursor: hand;
+   background-color: #ffd700; /* gold */
+   white-space : nowrap;	/* recommended */
+/* remove these comments if you want a border    
+   border-right: #C0C0C0 1px solid;
+   border-top: #C0C0C0 1px solid;
+   border-left: #C0C0C0 1px solid;
+   border-bottom: #C0C0C0 1px solid;
+*/   
+}
+
+
+/* Property: FillerCssClass
+Appearance of filler cells. (cells setup with a TimePickerFiller object)
+(Fillers can show unselectable time cells.) */
+.DES_TPFillerCell
+{
+   color: gray;
+   white-space : nowrap;	/* recommended */
+/* remove these comments if you want a border    
+   border-right: #C0C0C0 1px solid;
+   border-top: #C0C0C0 1px solid;
+   border-left: #C0C0C0 1px solid;
+   border-bottom: #C0C0C0 1px solid;
+*/   
+}
+
+/* Property: TitleCssClass
+Title rows (rows setup with a TimePickerTitle object )*/
+.DES_TPTitle
+{
+   border-top: black 1px solid;
+   border-bottom: black 1px solid;
+   background-color: #add8e6; /* lightblue */
+   white-space : nowrap;	/* recommended */
+}
+
+/* Property: MouseOverCssClass
+Creates the mouse over effect. It is merged with the existing style on the Time Cell.*/
+.DES_TPMouseOver
+{
+   color: blue;
+   border-right-color: blue;	/* only used when the cell's regular class uses borders */
+   border-top-color: blue;
+   border-left-color: blue;
+   border-bottom-color: blue;
+}
+
+/* Property: HeaderTitleCssClass
+Appearance for the header. Header is shown when the HeaderTitle property is assigned.
+*/
+.DES_TPHeader
+{
+   background-color:transparent;
+   padding-left: 2px;
+   padding-right: 2px;
+}
+
+/* Property: FooterCssClass
+Overall appearance for the footer.
+*/
+.DES_TPFooter
+{
+}
+
+/* Property: FooterButtonCssClass
+Close button, when textual (CloseButtonImageUrl property is unassigned).
+Provide its borders, font and background. */
+.DES_TPCommandButton
+{
+   border-right: #E0E0E0 thin outset; /* lightgray */
+   border-top: #E0E0E0 thin outset;
+   border-left: #E0E0E0 thin outset;
+   border-bottom: #E0E0E0 thin outset;
+   background-color: #add8e6; /* lightblue */
+   font-size: 8pt;
+   font-family: Arial;
+   color: black;
+   cursor: pointer;
+   cursor: hand;
+/* margins give space between the button and the container */   
+   margin-left: 5px;
+   margin-right:5px;
+   margin-top:2px;
+   margin-bottom:5px;
+}
+
+/* Mouse pressed effect for elements using DES_TPCommandButton.
+This will be merged with DES_TPCommandButton 
+and override only the attributes specified */
+.DES_TPCommandButtonPressed
+{
+   border-right: #E0E0E0 thin inset; /* lightgray */
+   border-top: #E0E0E0 thin inset;
+   border-left: #E0E0E0 thin inset;
+   border-bottom: #E0E0E0 thin inset;
+}
+
+/* Mouse over effect for elements using DES_TPCommandButton.
+This will be merged with DES_TPCommandButton 
+and override only the attributes specified */
+.DES_TPCommandButtonMouseOver
+{
+   color: blue;
+}
+
+/* --- POPUP TIMEPICKER TOGGLE BUTTON --- */
+
+/* Property: PopupTimePicker.CssClass
+Popup TimePicerk toggle button.
+Used by you set use a textual button by setting ToggleType=Text */
+.DES_TPPopup
+{
+}
+
+/* Mouse pressed effect for elements using DES_TPPopup.
+This will be merged with DES_TPPopup 
+and override only the attributes specified */
+.DES_TPPopupPressed
+{
+   color: #00008b;  /* darkblue */
+}
+
+/* Mouse over effect for elements using DES_TPPopup.
+This will be merged with DES_TPPopup 
+and override only the attributes specified */
+.DES_TPPopupMouseOver
+{
+   color: blue;
+}
+
+/* prevent external img styles from affecting these styles */
+.DES_TPPopup img
+{
+   background-color:transparent; 
+   margin-left: 0px; 
+   margin-top: 0px; 
+   margin-bottom:0px; 
+   margin-right:0px;
+}
+/* When the mouse is pressed, this will be merged with DES_TPPopup img
+and override only the attributes specified */
+.DES_TPPopupPressed img
+{
+}
+
+/* When the mouse is over, this will be merged with DES_TPPopup img
+and override only the attributes specified */
+.DES_TPPopupMouseOver img
+{
+}
+

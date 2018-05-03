@@ -1,0 +1,54 @@
+<%-- 
+Name: 
+Author: Kimberly Lehman
+Description: 
+--%>
+
+<%@ CodeTemplate Language="VB" TargetLanguage="Text" Src="ICCHelper.cst.vb" Inherits="ICCHelper" Debug="True" Description="Template description here." %>
+<%@ Property Name="SQLServerConnect" Type="System.String" Default="<SQL>" Optional="False" Category="Strings" Description="SQL Server Connection string." %>
+<%@ Property Name="Table" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow." %>
+<%@ Property Name="className" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow Formatted." %>
+<%@ Property Name="projectName" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow Formatted." %>
+
+<%@ Assembly Name="System.Data" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Data.OleDb" %>
+<%@ Import Namespace="System.Collections.Generic" %>
+<%
+
+    Dim ColumnsSQL as string = "select COLUMN_NAME, DATA_TYPE, IS_NULLABLE, COLUMN_DEFAULT from information_schema.columns where table_name = '{0}' order by ordinal_position"
+    Dim PrimaryKeyColumnsSQL as string = "SELECT Col.Column_Name as COLUMN_NAME from INFORMATION_SCHEMA.TABLE_CONSTRAINTS Tab, INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE Col WHERE Col.Constraint_Name = Tab.Constraint_Name AND Col.Table_Name = Tab.Table_Name AND Constraint_Type = 'PRIMARY KEY' AND Col.Table_Name = '{0}'"
+    Dim ForeignKeyColumnsSQL as string = "SELECT Col.Column_Name as COLUMN_NAME from INFORMATION_SCHEMA.TABLE_CONSTRAINTS Tab, INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE Col WHERE Col.Constraint_Name = Tab.Constraint_Name AND Col.Table_Name = Tab.Table_Name AND Constraint_Type = 'FOREIGN KEY' AND Col.Table_Name = '{0}'"
+
+    Dim columnsDT As DataTable
+    Dim primaryKeyColumnsDT As DataTable
+    Dim foreignKeyColumnsDT As DataTable
+    
+ 	columnsDT = GetDataSet(SQLServerConnect, String.Format(ColumnsSQL, table)).Tables(0) 
+    primaryKeyColumnsDT = GetDataSet(SQLServerConnect, String.Format(PrimaryKeyColumnsSQL, table)).Tables(0) 
+	foreignKeyColumnsDT = GetDataSet(SQLServerConnect, String.Format(ForeignKeyColumnsSQL, table)).Tables(0) 
+%>
+Imports System.Data.SqlClient
+Imports <%=projectName%>.BusinessEntities
+Imports <%=projectName%>.Factory.Common
+
+Public Class <%=className%>Factory
+
+    Public Shared Function Construct(ByVal reader As SqlDataReader) As <%=className%>Info
+	 Dim <%=ToCamelCase(className)%>Info As New <%=className%>Info()
+
+        With <%=ToCamelCase(className)%>Info
+<% For i as integer = 0 to columnsDT.rows.Count - 1 %>
+        <% Dim colType as string = columnsDT.rows(i)("DATA_TYPE").ToString.Trim %>
+        <% Dim name as string = columnsDT.rows(i)("COLUMN_NAME").ToString.Trim %>
+            .<%=ToPascalCase(name)%> = <%=TypeCast("ReadColumn(reader, """ & name & """)",colType, "N")%>
+<% Next i %>    
+        End With
+        
+        Return <%=ToCamelCase(className)%>Info
+    End Function
+End Class
+
+<script runat="template">
+
+</script>

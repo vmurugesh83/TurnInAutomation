@@ -1,0 +1,44 @@
+﻿<form name="loginForm" ng-submit="login()">
+    <div class="modal-header">
+        <h4 class="modal-title">Login</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-3">
+                Store Number:
+            </div>
+            <div class="col-sm-9">
+                <input ng-keypress="numberValidator(event)" class="form-control" type="text" value="101" ng-model="storeNumber" required/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                Associate Id:
+            </div>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" ng-model="associateId" required/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                Password:
+            </div>
+            <div class="col-sm-9">
+                <input class="form-control" type="password" ng-model="password" required/>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-3">
+                <button ng-disabled="!loginForm.$valid" class="btn btn-success btn-block" type="submit">Submit</button>
+            </div>
+            <div class="col-sm-3">
+                <button ng-click="cancel()" type="reset" class="btn btn-danger btn-block">Cancel</button>
+            </div>
+        </div>
+    </div>
+</form>
+

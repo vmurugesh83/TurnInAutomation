@@ -1,0 +1,769 @@
+﻿/* START OF -- CSS for 800 x 600 resolution */
+/*hr {
+    margin-top: 7px;
+    margin-bottom: 7px;
+}*/
+.breadcrumb {
+  padding: 3px 15px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+
+.topPad3 {
+    padding-top: 3px;
+}
+/* END OF -- CSS for 800 x 600 resolution */
+.skinnyMarginVert{
+    margin-top: 9px;
+    margin-bottom: 9px;
+}
+.margintop100 {
+  margin-top: 100px;
+}
+
+.margintop20 {
+  margin-top: 20px;
+}
+
+.marginTopBottom10 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.scrollResults {
+  max-height: 398px;
+  overflow-y: scroll;
+}
+
+.autoscrollResults {
+  max-height: 398px;
+  overflow-y: auto;
+}
+
+.itemResultsTitle {
+  font-size: larger;
+  font-weight: bold;
+  color: green;
+}
+
+.itemResultsPrice {
+  color: red;
+  font-weight: bold;
+  font-size: large;
+}
+
+.marginVertical2 {
+  margin-bottom: 6px;
+}
+
+.green {
+  color: green;
+}
+
+.ltgrey {
+  color: lightgrey;
+}
+
+.scrollMoreColors {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.facetScroll {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.itemDetailCartBox {
+  background-color: #f5f5dc;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px grey;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.breadcrumb li a,
+.breadcrumb > li + li:before {
+  color: green;
+  font-weight: bold;
+}
+
+.marginBottom12 {
+  margin-bottom: 12px;
+}
+
+.customerInfoTipBox {
+  background-color: white;
+  border-style: solid;
+  padding: 5px;
+  margin: 20px;
+  border-color: lightgrey;
+  border-width: thin;
+}
+
+.customerInfoSearchBox {
+  background-color: #f5f5dc;
+  border-radius: 10px;
+  border-style: solid;
+  padding: 5px;
+  border-color: lightgrey;
+  border-width: thin;
+}
+
+.customerInfoCreateBox {
+  border-bottom: thin solid lightgrey;
+  border-left: thin solid lightgrey;
+  border-right: thin solid lightgrey;
+  padding: 5px;
+  border-radius: 0 0 10px 10px;
+}
+
+.shippingSelectionAddressBox {
+  background-color: #00e5ff;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: lightgrey;
+  border-width: thin;
+}
+
+.shippingSelectionOrderLineEven {
+  padding-top: 4px;
+  background-color: #fff;
+  overflow-y: hidden;
+    border-top: 2px solid #539BE8;
+}
+
+.shippingSelectionOrderLineOdd {
+  padding-top: 4px;
+  background-color: #f9f9f9;
+  overflow-y: hidden;
+    border-top: 2px solid #539BE8;
+}
+
+.shippingSelectionChecked {
+  -webkit-box-shadow: inset 0px 0px 4px 7px rgba(59,72,162, .9);
+    -moz-box-shadow: inset 0px 0px 4px 7px rgba(59,72,162, .9);
+    box-shadow: inset 0px 0px 4px 7px rgba(59,72,162, .9);
+}
+
+.couponOrderLineEven {
+  background-color: #f9f9f9;
+}
+
+.couponOrderLineOdd {
+  background-color: white;
+}
+
+.selectedItemDetail {
+    background-color: dimgrey;
+    color: white;
+}
+
+.ng-cloak {
+    display: none !important;
+}
+
+#loadDIV {  
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100000;
+ }
+
+#loadAuth {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100001;
+}
+
+.ajax-loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -32px; /* -1 * image width / 2 */
+    margin-top: -32px; /* -1 * image height / 2 */
+    display: block;  
+    background: transparent;   
+}
+
+.font700 {
+    font-weight: 700;
+}
+
+.shippingSelectButton {
+    background-color: #3D649D;
+    padding: 7px 14px;
+    /*padding:3px 7px;*/
+}
+
+.shippingGroupSelectButton {
+    background-color: #3D649D;
+    border: 5px solid white;
+    height: 45px;
+    width: 48px;
+    border-radius: 7px;
+    color: white;
+}
+
+.shippingLineSelectButton {
+    background-color: white;
+    border: 5px solid #3D649D;
+    height: 45px;
+    width: 48px;
+    border-radius: 7px;
+    color: #3D649D;
+}
+
+.shippingSelectAllBlock {
+    display: block;
+    width: 100%;
+}
+
+.bulletPad {
+    padding: 0px 4px;
+}
+
+.slimButton {
+    padding: 0px;
+}
+
+.shippingSelectGroupHeader {
+    background-color: #00e5ff;
+    padding: 3px 0;
+}
+
+.shippingOuterBorder {
+    border: 2px solid #539BE8;
+}
+
+.shippingCollapseIcon {
+    color: #539BE8;
+}
+
+.shippingSelectGroupHeaderCollapsed {
+    background-color: #00e5ff;
+    padding: 3px 0;
+}
+
+.imageSmall {
+    height: 83px;
+}
+
+.scrollDefaultTable {
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.textEllipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.closePadCol {
+  padding-left: 5px;
+  padding-right: 0px;
+}
+
+.marginLeft36 {
+    margin-left: 36px;
+}
+
+.bottomBorderRounded {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.sitefooter-wrap {
+  position: fixed;
+  bottom: 0;
+  z-index: 10011;
+  width: inherit;
+    height: 25px;
+    background-color: #f5f5f5;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: lightgray;
+  padding: 3px 15px;
+}
+
+#content-wrapper {
+  padding-bottom: 32px;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.selectable {
+    -webkit-touch-callout: unset;
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+#containerEasyScroller {
+    background-color: #FFF;
+    border: 5px solid #000;
+    height: 480px;
+    margin: 10% auto 0 auto;
+    overflow: hidden;
+    width: 80%;
+    position: relative;
+}
+
+#contentEasyScroller {
+    padding: 10px;
+    position: absolute;
+}
+
+#CustomerSearchWrapper {
+    z-index: 1;
+    height: 325px;
+    overflow:hidden;
+}
+
+#CustomerDetailWrapper {
+    z-index: 1;
+    height: 200px;
+    overflow: hidden;
+}
+
+#paymentOrderCartWrapper {
+    z-index: 1;
+    height: 250px;
+    overflow: hidden;
+}
+
+
+#ItemSearchWrapper {
+    z-index: 1;
+    height: 462px;
+    overflow: hidden;
+}
+
+.facetWrapper {
+    z-index: 1;
+    height: 250px;
+    overflow: hidden;
+}
+
+.facetSelectionColor {
+    color: red;
+}
+
+.margin-top-5 {
+    margin-top: 5px;
+}
+
+.margin-top-3 {
+    margin-top: 5px;
+}
+
+.margin-left-5 {
+    margin-left: 5px;
+}
+
+.margin-right-5 {
+    margin-right: 5px;
+}
+
+.margin-5 {
+    margin: 5px;
+}
+/**checkout progress tracker START**/
+ol.progtrckr {
+    margin-bottom: 0.8em;
+    padding: 0;
+    list-style-type: none;
+    margin-bottom: 15px;
+}
+
+    ol.progtrckr li {
+    display: inline-block;
+    text-align: center;
+    line-height: 3.1em;
+}
+/* REFERENCE PERCENTAGES
+    ol.progtrckr[data-progtrckr-steps="2"] li { width: 49%; }
+    ol.progtrckr[data-progtrckr-steps="3"] li { width: 33%; }
+    ol.progtrckr[data-progtrckr-steps="4"] li { width: 24%; }
+    ol.progtrckr[data-progtrckr-steps="5"] li { width: 19%; }
+    ol.progtrckr[data-progtrckr-steps="6"] li { width: 16%; }
+    ol.progtrckr[data-progtrckr-steps="7"] li { width: 14%; }
+    ol.progtrckr[data-progtrckr-steps="8"] li { width: 12%; }
+    ol.progtrckr[data-progtrckr-steps="9"] li { width: 11%; }
+*/
+ol.progtrckr.progtrckr4 li { width: 24%;}
+ol.progtrckr.progtrckr4 li.first { width: 24%; margin-left:2%;}
+ol.progtrckr.progtrckr5 li { width: 19%;}
+ol.progtrckr.progtrckr5 li.first { width: 19%; margin-left:2%;}
+ol.progtrckr.progtrckr6 li { width: 16%;}
+ol.progtrckr.progtrckr6 li.first { width: 16%; margin-left:2%;}
+ol.progtrckr li a:visited{
+    color:darkred;
+}
+
+ol.progtrckr li.progtrckr-done {
+      color: darkred;
+  font-size: 1.3em;
+  border-bottom: 7px solid yellowgreen;
+}
+
+    ol.progtrckr li.active a:visited {
+        color: orange;
+}
+
+    ol.progtrckr li.active a {
+        font-size: 1.1em;
+}
+
+    ol.progtrckr li a {
+    text-decoration: none;
+}
+
+ol.progtrckr li.active.progtrckr-done {
+      color: orange;
+}
+
+ol.progtrckr li.progtrckr-todo {
+    color: silver; 
+    font-size: 1.3em;
+    border-bottom: 7px solid silver;
+}
+
+ol.progtrckr li:after {
+    content: "\00a0\00a0";
+}
+
+ol.progtrckr li:before {
+    position: relative;
+  bottom: -2.5em;
+  float: left;
+  left: 50%;
+  line-height: 1em;
+}
+
+ol.progtrckr li.progtrckr-done:before {
+    content: "\f00c";
+  color: white;
+  background-color: yellowgreen;
+  height: 1.6em;
+  width: 1.6em;
+  line-height: 1.5em;
+  border: none;
+  border-radius: 1.6em;
+        font-family: fontAwesome;
+}
+
+ol.progtrckr li.active.progtrckr-done:before {
+    content: "\f00c";
+    color: black;
+    background-color: yellow;
+    height: 1.6em;
+    width: 1.6em;
+    line-height: 1.3em;
+    border: black;
+    border-radius: 0;
+        font-family: fontAwesome;
+    border-style: solid;
+}
+
+ol.progtrckr li.progtrckr-todo:before {
+  content: "\039F";
+  color: silver;
+  background-color: white;
+  font-size: 2em;
+  bottom: -1.2em;
+}
+/**checkout progress tracker END**/
+
+.pagerFix {
+    margin-top: -25px;
+}
+
+.orderCartDeleteCss {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 0 13px;
+    cursor: pointer;
+}
+
+.zeroInventoryGroup {
+    color: gray;
+}
+
+.facetDeSelectButton {
+    min-width: 100px;
+}
+
+.stripedRow {
+    background-color: #F2F2F2;
+    border-top: 1px solid #DDD;
+    padding-top: 3px;
+}
+
+.nonstripedRow {
+    border-top: 1px solid #DDD;
+    padding-top: 3px;
+}
+
+.stripedRowFirst {
+    border-top-style: none;
+}
+
+.cartTable {
+    border-bottom: 2px solid lightgray;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+.ng-pageslide {
+    background-color: #CAE6FF;
+    border-left-style: solid;
+    border-left-color: grey;
+}
+
+.sliderButton {
+    padding: 5px 5px;
+    margin-top: 10px;
+    font-size: 1.5em;
+}
+
+.cartLineHighlight {
+    background-color: darkgray;
+}
+
+.sliderErrorDiv {
+    background-color: #d9534f;
+    font-size: 1.1em;
+    color: #fff;
+    text-align: center;
+    border-radius: .25em;
+    margin-top: .5em;
+}
+
+.ccSwipe {
+    width: 265px;
+    height: 130px;
+}
+
+.iconUnset {
+    color: lightgray;
+}
+
+.iconSet {
+    color: green;
+}
+
+.customerPopup, .cartPopup {
+    float: left;
+    position: absolute;
+    z-index: 10001;
+    background-color: white;
+    padding: 9px;
+    border-radius: 14px;
+    border-width: 1px;
+    border-color: lightgray;
+    border-style: solid;
+}
+
+.customerPopup {
+    right: 15px;
+    min-width: 300px;
+}
+
+.cartPopup {
+    max-height: 500px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    left: 15px;
+}
+
+.textBold {
+    font-weight: 600;
+}
+
+.confirmedWidth {
+    width: 1300px;
+}
+
+.selectClass {
+    font-size: 20px;
+    padding: 2px 10px;
+}
+
+.errorSpan {
+    background-color: #d9534f;
+    font-size: 1.1em;
+    color: #fff;
+    text-align: center;
+    border-radius: .25em;
+    margin-top: .5em;
+    padding: 5px;
+ }
+
+.returnsTable {
+    overflow-y: hidden;
+    max-height: 200px;
+    min-height: 90px;
+    position: relative;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.returnsOnly {
+    overflow-y: hidden;
+    max-height: 400px;
+    min-height: 90px;
+    position: relative;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.customerSearchAddress {
+    border-bottom-style: solid;
+    border-width: 1px;
+    border-bottom-color: lightgray;
+}
+
+.customerPopupAddress {
+    width: 210px;
+    margin-bottom: 0px;
+}
+
+.customerDetailsAddressTab {
+    margin-bottom: 5px;
+}
+
+.customerDetailsHeaderAddress {
+        max-width: 215px;
+}
+
+.homeDarkGray {
+    color: #7F7F7F;
+}
+
+.backgroundLtGray {
+    background-color: #F5F5F5;
+}
+
+.backgroundLtGrayBox {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #CFCFCF;
+}
+
+.orderSearchTooltip {
+    position: absolute;
+    z-index: 4;
+    background-color: #5F5F5F;
+    color: white;
+    width: 100%;
+    left: 92%;
+    top: -35px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.redInput {
+    background-color: #FFCDCD;
+}
+
+.yellowInput {
+    background-color: #FFFFCC;
+}
+
+.orderSearchConfirm {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 41px;
+}
+
+.paymentSummaryConfirm {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 30px;
+    font-size: 1.5em;
+}
+
+.searchRowMargin {
+    margin-bottom: 7px;
+}
+
+#wrapper thead {
+    background-color: white;
+}
+
+#ItemDetailWrapper thead {
+    background-color: white;
+}
+
+button[disabled] {
+    background-color: gray !important;
+    border-color: darkgray !important;
+}
+
+btn[disabled] {
+    background-color: gray !important;
+    border-color: darkgray !important;
+}
+
+.detail-page.ng-hide-remove {
+    -webkit-transition: all linear .5s;
+    -moz-transition: all linear .5s;
+    -o-transition: all linear .5s;
+    transition: all linear .5s;
+    display: block !important;
+}
+
+.detail-page.ng-hide-add.ng-hide-add-active,
+.detail-page.ng-hide-remove {
+    opacity: 0;
+}
+
+.detail-page.ng-hide-add,
+.detail-page.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+}
+
+.sorted {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.ngFadeIn.ng-hide-remove{
+    transition-property: opacity;
+    transition-duration: 1.5s;
+
+}
+.ngFadeIn.ng-hide{
+    opacity: 0;
+    font-size: 1em;
+    padding-left: 40px;
+}
+.ngFadeIn{
+    opacity: 1;
+    font-size: 1.5em;
+    padding-left: 40px;
+}
+.shippingBadAddressRed,.shippingBadAddressRed:hover{
+    background-image: linear-gradient(to bottom,#ffc3c3 0,#FF6060 100%);
+}
+.shippingBadAddressRed:hover{
+    background-image: linear-gradient(to top,#ffc3c3 0,#FF6060 100%);
+    background-position:0;
+}

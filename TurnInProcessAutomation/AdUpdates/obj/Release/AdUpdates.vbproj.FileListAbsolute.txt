@@ -1,0 +1,10 @@
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdates\bin\AdUpdates.dll.config
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdates\bin\AdUpdates.dll
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdates\bin\AdUpdates.pdb
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdates\bin\AdUpdates.xml
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdates\bin\log4net.dll
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdates\obj\Release\AdUpdates.Resources.resources
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdates\obj\Release\AdUpdates.vbproj.GenerateResource.Cache
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdates\obj\Release\AdUpdates.dll
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdates\obj\Release\AdUpdates.xml
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdates\obj\Release\AdUpdates.pdb

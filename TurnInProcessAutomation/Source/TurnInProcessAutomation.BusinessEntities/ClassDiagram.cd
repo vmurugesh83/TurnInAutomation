@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="TurnInProcessAutomation.BusinessEntities.ACodeInfo" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAgAAAAAAAACAAACAAAAAAAIAA=</HashCode>
+      <FileName>ACodeInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.AdInfoInfo" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gRCgAgThYGGAoAAQCJ4MAIUCCQkABIWahafEDDVVEEA=</HashCode>
+      <FileName>AdInfoInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.AdminImageNotesInfo" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAEQAAAAQAIAAAAAAAAABAAAAACA=</HashCode>
+      <FileName>AdminImageNotesInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.AdPageInfo" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAoAIAACAAAAAAEAEABAIIAgAAAAABAAECAAAAAA=</HashCode>
+      <FileName>AdPageInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.BatchInfo" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>qACAAAAAAABAAAAIECAQAAgACAAAAAAAAAAIQIABQAA=</HashCode>
+      <FileName>BatchInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.BrandInfo" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAACAAAAAQAAA=</HashCode>
+      <FileName>BrandInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.BuyerInfo" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAIAAAAAAQAAAAAQAAEAAIBAAIE=</HashCode>
+      <FileName>BuyerInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.CFGInfo" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAgAAAAAAAAAAAAAARAQAQBAAAAAAAAAAAAAAAAEEA=</HashCode>
+      <FileName>CFGInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.ClassInfo" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAgAAAAAgAAAAAAAAQAAAAAIAAAAAAAAAIAEAA=</HashCode>
+      <FileName>ClassInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.ClrSizLocLookUp" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAgAAAAAAAAAAIAAAgSAAAAAA=</HashCode>
+      <FileName>ClrSizLocLookUp.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.CMGInfo" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAACAAAAAAgAAAAARAAAQBAAAAAAAAAAAAAAAIEAA=</HashCode>
+      <FileName>CMGInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.CRGInfo" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAQAAAAAAAgAACAAQAAAABAAAAAAAAAAABAAAAEAA=</HashCode>
+      <FileName>CRGInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.CtlgAdPgInfo" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ECQAAgAgACqEAYQIAABACCATAkAABAJEoAAEnKCIBAI=</HashCode>
+      <FileName>CtlgAdPgInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.DCTransferReportInfo" Collapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kGANANACItAC0oKCgEhBrwQAGQOIJBhQexUwloQJLcQ=</HashCode>
+      <FileName>DCTransferReportInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.DepartmentInfo" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAARAAAAAAAAAAIQAAAAAAAA=</HashCode>
+      <FileName>DepartmentInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.ECommPrioritizationInfo" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>oQECMFAeGBUnVAiAFQYNj1RYmashDkHEIjXFuEJcSb4=</HashCode>
+      <FileName>ECommPrioritizationInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.EcommSetupClrSzInfo" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BXCBkDQECIRIDBhIoQKgQGRE4AMAAhVYArB3sEkhQhQ=</HashCode>
+      <FileName>EcommSetupClrSzInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.EcommSetupCreateInfo" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ZHSCAD4JFA3wJAOtAGtrIVYAjQQKCAEK2vkIAA9/0HY=</HashCode>
+      <FileName>EcommSetupCreateInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.ECommTunInMeetCreateInfo" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CJKCWAEIFCXTCQoDKCpBAHe3pXiRCAF4ArFHkgXb0TY=</HashCode>
+      <FileName>ECommTunInMeetCreateInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.ECommTurnInQueryToolInfo" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>VDQGIAIYAJmiHEIBEAwRAmAWOALJAE3wAkM5xEACkDQ=</HashCode>
+      <FileName>ECommTurnInQueryToolInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.EMMInfo" Collapsed="true">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>EMMInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.FeatureIDInfo" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAIABAAAAQEAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>FeatureIDInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.FOBInfo" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAgAQAIAAAEAQAAAAQAAAABAAAAAAAAAQABAAAAAAA=</HashCode>
+      <FileName>FOBInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.ImageInfo" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAACAABAAAAAAAAAAQAAAAAAECgAABAAQAACA=</HashCode>
+      <FileName>ImageInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.ImageSuffixInfo" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAEAAAAAAAAAAAAAAACAABAAgA=</HashCode>
+      <FileName>ImageSuffixInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.IsTurnedIn" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABgQAAAABAAAAAAAABAAIAAAAAIABAAAAIAAgAQAQ=</HashCode>
+      <FileName>IsTurnedInInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.ItemDisposition" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ItemDisposition.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.LabelInfo" Collapsed="true">
+    <Position X="11" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAEAAAAAAAAAAQAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>LabelInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.LocationInfo" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAACAIAIQAAAAICAAACABAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>LocationInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.MerchandiseSample">
+    <Position X="2.5" Y="5.75" Width="3.25" />
+    <Members>
+      <Field Name="_Disposition" Hidden="true" />
+      <Field Name="_ExpediteRTV" Hidden="true" />
+      <Field Name="_RTVDate" Hidden="true" />
+      <Field Name="_SampleRequestedDate" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BkABBAAMgEwwgMQhAGpQAAACGEAAIABC5AALgQwAICQ=</HashCode>
+      <FileName>MerchandiseSample.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.RouteFrmAdInfo" Collapsed="true">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>RouteFrmAdInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.SellSeasonInfo" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAIAAAAAAAAAAAAACAAAAAgAAAAABAAAAAAA=</HashCode>
+      <FileName>SellSeasonInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.SellYearInfo" Collapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SellYearInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.SnapshotImage" Collapsed="true">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAgAAAAAAAAAAAACAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>SnapshotImage.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.SnapshotURL" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAACABAAAAAAIAAABAAAAAEACE=</HashCode>
+      <FileName>SnapshotURL.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.SubClassInfo" Collapsed="true">
+    <Position X="7.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAIAAAgAAAAAgAAABAAAAQEAAAAAAACAAAAAAAAAAQ=</HashCode>
+      <FileName>SubClassInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.TEC998PARMInfo" Collapsed="true">
+    <Position X="12.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACABACQA=</HashCode>
+      <FileName>TEC998PARMInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.TMS900PARAMETERInfo" Collapsed="true">
+    <Position X="5.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAABAhAAAAAAAAAAEAACIAAAAAAAAAAAAA=</HashCode>
+      <FileName>TMS900PARAMETERInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.VendorInfo" Collapsed="true">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BACAAAIAACAQAAAQAAAAIAAAAAEAAAAAAAAAIAAIAIA=</HashCode>
+      <FileName>VendorInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.VendorStyleInfo" Collapsed="true">
+    <Position X="9.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAQAAAIAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>VendorStyleInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.WebCat" Collapsed="true">
+    <Position X="11" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAABAAAQCAAAAAAAAAAAABAECEAgAAAARAAAAEAAgA=</HashCode>
+      <FileName>WebCatInfo.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnInProcessAutomation.BusinessEntities.My.MySettings" Collapsed="true">
+    <Position X="10.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Module Name="TurnInProcessAutomation.BusinessEntities.My.Resources.Resources" Collapsed="true">
+    <Position X="7.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Module>
+  <Module Name="TurnInProcessAutomation.BusinessEntities.My.MySettingsProperty" Collapsed="true">
+    <Position X="0.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Module>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

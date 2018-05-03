@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{014F9B48-D9CE-48F6-9C2B-877C127B604F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TurnInProcessAutomation.BusinessEntities</RootNamespace>
+    <AssemblyName>TurnInProcessAutomation.BusinessEntities</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>On</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>TurnInProcessAutomation.BusinessEntities.xml</DocumentationFile>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>TurnInProcessAutomation.BusinessEntities.xml</DocumentationFile>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Address.vb" />
+    <Compile Include="AdInfoInfo.vb" />
+    <Compile Include="AdminImageNotesInfo.vb" />
+    <Compile Include="AdPageInfo.vb" />
+    <Compile Include="BatchInfo.vb" />
+    <Compile Include="BrandInfo.vb" />
+    <Compile Include="CFGInfo.vb" />
+    <Compile Include="DMMInfo.vb" />
+    <Compile Include="EcommFabOrigInfo.vb" />
+    <Compile Include="CopyPrioritizationInfo.vb" />
+    <Compile Include="GMMInfo.vb" />
+    <Compile Include="GXSCatalogInfo.vb" />
+    <Compile Include="GXSCFGInfo.vb" />
+    <Compile Include="GXSImageInfo.vb" />
+    <Compile Include="GXSProductInfo.vb" />
+    <Compile Include="GXSStyleSkuInfo.vb" />
+    <Compile Include="GXSUPCInfo.vb" />
+    <Compile Include="ItemDisposition.vb" />
+    <Compile Include="GXSCopyViewInfo.vb" />
+    <Compile Include="MerchandiseSample.vb" />
+    <Compile Include="CMGInfo.vb" />
+    <Compile Include="LocationInfo.vb" />
+    <Compile Include="DCTransferReportInfo.vb" />
+    <Compile Include="CRGInfo.vb" />
+    <Compile Include="ECommPrioritizationInfo.vb" />
+    <Compile Include="ECommTunInMeetCreateInfo.vb" />
+    <Compile Include="ECommTurnInQueryToolInfo.vb" />
+    <Compile Include="EMMInfo.vb" />
+    <Compile Include="FeatureIDInfo.vb" />
+    <Compile Include="FOBInfo.vb" />
+    <Compile Include="ImageInfo.vb" />
+    <Compile Include="ImageSuffixInfo.vb" />
+    <Compile Include="ProductCategoryInfo.vb" />
+    <Compile Include="RouteFrmAdInfo.vb" />
+    <Compile Include="ClassInfo.vb" />
+    <Compile Include="ACodeInfo.vb" />
+    <Compile Include="BuyerInfo.vb" />
+    <Compile Include="ClrSizLocLookUp.vb" />
+    <Compile Include="EcommSetupClrSzInfo.vb" />
+    <Compile Include="SampleRequestInfo.vb" />
+    <Compile Include="SnapshotImage.vb" />
+    <Compile Include="SnapshotURL.vb" />
+    <Compile Include="TEC998PARMInfo.vb" />
+    <Compile Include="TTUConfig.vb" />
+    <Compile Include="WebCatInfo.vb" />
+    <Compile Include="TMS900PARAMETERInfo.vb" />
+    <Compile Include="LabelInfo.vb" />
+    <Compile Include="IsTurnedInInfo.vb" />
+    <Compile Include="EcommSetupCreateInfo.vb" />
+    <Compile Include="VendorStyleInfo.vb" />
+    <Compile Include="SellSeasonInfo.vb" />
+    <Compile Include="SellYearInfo.vb" />
+    <Compile Include="VendorInfo.vb" />
+    <Compile Include="SubClassInfo.vb" />
+    <Compile Include="DepartmentInfo.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="CtlgAdPgInfo.vb" />
+    <Compile Include="WebcatProductInfo.vb" />
+    <Compile Include="WorkhorseRequest.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

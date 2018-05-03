@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Template", "Template", "{681CAA73-E4DA-4A9A-B101-B140E29B9C1D}"
+	ProjectSection(SolutionItems) = preProject
+		\\internal.bonton.com\york\Group\BigTicketReporting\Template\OutSaleReport.xlsx = \\internal.bonton.com\york\Group\BigTicketReporting\Template\OutSaleReport.xlsx
+	EndProjectSection
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "BigTicketReports", "BigTicketReports\BigTicketReports.dtproj", "{AB4192C4-D3F6-48E1-A18B-316578DAA931}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs2013.internal.bonton.com:8080/tfs2013/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = BigTicketReports\\BigTicketReports.dtproj
+		SccProjectName1 = BigTicketReports
+		SccLocalPath1 = BigTicketReports
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB4192C4-D3F6-48E1-A18B-316578DAA931}.Development|Default.ActiveCfg = Development
+		{AB4192C4-D3F6-48E1-A18B-316578DAA931}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

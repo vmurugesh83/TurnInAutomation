@@ -1,0 +1,168 @@
+<%-- AJAX ControlKit--%> 
+<ajaxtoolkit:AutoCompleteExtender runat="server" MinimumPrefixLength="3" EnableCaching="true" CompletionInterval="500" CompletionListCssClass="autoComplete" CompletionListItemCssClass="autoCompleteItem" CompletionListHighlightedItemCssClass="autoCompleteHighlightedItem" />
+<%-- ASP Button --%>
+<asp:Button runat="server" CssClass="aspButton" />
+<%-- ASP Menu --%>
+<asp:Menu runat="server" SkinID="mnuNav" CssClass="aspMenu">
+    <DynamicMenuItemStyle ForeColor="Blue" Font-Size="12pt" />
+    <DynamicHoverStyle ForeColor="Black" />
+</asp:Menu>
+<%-- ASP RadioButtonList --%>
+<asp:RadioButtonList SkinID="rblFlow" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" CssClass="aspRadioButtonListFlow" />
+<%-- ASP TextBox --%>
+<asp:TextBox runat="server" CssClass="aspTextBox" />
+<%-- Telerik RadCalendar --%>
+<telerik:RadCalendar runat="server" Skin="WebBlue" />
+<telerik:RadDatePicker runat="server" Skin="Vista" Width="100">
+    <DateInput runat="server" DisplayDateFormat="ddd MM/dd/yyyy" InvalidStyleDuration="100" />
+    <DatePopupButton ImageUrl="~/Images/Cal.gif" HoverImageUrl="~/Images/Cal.gif" />
+</telerik:RadDatePicker>
+<telerik:RadDatePicker runat="server" SkinID="disDatePicker" Skin="Vista" Width="100">
+    <DateInput runat="server" DisplayDateFormat="ddd MM/dd/yyyy" InvalidStyleDuration="100" ReadOnly="True" />
+    <DatePopupButton ImageUrl="~/Images/Cal.gif" HoverImageUrl="~/Images/Cal.gif" Visible="False" />
+</telerik:RadDatePicker>
+<telerik:RadTimePicker runat="server" Skin="Vista" Width="100">
+    <TimeView runat="server" StartTime="00:00:00" EndTime="23:59:00" Interval="01:00:00" Columns="2" TimeFormat="HH:mm" />
+    <DateInput runat="server" DateFormat="HH:mm" />
+</telerik:RadTimePicker>
+<telerik:RadTimePicker runat="server" SkinID="disTimePicker" Skin="Vista" Width="100">
+    <TimeView runat="server" StartTime="00:00:00" EndTime="23:59:00" Interval="01:00:00" Columns="2" TimeFormat="HH:mm" />
+    <DateInput runat="server" DateFormat="HH:mm" ReadOnly="True" />
+    <TimePopupButton Visible="False" />
+</telerik:RadTimePicker>
+<%-- Telerik RadComboBox --%>
+<telerik:RadComboBox runat="server" Skin="Vista" Width="100" MarkFirstMatch="true" NoWrap="true" Height="150" EnableLoadOnDemand="True" />
+<telerik:RadComboBox runat="server" SkinID="chkTemplate" Skin="Vista" Width="100" NoWrap="true" Height="150" EnableLoadOnDemand="True" OnClientSelectedIndexChanging="OnClientSelectedIndexChanging" HighlightTemplatedItems="true" OnClientDropDownClosing="OnClientDropDownClosing" />
+<%-- Telerik RadGrid --%>
+<telerik:RadGrid runat="server" Skin="Vista" AllowMultiRowEdit="True"
+    AllowSorting="True" BorderColor="Transparent" GridLines="None" Height="100%">
+    <ClientSettings>        
+        <Scrolling UseStaticHeaders="True" />        
+    </ClientSettings>
+    <MasterTableView AutoGenerateColumns="False" CommandItemDisplay="Top" CurrentResetPageIndexAction="SetPageIndexToFirst">
+        <ExpandCollapseColumn CurrentFilterFunction="NoFilter" FilterListOptions="VaryByDataType" Resizable="False" Visible="False" />        
+        <RowIndicatorColumn CurrentFilterFunction="NoFilter" FilterListOptions="VaryByDataType" Visible="False" />
+        <PagerStyle Mode="NextPrevAndNumeric" NextPageText="Next" PrevPageText="Previous" NextPageImageUrl="~/Images/PagingNext.gif"
+            PrevPageImageUrl="~/Images/PagingPrev.gif" AlwaysVisible="true" />
+        <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
+            Font-Underline="False" Wrap="False" />
+        <ItemStyle Wrap="false" />
+        <AlternatingItemStyle Wrap="false" />      
+    </MasterTableView>
+</telerik:RadGrid>     
+<telerik:RadGrid runat="server" Skin="Vista" skinID="selectGrid" AllowMultiRowEdit="True" AllowMultiRowSelection="True" 
+    AllowSorting="True" BorderColor="Transparent" GridLines="None" Height="100%">
+    <ClientSettings>
+        <ClientEvents OnRowSelecting="RowSelecting" OnRowDeselecting="RowDeselecting" />        
+        <Scrolling UseStaticHeaders="True" />
+        <Selecting AllowRowSelect="True" EnableDragToSelectRows="False" />
+    </ClientSettings>
+    <MasterTableView AutoGenerateColumns="False" CommandItemDisplay="None" CurrentResetPageIndexAction="SetPageIndexToFirst">
+       <ExpandCollapseColumn CurrentFilterFunction="NoFilter" FilterListOptions="VaryByDataType" Resizable="False" Visible="False" />        
+        <RowIndicatorColumn CurrentFilterFunction="NoFilter" FilterListOptions="VaryByDataType" Visible="False" />
+        <PagerStyle Mode="NextPrevAndNumeric" NextPageText="Next" PrevPageText="Previous" NextPageImageUrl="~/Images/PagingNext.gif"
+            PrevPageImageUrl="~/Images/PagingPrev.gif" AlwaysVisible="true" />
+        <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
+            Font-Underline="False" Wrap="False" />
+        <ItemStyle Wrap="false" />
+        <AlternatingItemStyle Wrap="false" />            
+    </MasterTableView>
+</telerik:RadGrid>
+<telerik:RadGrid runat="server" Skin="Vista" skinID="singleSelectGrid" AllowMultiRowEdit="True" 
+    AllowSorting="True" BorderColor="Transparent" GridLines="None" Height="100%">
+    <ClientSettings>
+        <ClientEvents OnRowSelecting="RowSelecting" OnRowDeselecting="RowDeselecting" />        
+        <Scrolling UseStaticHeaders="True" />
+        <Selecting AllowRowSelect="True" EnableDragToSelectRows="False" />
+    </ClientSettings>
+    <MasterTableView AutoGenerateColumns="False" CommandItemDisplay="None" CurrentResetPageIndexAction="SetPageIndexToFirst">
+       <ExpandCollapseColumn CurrentFilterFunction="NoFilter" FilterListOptions="VaryByDataType" Resizable="False" Visible="False" />        
+        <RowIndicatorColumn CurrentFilterFunction="NoFilter" FilterListOptions="VaryByDataType" Visible="False" />
+        <PagerStyle Mode="NextPrevAndNumeric" NextPageText="Next" PrevPageText="Previous" NextPageImageUrl="~/Images/PagingNext.gif"
+            PrevPageImageUrl="~/Images/PagingPrev.gif" AlwaysVisible="true" />
+        <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
+            Font-Underline="False" Wrap="False" />
+        <ItemStyle Wrap="false" />
+        <AlternatingItemStyle Wrap="false" />         
+    </MasterTableView>
+</telerik:RadGrid>
+<telerik:RadGrid runat="server" Skin="Vista" skinID="commandTemplateGrid" AllowMultiRowEdit="True" 
+    AllowSorting="True" BorderColor="Transparent" GridLines="None" Height="100%">
+    <ClientSettings>
+        <ClientEvents OnRowSelecting="RowSelecting" OnRowDeselecting="RowDeselecting" />        
+        <Scrolling UseStaticHeaders="True" />
+        <Selecting AllowRowSelect="True" EnableDragToSelectRows="False" />
+    </ClientSettings>
+    <MasterTableView AutoGenerateColumns="False" CommandItemDisplay="Top" CurrentResetPageIndexAction="SetPageIndexToFirst">
+       <ExpandCollapseColumn CurrentFilterFunction="NoFilter" FilterListOptions="VaryByDataType" Resizable="False" Visible="False" />        
+        <RowIndicatorColumn CurrentFilterFunction="NoFilter" FilterListOptions="VaryByDataType" Visible="False" />
+        <PagerStyle Mode="NextPrevAndNumeric" NextPageText="Next" PrevPageText="Previous" NextPageImageUrl="~/Images/PagingNext.gif"
+            PrevPageImageUrl="~/Images/PagingPrev.gif" AlwaysVisible="true" />
+        <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
+            Font-Underline="False" Wrap="False" />
+        <ItemStyle Wrap="false" />
+        <AlternatingItemStyle Wrap="false" />         
+    </MasterTableView>
+</telerik:RadGrid>
+<telerik:RadGrid runat="server" SkinID="scrollGrid" Skin="Vista" AllowSorting="True" AllowMultiRowEdit="True" 
+    BorderColor="Transparent" GridLines="None" Height="100%">
+    <ClientSettings>        
+        <Scrolling AllowScroll="True" UseStaticHeaders="True" SaveScrollPosition="True" />                
+    </ClientSettings>
+    <MasterTableView AutoGenerateColumns="False" CommandItemDisplay="None" CurrentResetPageIndexAction="SetPageIndexToFirst">
+        <ExpandCollapseColumn CurrentFilterFunction="NoFilter" FilterListOptions="VaryByDataType" Resizable="False" Visible="False" />        
+        <RowIndicatorColumn CurrentFilterFunction="NoFilter" FilterListOptions="VaryByDataType" Visible="False" />
+        <PagerStyle Mode="NextPrevAndNumeric" NextPageText="Next" PrevPageText="Previous" NextPageImageUrl="~/Images/PagingNext.gif"
+            PrevPageImageUrl="~/Images/PagingPrev.gif" AlwaysVisible="true" />
+        <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
+            Font-Underline="False" Wrap="False" />
+        <ItemStyle Wrap="false" />
+        <AlternatingItemStyle Wrap="false" />       
+    </MasterTableView>
+</telerik:RadGrid>
+<telerik:RadGrid runat="server" SkinID="scrollSelectGrid" Skin="Vista" AllowMultiRowEdit="True" AllowSorting="True" AllowMultiRowSelection="True"
+    BorderColor="Transparent" GridLines="None" Height="100%">
+    <ClientSettings>
+        <ClientEvents OnRowSelecting="RowSelecting" OnRowDeselecting="RowDeselecting" />        
+        <Scrolling AllowScroll="True" UseStaticHeaders="True" SaveScrollPosition="True" />
+        <Selecting AllowRowSelect="True" EnableDragToSelectRows="False" />        
+    </ClientSettings>
+    <MasterTableView AutoGenerateColumns="False" CommandItemDisplay="None" CurrentResetPageIndexAction="SetPageIndexToFirst">
+        <ExpandCollapseColumn CurrentFilterFunction="NoFilter" FilterListOptions="VaryByDataType" Resizable="False" Visible="False" />        
+        <RowIndicatorColumn CurrentFilterFunction="NoFilter" FilterListOptions="VaryByDataType" Visible="False" />        
+        <PagerStyle Mode="NextPrevAndNumeric" NextPageText="Next" PrevPageText="Previous" NextPageImageUrl="~/Images/PagingNext.gif"
+            PrevPageImageUrl="~/Images/PagingPrev.gif" AlwaysVisible="true" />
+        <HeaderStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
+            Font-Underline="False" Wrap="False" />
+        <ItemStyle Wrap="false" />
+        <AlternatingItemStyle Wrap="false" />      
+    </MasterTableView>
+</telerik:RadGrid>
+<%-- Telerik RadInput --%>
+<telerik:RadNumericTextBox runat="server" Skin="Vista" EmptyMessageStyle-Font-Italic="true" EmptyMessageStyle-ForeColor="gray" />
+<telerik:RadTextBox runat="server" Skin="Vista" EmptyMessageStyle-ForeColor="gray" />
+<telerik:RadDateInput runat="server" Skin="Vista" DisplayDateFormat="ddd MM/dd/yyyy" InvalidStyleDuration="100" Width="100" SkinID="dateInput" />
+<telerik:RadDateInput runat="server" Skin="Vista" DateFormat="HH:mm" InvalidStyleDuration="100" Width="100" SkinID="timeInput" />
+<%-- Telerik RadMenu --%>
+<telerik:RadMenu runat="server" Skin="WebBlue" />
+<%-- Telerik RadPanelBar --%>
+<telerik:RadPanelbar runat="server" Skin="Default" />
+<%-- Telerik RadSplitter --%>
+<telerik:RadSplitter runat="server" Skin="Web20" SkinID="appSplitter" VisibleDuringInit="False" Orientation="Vertical" BorderSize="0" Height="100%" Width="100%" HeightOffset="53" />
+<telerik:RadSplitter runat="server" Skin="Web20" SkinID="pageSplitter" VisibleDuringInit="False" Orientation="Horizontal" BorderSize="0" Height="100%" Width="100%" ResizeWithParentPane="False" />
+<telerik:RadSplitter runat="server" Skin="Web20" SkinID="popupSplitter" VisibleDuringInit="False" Orientation="Horizontal" BorderSize="0" Height="100%" Width="100%" />
+<telerik:RadPane runat="server" SkinID="appSidebarPane" Width="222" BackColor="#B0C4DE" />
+<telerik:RadPane runat="server" SkinID="pageHeaderAreaPane" Height="75" Scrolling="None" />
+<telerik:RadPane runat="server" SkinID="pageTabAreaPane" Height="40" Scrolling="None" />
+<telerik:RadPane runat="server" SkinID="popupHeaderAreaPane" Height="85" Scrolling="None" />
+<%-- Telerik RadTabStrip --%>
+<telerik:RadTabStrip runat="server" Skin="Web20" />
+<%-- Telerik RadToolBar --%>
+<telerik:RadToolbar runat="server" Skin="Default" />
+<%-- Telerik RadWindow--%>
+<telerik:RadWindow runat="server" Skin="Vista" SkinID="modalWin" InitialBehaviors="None" Behaviors="None" Modal="true"
+    ReloadOnShow="false" DestroyOnClose="false" VisibleStatusbar="false"
+    VisibleTitlebar="false" ShowContentDuringLoad="false" />
+<telerik:RadWindow runat="server" Skin="Vista" SkinID="modalMoveWin" InitialBehaviors="None" Behaviors="Move" Modal="true"
+    ReloadOnShow="false" DestroyOnClose="false" VisibleStatusbar="false"
+    VisibleTitlebar="false" ShowContentDuringLoad="false" />

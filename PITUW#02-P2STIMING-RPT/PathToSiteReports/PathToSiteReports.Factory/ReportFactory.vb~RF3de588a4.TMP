@@ -1,0 +1,73 @@
+﻿Imports IBM.Data.DB2
+Imports PathToSiteReports.BusinessEntities
+Imports PathToSiteReports.Factory.Common
+Public Class ReportFactory
+    Public Shared Function ConstructSKUDetail(ByVal reader As DB2DataReader) As SKUDetail
+        Dim skuDetailReportEntry As New SKUDetail
+
+        With skuDetailReportEntry
+            .GMM = CStr(ReadColumn(reader, "GMM"))
+            .DMM = CStr(ReadColumn(reader, "DMM"))
+            .BUYER = CStr(ReadColumn(reader, "BUYER"))
+            .FOB = CStr(ReadColumn(reader, "FOB"))
+            .Dept = CStr(ReadColumn(reader, "DEPT"))
+            .Dept_Class = CStr(ReadColumn(reader, "Class"))
+            .ISN = CDec(ReadColumn(reader, "INTERNAL_STYLE_NUM"))
+            .Color = CInt(ReadColumn(reader, "CLR_CDE"))
+            .SKU = CDec(ReadColumn(reader, "SKU_NUM"))
+            .UPC = CDec(ReadColumn(reader, "UPC_NUM"))
+            .SSSetupDate = CDate(ConvertToDate(ReadColumn(reader, "SS_DATE")))
+            .SampleRequestDate = CDate(ConvertToDate(ReadColumn(reader, "SAMPLE_REQ_DATE")))
+            .SampleReceiptDate = CDate(ConvertToDate(ReadColumn(reader, "CMR_DATE")))
+            .SampleDueDate = CDate(ConvertToDate(ReadColumn(reader, "SAMPLE_DUE_DATE")))
+            .POApprovalDate = CDate(ConvertToDate(ReadColumn(reader, "PO_APPROVAL_DTE")))
+            .POShipDate = CDate(ConvertToDate(ReadColumn(reader, "DC_SHIP_DTE")))
+            .TurnInDate = CDate(ConvertToDate(ReadColumn(reader, "TURN_IN_DATE")))
+            .POReceiptDate = CDate(ConvertToDate(ReadColumn(reader, "FIRST_RC_DATE")))
+            .CopyReadyDate = CDate(ConvertToDate(ReadColumn(reader, "COPY_READY_DATE")))
+            .ProductReadyDate = CDate(ConvertToDate(ReadColumn(reader, "PRODUCT_READY_DATE")))
+            .ProductActiveDate = CDate(ConvertToDate(ReadColumn(reader, "PRODUCT_ACTIVE_DATE")))
+        End With
+
+        Return skuDetailReportEntry
+    End Function
+
+    Public Shared Function ConstructSKUDetailFromDataTableReader(ByVal reader As DataTableReader) As SKUDetail
+        Dim skuDetailReportEntry As New SKUDetail
+
+        With skuDetailReportEntry
+            .GMM = CStr(ReadColumn(reader, "GMM"))
+            .DMM = CStr(ReadColumn(reader, "DMM"))
+            .Buyer = CStr(ReadColumn(reader, "BUYER"))
+            .FOB = CStr(ReadColumn(reader, "FOB"))
+            .Dept = CStr(ReadColumn(reader, "DEPT"))
+            .Dept_Class = CStr(ReadColumn(reader, "Class"))
+            .ISN = CDec(ReadColumn(reader, "INTERNAL_STYLE_NUM"))
+            .Color = CInt(ReadColumn(reader, "CLR_CDE"))
+            .SKU = CDec(ReadColumn(reader, "SKU_NUM"))
+            .UPC = CDec(ReadColumn(reader, "UPC_NUM"))
+            .SSSetupDate = ConvertToDate(ReadColumn(reader, "SS_DATE"))
+            .SampleRequestDate = ConvertToDate(ReadColumn(reader, "SAMPLE_REQ_DATE"))
+            .SampleReceiptDate = ConvertToDate(ReadColumn(reader, "CMR_DATE"))
+            .SampleDueDate = ConvertToDate(ReadColumn(reader, "SAMPLE_DUE_DATE"))
+            .POApprovalDate = ConvertToDate(ReadColumn(reader, "PO_APPROVAL_DTE"))
+            .POShipDate = ConvertToDate(ReadColumn(reader, "DC_SHIP_DTE"))
+            .TurnInDate = ConvertToDate(ReadColumn(reader, "TURN_IN_DATE"))
+            .POReceiptDate = ConvertToDate(ReadColumn(reader, "FIRST_RC_DATE"))
+            .CopyReadyDate = ConvertToDate(ReadColumn(reader, "COPY_READY_DATE"))
+            .ProductReadyDate = ConvertToDate(ReadColumn(reader, "PRODUCT_READY_DATE"))
+            .ProductActiveDate = ConvertToDate(ReadColumn(reader, "PRODUCT_ACTIVE_DATE"))
+            .AdNumber = CInt(ReadColumn(reader, "AD_NUM"))
+            .AdDesc = CStr(ReadColumn(reader, "AD_DESC"))
+            .AdType = CStr(ReadColumn(reader, "AD_TYPE"))
+            .ImageShotDate = ConvertToDate(ReadColumn(reader, "IMAGE_SHOT_DATE"))
+            .FinalImageReadyDate = ConvertToDate(ReadColumn(reader, "IMAGE_READY_DATE"))
+            .OwnedPrice = CDec(ReadColumn(reader, "OWN_PRICE_AMT"))
+            .Quantity = CInt(ReadColumn(reader, "QUANTITY"))
+            .ReportItemType = CStr(ReadColumn(reader, "REPORT_ITEM_TYPE"))
+        End With
+
+        Return skuDetailReportEntry
+    End Function
+
+End Class

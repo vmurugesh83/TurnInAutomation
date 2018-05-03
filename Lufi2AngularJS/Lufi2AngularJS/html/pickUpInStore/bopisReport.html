@@ -1,0 +1,99 @@
+﻿<div class="row">
+    <div class="col-sm-4">
+        <button class="btn btn-default btn-block skinnyMarginVert" ng-click="refresh()">Refresh</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6"><h2>Ready For Customer Pickup</h2></div>
+    <div class="col-sm-6">
+        <h2 style="color:red" ng-show="_loadingReadyForCustomer">Still Refreshing...</h2>
+        <h2 style="color:green" ng-show="!_loadingReadyForCustomer">Pickup List Loaded</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-striped">
+            <thead>
+                <th>OrderNo</th>
+                <th>Name</th>
+                <th># Of Items</th>
+                <th>Shipment Key</th>
+            </thead>
+            <tr ng-repeat="shipment in readyforCustomerShipmentresponseArray">
+                <td ng-click="openOrder(shipment._orderNumber)"><a href=""> {{shipment._orderNumber}} </a></td>
+                <td>{{shipment._customerName}}</td>
+                <td>{{shipment._totalQuantity}}</td>
+                <td><input type="text" class="form-control" placeholder="{{shipment._ShipmentKey}}" value="{{shipment._ShipmentKey}}" /></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6"><h2>Orders Awaiting Restock</h2></div>
+    <div class="col-sm-6">
+        <h2 style="color:red" ng-show="_loadingRestockList">Still Refreshing...</h2>
+        <h2 style="color:green" ng-show="!_loadingRestockList">Restock List Loaded</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-striped">
+            <thead>
+            <th>OrderNo</th>
+            <th>ShipmentNo</th>
+            <th>ShipmentKey</th>
+            </thead>
+            <tr ng-repeat="ship in restockList">
+                <td ng-click="openOrder(ship.ShipmentLines.ShipmentLine[0]._OrderNo)"><a href=""> {{ship.ShipmentLines.ShipmentLine[0]._OrderNo}} </a></td>
+                <td>{{ship._ShipmentNo}}</td>
+                <td><input type="text" class="form-control" placeholder="{{ship._ShipmentKey}}" value="{{ship._ShipmentKey}}" /></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6"><h2>Waiting For Pack Confirm</h2></div>
+    <div class="col-sm-6">
+        <h2 style="color:red" ng-show="_loadingPackList">Still Refreshing...</h2>
+        <h2 style="color:green" ng-show="!_loadingPackList">Pack List Loaded</h2>
+    </div>
+</div>
+<div class="row clearfix">
+
+        <div id="wrapper" class="col-sm-12 column">
+            <table ng-table="tableParams" class="table table-striped">
+                <tr ng-repeat="shipment in $data">
+                    <td ng-click="openOrder(shipment._display._OrderNo)" data-title="'Order Number'" sortable="'_display._OrderNo'" ng-class=" {'sorted': params.sorting()['_display._OrderNo']}">
+                        <a href=""> {{shipment._display._OrderNo}} </a>
+                    </td>
+                    <td data-title="'Customer'" sortable="'_display._CustomerName'" ng-class=" {'sorted': params.sorting()['_display._CustomerName']}">
+                        {{shipment._display._CustomerName}}
+                    </td>
+                    <td data-title="'Printed Receipt?'" sortable="'_display._IsReceiptPrintedStr'" ng-class=" {'sorted': params.sorting()['_display._IsReceiptPrintedStr']}">
+                        {{shipment._display._IsReceiptPrintedStr}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+</div>
+<div class="row">
+    <div class="col-sm-6"><h2>Waiting To Be Picked</h2></div>
+    <div class="col-sm-6">
+        <h2 style="color:red" ng-show="_loadingPickList">Still Refreshing...</h2>
+        <h2 style="color:green" ng-show="!_loadingPickList">Pick List Loaded</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-striped">
+            <thead>
+            <th>OrderNo</th>
+            <th># Of Items</th>
+            </thead>
+            <tr ng-repeat="order in orderToPickArr">
+                <td ng-click="openOrder(order._orderNo)"><a href=""> {{order._orderNo}} </a></td>
+                <td>{{order._totalQuantity}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

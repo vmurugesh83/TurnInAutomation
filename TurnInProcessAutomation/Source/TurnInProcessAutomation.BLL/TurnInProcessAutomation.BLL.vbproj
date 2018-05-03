@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6B7538BD-8EE5-4C1F-9E12-49655FFBD297}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TurnInProcessAutomation.BLL</RootNamespace>
+    <AssemblyName>TurnInProcessAutomation.BLL</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>TurnInProcessAutomation.BLL.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>TurnInProcessAutomation.BLL.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="amqmdnet, Version=1.0.0.3, Culture=neutral, PublicKeyToken=dd3cb1c9aae9ec97">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TurnInProcessAutomation.3rdPartyDlls\amqmdnet.dll</HintPath>
+    </Reference>
+    <Reference Include="amqmdxcs, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7a58d55a51981a15">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TurnInProcessAutomation.3rdPartyDlls\amqmdxcs.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TurnInProcessAutomation.3rdPartyDlls\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="TUConfig.vb" />
+    <Compile Include="TUEcommFabOrigResults.vb" />
+    <Compile Include="TUCopyPrioritization.vb" />
+    <Compile Include="TUGMM.vb" />
+    <Compile Include="TUGXSCatalog.vb" />
+    <Compile Include="TUDMM.vb" />
+    <Compile Include="TUFilter.vb" />
+    <Compile Include="TUGXSImage.vb" />
+    <Compile Include="TUGXSStyleSku.vb" />
+    <Compile Include="TULocation.vb" />
+    <Compile Include="TUDCTransfer.vb" />
+    <Compile Include="GetGlobalObjectsService.vb" />
+    <Compile Include="TUBatch.vb" />
+    <Compile Include="TUBrand.vb" />
+    <Compile Include="TUBuyer.vb" />
+    <Compile Include="TUCFG.vb" />
+    <Compile Include="TUCMG.vb" />
+    <Compile Include="TUCRG.vb" />
+    <Compile Include="TUEcommPrioritization.vb" />
+    <Compile Include="TUEcommQueryTool.vb" />
+    <Compile Include="TUECommTurnInMeetResults.vb" />
+    <Compile Include="TUEMM.vb" />
+    <Compile Include="TUFOB.vb" />
+    <Compile Include="TUImage.vb" />
+    <Compile Include="TUImageSuffix.vb" />
+    <Compile Include="TUGXSCopyView.vb" />
+    <Compile Include="TUMerchandiseSample.vb" />
+    <Compile Include="TUTEC998PARM.vb" />
+    <Compile Include="TUWebCat.vb" />
+    <Compile Include="TUTMS900PARAMETER.vb" />
+    <Compile Include="TULabel.vb" />
+    <Compile Include="TUEcommSetupCreateResults.vb" />
+    <Compile Include="TUVendorStyle.vb" />
+    <Compile Include="TUSellYear.vb" />
+    <Compile Include="TUSellSeason.vb" />
+    <Compile Include="TUACode.vb" />
+    <Compile Include="TUVendor.vb" />
+    <Compile Include="TUSubClass.vb" />
+    <Compile Include="TUAdInfo.vb" />
+    <Compile Include="Service References\WSErrorReporting\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Enumerations.vb" />
+    <Compile Include="MiscConstants.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Service References\SecurityService\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="CommonBO.vb" />
+    <Compile Include="TUClass.vb" />
+    <Compile Include="TUCtlgAdPg.vb" />
+    <Compile Include="TUDepartment.vb" />
+    <Compile Include="VirtualTicketInfo.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Utilities\BonTon.Common.vbproj">
+      <Project>{c9b2aac6-0004-403b-b4d2-dd603573feec}</Project>
+      <Name>BonTon.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TurnInProcessAutomation.BusinessEntities\TurnInProcessAutomation.BusinessEntities.vbproj">
+      <Project>{014F9B48-D9CE-48F6-9C2B-877C127B604F}</Project>
+      <Name>TurnInProcessAutomation.BusinessEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TurnInProcessAutomation.DBUtility\BonTon.DBUtility.vbproj">
+      <Project>{0D772986-EC58-401F-9578-D909F57C6392}</Project>
+      <Name>BonTon.DBUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TurnInProcessAutomation.MainframeDAL\TurnInProcessAutomation.MainframeDAL.vbproj">
+      <Project>{45EF7CA3-03F1-4177-945F-764B23086213}</Project>
+      <Name>TurnInProcessAutomation.MainframeDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TurnInProcessAutomation.SqlDAL\TurnInProcessAutomation.SqlDAL.vbproj">
+      <Project>{9779AA21-97AF-4FB3-AE43-A346AC133BEB}</Project>
+      <Name>TurnInProcessAutomation.SqlDAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Service References\SecurityService\SecurityService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SecurityService\" />
+    <WCFMetadataStorage Include="Service References\WSErrorReporting\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SecurityService\SecurityService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SecurityService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SecurityService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SecurityService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+    <None Include="Service References\SecurityService\TurnInProcessAutomation.BLL.SecurityService.UserInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSErrorReporting\service.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WSErrorReporting\service.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WSErrorReporting\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WSErrorReporting\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WSErrorReporting\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,61 @@
+﻿<div class="row">
+    <div class="col col-sm-12">
+        <table class="table table-striped">
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <button class="btn facetDeSelectButton" ng-click="facetItemClicket(selectedBrands,brand,'brand')" ng-repeat="brand in selectedBrands"><span class="glyphicon glyphicon-remove facetSelectionColor" aria-hidden="true"></span>{{brand.name}}</button>
+                        <button class="btn facetDeSelectButton" ng-click="facetItemClicket(selectedColors,color,'color')" ng-repeat="color in selectedColors"><span class="glyphicon glyphicon-remove facetSelectionColor" aria-hidden="true"></span>{{color.name}}</button>
+                        <button class="btn facetDeSelectButton" ng-click="facetItemClicket(selectedItemSizes,size,'itemSize')" ng-repeat="size in selectedItemSizes"><span class="glyphicon glyphicon-remove facetSelectionColor" aria-hidden="true"></span>{{size.name}}</button>
+                        <button class="btn facetDeSelectButton" ng-click="facetItemClicket(selectedFOBs,fob,'fob')" ng-repeat="fob in selectedFOBs"><span class="glyphicon glyphicon-remove facetSelectionColor" aria-hidden="true"></span>{{fob.name}}</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div ng-dblclick="moveFacets()" class="row">
+    <div ng-if="left" class="col col-sm-4">
+      <div ng-include src="'html/item/facets.tpl.html'"></div>
+    </div>
+    <div class="col-sm-8">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="ItemSearchWrapper">
+                    <table class="table table-striped">
+                        <thead></thead>
+                        <tbody>
+                            <tr ng-repeat="isnGroupItem in response.isnGroup" on-finish-render="refreshScroll('ItemSearchWrapper')">
+                                <td>
+                                    <div class="row">
+                                        <div ng-click="listClick(isnGroupItem)" class="col col-sm-10">
+                                            <span ng-show="isnGroupItem.productList[0].productname != null" ng-class="itemTitleClass(isnGroupItem)" ng-bind-html="isnGroupItem.productList[0].productname"></span>
+                                            <span ng-hide="isnGroupItem.productList[0].productname != null" ng-class="itemTitleClass(isnGroupItem)">{{isnGroupItem.productname}}</span>
+                                            <span aria-hidden="true" class="badge">{{isnGroupItem.variations}}</span>
+                                        </div>
+                                        <div class="col col-sm-2">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-9 pagerFix">
+                <pager total-items="page.numberOfItems" ng-change="pageChanged()" align="true" items-per-page="page.itemsPerPage" ng-model="page.currentPage" max-size="page.maxSize" class="" boundary-links="true" rotate="false"></pager>
+            </div>
+            <div class="col-sm-3">
+                Page: {{page.currentPage}} / {{page.numberOfPages}}
+            </div>
+        </div>
+    </div>
+    <div ng-if="!left" class="col col-sm-4">
+        <div ng-include src="'html/item/facets.tpl.html'"></div>
+    </div>
+</div>

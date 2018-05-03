@@ -1,0 +1,123 @@
+﻿/* PERS */
+html,body,form {height:100%;margin:0px;padding:0px;overflow:hidden;font: 10pt Arial;}
+/*td {white-space: nowrap;}*/
+
+/* Application Layout */
+#adjustScrollHeight {height:100%;overflow:auto;}
+
+@media screen {
+#appFooter {width:100%;position:absolute;clear:both;left:0px;bottom:20px;text-align:center;}
+}
+@media print {
+#appFooter {display:none;}
+}
+
+@media screen {
+#appHeader {height:25px;text-align:center;font:bold 16pt arial;}
+}
+@media print {
+#appHeader {display:none;}
+}
+
+@media screen {
+#appMenu {height:25px;border-bottom:solid 3px #FFFFFF;background-color:#336699;}
+}
+@media print {
+#appMenu {display:none;}
+}
+
+#appMessageArea {height:30px;text-align:right;}
+
+/* ContentPage Layout */
+@media screen {
+#pageActionBar {height:40px;background-color:#B0C4DE;}
+}
+@media print {
+#pageActionBar {display:none;}
+}
+
+@media screen {
+#pageHeader {height:25px;text-align:center;font:bold 12pt arial;margin-bottom:10px;}
+}
+@media print {
+#pageHeader {display:none;}
+}
+.autoScroll {overflow:auto;}
+.gridImgBtn {list-style-type:none;padding:0px;margin:0px;background-color:Transparent;}
+.gridImgBtn li {display:inline;padding-right:3px;}
+.inclComboButton {margin: 15px 0px 5px 10px;}
+.label {font-weight:bold;}
+.nowrap {white-space: nowrap;}
+.lineBreak {height:10px;}
+.pageError {padding-left:5px;font-weight:bold;vertical-align:middle;}
+.pageTabStrip {background-color:#b0c4de;margin-bottom:15px;}
+.subMenu {width:33%;float:left;margin-top:10px;}
+.subMenu h1 {font:bold 14pt arial;margin:0px 0px 5px 20px;}
+.tableContentPage {margin-left:15px;margin-bottom:15px;border-collapse: collapse;}
+.tableContentPageNoLeftMargin {margin-bottom:15px;border-collapse: collapse;}
+.tableContentPage td {margin:0px;padding:4px 10px;white-space:nowrap;}
+.tablePCStyle {margin: 0px auto 15px auto;border-collapse:collapse;}
+.tablePCStyle td {margin:0px;padding:10px;white-space:nowrap;}
+.titleReportDateControl{margin-left:15px;padding-bottom:10px;font:bold 10pt arial;}
+
+/*.content {margin-left:auto;margin-right:auto;border-collapse:collapse;}*/
+.content {border-collapse:collapse;width:100%;}
+/*.content {width:100%; border-collapse:collapse;}*/
+.content td {padding:0px 0px 0px 0px;margin:0;}
+
+/* Sidebar Layout */
+.panelSidebar {width:222px;}
+.tableSidebar {width:95%;margin-top:5px;color:#000000;}
+.tableSidebar .cellCategory {font:bold 8pt arial;padding:0px 0px 4px 4px;}
+.tableSidebar .cellInput {padding:0px 0px 4px 0px;}
+.tableSidebar .cellInputHeader {font:bold 8pt arial;text-align:right;padding:0px 5px 4px 4px;}
+.tableSidebar .rowBreak {height:15px;}
+
+/* Pop-up Layout */
+#popupActionBar {height:50px;text-align:right;}
+#popupActionBar input {width:72px;height:24px;font:10pt arial;margin:10px 3px;}
+#popupHeader {height:25px;text-align:center;font:bold 12pt arial;}
+#popupFooter {width:100%;position:absolute;left:0px;bottom:20px;text-align:center;}
+#popupFooter a {color:#B0C4DE;font-weight:normal;text-decoration:underline;}
+#popupFooter a span {text-decoration:none;}
+.rowBreak {height:30px;}
+.tablePopup {margin:15px;border-collapse:collapse;}
+.tablePopupPCCopy {margin:15px auto;border-collapse:collapse;}
+.tablePopup td, .tablePopupPCCopy td {margin:0px;padding:4px 10px;}
+
+/* Collapsible Panel */
+.messagePanel {height:30px;text-align:right;}
+.collapsiblePanel {z-index:9999;right:20px;position:absolute;background-color:#FFFFFF;}
+.collapsiblePanel .title{float:none;padding:5px;cursor:pointer;vertical-align:middle;font-size:12pt;}
+.collapsiblePanel .title span {color:#FF0000;font-weight:bold;padding-right:10px;white-space:nowrap;}
+.collapsiblePanel .details{float:none;height:0px;overflow:auto;position:relative;}
+.collapsiblePanel .details ul {border: 1px solid #000000;float:none;display:block;margin:0;padding:0;text-align:left;white-space:normal;}
+.collapsiblePanel .details li {padding:2px 5px;clear:none;list-style-position:inside;position:relative;color:#FF0000;}
+
+/* AutoComplete Flyout */
+.autoComplete{visibility:hidden;margin:0px!important;background-color:#FFFFFF;border:solid 1px;overflow:auto;height:200px;text-align:left;list-style-type:none;}
+.autoCompleteHighlightedItem{background-color:#FAF0CD;color:black;padding: 1px;}
+.autoCompleteItem{background-color:#FFFFFF;padding:1px;white-space:nowrap;}
+
+/* ASP Controls*/
+.aspButton {width:55px;height:20px;font:10pt arial;}
+.aspMenu {font-size:12pt;margin-left:40px;}
+.aspRadioButtonListFlow label {padding-right:6px;}
+.aspTextBox {width:125px;border:solid 1px;border-color:#ABADB3 #DBDFE6 #E3E9EF #E2E3EA;padding:3px 0 3px 1px;}
+
+/* Static ContentPage */
+#content {width:650px;margin:5px;}
+#content .label, #content .input
+{display:block;float:left;margin:4px 0}
+#content .label {width:100px;text-align:right;padding-right:10px;padding-top:4px;font-weight:bold;text-align:right;}
+#content br {clear:left;}
+
+/* Rad Date Picker */
+#RADDatePicker {width:200px;}
+
+/* First Column */
+.firstColumn { float: left; width:659px;  }
+
+/* Second Column */
+.secondColumn { float:right; width:350px; position: relative; right:500px;top:100px}
+

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+BonTon.Common
+</name>
+</assembly>
+<members>
+<member name="M:BonTon.Common.Validations.Validation.ConvertToNullableDate(System.String)">
+	<summary>
+ Converts the string expression to the System.Nullable(Of Date) data type.
+ </summary>
+</member><member name="M:BonTon.Common.Validations.Validation.ConvertToNullableDecimal(System.String)">
+	<summary>
+ Converts the string expression to the System.Nullable(Of Decimal) data type.
+ </summary>
+</member><member name="M:BonTon.Common.Validations.Validation.ConvertToNullableInteger(System.String)">
+	<summary>
+ Converts the string expression to the System.Nullable(Of Integer) data type.
+ </summary>
+</member><member name="P:BonTon.Common.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:BonTon.Common.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:BonTon.Common.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:BonTon.Common.Caching.WebCacheManager.CheckCache``1(System.String)">
+	<summary>
+ Tests for the requested value in the session cache.
+ </summary>
+	<typeparam name="t"></typeparam>
+	<param name="key"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:BonTon.Common.Caching.WebCacheManager.CacheItem(System.String,System.Object,System.Int32)">
+	<summary>
+ Cache items to the session cache for a set number of minutes.
+ </summary>
+	<param name="key"></param>
+	<param name="item"></param>
+	<param name="cacheMinutes"></param>
+	<remarks></remarks>
+</member><member name="M:BonTon.Common.Caching.WebCacheManager.ExpireCacheItem(System.String)">
+	<summary>
+ Removes an item from the cache.
+ </summary>
+	<param name="key"></param>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

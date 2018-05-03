@@ -1,0 +1,520 @@
+﻿Imports System.Data.SqlClient
+Imports BonTon.DBUtility.SqlHelper
+Imports PathToSiteReports.BusinessEntities
+Imports PathToSiteReports.Common.Common
+
+Public Class AdminDAO
+    Public Function GetAdminDataByISNAndColor(ByVal internalStyleNumber As Decimal, ByVal ColorCode As Integer) As AdminData
+        Dim adminData As AdminData = Nothing
+        Dim sqlQuery As String = String.Empty
+
+        Try
+            sqlQuery = String.Format("SELECT ISNULL(IMN.image_id,0) AS image_id, " &
+                                     " ISNULL(ADM.AD_NBR,0) AS AD_NBR, " &
+                                     " ISNULL(AD.ad_desc,'') AS ad_desc, " &
+                                     " ISNULL(MT.media_type_desc,'') AS media_type_desc FROM " &
+                    " [informix].[merch] AS MER " &
+                    " INNER JOIN [informix].[ad_merch] AS ADM" &
+                    " ON MER.MERCH_ID = ADM.MERCH_ID" &
+                    " INNER JOIN  [informix].[ad_info] AS AD" &
+                    " ON ADM.AD_NBR = AD.AD_NBR" &
+                    " INNER JOIN [informix].[media_type] AS MT" &
+                    " ON AD.media_type_cd = MT.media_type_cd" &
+                    " LEFT OUTER JOIN [informix].[image_merch_new] AS IMN" &
+                    " ON ADM.MERCH_ID = IMN.MERCH_ID" &
+                    " WHERE MER.internal_style_num = {0} " &
+                    " AND MER.vendor_color_code = {1}", _
+                internalStyleNumber, ColorCode)
+
+            'Execute a query to read the adInfo
+            Using rdr As SqlDataReader = ExecuteReader(ConnectionStringLocalTransaction, CommandType.Text, sqlQuery)
+                If rdr.HasRows Then
+                    rdr.Read()
+                    adminData = New AdminData()
+                    adminData.ImageID = CInt(rdr("image_id"))
+                    adminData.AdNumber = CInt(rdr("AD_NBR"))
+                    adminData.AdDesc = CStr(rdr("ad_desc"))
+                    adminData.AdType = CStr(rdr("media_type_desc"))
+                End If
+            End Using
+
+        Catch ex As Exception
+            Throw
+        End Try
+        Return adminData
+    End Function
+    Public Function UpdateAdNumberAndImageID(ByVal skuDetailsTable As DataTable) As DataTable
+        Dim tempTableQuery As String = String.Empty
+        Dim updateStatement As String = String.Empty
+        Dim selectQuery As String = String.Empty
+        Dim updatedTable As DataTable = Nothing
+        Dim rdr As SqlDataReader = Nothing
+        Try
+            tempTableQuery = GetSKUDetailsTempTableQuery()
+            Using sqlCon As SqlConnection = New SqlConnection(ConnectionStringLocalTransaction)
+                sqlCon.Open()
+
+                Using sqlComm As SqlCommand = New SqlCommand(String.Empty, sqlCon)
+
+                    'Create the temp table
+                    sqlComm.CommandText = tempTableQuery
+                    sqlComm.CommandTimeout = 0
+                    sqlComm.ExecuteNonQuery()
+
+                    'skuDetailsTable = UpdateInvalidSQLDateInDataTable(skuDetailsTable, "SS_DATE", DateTime.MinValue)
+                    'skuDetailsTable = UpdateInvalidSQLDateInDataTable(skuDetailsTable, "SAMPLE_REQ_DATE", DateTime.MinValue)
+                    'skuDetailsTable = UpdateInvalidSQLDateInDataTable(skuDetailsTable, "CMR_DATE", DateTime.MinValue)
+                    'skuDetailsTable = UpdateInvalidSQLDateInDataTable(skuDetailsTable, "SAMPLE_DUE_DATE", DateTime.MinValue)
+                    'skuDetailsTable = UpdateInvalidSQLDateInDataTable(skuDetailsTable, "SAMPLE_STATUS_DATE", DateTime.MinValue)
+                    'skuDetailsTable = UpdateInvalidSQLDateInDataTable(skuDetailsTable, "PO_APPROVAL_DTE", DateTime.MinValue)
+                    'skuDetailsTable = UpdateInvalidSQLDateInDataTable(skuDetailsTable, "TURN_IN_DATE", DateTime.MinValue)
+                    'skuDetailsTable = UpdateInvalidSQLDateInDataTable(skuDetailsTable, "FIRST_RC_DATE", DateTime.MinValue)
+                    'skuDetailsTable = UpdateInvalidSQLDateInDataTable(skuDetailsTable, "COPY_READY_DATE", Date.MinValue)
+                    'skuDetailsTable = UpdateInvalidSQLDateInDataTable(skuDetailsTable, "PRODUCT_READY_DATE", Date.MinValue)
+                    'skuDetailsTable = UpdateInvalidSQLDateInDataTable(skuDetailsTable, "PRODUCT_ACTIVE_DATE", Date.MinValue)
+
+                    'Write the data from SKU details data table to the temp table
+                    Using bulkCopy As SqlBulkCopy = New SqlBulkCopy(sqlCon)
+                        bulkCopy.BulkCopyTimeout = 700
+                        bulkCopy.DestinationTableName = "#TmpSKUDetail"
+                        bulkCopy.WriteToServer(skuDetailsTable)
+                        bulkCopy.Close()
+                    End Using
+
+                    'Now we have the temp table with an image , so update the data from admin
+                    updateStatement = GetAdNumUpdateStatement()
+                    sqlComm.CommandText = updateStatement
+                    sqlComm.ExecuteNonQuery()
+
+                    'Update ad desc & ad type for items with an ad number from turn-in
+                    updateStatement = GetAdDescUpdateStatement()
+                    sqlComm.CommandText = updateStatement
+                    sqlComm.ExecuteNonQuery()
+
+                    'Now we have the temp table without an image , so update the data from admin
+                    updateStatement = GetAdNumAndImageIDUpdateStatement()
+                    sqlComm.CommandText = updateStatement
+                    sqlComm.ExecuteNonQuery()
+
+                    'Read the results to a database
+                    selectQuery = "SELECT * FROM #TmpSKUDetail"
+                    sqlComm.CommandText = selectQuery
+                    rdr = sqlComm.ExecuteReader(CommandBehavior.CloseConnection)
+                    updatedTable = ConvertToDataTable(rdr)
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+
+        Return updatedTable
+
+    End Function
+    'Private Function GetSKUDetailsTempTableQuery() As String
+    '    Dim tempTableQuery As String = String.Empty
+
+    '    tempTableQuery = "CREATE TABLE #TmpSKUDetail (GMM VARCHAR(100), DMM VARCHAR(100)" &
+    '        ", BUYER VARCHAR(100), FOB VARCHAR(100), DEPT VARCHAR(100), Class VARCHAR(100)" &
+    '        ", INTERNAL_STYLE_NUM DECIMAL(15,0), CLR_CDE INTEGER, SKU_NUM DECIMAL(15,0)" &
+    '        ", UPC_NUM DECIMAL(15,0), SS_DATE DATETIME " &
+    '        ", SAMPLE_REQ_DATE DATETIME, CMR_DATE DATETIME, SAMPLE_DUE_DATE DATETIME, SMPL_PRIM_LOC_NME VARCHAR(200)" &
+    '        ", SAMPLE_STATUS_DATE DATETIME, SAMPLE_STATUS_DESC VARCHAR(30), PO_APPROVAL_DTE DATETIME, DC_SHIP_DTE DATETIME, TURN_IN_DATE DATETIME" &
+    '        ", FIRST_RC_DATE DATETIME, COPY_READY_DATE DATETIME, PRODUCT_READY_DATE DATETIME" &
+    '        ", PRODUCT_ACTIVE_DATE DATETIME, QUANTITY INTEGER, OWN_PRICE_AMT DECIMAL(9,2), " &
+    '        " IMAGE_ID_NUM INTEGER, AD_NUM INTEGER, REPORT_ITEM_TYPE VARCHAR(10), AD_DESC VARCHAR(200)" &
+    '        ", AD_TYPE VARCHAR(100), IMAGE_SHOT_DATE DATETIME" &
+    '        ", IMAGE_READY_DATE DATETIME, JOB_SCHEDULE_DATE DATETIME)"
+
+    '    Return tempTableQuery
+    'End Function
+
+    Private Function GetSKUDetailsTempTableQuery() As String
+        Dim tempTableQuery As String = String.Empty
+
+        tempTableQuery = "CREATE TABLE #TmpSKUDetail (GMM VARCHAR(100), DMM VARCHAR(100)" &
+            ", BUYER VARCHAR(100), FOB VARCHAR(100), DEPT VARCHAR(100), Class VARCHAR(100)" &
+            ", DEPT_ID INTEGER, CLASS_ID INTEGER, VENDOR_ID INTEGER, INTERNAL_STYLE_NUM DECIMAL(15,0), CLR_CDE INTEGER, SKU_NUM DECIMAL(15,0)" &
+            ", UPC_NUM DECIMAL(15,0), SS_DATE VARCHAR(30) " &
+            ", SAMPLE_REQ_DATE VARCHAR(30), CMR_DATE VARCHAR(30), SAMPLE_DUE_DATE VARCHAR(30), SMPL_PRIM_LOC_NME VARCHAR(200)" &
+            ", SAMPLE_STATUS_DATE VARCHAR(30), SAMPLE_STATUS_DESC VARCHAR(30), PO_APPROVAL_DTE VARCHAR(30), DC_SHIP_DTE VARCHAR(30), TURN_IN_DATE VARCHAR(30)" &
+            ", FIRST_RC_DATE VARCHAR(30), COPY_READY_DATE VARCHAR(30), PRODUCT_READY_DATE VARCHAR(30)" &
+            ", PRODUCT_ACTIVE_DATE VARCHAR(30), QUANTITY INTEGER, OWN_PRICE_AMT DECIMAL(9,2), " &
+            " IMAGE_ID_NUM INTEGER, AD_NUM INTEGER, SKU_ACTIVE_DATE VARCHAR(30), " &
+            " REPORT_ITEM_TYPE VARCHAR(10), REMOVE_MDSE_FLG VARCHAR(1), AD_DESC VARCHAR(200)" &
+            ", AD_TYPE VARCHAR(100), IMAGE_SHOT_DATE DATETIME" &
+            ", IMAGE_READY_DATE DATETIME, JOB_SCHEDULE_DATE DATETIME)"
+
+        Return tempTableQuery
+    End Function
+
+    Private Function GetAdNumAndImageIDUpdateStatement() As String
+        Dim updateStatement As String = "UPDATE #TmpSKUDetail " &
+            " SET AD_NUM = ADM.AD_NBR, " &
+            " AD_DESC = AD.ad_desc, " &
+            " AD_TYPE = MT.media_type_desc, " &
+            " IMAGE_ID_NUM = IMN.image_id, " &
+            " JOB_SCHEDULE_DATE = APS.job_step_due_dt " &
+            " FROM  [#TmpSKUDetail] FC " &
+            " INNER JOIN [informix].[merch] AS MER " &
+            " ON MER.merch_id = (SELECT TOP 1 MERCH_ID " &
+            " FROM " &
+            " [informix].[merch] " &
+            " WHERE internal_style_num = FC.internal_style_num " &
+            " AND vendor_color_code = FC.clr_cde ORDER BY Current_route DESC) " &
+            " INNER JOIN [informix].[ad_merch] AS ADM" &
+            " ON MER.MERCH_ID = ADM.MERCH_ID " &
+            " AND ADM.ad_nbr = (SELECT TOP 1 AD_NBR " &
+            " FROM [informix].[ad_merch] WHERE merch_id = MER.merch_id " &
+            " ORDER BY route_order DESC) " &
+            " INNER JOIN  [informix].[ad_info] AS AD" &
+            " ON ADM.AD_NBR = AD.AD_NBR " &
+            " INNER JOIN [informix].[ad_prdctn_schdl] AS APS " &
+            " ON AD.AD_NBR = APS.AD_NBR AND APS.job_step_seq_nbr = 50 " &
+            " INNER JOIN [informix].[media_type] AS MT " &
+            " ON AD.media_type_cd = MT.media_type_cd " &
+            " LEFT OUTER JOIN [informix].[image_merch_new] AS IMN " &
+            " ON ADM.MERCH_ID = IMN.MERCH_ID " &
+            " WHERE FC.IMAGE_ID_NUM = 0 AND FC.AD_NUM = 0 "
+
+        Return updateStatement
+    End Function
+    Private Function GetAdNumUpdateStatement() As String
+        Dim updateStatement As String = "UPDATE #TmpSKUDetail " &
+            " SET AD_NUM = CIA.AD_NBR, " &
+            " AD_DESC = AD.ad_desc, " &
+            " AD_TYPE = MT.media_type_desc, " &
+            " JOB_SCHEDULE_DATE = APS.job_step_due_dt " &
+            " FROM  [#TmpSKUDetail] FC " &
+            " INNER JOIN [informix].[ctlg_image_asmt] AS CIA " &
+            " ON CIA.img_id = FC.IMAGE_ID_NUM " &
+            " INNER JOIN  [informix].[ad_info] AS AD" &
+            " ON CIA.AD_NBR = AD.AD_NBR " &
+            " INNER JOIN [informix].[ad_prdctn_schdl] AS APS " &
+            " ON AD.AD_NBR = APS.AD_NBR AND APS.job_step_seq_nbr = 50 " &
+            " INNER JOIN [informix].[media_type] AS MT " &
+            " ON AD.media_type_cd = MT.media_type_cd " &
+            " WHERE FC.IMAGE_ID_NUM > 0  AND FC.AD_NUM = 0 "
+
+        Return updateStatement
+    End Function
+
+    Private Function GetAdDescUpdateStatement() As String
+        Dim updateStatement As String = "UPDATE #TmpSKUDetail " &
+            " SET AD_DESC = AD.ad_desc, " &
+            " AD_TYPE = MT.media_type_desc, " &
+            " JOB_SCHEDULE_DATE = APS.job_step_due_dt " &
+            " FROM  [#TmpSKUDetail] FC " &
+            " INNER JOIN  [informix].[ad_info] AS AD" &
+            " ON FC.AD_NUM = AD.AD_NBR " &
+            " INNER JOIN [informix].[ad_prdctn_schdl] AS APS " &
+            " ON AD.AD_NBR = APS.AD_NBR AND APS.job_step_seq_nbr = 50 " &
+            " INNER JOIN [informix].[media_type] AS MT " &
+            " ON AD.media_type_cd = MT.media_type_cd " &
+            " WHERE FC.AD_NUM > 0 "
+
+        Return updateStatement
+    End Function
+    Private Function ConvertToDataTable(ByVal rdr As SqlDataReader) As DataTable
+        Dim dtReturn As DataTable = New DataTable("dt")
+        Dim dtSchemaTable As DataTable = rdr.GetSchemaTable
+        Dim cField As Integer = dtSchemaTable.Rows.Count
+        Dim iField As Integer = 0
+        While (iField < cField)
+            dtReturn.Columns.Add(New DataColumn(dtSchemaTable.Rows(iField)("ColumnName").ToLower(), _
+                                                dtSchemaTable.Rows(iField)("DataType")))
+            iField += 1
+        End While
+        '
+        If (rdr.HasRows) Then
+            Dim drRow As DataRow
+            While rdr.Read
+                drRow = dtReturn.NewRow
+                iField = 0
+                While (iField < cField)
+                    drRow(iField) = rdr(iField)
+
+                    iField += 1
+                End While
+                dtReturn.Rows.Add(drRow)
+            End While
+        End If
+
+        Return dtReturn
+    End Function
+
+    Private Function UpdateInvalidSQLDateInDataTable(ByVal inputTable As DataTable, ByVal columnName As String, ByVal valueToUpdate As String) As DataTable
+        Dim rows() As DataRow = Nothing
+
+        rows = inputTable.Select(String.Format("{0} = '0001-01-01'", columnName))
+
+        For Each row As DataRow In rows
+            row(columnName) = valueToUpdate
+        Next
+
+        Return inputTable
+    End Function
+
+    Public Function GetAverageDaysFromTurnInToActive_VendorImages() As Integer
+        Dim averageDays As Integer = 0
+        Dim sqlQuery As String = String.Empty
+
+        Try
+            sqlQuery = String.Concat(GetCommonSQLForAverageDaysFromTurnInToActive(50, 340), GetVendorImagesAdsWhereClause, GetOrderByClauseForAverageDaysFromTurnInToActive)
+
+            averageDays = GetAverageDaysFromTurnInToActive(sqlQuery)
+
+        Catch ex As Exception
+            Throw
+        End Try
+
+        Return averageDays
+    End Function
+    Public Function GetAverageDaysFromTurnInToActive_TurnIn(ByVal adType As AdType) As Integer
+        Dim averageDays As Integer = 0
+        Dim sqlQuery As String = String.Empty
+        Dim whereClause As String = String.Empty
+
+        Try
+            whereClause = GetWhereClauseByAdType(adType)
+
+            sqlQuery = String.Concat(GetCommonSQLForAverageDaysFromTurnInToActive(50, 340), whereClause, GetOrderByClauseForAverageDaysFromTurnInToActive)
+
+            averageDays = GetAverageDaysFromTurnInToActive(sqlQuery)
+
+        Catch ex As Exception
+            Throw
+        End Try
+
+        Return averageDays
+    End Function
+
+    Public Function GetAverageDaysFromImageShotToTurnIn(ByVal adType As AdType) As Integer
+        Dim averageDays As Integer = 0
+        Dim sqlQuery As String = String.Empty
+        Dim whereClause As String = String.Empty
+
+        Try
+            whereClause = GetWhereClauseByAdType(adType)
+
+            sqlQuery = String.Concat(GetCommonSQLForAverageDaysFromTurnInToActive(50, 195), whereClause, GetOrderByClauseForAverageDaysFromTurnInToActive)
+
+            averageDays = GetAverageDaysFromTurnInToActive(sqlQuery)
+
+        Catch ex As Exception
+            Throw
+        End Try
+
+        Return averageDays
+    End Function
+
+    Public Function GetAverageDaysFromImageShotToFinalImageReady(ByVal adType As AdType) As Integer
+        Dim averageDays As Integer = 0
+        Dim sqlQuery As String = String.Empty
+        Dim whereClause As String = String.Empty
+
+        Try
+            whereClause = GetWhereClauseByAdType(adType)
+
+            sqlQuery = String.Concat(GetCommonSQLForAverageDaysFromTurnInToActive(195, 300), whereClause, GetOrderByClauseForAverageDaysFromTurnInToActive)
+
+            averageDays = GetAverageDaysFromTurnInToActive(sqlQuery)
+
+        Catch ex As Exception
+            Throw
+        End Try
+
+        Return averageDays
+    End Function
+    Public Function GetAverageTotalPhotoTime(ByVal adType As AdType) As Integer
+        Dim averageDays As Integer = 0
+        Dim sqlQuery As String = String.Empty
+        Dim whereClause As String = String.Empty
+
+        Try
+            whereClause = GetWhereClauseByAdType(adType)
+
+            sqlQuery = String.Concat(GetCommonSQLForAverageDaysFromTurnInToActive(140, 200), whereClause, GetOrderByClauseForAverageDaysFromTurnInToActive)
+
+            averageDays = GetAverageDaysFromTurnInToActive(sqlQuery)
+
+        Catch ex As Exception
+            Throw
+        End Try
+
+        Return averageDays
+    End Function
+    Public Function GetAverageDaysFromTurnInToCopyReady(ByVal adType As AdType) As Integer
+        Dim averageDays As Integer = 0
+        Dim sqlQuery As String = String.Empty
+        Dim whereClause As String = String.Empty
+
+        Try
+            whereClause = GetWhereClauseByAdType(adType)
+
+            sqlQuery = String.Concat(GetCommonSQLForAverageDaysFromTurnInToActive(50, 305), whereClause, GetOrderByClauseForAverageDaysFromTurnInToActive)
+
+            averageDays = GetAverageDaysFromTurnInToActive(sqlQuery)
+
+        Catch ex As Exception
+            Throw
+        End Try
+
+        Return averageDays
+    End Function
+    Public Function GetAverageDaysFromTurnInToActive_INFC() As Integer
+        Dim averageDays As Integer = 0
+        Dim sqlQuery As String = String.Empty
+
+        Try
+            sqlQuery = String.Concat(GetCommonSQLForAverageDaysFromTurnInToActive(50, 340), GetINFCAdsWhereClause, GetOrderByClauseForAverageDaysFromTurnInToActive)
+
+            averageDays = GetAverageDaysFromTurnInToActive(sqlQuery)
+
+        Catch ex As Exception
+            Throw
+        End Try
+
+        Return averageDays
+    End Function
+
+    Public Function GetAverageDaysFromTurnInToActive_LIFT() As Integer
+        Dim averageDays As Integer = 0
+        Dim sqlQuery As String = String.Empty
+
+        Try
+            sqlQuery = String.Concat(GetCommonSQLForAverageDaysFromTurnInToActive(50, 340), GetLIFTAdsWhereClause, GetOrderByClauseForAverageDaysFromTurnInToActive)
+
+            averageDays = GetAverageDaysFromTurnInToActive(sqlQuery)
+
+        Catch ex As Exception
+            Throw
+        End Try
+
+        Return averageDays
+    End Function
+
+    Public Function GetAverageDaysFromTurnInToActive_ExtraHot() As Integer
+        Dim averageDays As Integer = 0
+        Dim sqlQuery As String = String.Empty
+
+        Try
+            sqlQuery = String.Concat(GetCommonSQLForAverageDaysFromTurnInToActive(50, 340), GetExtraHotAdsWhereClause, GetOrderByClauseForAverageDaysFromTurnInToActive)
+
+            averageDays = GetAverageDaysFromTurnInToActive(sqlQuery)
+
+        Catch ex As Exception
+            Throw
+        End Try
+
+        Return averageDays
+    End Function
+
+    Private Function GetCommonSQLForAverageDaysFromTurnInToActive(ByVal firstJobStep As Integer, ByVal secondJobStep As Integer) As String
+        Dim sqlQuery As String = String.Empty
+
+        sqlQuery = String.Format("SELECT TOP 100 " &
+                    " ISNULL(DATEDIFF(dd,(SELECT job_step_due_dt FROM [informix].[ad_prdctn_schdl] " &
+                    " WHERE ad_nbr = ai.ad_nbr AND job_step_seq_nbr = {0}),job_step_due_dt),0) AS days_diff," &
+                    " (SELECT job_step_due_dt FROM [informix].[ad_prdctn_schdl] WHERE " &
+                    " ad_nbr = ai.ad_nbr AND job_step_seq_nbr = {0}) AS turn_in_date, " &
+                    " job_step_due_dt AS ecomm_date,   " &
+                    " ai.ad_nbr,   " &
+                    " RTRIM(ai.ad_desc) AS ad_desc  " &
+                    " FROM [informix].[ad_prdctn_schdl] AS aps (NOLOCK)  " &
+                    " LEFT OUTER JOIN [informix].ad_info  AS ai (NOLOCK)  " &
+                    " ON ai.ad_nbr = aps.ad_nbr  " &
+                    " WHERE job_step_seq_nbr = {1} " &
+                    " AND DATEDIFF(dd, DATEADD(month, -2,GETDATE()),job_step_due_dt) >=0 ",
+                    firstJobStep, secondJobStep)
+
+        Return sqlQuery
+    End Function
+    Private Function GetVendorImagesAdsWhereClause() As String
+        Dim whereClause As String = String.Empty
+
+        whereClause = "	AND media_type_cd = 'EC'  AND media_cd = 'WEB'" &
+                    " AND ad_desc NOT LIKE '%LIFT%' AND ad_desc LIKE '%VS Imgs%'	" 
+
+        Return whereClause
+    End Function
+    Private Function GetTurnInAdsWhereClause() As String
+        Dim whereClause As String = String.Empty
+
+        whereClause = " AND media_type_cd = 'EC'  AND media_cd = 'WEB'" &
+                    " AND ad_desc NOT LIKE '%LIFT%' AND ad_desc LIKE '%TI%'	" 
+
+        Return whereClause
+    End Function
+
+    Private Function GetINFCAdsWhereClause() As String
+        Dim whereClause As String = String.Empty
+
+        whereClause = " AND media_type_cd = 'TXF'  AND media_cd = 'WEB'" 
+
+        Return whereClause
+    End Function
+
+    Private Function GetLIFTAdsWhereClause() As String
+        Dim whereClause As String = String.Empty
+
+        whereClause = " AND media_type_cd = 'EC'  AND media_cd = 'WEB'" &
+                    " AND ad_desc LIKE '%LIFT%' " 
+
+        Return whereClause
+    End Function
+
+    Private Function GetExtraHotAdsWhereClause() As String
+        Dim whereClause As String = String.Empty
+
+        whereClause = " AND media_type_cd = 'EC'  AND media_cd = 'WEB'" &
+                    " AND ad_desc LIKE '%EC In FC VS Images%' "
+
+        Return whereClause
+    End Function
+    Private Function GetOrderByClauseForAverageDaysFromTurnInToActive() As String
+        Dim orderByClause As String = String.Empty
+
+        orderByClause = " ORDER BY job_step_due_dt ASC, ai.ad_nbr ASC;  "
+
+        Return orderByClause
+    End Function
+
+    Private Function GetAverageDaysFromTurnInToActive(ByVal sqlQuery As String) As Integer
+        Dim averageDays As Integer = 0
+        Dim ads As New List(Of AdminData)
+        Dim ad As AdminData = Nothing
+
+        'Execute a query to read the adInfo
+        Using rdr As SqlDataReader = ExecuteReader(ConnectionStringLocalTransaction, CommandType.Text, sqlQuery)
+            While (rdr.Read())
+                ad = New AdminData()
+                ad.AdNumber = CInt(rdr("ad_nbr"))
+                ad.AdDesc = CStr(rdr("ad_desc"))
+                ad.AverageDaysFromTurnInToActive = CStr(rdr("days_diff"))
+
+                ads.Add(ad)
+            End While
+        End Using
+
+        If ads.Count > 0 Then
+            averageDays = ads.Average(Function(a) a.AverageDaysFromTurnInToActive)
+        End If
+
+        Return averageDays
+    End Function
+    Private Function GetWhereClauseByAdType(ByVal adType As AdType) As String
+        Select Case adType
+            Case Common.Common.AdType.Ecommerce
+                Return GetTurnInAdsWhereClause()
+            Case Common.Common.AdType.INFC
+                Return GetINFCAdsWhereClause()
+            Case Common.Common.AdType.Lift
+                Return GetLIFTAdsWhereClause()
+            Case Common.Common.AdType.ExtraHot
+                Return GetExtraHotAdsWhereClause()
+            Case Common.Common.AdType.VendorImage
+                Return GetVendorImagesAdsWhereClause()
+        End Select
+
+    End Function
+End Class

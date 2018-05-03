@@ -1,0 +1,48 @@
+﻿<div class="row">
+    <div class="col-sm-4">
+        <button class="btn btn-default btn-block skinnyMarginVert" ng-click="refreshPackList()">Refresh List</button>
+    </div>
+    <div class="col-sm-5 col-sm-offset-2">
+        <div class="row">
+            <form ng-submit="tryOpenOrder(formInput.orderNo)">
+                <div class="col-sm-8 skinnyMarginVert">
+                    <input name="orderNo" ng-model="formInput.orderNo" ng-keypress="numberValidator(event)" type="text" placeholder="Scan or Enter Receipt Barcode" class="form-control" id="scanReceipt" bt-focus="true" maxlength="20" />
+                    <input type="submit" style="display:none" />
+                </div>
+                <div class="col-sm-3 skinnyMarginVert">
+                    <button class=" btn btn-default btn-block"> Go </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <h3 class="textBold">Select or Scan Order Number:</h3>
+    </div>
+</div>
+<div class="row clearfix" ng-show="!isLoading">
+        <div id="wrapper" iscroll class="col-sm-12 column" style="overflow-y: hidden;max-height:320px;min-height:90px;position:relative">
+            <table ng-table="tableParams" class="table table-striped">
+                <tr ng-repeat="shipment in $data">
+                    <td iscrolltap="openConfirmOrderModal(shipment)" data-title="'Order Number'" sortable="'_display._OrderNo'" ng-class=" {'sorted': params.sorting()['_display._OrderNo']}">
+                        <a href=""> {{shipment._display._OrderNo}} </a>
+                    </td>
+                    <td data-title="'Customer'" sortable="'_display._CustomerName'" ng-class=" {'sorted': params.sorting()['_display._CustomerName']}">
+                        {{shipment._display._CustomerName}}
+                    </td>
+                    <td data-title="'Printed Receipt?'" sortable="'_display._IsReceiptPrintedStr'" ng-class=" {'sorted': params.sorting()['_display._IsReceiptPrintedStr']}">
+                        {{shipment._display._IsReceiptPrintedStr}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+</div>
+<div class="row clearfix" ng-show="isLoading">
+    <div class="col-sm-12 text-center"><h2>Refreshing List...</h2></div>
+</div>
+<div class="doNotPrint row">
+    <div class="col-sm-4">
+        <button class="btn btn-default btn-block margintop20" ng-click="goBack()">Back</button>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <div class="text-center">
+            <div style="font-size: 22px; padding: 5px; color: green; font-weight: 700;  border-bottom-style: solid;  margin-bottom: 10px; border-bottom-color: lightgray;">
+                Sales Order:
+                <span style="text-decoration:underline;cursor: pointer;" ng-click="goToSalesDetail()">{{orderDetail._OrderNo}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="row">
+            <div class="col-sm-12">Total Return Value: {{returnTotal | currency}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">Total Exchange Value: {{exchangeTotal | currency}}</div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="row">
+            <div class="col-sm-12">Total Refund Amount: {{refundTotal | currency}}</div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12"><h4>Return Orders</h4></div>
+</div>
+<div class="row scrollresults" id="returnsWrapper" ng-class="{'returnsTable':(exchangeOrderlines.length > 0),'returnsOnly':(exchangeOrderlines.length < 1)}">
+    <div class="col-sm-12 column">
+
+        <div class="row">
+            <div class="col-sm-12 column">
+                <table ng-table="returnsTable" class="table">
+                    <tr ng-repeat="orderline in $data">
+                        <td data-title="'Return No'" sortable="'orderNo'" ng-click="openOrderDetail(orderline.orderNo, 'return')">
+                            <span style="text-decoration:underline;">{{orderline.orderNo}}</span>
+                        </td>
+                        <td data-title="'Return Date'" sortable="'orderDate'">
+                            {{orderline.orderDate | date:'fullDate'}}
+                        </td>
+                        <td data-title="'Image'">
+                            <img class="img-responsive" style="max-height:90px;" ng-src="{{orderline.imageUrl}}" />
+                        </td>
+                        <td data-title="'UPC'" sortable="'upc'">
+                            {{orderline.upc}}
+                        </td>
+                        <td data-title="'Description'" sortable="'description'">
+                            <span ng-bind-html="orderline.description"></span>
+                        </td>
+                        <td data-title="'TKT Price'" sortable="'unitPrice'">
+                            {{orderline.unitPrice | currency}}
+                        </td>
+                        <td data-title="'Return Quantity'" sortable="'returnQty'">
+                            {{orderline.returnQty}}
+                        </td>
+                        <td data-title="'Status'" sortable="'status'">
+                            {{orderline.status}}
+                        </td>
+                        <td data-title="'Return Reason'" sortable="'returnReason'">
+                            {{orderline.returnReason}}
+                        </td>
+                        <td data-title="'Customer Can Keep'" sortable="'customerKeep'">
+                            {{orderline.customerKeep}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row" ng-show="exchangeOrderlines.length > 0">
+    <div class="col-sm-12"><h4>Exchange Orders</h4></div>
+</div>
+<div ng-show="exchangeOrderlines.length > 0" class="row returnsTable scrollresults" id="exchangesWrapper">
+    <div class="col-sm-12 column">
+
+
+        <div class="row">
+            <div class="col-sm-12 column">
+                <table ng-table="exchangesTable" class="table">
+                    <tr ng-repeat="orderline in $data">
+                        <td data-title="'Exchange No'" sortable="'orderNo'" ng-click="openOrderDetail(orderline.orderNo, 'exchange')">
+                            <span style="text-decoration:underline;">{{orderline.orderNo}}</span>
+                        </td>
+                        <td data-title="'Exchange Date'" sortable="'orderDate'">
+                            {{orderline.orderDate | date:'fullDate'}}
+                        </td>
+                        <td data-title="'Image'">
+                            <img class="img-responsive" style="max-height:90px;" ng-src="{{orderline.imageUrl}}" />
+                        </td>
+                        <td data-title="'UPC'" sortable="'upc'">
+                            {{orderline.upc}}
+                        </td>
+                        <td data-title="'Description'" sortable="'description'">
+                            <span ng-bind-html="orderline.description"></span>
+                        </td>
+                        <td data-title="'TKT Price'" sortable="'unitPrice'">
+                            {{orderline.unitPrice | currency}}
+                        </td>
+                        <td data-title="'Quantity'" sortable="'returnQty'">
+                            {{orderline.returnQty}}
+                        </td>
+                        <td data-title="'Status'" sortable="'status'">
+                            {{orderline.status}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

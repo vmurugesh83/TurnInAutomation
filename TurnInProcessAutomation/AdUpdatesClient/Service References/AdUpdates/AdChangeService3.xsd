@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AdUpdates" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AdUpdates" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfAd">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Ad" nillable="true" type="tns:Ad" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAd" nillable="true" type="tns:ArrayOfAd" />
+  <xs:complexType name="Ad">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AdEnd" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="AdNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="AdStart" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="AdStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AdVersion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AssocFirst" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AssocId" type="xs:int" />
+      <xs:element minOccurs="0" name="AssocLast" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AssocPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EventEnd" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EventName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EventStart" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MediaDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MediaType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Page" nillable="true" type="tns:Page" />
+      <xs:element minOccurs="0" name="PhotoEnd" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PhotoStart" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TurninDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Ad" nillable="true" type="tns:Ad" />
+  <xs:complexType name="Page">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActiveIndicator" type="tns:ActiveIndicatorType" />
+      <xs:element minOccurs="0" name="AdNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CoverPage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PageDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PageNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="ShotGroup" nillable="true" type="tns:ArrayOfShotGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Page" nillable="true" type="tns:Page" />
+  <xs:simpleType name="ActiveIndicatorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="A" />
+      <xs:enumeration value="K" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ActiveIndicatorType" nillable="true" type="tns:ActiveIndicatorType" />
+  <xs:complexType name="ArrayOfShotGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ShotGroup" nillable="true" type="tns:ShotGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfShotGroup" nillable="true" type="tns:ArrayOfShotGroup" />
+  <xs:complexType name="ShotGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfImage" />
+      <xs:element minOccurs="0" name="ShotNumber" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ShotGroup" nillable="true" type="tns:ShotGroup" />
+  <xs:complexType name="ArrayOfImage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Image" nillable="true" type="tns:Image" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfImage" nillable="true" type="tns:ArrayOfImage" />
+  <xs:complexType name="Image">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActiveIndicator" type="tns:ActiveIndicatorType" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImageClass" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImageNotes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImageNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="ImageSource" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImageSuffixType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MediaType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Samples" nillable="true" type="tns:ArrayOfMerchForImage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Image" nillable="true" type="tns:Image" />
+  <xs:complexType name="ArrayOfMerchForImage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MerchForImage" nillable="true" type="tns:MerchForImage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMerchForImage" nillable="true" type="tns:ArrayOfMerchForImage" />
+  <xs:complexType name="MerchForImage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActiveIndicator" type="tns:ActiveIndicatorType" />
+      <xs:element minOccurs="0" name="MerchID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StylingNotes" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MerchForImage" nillable="true" type="tns:MerchForImage" />
+</xs:schema>

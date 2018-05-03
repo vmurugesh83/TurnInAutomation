@@ -1,0 +1,16 @@
+/*------------------------------------------------------------------
+Supports the CalculationController, FieldStateController,
+MultiFieldStateController, FSCOnCommand, and MultiFSCOnCommand.
+
+NOTE: By default, DES compresses this file to remove comments.
+You can also have it remove most whitespace or omit compression with this key
+in the <appSettings> section of web.config:
+<add key="DES_StyleSheetCompression" value="none|full" />
+-------------------------------------------------------------------*/
+
+/* Property: CalculationController.InvalidLabelCssClass 
+When the label showing the calculated total reflects an error in the calculation. */
+.DES_CalcInvalid
+{
+   color:Red;
+}

@@ -1,0 +1,246 @@
+<%-- 
+Name: 
+Author: Kimberly Lehman
+Description: 
+--%>
+
+<%@ CodeTemplate Language="VB" TargetLanguage="Text" Src="ICCHelper.cst.vb" Inherits="ICCHelper" Debug="True" Description="Template description here." %>
+<%@ Property Name="SQLServerConnect" Type="System.String" Default="<SQL>" Optional="False" Category="Strings" Description="SQL Server Connection string." %>
+<%@ Property Name="Table" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow." %>
+<%@ Property Name="className" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow Formatted." %>
+<%@ Property Name="projectName" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow Formatted." %>
+
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Data.OleDb" %>
+<%@ Import Namespace="System.Collections.Generic" %>
+<%
+    Dim ColumnsSQL as string = "select COLUMN_NAME, DATA_TYPE, IS_NULLABLE, ISNULL(CHARACTER_OCTET_LENGTH,0) as LENGTH from information_schema.columns where table_name = '{0}' order by ordinal_position"
+    Dim PrimaryKeyColumnsSQL as string = "SELECT Col.Column_Name as COLUMN_NAME from INFORMATION_SCHEMA.TABLE_CONSTRAINTS Tab, INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE Col WHERE Col.Constraint_Name = Tab.Constraint_Name AND Col.Table_Name = Tab.Table_Name AND Constraint_Type = 'PRIMARY KEY' AND Col.Table_Name = '{0}'"
+    Dim ForeignKeyColumnsSQL as string = "SELECT Col.Column_Name as COLUMN_NAME from INFORMATION_SCHEMA.TABLE_CONSTRAINTS Tab, INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE Col WHERE Col.Constraint_Name = Tab.Constraint_Name AND Col.Table_Name = Tab.Table_Name AND Constraint_Type = 'FOREIGN KEY' AND Col.Table_Name = '{0}'"
+
+    Dim columnsDT As DataTable
+    Dim primaryKeyColumnsDT As DataTable
+    Dim foreignKeyColumnsDT As DataTable
+    
+ 	columnsDT = GetDataSet(SQLServerConnect, String.Format(ColumnsSQL, table)).Tables(0) 
+    primaryKeyColumnsDT = GetDataSet(SQLServerConnect, String.Format(PrimaryKeyColumnsSQL, table)).Tables(0) 
+    foreignKeyColumnsDT = GetDataSet(SQLServerConnect, String.Format(ForeignKeyColumnsSQL, table)).Tables(0) 
+    
+    dim columns as new List(Of String)
+    for each keyRow as DataRow in columnsDT.Rows        
+        columns.Add(keyRow("COLUMN_NAME"))            
+    next 
+    
+    dim primaryKeys as new List(Of String)
+    for each keyRow as DataRow in primaryKeyColumnsDT.Rows        
+        primaryKeys.Add(keyRow("COLUMN_NAME"))
+        columns.Remove(keyRow("COLUMN_NAME"))            
+    next 
+    
+    dim foreignKeys as new List(Of String)
+    for each keyRow as DataRow in foreignKeyColumnsDT.Rows        
+        foreignKeys.Add(keyRow("COLUMN_NAME"))            
+        columns.Remove(keyRow("COLUMN_NAME"))            
+    next 
+%>
+Imports System.Configuration
+Imports System.Collections.Generic
+Imports System.Reflection
+Imports System.Text
+Imports log4net
+Imports BonTon.DBUtility
+Imports BonTon.DBUtility.SqlHelper
+Imports System.Data.SqlClient
+Imports <%=projectName%>.BusinessEntities
+Imports <%=projectName%>.Interface
+Imports <%=projectName%>.Factory
+
+
+Partial Public Class <%=className%>
+    Implements I<%=className%>
+
+    'Static constants 
+    Private ReadOnly Shared SQL_SELECT_ALL_FROM_<%=className.ToUpper%> As String = "SELECT <% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("COLUMN_NAME").ToString.Trim %><%=name%><% IF i=columnsDT.rows.Count - 1 then %> FROM <%=table%>)<%else%>, <%end if%><% Next i %>
+    Private ReadOnly Shared SQL_SELECT_<%=className.ToUpper%>_BY_<%for i as integer = 0 to primaryKeys.Count - 1%><%=primaryKeys(i)%><%if i = primaryKeys.Count - 1%><%else%>_<%end if%><%next%> As String = "SELECT <% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("COLUMN_NAME").ToString.Trim %><%=name%><% IF i=columnsDT.rows.Count - 1 then %> FROM <%=table%><%=table%> WHERE <%for j as integer = 0 to primaryKeys.Count - 1%><%=primaryKeys(j)%> = ?<%if j = primaryKeys.Count - 1%><%else%> AND <%end if%><%next%>"<%else%>, <%end if%><% Next i %>
+    <%for each foreignKey as String in foreignKeys%>
+    Private ReadOnly Shared SQL_SELECT_<%=className.ToUpper%>_BY_<%=foreignKey.ToUpper%> As String = "SELECT <% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("COLUMN_NAME").ToString.Trim %><%=name%><% IF i=columnsDT.rows.Count - 1 then %> FROM <%=table%><%=table%> WHERE <%=foreignKey%> = ?"<%else%>, <%end if%><% Next i %>
+    <%next%>
+    Private ReadOnly Shared SQL_INSERT_<%=className.ToUpper%> As String = "INSERT INTO <%=table%><%=table%> (<% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("COLUMN_NAME").ToString.Trim %><%=name%><% IF i=columnsDT.rows.Count - 1 then %>)<%else%>, <%end if%><% Next i %> VALUES (<% For j as integer = 0 to columnsDT.rows.Count - 1 %>?<% IF j=columnsDT.rows.Count - 1 then %>)"<%else%>, <%end if%><% Next j %>
+    Private ReadOnly Shared SQL_UPDATE_<%=className.ToUpper%> As String = "UPDATE <%=table%><%=table%> SET <% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("COLUMN_NAME").ToString.Trim %><%=name%> = ?<% IF i=columnsDT.rows.Count - 1 then %> WHERE <%for j as integer = 0 to primaryKeys.Count - 1%><%=primaryKeys(j)%> = ?<%if j = primaryKeys.Count - 1%><%else%> AND <%end if%><%next%><%else%>, <%end if%><% Next i %>
+    Private ReadOnly Shared SQL_DELETE_<%=className.ToUpper%> As String = "DELETE FROM <%=table%><%=table%> WHERE <%for j as integer = 0 to primaryKeys.Count - 1%><%=primaryKeys(j)%> = ?<%if j = primaryKeys.Count - 1%><%else%> AND <%end if%><%next%>
+    <% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("COLUMN_NAME").ToString.Trim %>
+    Private Const PARM_<%=name%> As String = "@<%=name%>"<% Next i %>
+        
+     ''' <summary>
+     ''' Method to get all <%=className%>Info records.
+     ''' </summary>	    	 
+     Public Function GetAllFrom<%=className%>() as IList(Of <%=className%>Info) Implements I<%=className%>.GetAllFrom<%=className%>
+
+			dim <%=ToCamelCase(className)%>Infos as IList(Of <%=className%>Info) = new List(Of <%=className%>Info)()
+
+            'Execute a query to read the <%=className%>Infos
+			Using rdr as SqlDataReader = ExecuteReader(ConnectionStringLocalTransaction, CommandType.StoredProcedure, SQL_SELECT_ALL_FROM_<%=className.ToUpper%>, Nothing) 
+                While (rdr.Read()) 
+                   'instantiate new <%=className%>Info object via factory method and add to list
+                    <%=ToCamelCase(className)%>Infos.Add(<%=className%>Factory.Construct(rdr))
+                End While
+            End Using
+            return <%=ToCamelCase(className)%>Infos
+      End Function
+    
+<%  dim primaryKeyTypes as new List(Of String)
+    dim primaryKeyNullables as new List(Of String)
+    dim primaryKeyLengths as new List(Of String)
+
+    for each primaryKey as String in primaryKeys
+        for each row as DataRow in columnsDT.Rows
+            if row("COLUMN_NAME") = primaryKey then
+                primaryKeyTypes.Add(row("DATA_TYPE"))
+                primaryKeyNullables.Add(row("IS_NULLABLE"))        
+                primaryKeyLengths.Add(row("LENGTH"))
+            end if
+        next
+    next
+%>    
+    ''' <summary>
+    ''' Method to get a <%=className%>Info record by its primary key column(s).
+    ''' </summary>	    	 
+    Public Function Get<%=className%>By<%for i as integer = 0 to primaryKeys.Count - 1%><%=ToPascalCase(primaryKeys(i))%><%if i = primaryKeys.Count - 1%><%else%>And<%end if%><%next%>(<%for i as integer = 0 to primaryKeys.Count - 1%>ByVal <%=ToCamelCase(primaryKeys(i))%> as <%=ConvertType(primaryKeyTypes(i), primaryKeyNullables(i))%><%if not i = primaryKeys.Count - 1 then%>, <%end if%><%next%>) as <%=className%>Info Implements I<%=className%>.Get<%=className%>By<%for i as integer = 0 to primaryKeys.Count - 1%><%=ToPascalCase(primaryKeys(i))%><%if i = primaryKeys.Count - 1%><%else%>And<%end if%><%next%>
+		dim <%=ToCamelCase(className)%>Info as <%=className%>Info = Nothing
+       
+        Dim parms as SqlParameter() = New SqlParameter() {<% For i as integer = 0 to primaryKeys.Count - 1 %>New SqlParameter(PARM_<%=primaryKeys(i)%>, SqlDbType.<%dim dataType as String = primaryKeyTypes(i)%><%if dataType="TIMESTMP" then%><%="DBTimeStamp"%><%else%><%=ToPascalCase(primaryKeyTypes(i))%><%end if%>, <%=primaryKeyLengths(i)%>)<% IF i=primaryKeys.Count - 1 then %>}<%else%>, <%end if%><% Next i %>
+        <% For i As Integer = 0 To primaryKeys.Count - 1 %>
+        parms(<%=i%>).Value = <%=ToCamelCase(primaryKeys(i))%>
+        <% Next i %>
+      
+        'Execute a query to read the <%=className%>Infos
+	    Using rdr as SqlDataReader = ExecuteReader(ConnectionStringLocalTransaction, CommandType.StoredProcedure, SQL_SELECT_<%=className.ToUpper%>_BY_<%for i as integer = 0 to primaryKeys.Count - 1%><%=primaryKeys(i)%><%if i = primaryKeys.Count - 1%><%else%>_<%end if%><%next%>, parms)
+            While (rdr.Read()) 
+                'instantiate new <%=className%>Info object via factory method
+                 <%=ToCamelCase(className)%>Info = <%=className%>Factory.Construct(rdr)
+            End While
+        End Using
+        return <%=ToCamelCase(className)%>Info
+    End Function
+
+<%for each foreignKey as String in foreignKeys%>    
+    <%dim foreignKeyType as String = String.Empty
+    dim foreignKeyNullable as String = String.Empty
+    dim foreignKeyLength as String = String.Empty
+    for each row as DataRow in columnsDT.Rows
+        if row("COLUMN_NAME") = foreignKey then
+            foreignKeyType = row("DATA_TYPE")
+            foreignKeyNullable = row("IS_NULLABLE")
+            foreignKeyLength = row("LENGTH")
+        end if
+next%>
+    
+    ''' <summary>
+    ''' Method to get a list of <%=className%>Info records related to foreign key "<%=foreignKey%>".
+    ''' </summary>	    	 
+    Public Function Get<%=className%>By<%=ToPascalCase(foreignKey)%>(ByVal <%=ToCamelCase(foreignKey)%> as <%=ConvertType(foreignKeyType, foreignKeyNullable)%>) as IList(Of <%=className%>Info) Implements I<%=className%>.Get<%=className%>By<%=ToPascalCase(foreignKey)%>
+    	dim <%=ToCamelCase(className)%>Info as <%=className%>Info = Nothing
+                        
+        dim parm as SqlParameter = new SqlParameter(PARM_<%=foreignKey%>, SqlDbType.<%=ToPascalCase(foreignKeyType)%>, <%=foreignKeyLength%>)
+        parm.Value = <%=ToCamelCase(foreignKey)%>
+
+        'Execute a query to read the <%=className%>Infos
+		Using rdr as SqlDataReader = ExecuteReader(ConnectionStringLocalTransaction, CommandType.StoredProcedure, SQL_SELECT_<%=className.ToUpper%>_BY_<%=foreignKey.ToUpper%>, parm)
+            While (rdr.Read()) 
+                'instantiate new <%=className%>Info object via factory method
+                <%=ToCamelCase(className)%>Info = <%=className%>Factory.Construct(rdr)
+            End While
+        End Using
+        return <%=ToCamelCase(className)%>Info
+    End Function
+    <%next%>
+    
+    ''' <summary>
+    ''' Method to add a <%=className%>Info record to the database.
+    ''' </summary>	    	 
+    Public Sub Insert<%=className%>(<% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("COLUMN_NAME").ToString.Trim %>ByVal <%=ToCamelCase(name)%> As <%=ConvertType(columnsDT.rows(i)("DATA_TYPE").ToString.Trim, columnsDT.rows(i)("IS_NULLABLE").ToString.Trim)%><% IF i=columnsDT.rows.Count - 1 then %><%else%>, <%end if%><% Next i %>, Optional ByVal tran As SqlTransaction = Nothing) Implements I<%=className%>.Insert<%=className%>
+        ' Get each commands parameter arrays 
+        Dim parms As SqlParameter() = GetInsertParameters() 
+    
+        ' Set up the parameters 
+        <% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("COLUMN_NAME").ToString.Trim %>parms(<%=i%>).Value = <%=ToCamelCase(name)%><% IF i=columnsDT.rows.Count - 1 then %><%else%><%=Environment.NewLine & "        "%><%end if%><% Next i %> 
+    
+        If tran IsNot Nothing Then
+            ExecuteNonQuery(tran, CommandType.StoredProcedure, SQL_INSERT_<%=className.ToUpper%>, parms)
+        Else
+            ExecuteNonQuery(ConnectionStringLocalTransaction, CommandType.StoredProcedure, SQL_INSERT_<%=className.ToUpper%>, parms)
+        End If
+    End Sub 
+
+    ''' <summary>
+    ''' Method to update a <%=className%>Info record to the database.
+    ''' </summary>	    	 
+    Public Sub Update<%=className%>(ByVal <%=ToCamelCase(className)%>Info as <%=className%>Info, Optional ByVal tran As SqlTransaction = Nothing) Implements I<%=className%>.Update<%=className%>
+        ' Get each commands parameter arrays 
+        Dim parms As SqlParameter() = GetUpdateParameters() 
+      
+        ' Set up the parameters 
+        <% dim k as Integer = 0%>
+        <% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("COLUMN_NAME").ToString.Trim %>parms(<%=i%>).Value = <%=ToCamelCase(className)%>Info.<%=ToPascalCase(name)%><% IF i=columnsDT.rows.Count - 1 then %><%else%><%=Environment.NewLine & "        "%><%end if%><%k=i%><% Next i %>
+        <% For j as integer = 0 to primaryKeys.Count - 1 %><%k=k+1%>parms(<%=k%>).Value = <%=ToCamelCase(className)%>Info.<%=ToPascalCase(primaryKeys(j))%><% if j = primaryKeys.Count - 1 then %><%else%><%=Environment.NewLine & "        "%><%end if%><% Next j %> 
+        
+        If tran IsNot Nothing Then
+            ExecuteNonQuery(tran, CommandType.StoredProcedure, SQL_UPDATE_<%=className.ToUpper%>, parms)
+        Else
+            ExecuteNonQuery(ConnectionStringLocalTransaction, CommandType.StoredProcedure, SQL_UPDATE_<%=className.ToUpper%>, parms)
+        End If
+    End Sub 
+    
+    ''' <summary>
+    ''' Method to delete a <%=className%>Info record.
+    ''' </summary>	    	 
+    Public Sub Delete<%=className%>(<%for i as integer = 0 to primaryKeys.Count - 1%>ByVal <%=ToCamelCase(primaryKeys(i))%> as <%=ConvertType(primaryKeyTypes(i), primaryKeyNullables(i))%><%if not i = primaryKeys.Count - 1 then%>, <%end if%><%next%>, Optional ByVal tran As SqlTransaction = Nothing) Implements I<%=className%>.Delete<%=className%>
+		Dim parms as SqlParameter() = New SqlParameter() {<% For i as integer = 0 to primaryKeys.Count - 1 %>New SqlParameter(PARM_<%=primaryKeys(i)%>, SqlDbType.<%dim dataType as String = primaryKeyTypes(i)%><%if dataType="TIMESTMP" then%><%="DBTimeStamp"%><%else%><%=ToPascalCase(primaryKeyTypes(i))%><%end if%>, <%=primaryKeyLengths(i)%>)<% IF i=primaryKeys.Count - 1 then %>}<%else%>, <%end if%><% Next i %>
+        
+        <%for i as Integer = 0 to primaryKeys.Count - 1%>
+        parms(<%=i%>).Value = <%=ToCamelCase(primaryKeys(i))%>
+        <%next%>
+        
+        If tran IsNot Nothing Then
+	        ExecuteNonQuery(tran, CommandType.StoredProcedure, SQL_DELETE_<%=className.ToUpper%>, parms)
+        Else
+            ExecuteNonQuery(ConnectionStringLocalTransaction, CommandType.StoredProcedure, SQL_DELETE_<%=className.ToUpper%>, parms)
+        End If
+    End Sub
+
+    ''' <summary> 
+    ''' Internal function to get cached insert parameters 
+    ''' </summary> 
+    ''' <returns></returns> 
+    Private Shared Function GetInsertParameters() As SqlParameter() 
+        Dim parms As SqlParameter() = GetCachedParameters(SQL_INSERT_<%=className%>) 
+    
+        If parms Is Nothing Then
+            parms = New SqlParameter() {<% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("COLUMN_NAME").ToString.Trim %>New SqlParameter(PARM_<%=name%>, SqlDbType.<%dim dataType as String = columnsDT.rows(i)("DATA_TYPE").ToString().Trim()%><%if dataType="TIMESTMP" then%><%="DBTimeStamp"%><%else%><%=ToPascalCase(columnsDT.rows(i)("DATA_TYPE").ToString().Trim())%><%end if%>, <%=columnsDT.rows(i)("LENGTH")%>)<% IF i=columnsDT.rows.Count - 1 then %>}<%else%>, <%end if%><% Next i %>
+        
+            CacheParameters(SQL_INSERT_<%=className%>, parms) 
+        End If 
+        Return parms 
+    End Function 
+    
+    
+    ''' <summary> 
+    ''' Internal function to get cached update parameters 
+    ''' </summary> 
+    ''' <returns></returns> 
+    Private Shared Function GetUpdateParameters() As SqlParameter() 
+        Dim parms As SqlParameter() = GetCachedParameters(SQL_UPDATE_<%=className%>) 
+    
+        If parms Is Nothing Then
+            parms = New SqlParameter() {<% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("COLUMN_NAME").ToString.Trim %>New SqlParameter(PARM_<%=name%>, SqlDbType.<%dim dataType as String = columnsDT.rows(i)("DATA_TYPE").ToString().Trim()%><%if dataType="TIMESTMP" then%><%="DBTimeStamp"%><%else%><%=ToPascalCase(columnsDT.rows(i)("DATA_TYPE").ToString().Trim())%><%end if%>, <%=columnsDT.rows(i)("LENGTH")%>)<% IF i=columnsDT.rows.Count - 1 then %>, <%for j as Integer = 0 to primaryKeys.Count - 1%>New SqlParameter(PARM_<%=primaryKeys(j)%>, SqlDbType.<%if primaryKeyTypes(j)="TIMESTMP" then%><%="DBTimeStamp"%><%else%><%=ToPascalCase(primaryKeyTypes(j))%><%end if%>, <%=primaryKeyLengths(j)%><%if j = primaryKeys.Count - 1 then %>)<%else%>), <%end if%><%next%>}<%else%>, <%end if%><% Next i %>
+        
+            CacheParameters(SQL_UPDATE_<%=className%>, parms) 
+        End If 
+        Return parms 
+    End Function 
+                    
+End Class
+
+<script runat="template">
+
+</script>

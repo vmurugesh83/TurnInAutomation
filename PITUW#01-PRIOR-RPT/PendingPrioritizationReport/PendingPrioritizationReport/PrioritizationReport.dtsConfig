@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<DTSConfiguration>
+	<DTSConfigurationHeading>
+		<DTSConfigurationFileInfo GeneratedBy="INTERNAL\034846" GeneratedFromPackageName="PrioritizationReport" GeneratedFromPackageID="{5C96F57A-9BE4-4D5E-B3EA-C4D9AC6CC4F5}" GeneratedDate="1/21/2016 12:36:02 PM"/>
+	</DTSConfigurationHeading>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::AdminConnectionString].Properties[Value]" ValueType="String">
+		<ConfiguredValue>Data Source=m055-SQL-1T.internal.bonton.com;User ID=informix;Password=informix;Initial Catalog=DBADVTEST;Provider=SQLNCLI10.1;Persist Security Info=True;</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::CCEmailAddress].Properties[Value]" ValueType="String">
+		<ConfiguredValue>Murugesan.Venkatasubramanian@bonton.com</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::ConnectionString].Properties[Value]" ValueType="String">
+		<ConfiguredValue>Data Source=TEST;User ID=CSTUTRNQ;Password=klu$#92z;Provider=IBMDADB2.DB2COPY1;Location=gateway.db.test.bonton.com:6100;</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::DatabaseSchema].Properties[Value]" ValueType="String">
+		<ConfiguredValue>MRSSI</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::EmailBody].Properties[Value]" ValueType="String">
+		<ConfiguredValue>There are items 'Pending' in Prioritization for more than 7 days.  The details of those items are given in the spreadsheet attached.  Please check and process those items so that they can be moved to WebCat.</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::EmailSubject].Properties[Value]" ValueType="String">
+		<ConfiguredValue>Items pending in prioritization for more than 7 days</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::FromEmailAddress].Properties[Value]" ValueType="String">
+		<ConfiguredValue>ITAdv_Marketing@bonton.com</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::KilledImagesTableName].Properties[Value]" ValueType="String">
+		<ConfiguredValue>#KilledImages</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::KilledItemsQuery].Properties[Value]" ValueType="String">
+		<ConfiguredValue>SELECT AD_NUM, IMAGE_ID FROM [tempdb].[dbo].[#KilledImages] WHERE UPPER(LTRIM(RTRIM(ISNULL(IMAGE_SUFFIX,'')))) &lt;&gt; 'X' ORDER BY AD_NUM, IMAGE_ID</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::LogFilePath].Properties[Value]" ValueType="String">
+		<ConfiguredValue>C:\Users\034846\Documents\Visual Studio 2008\Projects\PendingPrioritizationReport\PendingPrioritizationReport\Logs</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::PendingPrioritizationAge].Properties[Value]" ValueType="Int32">
+		<ConfiguredValue>7</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::PrioritizationCount].Properties[Value]" ValueType="Int32">
+		<ConfiguredValue>0</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::ReportCountQuery].Properties[Value]" ValueType="String">
+		<ConfiguredValue>
+			SELECT AD_NUM, MIN(WCS.IMAGE_ID_NUM) AS IMAGE_ID,CAST('' AS CHAR(2)) AS IMAGE_SUFFIX
+			FROM MRSSI.TTU600WEBCAT_STAGE AS WCS
+			JOIN MRSSI.TSS200SKU AS SKU
+			ON SKU.UPC_NUM = WCS.UPC_NUM
+			JOIN MRSSI.TSS100ISN AS ISN
+			ON ISN.INTERNAL_STYLE_NUM = SKU.INTERNAL_STYLE_NUM
+			JOIN MRSSI.TMS213DEPARTMENT AS DEP ON DEP.DEPT_ID = ISN.DEPT_ID
+			JOIN MRSSI.TTU500ISN TTU500 ON TTU500.INTERNAL_STYLE_NUM = ISN.INTERNAL_STYLE_NUM
+			AND TTU500.INTERNAL_STYLE_NUM = SKU. INTERNAL_STYLE_NUM
+			JOIN MRSSI.TTU510ISN_CATEGORY TTU510
+			ON TTU510.INTERNAL_STYLE_NUM = TTU500.INTERNAL_STYLE_NUM
+			AND TTU510. INTERNAL_STYLE_NUM = SKU.INTERNAL_STYLE_NUM
+			AND TTU510.PRIM_WEB_CATGY_FLG = 'Y'
+			JOIN MRSSI.TTU400MDSE_INSTRCT TTU400
+			ON TTU400.TURN_IN_MDSE_ID = WCS.TURN_IN_MDSE_ID
+			JOIN MRSSI.TTU110AD_POSITION TTU110
+			ON TTU400.TURNIN_IMGE_REQ_ID = TTU110.TURNIN_IMGE_REQ_ID
+			JOIN MRSSI.TTU300IMGE_REQUEST TTU300
+			ON TTU300.TURNIN_IMGE_REQ_ID = TTU400.TURNIN_IMGE_REQ_ID
+			LEFT JOIN MRSSI.TTU420MDSE_CLR_FAM TTU420
+			ON TTU420.TURN_IN_MDSE_ID = WCS.TURN_IN_MDSE_ID
+			LEFT JOIN MRSSI.TTU310IMAGE TTU310
+			ON TTU310.ADMIN_IMAGE_NUM = TTU300.ADMIN_IMAGE_NUM
+			AND (UPPER(RTRIM(TTU310.IMAGE_FILE_URL_TXT)) LIKE '%.TIF'
+			OR UPPER(RTRIM(TTU310.IMAGE_FILE_URL_TXT)) LIKE '%.JPG')
+			JOIN MRSSI.TMS212FOB FOB ON FOB.FOB_ID = DEP.FOB_ID
+			JOIN MRSSI.TMS211CFG CFG ON CFG.CFG_ID = FOB.CFG_ID
+			JOIN MRSSI.TMS210CMG CMG ON CMG.CMG_ID = CFG.CMG_ID
+			JOIN MRSSI.TMS208BUYER BUYER ON BUYER.BUYER_ID = DEP.BUYER_ID
+			JOIN MRSSI.TMS250EMM EMM ON EMM.EMM_ID = DEP.EMM_ID
+			LEFT JOIN MRSSI.TTU421UPC_SIZE_FAM UPCFAM
+			ON UPCFAM.TURN_IN_MDSE_ID = WCS.TURN_IN_MDSE_ID
+			AND UPCFAM.UPC_NUM = WCS.UPC_NUM
+			WHERE WCAT_LOAD_STAT_FLG = 'P' AND DAYS(CURRENT_DATE)-DAYS(WCAT_LOAD_STAT_DTE) &gt;= 7 GROUP BY
+			ISN.DEPT_ID, DEP.DEPT_LONG_DESC, WCS.WCAT_LOAD_STAT_FLG
+			, IS_SWATCH_FLG, WCS.PRODUCT_COLOR_FLG, WCS.PRODUCT_SIZE_FLG
+			, TTU510.CATEGORY_CDE, TTU500.LABEL_ID, WCS.BRAND_KEY_NUM
+			, ISN.INTERNAL_STYLE_NUM, ISN.VENDOR_ID, ISN.VENDOR_STYLE_NUM
+			, SKU.DROP_SHIP_FLG, WCS.DS_DISTRIB_ID, WCS.DS_RETURN_IND
+			, WCS.DS_RETURN_EXT_IND, WCS.AGE_CDE, WCS.GENDER_CDE,AD_NUM
+			,  ISN.BRAND_ID, CMG.CMG_DESC,BUYER.BUYER_NME,EMM.EMM_NME,ISN.ISN_LONG_DESC,WCAT_LOAD_STAT_DTE;
+		</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::ReportQuery].Properties[Value]" ValueType="String">
+		<ConfiguredValue>
+			SELECT
+			RTRIM(EMM.EMM_NME) AS EMM_DESC,
+			CMG.CMG_DESC,
+			RTRIM(BUYER.BUYER_NME) AS BUYER_NAME,
+			AD_NUM,
+			ISN.DEPT_ID,
+			RTRIM(DEP.DEPT_LONG_DESC) AS DEPT_NAME,
+			ISN.INTERNAL_STYLE_NUM,
+			ISN.ISN_LONG_DESC,
+			ISN.VENDOR_STYLE_NUM,
+			MIN(WCS.IMAGE_ID_NUM) AS IMAGE_ID,
+			DAYS(CURRENT_DATE)-DAYS(WCAT_LOAD_STAT_DTE) AS Pending_Days
+			FROM MRSSI.TTU600WEBCAT_STAGE AS WCS
+			JOIN MRSSI.TSS200SKU AS SKU
+			ON SKU.UPC_NUM = WCS.UPC_NUM
+			JOIN MRSSI.TSS100ISN AS ISN
+			ON ISN.INTERNAL_STYLE_NUM = SKU.INTERNAL_STYLE_NUM
+			JOIN MRSSI.TMS213DEPARTMENT AS DEP ON DEP.DEPT_ID = ISN.DEPT_ID
+			JOIN MRSSI.TTU500ISN TTU500 ON TTU500.INTERNAL_STYLE_NUM = ISN.INTERNAL_STYLE_NUM
+			AND TTU500.INTERNAL_STYLE_NUM = SKU. INTERNAL_STYLE_NUM
+			JOIN MRSSI.TTU510ISN_CATEGORY TTU510
+			ON TTU510.INTERNAL_STYLE_NUM = TTU500.INTERNAL_STYLE_NUM
+			AND TTU510. INTERNAL_STYLE_NUM = SKU.INTERNAL_STYLE_NUM
+			AND TTU510.PRIM_WEB_CATGY_FLG = 'Y'
+			JOIN MRSSI.TTU400MDSE_INSTRCT TTU400
+			ON TTU400.TURN_IN_MDSE_ID = WCS.TURN_IN_MDSE_ID
+			JOIN MRSSI.TTU110AD_POSITION TTU110
+			ON TTU400.TURNIN_IMGE_REQ_ID = TTU110.TURNIN_IMGE_REQ_ID
+			JOIN MRSSI.TTU300IMGE_REQUEST TTU300
+			ON TTU300.TURNIN_IMGE_REQ_ID = TTU400.TURNIN_IMGE_REQ_ID
+			LEFT JOIN MRSSI.TTU420MDSE_CLR_FAM TTU420
+			ON TTU420.TURN_IN_MDSE_ID = WCS.TURN_IN_MDSE_ID
+			LEFT JOIN MRSSI.TTU310IMAGE TTU310
+			ON TTU310.ADMIN_IMAGE_NUM = TTU300.ADMIN_IMAGE_NUM
+			AND (UPPER(RTRIM(TTU310.IMAGE_FILE_URL_TXT)) LIKE '%.TIF'
+			OR UPPER(RTRIM(TTU310.IMAGE_FILE_URL_TXT)) LIKE '%.JPG')
+			JOIN MRSSI.TMS212FOB FOB ON FOB.FOB_ID = DEP.FOB_ID
+			JOIN MRSSI.TMS211CFG CFG ON CFG.CFG_ID = FOB.CFG_ID
+			JOIN MRSSI.TMS210CMG CMG ON CMG.CMG_ID = CFG.CMG_ID
+			JOIN MRSSI.TMS208BUYER BUYER ON BUYER.BUYER_ID = DEP.BUYER_ID
+			JOIN MRSSI.TMS250EMM EMM ON EMM.EMM_ID = DEP.EMM_ID
+			LEFT JOIN MRSSI.TTU421UPC_SIZE_FAM UPCFAM
+			ON UPCFAM.TURN_IN_MDSE_ID = WCS.TURN_IN_MDSE_ID
+			AND UPCFAM.UPC_NUM = WCS.UPC_NUM
+			WHERE WCAT_LOAD_STAT_FLG = 'P' AND DAYS(CURRENT_DATE)-DAYS(WCAT_LOAD_STAT_DTE) &gt;= 7 GROUP BY
+			ISN.DEPT_ID, DEP.DEPT_LONG_DESC, WCS.WCAT_LOAD_STAT_FLG
+			, IS_SWATCH_FLG, WCS.PRODUCT_COLOR_FLG, WCS.PRODUCT_SIZE_FLG
+			, TTU510.CATEGORY_CDE, TTU500.LABEL_ID, WCS.BRAND_KEY_NUM
+			, ISN.INTERNAL_STYLE_NUM, ISN.VENDOR_ID, ISN.VENDOR_STYLE_NUM
+			, SKU.DROP_SHIP_FLG, WCS.DS_DISTRIB_ID, WCS.DS_RETURN_IND
+			, WCS.DS_RETURN_EXT_IND, WCS.AGE_CDE, WCS.GENDER_CDE,AD_NUM
+			,  ISN.BRAND_ID, CMG.CMG_DESC,BUYER.BUYER_NME,EMM.EMM_NME,ISN.ISN_LONG_DESC,WCAT_LOAD_STAT_DTE ORDER BY AD_NUM;
+		</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::ReportTemplatePath].Properties[Value]" ValueType="String">
+		<ConfiguredValue>C:\Users\034846\Documents\Visual Studio 2008\Projects\PendingPrioritizationReport\</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::ToEmailAddresses].Properties[Value]" ValueType="String">
+		<ConfiguredValue>ITAdv_Marketing@bonton.com</ConfiguredValue>
+	</Configuration>
+</DTSConfiguration>

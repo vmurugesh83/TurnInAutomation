@@ -1,0 +1,34 @@
+﻿<div class="modal-header">
+    <h4 class="modal-title">InContact Card Entry</h4>
+</div>
+<div class="modal-body">
+    <div class="row" style="min-height:90px;padding-left:30px;padding-top:20px;">
+        <div class="col-sm-12 text-center">
+            <span class="incontactPaymentIdFont">Payment ID: <span id="inContactId">{{inContactPaymentId}}</span> </span>
+            <button class="btn btn-default" ngclipboard data-clipboard-target="#inContactId" style="margin-left:20px;">Copy</button>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <button class="btn btn-block btn-success" ng-click="getPayment()">Retrieve Payment</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row" ng-show="true">
+            <div class="col-sm-6 col-sm-offset-3">
+                <span style="color: red">
+                    {{paymentErrors}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="row">
+        <div class="col col-sm-8"></div>
+        <div class="col col-sm-4">
+            <button ng-click="close()" class="btn btn-default btn-block">Close</button>
+        </div>
+    </div>
+</div>

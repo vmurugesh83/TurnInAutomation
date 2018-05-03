@@ -1,0 +1,539 @@
+/*------------------------------------------------------------------
+Supports the Calendar control including inside of a popup.
+Supports the toggle button to popup the Calendar.
+
+NOTE: By default, DES compresses this file to remove comments.
+You can also have it remove most whitespace or omit compression with this key
+in the <appSettings> section of web.config:
+<add key="DES_StyleSheetCompression" value="none|full" />
+-------------------------------------------------------------------*/
+
+@media screen
+{
+
+/* Property: CssClass
+Affects its overall appearance including border, main font, and background color.
+Set up a TABLE, IMG, and A tag version of these to transfer
+its settings into those aspects of this control */
+.DES_CalControl
+{
+   border-right: #E0E0E0 4px ridge;  /* lightgrey */
+   border-top: #E0E0E0 4px ridge;
+   border-left: #E0E0E0 4px ridge;
+   border-bottom: #E0E0E0 4px ridge;
+   font-size: 8pt;
+   font-family: Arial;
+   background-color: white; 
+}
+
+/* default font for all nested tables in the control */
+.DES_CalControl TABLE
+{
+   font-size: 8pt;
+   font-family: Arial;
+}
+
+/* prevent external img styles from affecting these styles */
+.DES_CalControl img
+{
+   background-color:transparent; 
+   margin-left: 0px; 
+   margin-top: 0px; 
+   margin-bottom:0px; 
+   margin-right:0px;
+}
+/* used on server side only version, which uses <a> tags for selecting dates */
+.DES_CalControl A
+{
+   color:black;
+   text-decoration:none;
+}
+
+}  /* END @media screen*/
+/* Printing in IE can show borders of tables that are in hidden popup controls */
+@media print
+{
+  .DES_CalControl
+  {
+    display: none;
+  }
+}  /* END @media print*/
+
+/* Property: WeekRowsCssClass
+Table that encloses the Day Header row and Day Cells.
+Provide a border, background.
+*/
+.DES_CalWeekRowsTable
+{
+	font-family: Arial;
+	font-size: 8pt;
+	border-right: #4169e1 1px solid;	/* royal blue */
+	border-top: #4169e1 1px solid;
+	border-left: #4169e1 1px solid;
+	border-bottom: #4169e1 1px solid;
+}
+
+/* For Netscape 7.0x only 
+Automatically selected when WeekRowsCssClass=DES_CalWeekRowsTable
+because borders bleed through when the control is invisible */
+.DES_CalWeekRowsTable_NS70  
+{
+   font-family: Arial;
+   font-size: 8pt;
+}
+
+/* ---- CLASSES FOR DAY CELLS ----
+Formatted day cells that use nested tables need to carry the styles 
+into their inner TR tags. 
+Cell borders are partially handled here. You specify just the color.
+The control determines when to create the border with your color.
+DES merges these styles together by taking a Basic style
+and adding selected, today, and special date as needed.
+----------------------------------*/
+
+
+/* Property: DayCssClass
+Basic style of any date within the current month. */
+.DES_CalDay, .DES_CalDay TR
+{
+   color : Black;
+   cursor: pointer;  /* W3C approved hand. */
+   cursor: hand;   /* IE specific hand */
+  /* only specify color of borders. Lines are added programmatically */
+   border-right-color: #808080;	/* gray */
+   border-top-color: #808080;
+   border-left-color: #808080;
+   border-bottom-color: #808080;
+}
+
+/* Property: OtherMonthDayCssClass
+Basic style of any date within the other month day cells. */
+.DES_CalOtherMonthDay, .DES_CalOtherMonthDay TR
+{
+   color: gray;
+   cursor: pointer;  /* W3C approved hand. */
+   cursor: hand;   /* IE specific hand */
+  /* only specify color of borders. Lines are added programmatically */
+   border-right-color: #C0C0C0;	/* silver */
+   border-top-color: #C0C0C0;
+   border-left-color: #C0C0C0;
+   border-bottom-color: #C0C0C0;
+}
+
+/* Property: SelectedCssClass
+Applies the selected appearance to any Day Cell. 
+This merges with DES_CalDay or DES_CalOtherMonthDay
+when the SelectedCssClass property starts with "+". 
+If you remove the +, it will be used without any other class having an effect.
+*/
+.DES_CalSelected, .DES_CalSelected TR
+{
+   background-color: #ffd700 !important;  /* gold */
+/* If SelectedCssClass property does not start with +, uncomment and customize these
+   cursor: pointer;
+   cursor: hand;
+   border-right-color: #808080;
+   border-top-color: #808080;
+   border-left-color: #808080;
+   border-bottom-color: #808080;
+*/
+}
+/* Property: TodayCssClass
+The appearance for Today's date in a Day Cell. 
+This merges with DES_CalDay or DES_CalOtherMonthDay
+when the TodayCssClass property starts with "+". 
+If you remove the +, it will be used without any other class having an effect.
+*/
+.DES_CalToday, .DES_CalToday TR
+{
+   font-weight: bold;
+/* If TodayCssClass property does not start with +, uncomment and customize these
+   cursor: pointer;
+   cursor: hand;
+   border-right-color: #808080;
+   border-top-color: #808080;
+   border-left-color: #808080;
+   border-bottom-color: #808080;
+*/
+}
+
+/* Property: SpecialCssClass
+The appearance for the SpecialDate Day cell. 
+This merges with DES_CalDay or DES_CalOtherMonthDay
+when the SpecialCssClass property starts with "+". 
+If you remove the +, it will be used without any other class having an effect.
+*/
+.DES_CalSpecialDay, .DES_CalSpecialDay TR
+{
+	background-color: #fffacd;	/* lemonchiffon */
+}
+
+/* Property: OutsideRangeCssClass
+Any cell outside the date range. Used when ShowOutsideRangeDays is true.
+*/
+.DES_CalOutsideRangeDay
+{
+   cursor: default;
+   color: gray;
+/* if you want to show a background image, uncomment and set the URL correctly. Graphic available in the Appearance folder: outofrangeday.gif.
+   background-image: url(outofrangeday.gif);
+   background-repeat: no-repeat;
+   background-position: center center;
+*/
+}
+
+/* Property: MouseOverCssClass
+The change of appearance when the mouse is over a cell.
+It is merged with the existing style on the Day Cell.
+Don't add borders to this. Borders come from DES_CalMouseOverBorders. */
+.DES_CalMouseOver
+{
+   color: #0000FF;	/* blue */
+}
+
+/* Property: MouseOverBorderCssClass
+The change of appearance when the mouse is over a cell to supply its borders.
+It will be merged with the above style. */
+.DES_CalMouseOverBorders
+{
+   border-right-color: #0000FF;	/* blue */
+   border-top-color: #0000FF;
+   border-left-color: #0000FF;
+   border-bottom-color: #0000FF;
+}
+
+/* ---- WEEK NUMBER COLUMN ---- */
+/* Property: WeekNumberCssClass
+Cells in the week number column
+*/
+.DES_CalWeekNumbers
+{
+   background-color: #add8e6;  /* lightblue */
+/* optional background image. Appearance/Backgrounds has several predefined images
+   background-image: url(Backgrounds/GradientBlue16px.gif);
+   background-repeat: repeat-x;
+ */
+}
+/* Mouse pressed effect for cells using DES_CalWeekNumbers.
+Used by MultiSelectionCalendar to select a week.
+This will be merged with DES_CalWeekNumbers 
+and override only the attributes specified */
+.DES_CalWeekNumbersPressed
+{
+   color: #00008b;  /* darkblue */
+}
+
+/* Mouse over effect for cells using DES_CalWeekNumbers.
+Used by MultiSelectionCalendar to select a week.
+This will be merged with DES_CalWeekNumbers 
+and override only the attributes specified */
+.DES_CalWeekNumbersMouseOver
+{
+   color: blue;
+}
+
+/* ---- DAY HEADER (Day of week names) ---- */
+
+/* Property: DayHeaderCssClass
+Applied to the row containing the day of week names.
+Consider backgrounds and font changes.
+*/
+.DES_CalDayHeader
+{
+   font-size: 7pt;
+   background-color: #add8e6;  /* lightblue */
+/* optional background image. Appearance/Backgrounds has several predefined images
+   background-image: url(Backgrounds/GradientBlue16px.gif);
+   background-repeat: repeat-x;
+*/
+}
+
+/* Property: DayHeaderCellCssClass
+Cells of the Day Header */
+.DES_CalDayHeaderCell
+{
+}
+
+/* ---- HEADER (month movement and month name area) ---- */
+
+/* Property: HeaderCssClass
+Overall appearance for the header 
+Consider changing the background. See DES_CalHeaderRows for changing the font.*/
+.DES_CalHeader
+{
+/*   
+   font-size: 8pt;
+   font-family: Arial;
+*/
+   margin-top: 2px;
+   margin-bottom: 2px;
+/* optional background image. Appearance/Backgrounds has several predefined images
+   background-image: url(Backgrounds/GradientBlue24px.gif);
+   background-repeat: repeat-x;
+ */
+}
+
+
+/* use to establish a background color for DES_CalHeader */
+.DES_CalHeader TABLE
+{
+   background-color:transparent;
+}
+
+/* Property: HeaderRowsCssClass
+Rows within the Header. Each is actually a small table.
+For changing the font.
+*/
+.DES_CalHeaderRows
+{
+   font-size: 8pt;
+   font-family: Arial;
+   cursor: default;
+}
+
+.DES_CalHeaderRows TR
+{
+   background-color:transparent;
+}
+/* resolves an IE 6+7 bug that exposes borders when the user declares a style of TD { border:details } */
+.DES_CalHeaderRows TD
+{
+   border: none 0px;
+}
+
+/* Property: IncrementalButtonCssClass
+When the Next/Prev Month button is textual, this is used for the normal state. 
+*/
+.DES_CalMonthButton
+{
+   color: #0000cd; /* mediumblue */
+   cursor: pointer;
+   cursor: hand;
+}
+
+/* Mouse pressed effect for elements using DES_CalMonthButton.
+This will be merged with DES_CalMonthButton 
+and override only the attributes specified */
+.DES_CalMonthButtonPressed
+{
+   color: #00008b;  /* darkblue */
+}
+
+/* Mouse over effect for elements using DES_CalMonthButton.
+This will be merged with DES_CalMonthButton 
+and override only the attributes specified */
+.DES_CalMonthButtonMouseOver
+{
+   color: blue;
+}
+
+/* Property: JumpButtonCssClass
+When the Next/Prev Year button is textual, this is used for the normal state. 
+*/
+.DES_CalYearButton
+{
+   color: #0000cd; /* mediumblue */
+   cursor: pointer;
+   cursor: hand;
+}
+
+/* Mouse pressed effect for elements using DES_CalYearButton.
+This will be merged with DES_CalYearButton 
+and override only the attributes specified */
+.DES_CalYearButtonPressed
+{
+   color: #00008b;  /* darkblue */
+}
+
+/* Mouse over effect for elements using DES_CalYearButton.
+This will be merged with DES_CalYearButton 
+and override only the attributes specified */
+.DES_CalYearButtonMouseOver
+{
+   color: blue;
+}
+
+/* Property: CloseButtonCssClass
+When the Close button is textual, this is used for the normal state.
+*/
+.DES_CalCloseButton
+{
+   cursor: default;
+}
+
+/* Mouse pressed effect for elements using DES_CalCloseButton.
+This will be merged with DES_CalCloseButton 
+and override only the attributes specified */
+.DES_CalCloseButtonPressed
+{
+}
+
+/* Mouse over effect for elements using DES_CalCloseButton.
+This will be merged with DES_CalCloseButton 
+and override only the attributes specified */
+.DES_CalCloseButtonMouseOver
+{
+}
+
+/* Property: HelpButtonCssClass
+When the Help button is textual, this is used for the normal state.
+*/
+.DES_CalHelpButton
+{
+   cursor: default;
+}
+
+/* Mouse pressed effect for elements using DES_CalHelpButton.
+This will be merged with DES_CalHelpButton 
+and override only the attributes specified */
+.DES_CalHelpButtonPressed
+{
+}
+
+/* Mouse over effect for elements using DES_CalHelpButton.
+This will be merged with DES_CalHelpButton 
+and override only the attributes specified */
+.DES_CalHelpButtonMouseOver
+{
+}
+
+/* --- Commands area  --- */
+/* area below the Week Rows Table that offers command buttons and Current Date View */
+
+/* Property: CommandAreaCssClass
+Overall appearance of the Commands area.
+Consider backgrounds.
+*/
+.DES_CalCommands
+{
+/* optional background image. Appearance/Backgrounds has several predefined images
+   background-image: url(Backgrounds/GradientBlue24px.gif);
+   background-repeat: repeat-x;
+ */
+}
+
+.DES_CalCommands TABLE
+{
+   background-color:transparent;
+}
+
+/* Property: CommandButtonCssClass
+Command button, when textual.
+Provide its borders, font and background. */
+.DES_CalCommandButton
+{
+   border-right: #E0E0E0 thin outset;  /* lightgrey */
+   border-top: #E0E0E0 thin outset;
+   border-left: #E0E0E0 thin outset;
+   border-bottom: #E0E0E0 thin outset;
+   background-color: #add8e6;  /* lightblue */
+   font-family: Arial;
+   font-size: 8pt;
+   color: black;
+   cursor: pointer;
+   cursor: hand;
+}
+
+/* Mouse pressed effect for elements using DES_CalCommandButton.
+This will be merged with DES_CalCommandButton 
+and override only the attributes specified */
+.DES_CalCommandButtonPressed
+{
+   border-right: #E0E0E0 thin inset;  /* lightgrey */
+   border-top: #E0E0E0 thin inset;
+   border-left: #E0E0E0 thin inset;
+   border-bottom: #E0E0E0 thin inset;
+}
+
+/* Mouse over effect for elements using DES_CalCommandButton.
+This will be merged with DES_CalCommandButton 
+and override only the attributes specified */
+.DES_CalCommandButtonMouseOver
+{
+   color: blue;
+}
+
+/* Property:CurrentDateCssClass
+Appearance of the Current Date Label.
+*/
+.DES_CalCurrentDateLabel
+{
+}
+
+/* ---- FOOTER ---- */
+
+/* Property: FooterTextCssClass
+Footer is show by using the FooterText property. This provides a font and overall appearance. */
+.DES_CalFooter
+{
+}
+
+/* ---- Multiple Month View ---- */
+
+/* Property: MultiMonthContainerCssClass
+Container around each month. 
+Use to provide separation, including padding and borders. */
+.DES_CalMultiMonthContainer
+{
+   padding-right: 1px;
+   padding-left: 1px;
+   padding-bottom: 1px;
+}
+
+/* Property: MultiMonthHeaderCssClass
+Headers that show the month and year above each month in a Multiple Month View */
+.DES_CalMultiMonthHeader
+{
+   border-right: #4169e1 1px solid; /* royalblue */
+   border-top: #4169e1 1px solid;
+   border-left: #4169e1 1px solid;
+   border-bottom: #4169e1 1px solid;
+   margin-right: -1px; /* only affects Opera 7+ to better align this box to the weekrowstable */
+   margin-bottom: 2px;
+}
+
+/* --- POPUP CALENDAR TOGGLE BUTTON --- */
+
+/* Property: PopupCalendar.CssClass
+Popup calendar toggle button.
+Used by you set use a textual button by setting ToggleType=Text */
+.DES_CalPopup
+{
+}
+
+/* Mouse pressed effect for elements using DES_CalPopup.
+This will be merged with DES_CalPopup 
+and override only the attributes specified */
+.DES_CalPopupPressed
+{
+   color: #00008b;  /* darkblue */
+}
+
+/* Mouse over effect for elements using DES_CalPopup.
+This will be merged with DES_CalPopup 
+and override only the attributes specified */
+.DES_CalPopupMouseOver
+{
+   color: blue;
+}
+
+/* prevent external img styles from affecting these styles */
+.DES_CalPopup img
+{
+   background-color:transparent; 
+   margin-left: 0px; 
+   margin-top: 0px; 
+   margin-bottom:0px; 
+   margin-right:0px;
+}
+/* When the mouse is pressed, this will be merged with DES_CalPopup img
+and override only the attributes specified */
+.DES_CalPopupPressed img
+{
+}
+
+/* When the mouse is over, this will be merged with DES_CalPopup img
+and override only the attributes specified */
+.DES_CalPopupMouseOver img
+{
+}

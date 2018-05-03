@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+  <metadata>
+    <id>EntityFramework.IBM.DB2</id>
+    <version>6.0.5</version>
+    <title>EntityFramework.IBM.DB2</title>
+    <authors>IBM</authors>
+    <owners>IBM</owners>
+    <licenseUrl>http://www14.software.ibm.com/cgi-bin/weblap/lap.pl?la_formnum=&amp;li_formnum=L-LKSA-9PX6RJ&amp;title=IBM+Data+Server+EF+6.0+Provider+10.5.0.5&amp;l=en</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>IBM Data Server EF 6 Provider for Entity Framework 6 applications accessing IBM Data Servers.</description>
+    <summary>IBM Data Server EF 6 Provider for Entity Framework 6 applications accessing IBM Data Servers.</summary>
+    <releaseNotes>This patch (release) addresses "System.Data.Entity.Core.EntityCommandExecutionException: An error occurred while executing the command definition."      
+      , thrown while selecting from multiple tables through LINQ using result of group join as subquery against iSeries servers.	  
+      It incorporates cumulative fixes.</releaseNotes>
+    <copyright>Copyright IBM 2014</copyright>
+    <language>en-US</language>
+    <tags>IBM DB2 Informix Data O/RM ADO.NET</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.0">
+        <dependency id="EntityFramework" version="[6.0.0, 6.9.9]" />
+      </group>
+    </dependencies>
+    <references>
+      <group targetFramework=".NETFramework4.0">
+        <reference file="IBM.Data.DB2.EntityFramework.dll" />
+      </group>
+    </references>
+  </metadata>
+</package>

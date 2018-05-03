@@ -1,0 +1,50 @@
+﻿
+<div class="modal-header">
+    <h4 ng-show="selectAddressLabel">Select an address</h4>
+    <h4 ng-hide="selectAddressLabel">Suggested addresses</h4>
+</div>
+
+    <div class="row clearfix">
+        <div class="col-sm-12 column scrollResults" id="ItemDetailWrapper" style="overflow-y: hidden">
+            <table class="table">
+                <thead>
+                    <tr></tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="address in selectableAddress"
+                        ng-click="setClickedRow($index)"
+                        ng-class=" {'selectedItemDetail':$index == selectedRow}"
+                        on-finish-render="refreshIScroll()">
+                        <td>
+                            {{address.PartialAddress}}
+                        </td>
+                    </tr>
+                    <tr ng-show="selectAddressLabel && suggestAddressLabel">
+                        <td style="font-size:x-large">Suggested Addresses</td>
+                    </tr>
+                    <tr ng-repeat="address in suggestedAddress"
+                        on-finish-render="refreshIScroll()"
+                        style="background-color:lightgray">
+                        <td>
+                            {{address.Picklist}} 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="modal-footer">
+        <div class="col-sm-3 column">
+            <button ng-hide="disableUpdateButton" ng-click="formatSelectedAddress()" class="btn btn-block btn-primary" type="button">Update</button>
+        </div>
+        <div class="col-sm-3 column">
+            <button ng-click="close()" class="btn btn-warning btn-block" type="button">Close</button>
+        </div>
+    </div>
+
+
+
+
+

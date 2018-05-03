@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<DTSConfiguration>
+	<DTSConfigurationHeading>
+		<DTSConfigurationFileInfo GeneratedBy="INTERNAL\034846" GeneratedFromPackageName="PrioritizationReport" GeneratedFromPackageID="{5C96F57A-9BE4-4D5E-B3EA-C4D9AC6CC4F5}" GeneratedDate="11/17/2015 10:55:59 AM"/>
+	</DTSConfigurationHeading>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::CCEmailAddress].Properties[Value]" ValueType="String">
+		<ConfiguredValue>ITAdv_Marketing@bonton.com;Catherine.Attonito@bonton.com</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::ConnectionString].Properties[Value]" ValueType="String">
+		<ConfiguredValue>Data Source=TEST;User ID=CSTUTRNQ;Password=klu$#92z;Provider=IBMDADB2.DB2COPY1;Location=gateway.db.test.bonton.com:6100;</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::DatabaseSchema].Properties[Value]" ValueType="String">
+		<ConfiguredValue>MRSQC</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::EmailBody].Properties[Value]" ValueType="String">
+		<ConfiguredValue>There are items 'Pending' in Prioritization for more than 14 days.  The details of those items are given in the spreadsheet attached.  Please check and process those items so that they can be moved to WebCat.</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::EmailSubject].Properties[Value]" ValueType="String">
+		<ConfiguredValue>QA : Items pending in prioritization for more than 14 days</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::FromEmailAddress].Properties[Value]" ValueType="String">
+		<ConfiguredValue>ITAdv_Marketing@bonton.com</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::LogFilePath].Properties[Value]" ValueType="String">
+		<ConfiguredValue>E:\TurnIn\PendingPrioritizationReport\Logs</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::PendingPrioritizationAge].Properties[Value]" ValueType="Int32">
+		<ConfiguredValue>14</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::PrioritizationCount].Properties[Value]" ValueType="Int32">
+		<ConfiguredValue>0</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::ReportCountQuery].Properties[Value]" ValueType="String">
+		<ConfiguredValue>
+			SELECT COUNT(*) AS RecordsCount
+			FROM MRSQC.TTU600WEBCAT_STAGE AS WCS
+			JOIN MRSQC.TSS200SKU AS SKU
+			ON SKU.UPC_NUM = WCS.UPC_NUM
+			JOIN MRSQC.TSS100ISN AS ISN
+			ON ISN.INTERNAL_STYLE_NUM = SKU.INTERNAL_STYLE_NUM
+			JOIN MRSQC.TMS213DEPARTMENT AS DEP ON DEP.DEPT_ID = ISN.DEPT_ID
+			JOIN MRSQC.TTU500ISN TTU500 ON TTU500.INTERNAL_STYLE_NUM = ISN.INTERNAL_STYLE_NUM
+			AND TTU500.INTERNAL_STYLE_NUM = SKU. INTERNAL_STYLE_NUM
+			JOIN MRSQC.TTU510ISN_CATEGORY TTU510
+			ON TTU510.INTERNAL_STYLE_NUM = TTU500.INTERNAL_STYLE_NUM
+			AND TTU510. INTERNAL_STYLE_NUM = SKU.INTERNAL_STYLE_NUM
+			AND TTU510.PRIM_WEB_CATGY_FLG = 'Y'
+			JOIN MRSQC.TTU400MDSE_INSTRCT TTU400
+			ON TTU400.TURN_IN_MDSE_ID = WCS.TURN_IN_MDSE_ID
+			JOIN MRSQC.TTU110AD_POSITION TTU110
+			ON TTU400.TURNIN_IMGE_REQ_ID = TTU110.TURNIN_IMGE_REQ_ID
+			JOIN MRSQC.TTU300IMGE_REQUEST TTU300
+			ON TTU300.TURNIN_IMGE_REQ_ID = TTU400.TURNIN_IMGE_REQ_ID
+			LEFT JOIN MRSQC.TTU420MDSE_CLR_FAM TTU420
+			ON TTU420.TURN_IN_MDSE_ID = WCS.TURN_IN_MDSE_ID
+			LEFT JOIN MRSQC.TTU310IMAGE TTU310
+			ON TTU310.ADMIN_IMAGE_NUM = TTU300.ADMIN_IMAGE_NUM
+			AND (UPPER(RTRIM(TTU310.IMAGE_FILE_URL_TXT)) LIKE '%.TIF'
+			OR UPPER(RTRIM(TTU310.IMAGE_FILE_URL_TXT)) LIKE '%.JPG')
+			JOIN MRSQC.TMS212FOB FOB ON FOB.FOB_ID = DEP.FOB_ID
+			JOIN MRSQC.TMS211CFG CFG ON CFG.CFG_ID = FOB.CFG_ID
+			JOIN MRSQC.TMS210CMG CMG ON CMG.CMG_ID = CFG.CMG_ID
+			JOIN MRSQC.TMS208BUYER BUYER ON BUYER.BUYER_ID = DEP.BUYER_ID
+			JOIN MRSQC.TMS250EMM EMM ON EMM.EMM_ID = DEP.EMM_ID
+			LEFT JOIN MRSQC.TTU421UPC_SIZE_FAM UPCFAM
+			ON UPCFAM.TURN_IN_MDSE_ID = WCS.TURN_IN_MDSE_ID
+			AND UPCFAM.UPC_NUM = WCS.UPC_NUM
+			WHERE WCAT_LOAD_STAT_FLG = 'P' AND DAYS(CURRENT_DATE)-DAYS(WCAT_LOAD_STAT_DTE) &gt;= 14 GROUP BY
+			ISN.DEPT_ID, DEP.DEPT_LONG_DESC, WCS.WCAT_LOAD_STAT_FLG
+			, IS_SWATCH_FLG, WCS.PRODUCT_COLOR_FLG, WCS.PRODUCT_SIZE_FLG
+			, TTU510.CATEGORY_CDE, TTU500.LABEL_ID, WCS.BRAND_KEY_NUM
+			, ISN.INTERNAL_STYLE_NUM, ISN.VENDOR_ID, ISN.VENDOR_STYLE_NUM
+			, SKU.DROP_SHIP_FLG, WCS.DS_DISTRIB_ID, WCS.DS_RETURN_IND
+			, WCS.DS_RETURN_EXT_IND, WCS.AGE_CDE, WCS.GENDER_CDE,AD_NUM
+			,  ISN.BRAND_ID, CMG.CMG_DESC,BUYER.BUYER_NME,EMM.EMM_NME,ISN.ISN_LONG_DESC,WCAT_LOAD_STAT_DTE;
+		</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::ReportQuery].Properties[Value]" ValueType="String">
+		<ConfiguredValue>
+			SELECT
+			RTRIM(EMM.EMM_NME) AS EMM_DESC,
+			CMG.CMG_DESC,
+			RTRIM(BUYER.BUYER_NME) AS BUYER_NAME,
+			AD_NUM,
+			ISN.DEPT_ID,
+			RTRIM(DEP.DEPT_LONG_DESC) AS DEPT_NAME,
+			ISN.INTERNAL_STYLE_NUM,
+			ISN.ISN_LONG_DESC,
+			ISN.VENDOR_STYLE_NUM,
+			MIN(WCS.IMAGE_ID_NUM) AS IMAGE_ID,
+			DAYS(CURRENT_DATE)-DAYS(WCAT_LOAD_STAT_DTE) AS Pending_Days
+			FROM MRSQC.TTU600WEBCAT_STAGE AS WCS
+			JOIN MRSQC.TSS200SKU AS SKU
+			ON SKU.UPC_NUM = WCS.UPC_NUM
+			JOIN MRSQC.TSS100ISN AS ISN
+			ON ISN.INTERNAL_STYLE_NUM = SKU.INTERNAL_STYLE_NUM
+			JOIN MRSQC.TMS213DEPARTMENT AS DEP ON DEP.DEPT_ID = ISN.DEPT_ID
+			JOIN MRSQC.TTU500ISN TTU500 ON TTU500.INTERNAL_STYLE_NUM = ISN.INTERNAL_STYLE_NUM
+			AND TTU500.INTERNAL_STYLE_NUM = SKU. INTERNAL_STYLE_NUM
+			JOIN MRSQC.TTU510ISN_CATEGORY TTU510
+			ON TTU510.INTERNAL_STYLE_NUM = TTU500.INTERNAL_STYLE_NUM
+			AND TTU510. INTERNAL_STYLE_NUM = SKU.INTERNAL_STYLE_NUM
+			AND TTU510.PRIM_WEB_CATGY_FLG = 'Y'
+			JOIN MRSQC.TTU400MDSE_INSTRCT TTU400
+			ON TTU400.TURN_IN_MDSE_ID = WCS.TURN_IN_MDSE_ID
+			JOIN MRSQC.TTU110AD_POSITION TTU110
+			ON TTU400.TURNIN_IMGE_REQ_ID = TTU110.TURNIN_IMGE_REQ_ID
+			JOIN MRSQC.TTU300IMGE_REQUEST TTU300
+			ON TTU300.TURNIN_IMGE_REQ_ID = TTU400.TURNIN_IMGE_REQ_ID
+			LEFT JOIN MRSQC.TTU420MDSE_CLR_FAM TTU420
+			ON TTU420.TURN_IN_MDSE_ID = WCS.TURN_IN_MDSE_ID
+			LEFT JOIN MRSQC.TTU310IMAGE TTU310
+			ON TTU310.ADMIN_IMAGE_NUM = TTU300.ADMIN_IMAGE_NUM
+			AND (UPPER(RTRIM(TTU310.IMAGE_FILE_URL_TXT)) LIKE '%.TIF'
+			OR UPPER(RTRIM(TTU310.IMAGE_FILE_URL_TXT)) LIKE '%.JPG')
+			JOIN MRSQC.TMS212FOB FOB ON FOB.FOB_ID = DEP.FOB_ID
+			JOIN MRSQC.TMS211CFG CFG ON CFG.CFG_ID = FOB.CFG_ID
+			JOIN MRSQC.TMS210CMG CMG ON CMG.CMG_ID = CFG.CMG_ID
+			JOIN MRSQC.TMS208BUYER BUYER ON BUYER.BUYER_ID = DEP.BUYER_ID
+			JOIN MRSQC.TMS250EMM EMM ON EMM.EMM_ID = DEP.EMM_ID
+			LEFT JOIN MRSQC.TTU421UPC_SIZE_FAM UPCFAM
+			ON UPCFAM.TURN_IN_MDSE_ID = WCS.TURN_IN_MDSE_ID
+			AND UPCFAM.UPC_NUM = WCS.UPC_NUM
+			WHERE WCAT_LOAD_STAT_FLG = 'P' AND DAYS(CURRENT_DATE)-DAYS(WCAT_LOAD_STAT_DTE) &gt;= 14 GROUP BY
+			ISN.DEPT_ID, DEP.DEPT_LONG_DESC, WCS.WCAT_LOAD_STAT_FLG
+			, IS_SWATCH_FLG, WCS.PRODUCT_COLOR_FLG, WCS.PRODUCT_SIZE_FLG
+			, TTU510.CATEGORY_CDE, TTU500.LABEL_ID, WCS.BRAND_KEY_NUM
+			, ISN.INTERNAL_STYLE_NUM, ISN.VENDOR_ID, ISN.VENDOR_STYLE_NUM
+			, SKU.DROP_SHIP_FLG, WCS.DS_DISTRIB_ID, WCS.DS_RETURN_IND
+			, WCS.DS_RETURN_EXT_IND, WCS.AGE_CDE, WCS.GENDER_CDE,AD_NUM
+			,  ISN.BRAND_ID, CMG.CMG_DESC,BUYER.BUYER_NME,EMM.EMM_NME,ISN.ISN_LONG_DESC,WCAT_LOAD_STAT_DTE;
+		</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::ReportTemplatePath].Properties[Value]" ValueType="String">
+		<ConfiguredValue>E:\TurnIn\PendingPrioritizationReport\</ConfiguredValue>
+	</Configuration>
+	<Configuration ConfiguredType="Property" Path="\Package.Variables[User::ToEmailAddresses].Properties[Value]" ValueType="String">
+		<ConfiguredValue>ITAdv_Marketing@bonton.com</ConfiguredValue>
+	</Configuration>
+</DTSConfiguration>

@@ -1,0 +1,147 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+TurnInProcessAutomation.BLL
+</name>
+</assembly>
+<members>
+<member name="P:TurnInProcessAutomation.BLL.TUFilter.AvailableForTurnIn">
+	<summary>
+ Property for persisting the "Sample available and approved" checkbox selection in turn in filter
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInProcessAutomation.BLL.TUFilter.NotAvailableForTurnIn">
+	<summary>
+ Property for persisting the "Sample Not available" checkbox selection in turn in filter
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInProcessAutomation.BLL.TUFilter.ActiveOnWeb">
+	<summary>
+ Property for persisting the "Active on Web" checkbox selection in turn in filter
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInProcessAutomation.BLL.TUFilter.NotActiveOnWeb">
+	<summary>
+ Property for persisting the "Not Active on Web" checkbox selection in turn in filter
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInProcessAutomation.BLL.TUFilter.NotTurnedIn">
+	<summary>
+ Property for persisting the "Not Turned in" checkbox selection in turn in filter
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="T:TurnInProcessAutomation.BLL.TUFilter">
+	<summary>
+ Class for holding turn in filter user selections
+ </summary>
+	<remarks>
+ Created on August 2015 as a part of Turn in Filter left hand navigation changes
+ </remarks>
+</member><member name="M:TurnInProcessAutomation.BLL.TUEcommSetupCreate.GetAvailableSampleRequests(System.Int32,System.Decimal,System.String)">
+	<summary>
+ Retrieve sample request information from the TTU450Sample_Req table using optional parameters
+ </summary>
+	<param name="sampleMerchId"></param>
+	<param name="internalStyleNumber"></param>
+	<param name="vendorStyleNumber"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:TurnInProcessAutomation.BLL.TUEcommSetupCreate.UpdateSampleAvailableAndActiveOnWebStatus(System.Collections.Generic.IList{TurnInProcessAutomation.BusinessEntities.EcommSetupCreateInfo}@)">
+	<summary>
+ Sets the "Available For Turn-in" and "Active on Web" value for each sample in the eCommSamples collection
+ </summary>
+	<param name="eCommSamples">Collection of Samples</param>
+	<remarks>
+ **Available for Turn-in**
+ Available for Turn in should be "Y" if it meets the following conditions
+ Sample Approval Flag equals to "Y" and Sample status description is not empty 
+ and sample status description not in "REQUESTED", "DISPOSED" and "RETURNED".
+ Available for Turn in should be "N" in all other cases
+ **Active on Web**
+ Active on Web should be "Y" if it meets the following conditions
+ Active UPC Flag equals to "Y" and active flag is not empty and active flag equals to "A"
+ and color code not equals to zero.
+ Active on Web should be "N" in all other cases
+ </remarks>
+</member><member name="M:TurnInProcessAutomation.BLL.TUEcommSetupCreate.ApplyTurnInFilters(System.Collections.Generic.IEnumerable{TurnInProcessAutomation.BusinessEntities.EcommSetupCreateInfo},TurnInProcessAutomation.BLL.TUFilter)">
+	<summary>
+ Applies the Turn In Filters in the ecommReulsts collection and returns the records which satisfy the search filters
+ </summary>
+	<param name="eCommResults">Collection of eComm results</param>
+	<param name="turnInFilters">Turn in filters selected by user</param>
+	<returns>eComm results which satisfy the search filters</returns>
+	<remarks></remarks>
+</member><member name="M:TurnInProcessAutomation.BLL.TUEcommSetupCreate.GetCFGDefaultShipDays(System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{System.String})">
+	<summary>
+ Gets the default ship date for the parameters passed.
+ </summary>
+	<param name="DMMID"></param>
+	<param name="BuyerID"></param>
+	<param name="DepartmentID"></param>
+	<param name="VendorStyleNumber"></param>
+	<returns>The default ship date for the CFG defined in the TMS900Parameter table</returns>
+	<remarks></remarks>
+</member><member name="M:TurnInProcessAutomation.BLL.TUEcommSetupCreate.GetApprovedEcommSetupCreateDetailByISN(System.Decimal,System.DateTime,System.Boolean)">
+	<summary>
+ Get color level items that are approved for the ISN passed
+ </summary>
+	<param name="ISN">ISN for which color level itmes to be retrieved</param>
+	<returns>Returns the color level results for the ISN passed</returns>
+	<remarks></remarks>
+</member><member name="M:TurnInProcessAutomation.BLL.TUTEC998PARM.GetAllDropShipValues">
+	<summary>
+ Retrieves all the drop down values for Drop Ship IDs.
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:TurnInProcessAutomation.BLL.TUTEC998PARM.GetAllIntReturnInstructions">
+	<summary>
+ Retrieves all the drop down values for Internal Return Instructions.
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:TurnInProcessAutomation.BLL.TUTEC998PARM.GetAllExtReturnInstructions">
+	<summary>
+ Retrieves all the drop down values for External Return Instructions.
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:TurnInProcessAutomation.BLL.TUTEC998PARM.GetAllAgeCodes">
+	<summary>
+ Retrieves all the drop down values for Age.
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:TurnInProcessAutomation.BLL.TUTEC998PARM.GetAllGenderCodes">
+	<summary>
+ Retrieves all the drop down values for Gender.
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:TurnInProcessAutomation.BLL.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:TurnInProcessAutomation.BLL.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:TurnInProcessAutomation.BLL.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+</members>
+</doc>

@@ -1,0 +1,608 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ApplicationMessages xmlns="http://www.bonton.com/MessageCodes">
+
+    <Message Code="001" Category ="Generic" Description="Record Saved." Severity="Informational" />
+    <Message Code="002" Category ="Generic" Description="Record Added." Severity="Informational" />
+    <Message Code="003" Category ="Generic" Description="Record(s) Added." Severity="Informational" />
+    <Message Code="004" Category ="Generic" Description="Record Modified." Severity="Informational" />
+    <Message Code="005" Category ="Generic" Description="Record Deleted." Severity="Informational" />
+    <Message Code="006" Category ="Generic" Description="Description is required." Severity="Error" />
+    <Message Code="007" Category ="Generic" Description="Inactive Date must be greater than todays date." Severity="Error" />
+    <Message Code="008" Category ="Generic" Description="GL Company/Account Unit is not valid." Severity="Error" />
+    <Message Code="009" Category ="Generic" Description="GL Account/ SubAccount is not valid." Severity="Error" />
+    <Message Code="010" Category ="Generic" Description="GL String is not valid." Severity="Error" />
+    <Message Code="011" Category ="Generic" Description="No records to Retrieve." Severity="Informational" />
+    <Message Code="012" Category ="Generic" Description="No information available for this PO." Severity="Error" />
+    <Message Code="013" Category ="Generic" Description="At least one line must selected." Severity="Error" />
+    <Message Code="014" Category ="Generic" Description="PO is not valid." Severity="Error" />
+    <Message Code="015" Category ="Generic" Description="No records to retrieve." Severity="Error" />
+    <Message Code="016" Category ="Generic" Description="PO does not exist." Severity="Error" />
+    <Message Code="017" Category ="Generic" Description="PO must be entered." Severity="Error" />
+    <Message Code="018" Category ="Generic" Description="No data available." Severity="Error" />
+    <Message Code="020" Category ="Generic" Description="Selection Criteria must be entered." Severity="Error" />
+    <Message Code="021" Category ="Generic" Description="GL Account is not valid." Severity="Error" />
+    <Message Code="022" Category ="Generic" Description="Entire GL Account combination is not valid." Severity="Error" />
+    <Message Code="023" Category="Generic" Description="Vendor is not valid." Severity="Error" />
+    <Message Code="024" Category="Generic" Description="End Date cannot come before Start Date." Severity="Error" />
+    <Message Code="025" Category="Generic" Description="Results were limited due to volume. Please refine search criteria." Severity="Warning" />
+    <Message Code="026" Category="Generic" Description="User Security for Queue not setup. Contact I.S." Severity="Error" />
+    <Message Code="027" Category ="Generic" Description="{0} Vendor class is not valid for the Transaction code." Severity="Error" />
+    <Message Code="028" Category ="Generic" Description="Record(s) Added. Contact I.S in order to ensure proper setup is completed." Severity="Informational" />
+    <Message Code="029" Category ="Generic" Description="GL Account can’t be Expense, only a Merchandise Account." Severity="Error" />
+    <Message Code="030" Category ="Generic" Description="Record(s) Modified. Contact I.S in order to ensure proper setup is completed." Severity="Informational" />
+
+    <Message Code="050" Category="Retail Transaction System Details" Description="TranId not valid." Severity="Error" />
+    <Message Code="051" Category="Retail Transaction System Details" Description="Line Code must be selected." Severity="Error" />
+    <Message Code="052" Category="Retail Transaction System Details" Description="Department is not valid." Severity="Error" />
+    <Message Code="053" Category="Retail Transaction System Details" Description="Department must be entered." Severity="Error" />
+    <Message Code="054" Category="Retail Transaction System Details" Description="Store is not valid." Severity="Error" />
+    <Message Code="055" Category="Retail Transaction System Details" Description="Store must be entered." Severity="Error" />
+    <Message Code="056" Category="Retail Transaction System Details" Description="Class must be entered." Severity="Error" />
+    <Message Code="057" Category="Retail Transaction System Details" Description="Department/Class combination is not valid." Severity="Error" />
+    <Message Code="058" Category="Retail Transaction System Details" Description="Only {0} line types are valid.." Severity="Error" />
+    <Message Code="059" Category="Retail Transaction System Details" Description="Quantity is not valid." Severity="Error" />
+    <Message Code="060" Category="Retail Transaction System Details" Description="TranId not valid." Severity="Error" />
+    <Message Code="061" Category="Retail Transaction System Details" Description="Invalid line code." Severity="Error" />
+    <Message Code="062" Category="Retail Transaction System Details" Description="Cost must be entered." Severity="Error" />
+    <Message Code="063" Category="Retail Transaction System Details" Description="Freight must be entered." Severity="Error" />
+    <Message Code="064" Category="Retail Transaction System Details" Description="Retail must be entered." Severity="Error" />
+    <Message Code="065" Category="Retail Transaction System Details" Description="Discount must be entered." Severity="Error" />
+    <Message Code="066" Category="Retail Transaction System Details" Description="Cost should be less than Retail." Severity="Error" />
+    <Message Code="067" Category="Retail Transaction System Details" Description="Deletion is not allowed for this Batch." Severity="Error" />
+    <Message Code="068" Category="Retail Transaction System Details" Description="Deletion is not allowed without Batch." Severity="Error" />
+    <Message Code="069" Category="Retail Transaction System Details" Description="Line items cannot be deleted for this batch." Severity="Error" />
+    <Message Code="070" Category="Retail Transaction System Details" Description="Running Cost does not match with header." Severity="Error" />
+    <Message Code="071" Category="Retail Transaction System Details" Description="Running Freight does not match with header." Severity="Error" />
+    <Message Code="072" Category="Retail Transaction System Details" Description="Running Retail does not match with header." Severity="Error" />
+    <Message Code="073" Category="Retail Transaction System Details" Description="Running Discount does not match with header." Severity="Error" />
+    <Message Code="074" Category="Retail Transaction System Details" Description="Header Freight does not match with Detail Freight amount." Severity="Error" />
+    <Message Code="075" Category="Retail Transaction System Details" Description="Header Handling Charge does not match with Detail Handling Charge amount." Severity="Error" />
+    <Message Code="076" Category="Retail Transaction System Details" Description="Header does not match with Detail Handling Charge amount." Severity="Error" />
+    <Message Code="077" Category="Retail Transaction System Details" Description="Header cost does not match with Detail running cost amount." Severity="Error" />
+    <Message Code="078" Category="Retail Transaction System Details" Description="Header Retail does not match with Detail Running retail amount." Severity="Error" />
+    <Message Code="079" Category="Retail Transaction System Details" Description="Discount must be entered." Severity="Error" />
+    <Message Code="080" Category="Retail Transaction System Details" Description="Discount must be entered." Severity="Error" />
+    <Message Code="081" Category="Retail Transaction System Details" Description="Line item added." Severity="Informational" />
+    <Message Code="082" Category="Retail Transaction System Details" Description="Line item updated." Severity="Informational" />
+    <Message Code="083" Category="Retail Transaction System Details" Description="Line item(s) deleted." Severity="Informational" />
+
+    <Message Code="100" Category ="Transaction Code" Description="Transaction Code is required." Severity="Error" />
+    <Message Code="101" Category ="Transaction Code" Description="Transaction Type is required." Severity="Error" />
+    <Message Code="102" Category ="Transaction Code" Description="Document Type is required." Severity="Error" />
+    <Message Code="103" Category ="Transaction Code" Description="Match Flag can only be Yes when Transaction Type is set to 'M - MAPS'." Severity="Error" />
+    <Message Code="104" Category ="Transaction Code" Description="Header Page is required." Severity="Error" />
+    <Message Code="105" Category ="Transaction Code" Description="UC Screen must be entered if Header Page is Chargeback." Severity="Error" />
+    <Message Code="106" Category ="Transaction Code" Description="Detail Screen must be entered if Header Page is Chargeback." Severity="Error" />
+    <Message Code="107" Category ="Transaction Code" Description="Line Code must be Yes when Page Link is 'AP Adjustment'." Severity="Error" />
+    <Message Code="108" Category ="Transaction Code" Description="Deletion can only occur if the Transaction code's Entered By date is the same as the current date." Severity="Error" />
+    <Message Code="109" Category ="Transaction Code" Description="The selected transaction code does not exist." Severity="Error" />
+    <Message Code="110" Category ="Transaction Code" Description="Select a transaction code." Severity="Error" />
+    <Message Code="111" Category ="Transaction Code" Description="Transaction exists in header, change status to Inactive." Severity="Error" />
+    <Message Code="112" Category ="Transaction Code" Description="Batch Option is required." Severity="Error" />
+    <Message Code="113" Category ="Transaction Code" Description="If Header Page is 'Chargeback or AP Adjustment', the batching option can only be 'Manual'." Severity="Error" />
+    <Message Code="114" Category ="Transaction Code" Description="At least one of the processing flags should be set to Y." Severity="Error" />
+    <Message Code="115" Category ="Transaction Code" Description="Select AP or GL, not both." Severity="Error" />
+    <Message Code="116" Category ="Transaction Code" Description="Select PJ or RL, not both." Severity="Error" />
+    <Message Code="117" Category ="Transaction Code" Description="At least one line code should be selected." Severity="Error" />
+    <Message Code="118" Category ="Transaction Code" Description="Multiple line codes are not allowed. Only one line code should be selected." Severity="Error" />
+    <Message Code="119" Category ="Transaction Code" Description="Transaction Code already exists." Severity="Error"/>
+    <Message Code="120" Category ="Transaction Code" Description="Transaction Code is not valid." Severity="Error"/>
+
+    <Message Code="125" Category ="Reason Code" Description="Reason Code is required." Severity="Error" />
+    <Message Code="126" Category ="Reason Code" Description="Header Page is required." Severity="Error" />
+    <Message Code="127" Category ="Reason Code" Description="At least one Tran code should be selected." Severity="Error" />
+    <Message Code="128" Category ="Reason Code" Description="Deletion can only occur if the reason code's Entered By date is the same as the current date." Severity="Error" />
+    <Message Code="129" Category ="Reason Code" Description="The selected reason code does not exist." Severity="Error" />
+    <Message Code="130" Category ="Reason Code" Description="Select a reason code." Severity="Error" />
+    <Message Code="131" Category ="Reason Code" Description="Reason code exists in header, change status to Inactive first." Severity="Error" />
+    <Message Code="132" Category ="Reason Code" Description="Reason Code already exists." Severity="Error" />
+    <Message Code="133" Category ="Reason Code" Description="Reason Code is not valid." Severity="Error" />
+
+    <Message Code="150" Category ="Line Code" Description="Line Type is required." Severity="Error" />
+    <Message Code="151" Category ="Line Code" Description="Deletion can only occur if the line code's Entered By date is the same as the current date." Severity="Error" />
+    <Message Code="152" Category ="Line Code" Description="The selected line code does not exist." Severity="Error" />
+    <Message Code="153" Category ="Line Code" Description="Line Code is required." Severity="Error" />
+    <Message Code="154" Category ="Line Code" Description="At least one value must be selected." Severity="Error" />
+    <Message Code="155" Category ="Line Code" Description="At least one of the four signs must be positive or negative." Severity="Error" />
+    <Message Code="156" Category ="Line Code" Description="When Line Type is Merchandise, Account must be entered." Severity="Error" />
+    <Message Code="157" Category ="Line Code" Description="Select a line code." Severity="Error" />
+    <Message Code="158" Category ="Line Code" Description="Line Code cannot be deleted. It already exists on Detail table." Severity="Error" />
+    <Message Code="159" Category ="Line Code" Description="Line Code already exists." Severity="Error" />
+    <Message Code="160" Category ="Line Code" Description="Line Code is not valid." Severity="Error" />
+
+    <Message Code="175" Category ="Matcher Vendor Assignment" Description="Vendor Assignment not found and cannot be updated." Severity="Error" />
+    <Message Code="176" Category ="Matcher Vendor Assignment" Description="Combination already Exists, cannot update record." Severity="Error" />
+    <Message Code="177" Category ="Matcher Vendor Assignment" Description="Combination already Exists, cannot insert record." Severity="Error" />
+    <Message Code="178" Category ="Matcher Vendor Assignment" Description="Used ID not valid." Severity="Error" />
+    <Message Code="179" Category ="Matcher Vendor Assignment" Description="Duplicate combinations Exist, not all records copied." Severity="Error" />
+    <Message Code="180" Category ="Matcher Vendor Assignment" Description="User Id required." Severity="Error" />
+    <Message Code="181" Category ="Matcher Vendor Assignment" Description="User Id is not valid." Severity="Error" />
+    <Message Code="182" Category ="Matcher Vendor Assignment" Description="Match Type required." Severity="Error" />
+    <Message Code="183" Category ="Matcher Vendor Assignment" Description="Match Type is not valid." Severity="Error" />
+    <Message Code="184" Category ="Matcher Vendor Assignment" Description="Vendor Range From required." Severity="Error" />
+    <Message Code="185" Category ="Matcher Vendor Assignment" Description="Vendor Range From is not valid." Severity="Error" />
+    <Message Code="186" Category ="Matcher Vendor Assignment" Description="Vendor Range To required." Severity="Error" />
+    <Message Code="187" Category ="Matcher Vendor Assignment" Description="Vendor Range To is not valid." Severity="Error" />
+    <Message Code="188" Category ="Matcher Vendor Assignment" Description="Vendor Range To must be higher than or equal to Range From." Severity="Error" />
+
+    <Message Code="200" Category ="Batch Control" Description="Mode is required." Severity="Error" />
+    <Message Code="201" Category ="Batch Control" Description="Batch is required." Severity="Error" />
+    <Message Code="202" Category ="Batch Control" Description="Batch has successfully been saved." Severity="Informational" />
+    <Message Code="203" Category ="Batch Control" Description="Batch was not successfully saved. Please try again." Severity="Error" />
+    <Message Code="204" Category ="Batch Control" Description="Batch cannot be released, document(s) for the batch is not in BAL status." Severity="Error" />
+    <Message Code="205" Category ="Batch Control" Description="Update to Batch was successful." Severity="Informational" />
+    <Message Code="206" Category ="Batch Control" Description="Update to Batch was not successful. Please try again." Severity="Error" />
+    <Message Code="207" Category ="Batch Control" Description="The record was never saved. Cannot delete batch." Severity="Error" />
+    <Message Code="208" Category ="Batch Control" Description="Batch was successfully deleted." Severity="Informational" />
+    <Message Code="209" Category ="Batch Control" Description="Batch was not successfully deleted. Please try again." Severity="Error" />
+    <Message Code="210" Category ="Batch Control" Description="Cannot delete batch with a status of  {0}." Severity="Error" />
+    <Message Code="211" Category ="Batch Control" Description="Posting Date cannot be back-dated." Severity="Error" />
+
+    <Message Code="215" Category ="Batch Control Special" Description="Hit Retrieve and verify batch information before delete." Severity="Error" />
+    <Message Code="216" Category ="Batch Control Special" Description="Invalid Batch No." Severity="Error" />
+    <Message Code="217" Category ="Batch Control Special" Description="Enter Batch and Retrieve before delete." Severity="Error" />
+    <Message Code="218" Category ="Batch Control Special" Description="Documents must have a value greater than zero." Severity="Error" />
+    <Message Code="219" Category ="Batch Control Special" Description="Batch Total Documents must match Calculated Total Documents." Severity="Error" />
+    <Message Code="220" Category ="Batch Control Special" Description="Batch Total Cost must match Calculated Total Cost." Severity="Error" />
+    <Message Code="221" Category ="Batch Control Special" Description="Batch Total Retail must match Calculated Total Retail." Severity="Error" />
+    <Message Code="222" Category ="Batch Control Special" Description="Batch Total Discount must match Calculated Total Discount." Severity="Error" />
+    <Message Code="223" Category ="Batch Control Special" Description="Batch Total Freight must match Calculated Total Frieght." Severity="Error" />
+    <Message Code="224" Category ="Batch Control Special" Description="Enter Batch No." Severity="Error" />
+    <Message Code="225" Category ="Batch Control Special" Description="Batch can't be modified due to Status." Severity="Informational" />
+
+    <Message Code="230" Category ="Batch Control List" Description="Date must be within the current GL Period/Year." Severity="Error" />
+    <Message Code="231" Category ="Batch Control List" Description="Batch Date must be within the current GL Period/Year." Severity="Error" />
+    <Message Code="232" Category ="Batch Control List" Description="Batch Start Date must be less than or equal to Batch End Date." Severity="Error" />
+    <Message Code="233" Category ="Batch Control List" Description="Approval Start Date must be less than or equal to Approval End Date." Severity="Error" />
+    <Message Code="234" Category ="Batch Control List" Description="Batch Extract Start Date must be less than or equal to Batch Extract End Date." Severity="Error" />
+    <Message Code="235" Category ="Batch Control List" Description="Modified Start Date must be less than or equal to Modified End Date." Severity="Error" />
+
+    <Message Code="241" Category ="Batch Approval" Description="Select Queue." Severity="Error" />
+    <Message Code="242" Category ="Batch Approval" Description="No Batches Selected." Severity="Error" />
+    <Message Code="243" Category ="Batch Approval" Description="All Selected Batches have been Approved." Severity="Informational" />
+    <Message Code="244" Category ="Batch Approval" Description="All Selected Batches have been Unapproved." Severity="Informational" />
+    <Message Code="245" Category ="Batch Approval" Description="All Selected Batches have been Rejected." Severity="Informational" />
+
+    <Message Code="250" Category ="AP Adjustments" Description="Tran Code must be selected before you hit Retrieve." Severity="Error" />
+    <Message Code="251" Category ="AP Adjustments" Description="Invoice must be entered before you hit Retrieve." Severity="Error" />
+    <Message Code="252" Category ="AP Adjustments" Description="Vendor must be entered before you hit Retrieve." Severity="Error" />
+    <Message Code="253" Category ="AP Adjustments" Description="Document not available. Try different search criteria." Severity="Error" />
+    <Message Code="254" Category ="AP Adjustments" Description="Document marked complete." Severity="Informational" />
+
+    <Message Code="260" Category ="AP Adjustment Header" Description="AP Adjustment document added." Severity="Informational" />
+    <Message Code="261" Category ="AP Adjustment Header" Description="AP Adjustment document modified." Severity="Informational" />
+    <Message Code="262" Category ="AP Adjustment Header" Description="AP Adjustment document modification failed." Severity="Error" />
+    <Message Code="263" Category ="AP Adjustment Header" Description="Deletion is not allowed at this time." Severity="Error" />
+    <Message Code="264" Category ="AP Adjustment Header" Description="AP Adjustment document deleted." Severity="Informational" />
+    <Message Code="265" Category ="AP Adjustment Header" Description="Invalid Mode." Severity="Error" />
+    <Message Code="266" Category ="AP Adjustment Header" Description="Invalid Batch Number." Severity="Error" />
+    <Message Code="267" Category ="AP Adjustment Header" Description="Reference Type is not valid." Severity="Error" />
+    <Message Code="268" Category ="AP Adjustment Header" Description="Invoice Date is not valid, should only be set to current date." Severity="Error" />
+    <Message Code="269" Category ="AP Adjustment Header" Description="Freight Flag cannot be changed with line items on the detail page." Severity="Error" />
+    <Message Code="270" Category ="AP Adjustment Header" Description="Deletion is not allowed without the Batch." Severity="Error" />
+    <Message Code="271" Category ="AP Adjustment Header" Description="AP Adjustment deletion is not allowed for the batch." Severity="Error" />
+    <Message Code="272" Category ="AP Adjustment Header" Description="Reference Vendor is required." Severity="Error" />
+    <Message Code="273" Category ="AP Adjustment Header" Description="Reference Invoice is required." Severity="Error" />
+
+    <Message Code="300" Category ="Chargeback Header" Description="Tran Code must be selected before you hit Retrieve." Severity="Error" />
+    <Message Code="301" Category ="Chargeback Header" Description="Invoice must be entered before you hit Retrieve." Severity="Error" />
+    <Message Code="302" Category ="Chargeback Header" Description="Vendor must be entered before you hit Retrieve." Severity="Error" />
+    <Message Code="303" Category ="Chargeback Header" Description="Document not available. Try different search criteria." Severity="Error" />
+    <Message Code="304" Category ="Chargeback Header" Description="Chargeback document deleted." Severity="Informational" />
+    <Message Code="305" Category ="Chargeback Header" Description="Document marked complete." Severity="Informational" />
+    <Message Code="306" Category ="Chargeback Header" Description="Chargeback document added." Severity="Informational" />
+    <Message Code="307" Category ="Chargeback Header" Description="Chargeback document modified." Severity="Informational" />
+    <Message Code="308" Category ="Chargeback Header" Description="Chargeback document modification failed." Severity="Error" />
+    <Message Code="309" Category ="Chargeback Header" Description="Deletion is not allowed for the Batch." Severity="Error" />
+    <Message Code="310" Category ="Chargeback Header" Description="Deletion is not allowed without the Batch." Severity="Error" />
+    <Message Code="311" Category ="Chargeback Header" Description="Chargeback\Payback type Deleted." Severity="Informational" />
+    <Message Code="312" Category ="Chargeback Header" Description="Chargeback\Payback Deletion is not allowed." Severity="Error" />
+    <Message Code="313" Category ="Chargeback Header" Description="Invalid Mode." Severity="Error" />
+    <Message Code="314" Category ="Chargeback Header" Description="Invalid Batch Number." Severity="Error" />
+    <Message Code="315" Category ="Chargeback Header" Description="Header Handling Charge does not match with Detail Cost amount." Severity="Error" />
+    <Message Code="316" Category ="Chargeback Header" Description="Header Mdse cost does not match with Detail Cost amount." Severity="Error" />
+    <Message Code="317" Category ="Chargeback Header" Description="Header cost does not match with detail sum of VCHN and 999 cost amount." Severity="Error" />
+    <Message Code="318" Category ="Chargeback Header" Description="Cannot run EOD at this time. No document available to process." Severity="Error" />
+    <Message Code="319" Category ="Chargeback Header" Description="Header Total Freight amount does not match with Detail Freight amount." Severity="Error" />
+    <Message Code="320" Category ="Chargeback Header" Description="Invoice exist in Lawson." Severity="Error" />
+    <Message Code="321" Category ="Chargeback Header" Description="Invoice exist in RTS system." Severity="Error" />
+    <Message Code="322" Category ="Chargeback Header" Description="Transaction Code must be selected." Severity="Error" />
+    <Message Code="323" Category ="Chargeback Header" Description="Batch# must be selected." Severity="Error" />
+    <Message Code="324" Category ="Chargeback Header" Description="Reason code must be selected." Severity="Error" />
+    <Message Code="325" Category ="Chargeback Header" Description="Department must be entered." Severity="Error" />
+    <Message Code="326" Category ="Chargeback Header" Description="Department is not valid." Severity="Error" />
+    <Message Code="327" Category ="Chargeback Header" Description="Vendor# must be entered." Severity="Error" />
+    <Message Code="328" Category ="Chargeback Header" Description="Vendor class is not valid for the Transaction code." Severity="Error" />
+    <Message Code="329" Category ="Chargeback Header" Description="Vendor/Department combination is not valid." Severity="Error" />
+    <Message Code="330" Category ="Chargeback Header" Description="Either Mdse Cost or Handling Charge is required." Severity="Error" />
+    <Message Code="331" Category ="Chargeback Header" Description="Either Freight or Handling Charge is required." Severity="Error" />
+    <Message Code="332" Category ="Chargeback Header" Description="Vendor# cannot be edited with line items present." Severity="Error" />
+    <Message Code="333" Category ="Chargeback Header" Description="Department cannot be edited with line items present." Severity="Error" />
+    <Message Code="334" Category ="Chargeback Header" Description="Cost cannot be removed with line items present." Severity="Error" />
+    <Message Code="335" Category ="Chargeback Header" Description="Amounts cannot be edited with line items present." Severity="Error" />
+    <Message Code="336" Category ="Chargeback Header" Description="Chargeback selected, but Transaction Code is Payback." Severity="Error" />
+    <Message Code="337" Category ="Chargeback Header" Description="Payback selected, but Transaction Code is Chargeback." Severity="Error" />
+    <Message Code="338" Category ="Chargeback Header" Description="Select Chargeback." Severity="Error" />
+    <Message Code="339" Category ="Chargeback Header" Description="No Chargeback or Payback selection allowed." Severity="Error" />
+    <Message Code="340" Category ="Chargeback Header" Description="Batch is not allowed for this {0}." Severity="Error" />
+    <Message Code="341" Category ="Chargeback Header" Description="Reference Number must be entered." Severity="Error" />
+    <Message Code="342" Category ="Chargeback Header" Description="Reference Number is not valid without a Reference type." Severity="Error" />
+    <Message Code="343" Category ="Chargeback Header" Description="Invoice Date is required." Severity="Error" />
+    <Message Code="344" Category ="Chargeback Header" Description="If Retail is entered, then Cost is required." Severity="Error" />
+    <Message Code="345" Category ="Chargeback Header" Description="If only Discount is entered, Retail cannot be entered." Severity="Error" />
+    <Message Code="346" Category ="Chargeback Header" Description="If only Freight is entered, Retail cannot be entered." Severity="Error" />
+    <Message Code="347" Category ="Chargeback Header" Description="If Discount and Freight is entered, Cost is required." Severity="Error" />
+    <Message Code="348" Category ="Chargeback Header" Description="Atleast Cost or Discount or Freight must be entered. All three can be entered." Severity="Error" />
+    <Message Code="349" Category ="Chargeback Header" Description="Invoice Date is not valid, no future date allowed." Severity="Error" />
+    <Message Code="350" Category ="Chargeback Header" Description="GL accounts should be provided for line code: 999, Contact I.S." Severity="Error" />
+    <Message Code="351" Category ="Chargeback Header" Description="GL accounts should be provided for line code: 997, Contact I.S." Severity="Error" />
+    <Message Code="352" Category ="Chargeback Header" Description="GL accounts should be provided." Severity="Error" />
+    <Message Code="353" Category ="Chargeback Header" Description="Invalid DC." Severity="Error" />
+    <Message Code="354" Category ="Chargeback Header" Description="DC is required." Severity="Error" />
+    <Message Code="355" Category ="Chargeback Header" Description="The Handling Charge Account is not setup for the location. Contact I.S." Severity="Error" />
+    <Message Code="356" Category ="Chargeback Header" Description="The Handling Charge is required." Severity="Error" />
+
+    <Message Code="400" Category ="Vendor Allowance" Description="Vendor Allowance document added." Severity="Informational" />
+    <Message Code="401" Category ="Vendor Allowance" Description="Vendor Allowance document modified." Severity="Informational" />
+    <Message Code="402" Category ="Vendor Allowance" Description="Vendor Allowance document modification not allowed." Severity="Error" />
+    <Message Code="403" Category ="Vendor Allowance" Description="Warning: YTD Markdowns are going to go negative. Vendor Allowance document added." Severity="Warning" />
+    <Message Code="404" Category ="Vendor Allowance" Description="Deletion is not allowed for the Batch." Severity="Error" />
+    <Message Code="405" Category ="Vendor Allowance" Description="Deletion is not allowed without the Batch." Severity="Error" />
+    <Message Code="406" Category ="Vendor Allowance" Description="Vendor Allowance document deleted." Severity="Informational" />
+    <Message Code="407" Category ="Vendor Allowance" Description="Vendor Allowance document deletion is not allowed." Severity="Error" />
+    <Message Code="408" Category ="Vendor Allowance" Description="Invalid Operation." Severity="Error" />
+    <Message Code="409" Category ="Vendor Allowance" Description="Invalid Batch Number." Severity="Error" />
+    <Message Code="410" Category ="Vendor Allowance" Description="Document rejected, sent to AP for approval." Severity="Error" />
+    <Message Code="411" Category ="Vendor Allowance" Description="Document approved automatically." Severity="Informational" />
+    <Message Code="412" Category ="Vendor Allowance" Description="Batch totals does not match Header totals." Severity="Error" />
+    <Message Code="413" Category ="Vendor Allowance" Description="Vendor is not eligible for auto-approval.  AP will review for approval." Severity="Error" />
+    <Message Code="414" Category ="Vendor Allowance" Description="Tran Code must be selected before you hit Retrieve." Severity="Error" />
+    <Message Code="415" Category ="Vendor Allowance" Description="Invoice must be entered before you hit Retrieve." Severity="Error" />
+    <Message Code="416" Category ="Vendor Allowance" Description="Vendor must be entered before you hit Retrieve." Severity="Error" />
+    <Message Code="417" Category ="Vendor Allowance" Description="Document not available. Try different search criteria." Severity="Error" />
+    <Message Code="418" Category ="Vendor Allowance" Description="Vendor Allowance document deleted." Severity="Informational" />
+    <Message Code="419" Category ="Vendor Allowance" Description="Document marked complete." Severity="Informational" />
+    <Message Code="420" Category ="Vendor Allowance" Description="Invoice exist in Lawson." Severity="Error" />
+    <Message Code="421" Category ="Vendor Allowance" Description="Invoice exist in RTS system." Severity="Error" />
+    <Message Code="422" Category ="Vendor Allowance" Description="Invoice Date is not valid, no future date allowed." Severity="Error" />
+    <Message Code="423" Category ="Vendor Allowance" Description="Chargeback selected, but Transaction Code is Payback." Severity="Error" />
+    <Message Code="424" Category ="Vendor Allowance" Description="Payback selected, but Transaction Code is Chargeback." Severity="Error" />
+    <Message Code="425" Category ="Vendor Allowance" Description="Select Chargeback." Severity="Error" />
+    <Message Code="426" Category ="Vendor Allowance" Description="Select Payback." Severity="Error" />
+    <Message Code="427" Category ="Vendor Allowance" Description="No Chargeback or Payback selection allowed." Severity="Error" />
+    <Message Code="428" Category ="Vendor Allowance" Description="Invoice Date is required." Severity="Error" />
+    <Message Code="429" Category ="Vendor Allowance" Description="Batch is not allowed for this {0}." Severity="Error" />
+    <Message Code="430" Category ="Vendor Allowance" Description="Transaction Code must be selected." Severity="Error" />
+    <Message Code="431" Category ="Vendor Allowance" Description="Batch# must be selected." Severity="Error" />
+    <Message Code="432" Category ="Vendor Allowance" Description="Reason code must be selected." Severity="Error" />
+    <Message Code="433" Category ="Vendor Allowance" Description="Department must be entered." Severity="Error" />
+    <Message Code="434" Category ="Vendor Allowance" Description="Department is not valid." Severity="Error" />
+    <Message Code="435" Category ="Vendor Allowance" Description="Vendor# must be entered." Severity="Error" />
+    <Message Code="436" Category ="Vendor Allowance" Description="Vendor class is not valid for the Transaction code." Severity="Error" />
+    <Message Code="437" Category ="Vendor Allowance" Description="Vendor# is not valid." Severity="Error" />
+    <Message Code="438" Category ="Vendor Allowance" Description="Vendor/Department combination is not valid." Severity="Error" />
+    <Message Code="439" Category ="Vendor Allowance" Description="Cost must be entered." Severity="Error" />
+    <Message Code="440" Category ="Vendor Allowance" Description="Retail must be entered." Severity="Error" />
+    <Message Code="441" Category ="Vendor Allowance" Description="Cost should be less than Retail." Severity="Error" />
+    <Message Code="442" Category ="Vendor Allowance" Description="The question requires a 'Yes or No' answer to proceed." Severity="Error" />
+    <Message Code="443" Category ="Vendor Allowance" Description="The question requires a 'Yes' answer to proceed." Severity="Error" />
+    <Message Code="444" Category ="Vendor Allowance" Description="The question requires a 'No' answer to proceed." Severity="Error" />
+    <Message Code="445" Category ="Vendor Allowance" Description="Vendor Authorization Number field is required. If there is no authorization number, enter none and submit supporting documentation for Retail VA's to the Mdse Analysis office." Severity="Error" />
+    <Message Code="446" Category ="Vendor Allowance" Description="Name of Vendor Representative Issuing Authorization is Required." Severity="Error" />
+    <Message Code="447" Category ="Vendor Allowance" Description="Vendor# cannot be edited with line items present." Severity="Error" />
+    <Message Code="448" Category ="Vendor Allowance" Description="Dept cannot be edited with line items present." Severity="Error" />
+    <Message Code="449" Category ="Vendor Allowance" Description="Document date is not valid. Date should be within 24 months prior to current date and nothing ahead of current date." Severity="Error" />
+
+    <Message Code="475" Category ="Document List" Description="Cannot be redirected to valid document header page." Severity="Error" />
+    <Message Code="476" Category ="Document List" Description="Batch Start Date must be less than or equal to Batch End Date." Severity="Error" />
+    <Message Code="477" Category ="Document List" Description="Approved Start Date must be less than or equal to Approved End Date." Severity="Error" />
+    <Message Code="478" Category ="Document List" Description="Document Start Date must be less than or equal to Invoice End Date." Severity="Error" />
+    <Message Code="479" Category ="Document List" Description="Modified Start Date must be less than or equal to Modified End Date." Severity="Error" />
+
+    <Message Code="490" Category ="RTS Data Import" Description="Select Transaction Type." Severity="Error" />
+    <Message Code="491" Category ="RTS Data Import" Description="Selected excel file name is not valid." Severity="Error" />
+    <Message Code="492" Category ="RTS Data Import" Description="RTS Data Processing Completed!" Severity="Informational" />
+    <Message Code="493" Category ="RTS Data Import" Description="Please close the excel file if it is open." Severity="Error" />
+    <Message Code="494" Category ="RTS Data Import" Description="Browse and Select excel file to process!" Severity="Error" />
+    <Message Code="495" Category ="RTS Data Import" Description="The file does not exists." Severity="Error" />
+
+    <Message Code="500" Category ="Purchase Order List" Description="AP Terms Code not valid." Severity="Error" />
+    <Message Code="501" Category ="Purchase Order List" Description="AP Additional Terms not valid." Severity="Error" />
+    <Message Code="502" Category ="Purchase Order List" Description="AP Payment Type is not valid." Severity="Error" />
+    <Message Code="503" Category ="Purchase Order List" Description="PO cannot be entered with Vendor, Dept, or Vendor/Dept entry." Severity="Error" />
+    <Message Code="504" Category ="Purchase Order List" Description="PO not in MAPS." Severity="Error" />
+    <Message Code="505" Category ="Purchase Order List" Description="PO not valid." Severity="Error" />
+    <Message Code="506" Category ="Purchase Order List" Description="PO, Vendor, Dept or Vendor/Dept required." Severity="Error" />
+    <Message Code="507" Category ="Purchase Order List" Description="Vendor cannot be entered with PO entry." Severity="Error" />
+    <Message Code="508" Category ="Purchase Order List" Description="Dept cannot be entered with PO entry." Severity="Error" />
+    <Message Code="509" Category ="Purchase Order List" Description="Ship End Date cannot be selected with PO entry." Severity="Error" />
+    <Message Code="510" Category ="Purchase Order List" Description="Ship Start Date must be less than or equal to Ship End Date." Severity="Error" />
+    <Message Code="511" Category ="Purchase Order List" Description="List Blank AP Payment Code option cannot be selected with PO entry." Severity="Error" />
+    <Message Code="512" Category ="Purchase Order List" Description="List Blank AP Payment Code option cannot be selected with AP Payment type selection." Severity="Error" />
+    <Message Code="513" Category ="Purchase Order List" Description="Select at least one purchase order to flood." Severity="Error" />
+    <Message Code="514" Category ="Purchase Order List" Description="Status cannot be selected with PO entry." Severity="Error" />
+    <Message Code="515" Category ="Purchase Order List" Description="PO Terms Code cannot be selected with PO entry." Severity="Error" />
+    <Message Code="516" Category ="Purchase Order List" Description="AP Terms Code cannot be selected with PO entry." Severity="Error" />
+    <Message Code="517" Category ="Purchase Order List" Description="PO Payment Type cannot be selected with PO entry." Severity="Error" />
+    <Message Code="518" Category ="Purchase Order List" Description="AP Payment Type cannot be selected with PO entry." Severity="Error" />
+    <Message Code="519" Category ="Purchase Order List" Description="AP Match Type cannot be selected with PO entry." Severity="Error" />
+    <Message Code="520" Category ="Purchase Order List" Description="Ship Start Date cannot be selected with PO entry." Severity="Error" />
+
+    <Message Code="521" Category ="Purchase Order Audit List" Description="No Audit Information available for the PO." Severity="Informational" />
+    <Message Code="522" Category ="Purchase Order Audit List" Description="Please enter a valid PO Number." Severity="Error" />
+
+    <Message Code="523" Category ="Purchase Order List" Description="PayToVendor, ShipDates and Status - all must be entered." Severity="Error" />
+    <Message Code="524" Category ="Purchase Order List" Description="PO already has a match, maintenance can’t be performed." Severity="Informational" />
+
+    <Message Code="530" Category ="Receipt List" Description="PO does not contain any receipt information." Severity="Error" />
+    <Message Code="531" Category ="Receipt List" Description="Either PO Number or Receipt Number must be entered." Severity="Error" />
+    <Message Code="532" Category ="Receipt List" Description="PO doesn't exist." Severity="Error" />
+    <Message Code="533" Category ="Receipt List" Description="Receipt doesn't exist." Severity="Error" />
+    <Message Code="534" Category ="Receipt List" Description="PO is required." Severity="Error" />
+
+    <Message Code="535" Category ="Receipt Details" Description="Receipt details info data not retreived" Severity="Informational" />
+
+    <Message Code="550" Category ="AOC Code List" Description="Transaction exist for AOC Code : {0} in Invoice Detail File."  Severity="Error" />
+
+    <Message Code="551" Category ="AOC Code Detail" Description="Active Flag must be Y or N." Severity="Error" />
+    <Message Code="552" Category ="AOC Code Detail" Description="Reverse flag must by Y or N." Severity="Error" />
+    <Message Code="553" Category ="AOC Code Detail" Description="EDI ignore flag must be Y or N." Severity="Error" />
+    <Message Code="554" Category ="AOC Code Detail" Description="PJ Field must be C-Cost,F-Freight,D-Discount or N-NO PJ." Severity="Error" />
+    <Message Code="555" Category ="AOC Code Detail" Description="AOC code can not be blank." Severity="Error" />
+    <Message Code="556" Category ="AOC Code Detail" Description="Invalid AOC Code." Severity="Error" />
+    <Message Code="557" Category ="AOC Code Detail" Description="AOC code must be unique." Severity="Error" />
+    <Message Code="558" Category ="AOC Code Detail" Description="Invalid Transaction code." Severity="Error" />
+    <Message Code="559" Category ="AOC Code Detail" Description="Tran code already assigned to AOC code: {0}" Severity="Error" />
+    <Message Code="560" Category ="AOC Code Detail" Description="Invalid Reason code." Severity="Error" />
+    <Message Code="561" Category ="AOC Code Detail" Description="Invalid Tran/Reason code combination." Severity="Error" />
+
+    <Message Code="600" Category ="Invoice List" Description="No Invoices found. Try with different search criteria." Severity="Error" />
+
+    <Message Code="605" Category ="Invoice Detail" Description="Valid PO Number is required." Severity="Error" />
+    <Message Code="606" Category ="Invoice Detail" Description="Invalid PO Number." Severity="Error" />
+    <Message Code="607" Category ="Invoice Detail" Description="Store is required on Header." Severity="Error" />
+    <Message Code="608" Category ="Invoice Detail" Description="Store is not valid." Severity="Error" />
+    <Message Code="609" Category ="Invoice Detail" Description="Warning: Store is not part of the PO." Severity="Warning" />
+    <Message Code="610" Category ="Invoice Detail" Description="Invoice document added." Severity="Informational" />
+    <Message Code="611" Category ="Invoice Detail" Description="Invoice document modified." Severity="Informational" />
+    <Message Code="612" Category ="Invoice Detail" Description="Invoice No must be entered." Severity="Error" />
+    <Message Code="613" Category ="Invoice Detail" Description="Transaction Code must be selected." Severity="Error" />
+    <Message Code="614" Category ="Invoice Detail" Description="Invoice/TranCode/Vendor should be unique." Severity="Error" />
+    <Message Code="615" Category ="Invoice Detail" Description="Invoice date must be selected." Severity="Error" />
+    <Message Code="616" Category ="Invoice Detail" Description="Invoice Terms Code must be selected." Severity="Error" />
+    <Message Code="617" Category ="Invoice Detail" Description="Duedate should not be less than Invoicedate." Severity="Error" />
+    <Message Code="618" Category ="Invoice Detail" Description="Valid Store is required." Severity="Error" />
+    <Message Code="619" Category ="Invoice Detail" Description="Store is not valid." Severity="Error" />
+    <Message Code="620" Category ="Invoice Detail" Description="Reference Vendor# is required." Severity="Error" />
+    <Message Code="621" Category ="Invoice Detail" Description="Reference Vendor# is not allowed for tran code." Severity="Error" />
+    <Message Code="622" Category ="Invoice Detail" Description="Reference Vendor# is not valid." Severity="Error" />
+    <Message Code="623" Category ="Invoice Detail" Description="Reference Invoice# is required." Severity="Error" />
+    <Message Code="624" Category ="Invoice Detail" Description="Header AOC cost is not equal to Detail Total AOC cost." Severity="Error" />
+    <Message Code="625" Category ="Invoice Detail" Description="Invoice Amount not equal to Merchandise Cost + AOC Cost." Severity="Error" />
+    <Message Code="626" Category ="Invoice Detail" Description="Header-Merchandise Cost not equal to Detail-Extended Cost." Severity="Error" />
+    <Message Code="627" Category ="Invoice Detail" Description="Selected file is not valid for attachment." Severity="Error" />
+    <Message Code="628" Category ="Invoice Detail" Description="Invalid file. Please select file from -  \\BTSAN\CORPPUBLIC\ACCOUNTS PAYABLE\MAPS TEST INVOICES\" Severity="Error" />
+    <Message Code="629" Category ="Invoice Detail" Description="Vendor is not valid for PO." Severity="Error" />
+    <Message Code="630" Category ="Invoice Detail" Description="Dept is not valid for PO." Severity="Error" />
+    <Message Code="631" Category ="Invoice Detail" Description="Match is not allowed for the invoice status." Severity="Error" />
+    <Message Code="632" Category ="Invoice Detail" Description="Valid style must be entered or use style lookup." Severity="Error" />
+    <Message Code="633" Category ="Invoice Detail" Description="Invoice Qty must be entered." Severity="Error" />
+    <Message Code="634" Category ="Invoice Detail" Description="Invoice Unit Cost must be entered." Severity="Error" />
+    <Message Code="635" Category ="Invoice Detail" Description="Valid style must be entered or use style lookup." Severity="Error" />
+    <Message Code="636" Category ="Invoice Detail" Description="Invoice Qty must be entered." Severity="Error" />
+    <Message Code="637" Category ="Invoice Detail" Description="Invoice Unit Cost must be entered." Severity="Error" />
+    <Message Code="638" Category ="Invoice Detail" Description="Line item updated." Severity="Informational" />
+    <Message Code="639" Category ="Invoice Detail" Description="AOC should be selected." Severity="Error" />
+    <Message Code="640" Category ="Invoice Detail" Description="Cost must be entered." Severity="Error" />
+    <Message Code="641" Category ="Invoice Detail" Description="Duplicate AOC code is not allowed." Severity="Error" />
+    <Message Code="642" Category ="Invoice Detail" Description="Type should be selected." Severity="Error" />
+    <Message Code="643" Category ="Invoice Detail" Description="Comment must be entered." Severity="Error" />
+    <Message Code="644" Category ="Invoice Detail" Description="Select file before viewing." Severity="Error" />
+    <Message Code="645" Category ="Invoice Detail" Description="Selected file is not valid for attachment. please read the instructions on the page." Severity="Error" />
+    <Message Code="646" Category ="Invoice Detail" Description="Selected file is not valid for attachment. Please select valid file." Severity="Error" />
+    <Message Code="647" Category ="Invoice Detail" Description="Invoice Terms Code or Due Date is required." Severity="Error" />
+    <Message Code="648" Category ="Invoice Detail" Description="Invoice Terms Code is not valid." Severity="Error" />
+    <Message Code="649" Category ="Invoice Detail" Description="Invoice date cannot be older than 10 years from todays date." Severity="Error" />
+    <Message Code="650" Category ="Invoice Detail" Description="Invoice date should be 12 months prior to current date and up to 30 days ahead of current date." Severity="Error" />
+
+    <Message Code="674" Category ="AP Query Tool CashForecastList" Description="Pay Thru Date required." Severity="Error" />
+    <Message Code="675" Category ="AP Query Tool CashForecastList" Description="Enter PayVendor." Severity="Error" />
+    <Message Code="676" Category ="AP Query Tool CashForecastList" Description="PayVendor should not exceed 7 digits." Severity="Error" />
+    <Message Code="677" Category ="AP Query Tool CashForecastList" Description="PayVendor must be numeric and seperated with space." Severity="Error" />
+
+    <Message Code="678" Category ="AP Query Tool CheckList" Description="Enter Check Number(s) and Multiple Check's are seperated with space." Severity="Error" />
+    <Message Code="679" Category ="AP Query Tool CheckList" Description="Check numbers should not exceed 7 digits." Severity="Error" />
+    <Message Code="680" Category ="AP Query Tool CheckList" Description="Check Numbers must be numeric and seperated with space." Severity="Error" />
+
+    <Message Code="681" Category ="AP Query Tool InvoiceList" Description="Enter/Select Minimum Invoice Date." Severity="Error" />
+    <Message Code="682" Category ="AP Query Tool InvoiceList" Description="Enter Invoice(s) seperated by spaces." Severity="Error" />
+
+    <Message Code="683" Category ="AP Query Tool POClassDetail" Description="Enter PO Number(s) and Multiple PO's are seperated with space." Severity="Error" />
+    <Message Code="684" Category ="AP Query Tool POClassDetail" Description="PO Numbers must be numeric and seperated with space." Severity="Error" />
+    <Message Code="685" Category ="AP Query Tool POClassDetail" Description="PO Numbers should not exceed 7 digits." Severity="Error" />
+
+    <Message Code="686" Category ="VA Auto Approval Log" Description="Enter/Select From Date." Severity="Error" />
+    <Message Code="687" Category ="VA Auto Approval Log" Description="Enter/Select To Date." Severity="Error" />
+
+    <Message Code="750" Category ="PMI Summary Page" Description="PO Number does not exist." Severity="Error" />
+    <Message Code="751" Category ="PMI Summary Page" Description="Vendor is required when Department is entered." Severity="Error" />
+    <Message Code="752" Category ="PMI Summary Page" Description="Vendor/Department combination does not exist." Severity="Error" />
+    <Message Code="753" Category ="PMI Summary Page" Description="Vendor does not exist." Severity="Error" />
+    <Message Code="754" Category ="PMI Summary Page" Description="Department is required when Vendor is entered." Severity="Error" />
+    <Message Code="755" Category ="PMI Summary Page" Description="Department/Vendor combination does not exist." Severity="Error" />
+    <Message Code="756" Category ="PMI Summary Page" Description="Department does not exist." Severity="Error" />
+    <Message Code="757" Category ="PMI Summary Page" Description="Match Set ID does not exist." Severity="Error" />
+    <Message Code="758" Category ="PMI Summary Page" Description="PO Number is required when Match Type is selected." Severity="Error" />
+    <Message Code="759" Category ="PMI Summary Page" Description="Invalid input combination." Severity="Error" />
+
+    <Message Code="760" Category ="PMI PO List" Description="At least one PO must be selected." Severity="Error" />
+    <Message Code="761" Category ="PMI Summary Page" Description=" If Pay To Vendor is entered, no other fields can be entered with it." Severity="Error" />
+    <Message Code="762" Category ="PMI Summary Page" Description="Pay To Vendor does not have valid Vendors." Severity="Error" />
+
+    <Message Code="765" Category ="PMI Match Set ID List" Description="At least one Match Set ID must be selected." Severity="Error" />
+
+    <Message Code="800" Category ="Match Work List" Description="Invoice not valid without Vendor/TranCode." Severity="Error" />
+    <Message Code="801" Category ="Match Work List" Description="Invoice not valid." Severity="Error" />
+    <Message Code="802" Category ="Match Work List" Description="Vendor not valid." Severity="Error" />
+    <Message Code="803" Category ="Match Work List" Description="Invoice Date is not valid if Invoice w/o Receipts option is set to NO." Severity="Error" />
+    <Message Code="804" Category ="Match Work List" Description="Either Match Type or Invoice Date is required if Invoice w/o Receipts option is set to YES." Severity="Error" />
+    <Message Code="805" Category ="Match Work List" Description="Match type not valid with PO/Invoice." Severity="Error" />
+    <Message Code="806" Category ="Match Work List" Description="TranCode not valid without Invoice/Vendor." Severity="Error" />
+    <Message Code="807" Category ="Match Work List" Description="No Invoices qualify for matching." Severity="Error" />
+    <Message Code="808" Category ="Match Work List" Description="No Unmatched Receipts for this PO." Severity="Error" />
+    <Message Code="809" Category ="Match Work List" Description="Unmatched Receipts exist for this PO." Severity="Error" />
+    <Message Code="810" Category ="Match Work List" Description="No Unmatched Receipts for this Invoice." Severity="Error" />
+    <Message Code="811" Category ="Match Work List" Description="Unmatched Receipts exist for this Invoice." Severity="Error" />
+    <Message Code="812" Category ="Match Work List" Description="Vendor/Match Type for PO is not assigned to matcher." Severity="Error" />
+    <Message Code="813" Category ="Match Work List" Description="PO not available for Matching. Either already matched or Invoice/Receipts not available yet." Severity="Error" />
+    <Message Code="814" Category ="Match Work List" Description="Vendor/Match Type for Invoice is not assigned to matcher." Severity="Error" />
+    <Message Code="815" Category ="Match Work List" Description="Invoice not available for Matching. Either already matched or Invoice/Receipts not available yet." Severity="Error" />
+    <Message Code="816" Category ="Match Work List" Description="Vendor/Match Type for Vendor is not assigned to matcher." Severity="Error" />
+    <Message Code="817" Category ="Match Work List" Description="Vendor not available for Matching. Either already matched or Invoice/Receipts not available yet." Severity="Error" />
+
+    <Message Code="820" Category ="Match PO Store Level" Description="No information available for this PO." Severity="Error" />
+    <Message Code="821" Category ="Match PO Store Level" Description="Stores with Multiple Invoices can’t be used in the Match." Severity="Error" />
+    <Message Code="822" Category ="Match PO Store Level" Description="Match can't be performed. Invoices exist with no details." Severity="Error" />
+    <Message Code="823" Category ="Match PO Store Level" Description="Atleast one store should be selected before doing match." Severity="Error" />
+    <Message Code="824" Category ="Match PO Store Level" Description="No lines selected for on-order lookup." Severity="Error" />
+    <Message Code="825" Category ="Match PO Store Level" Description="PO doesn't exist in PO system, on-order information can't be displayed." Severity="Error" />
+    <Message Code="826" Category ="Match PO Store Level" Description="Some lines are protected due to inv qty being zeros - must enter detail." Severity="Informational" />
+    <Message Code="827" Category ="Match PO Store Level" Description="Some lines are protected due to inv qty being zeros - use move selected invoices." Severity="Error" />
+
+    <Message Code="830" Category ="Match Store Invoice Level" Description="Invoice working set grid is empty. Match cannot be performed." Severity="Error" />
+    <Message Code="831" Category ="Match Store Invoice Level" Description="Receipt working set grid is empty. Match cannot be performed." Severity="Error" />
+    <Message Code="832" Category ="Match Store Invoice Level" Description="Multiple stores exist that don’t match each other on working set grids." Severity="Error" />
+    <Message Code="833" Category ="Match Store Invoice Level" Description="Validation failed. Match cannot be performed." Severity="Error" />
+    <Message Code="834" Category ="Match Store Invoice Level" Description="No rows available for selection." Severity="Error" />
+
+    <Message Code="838" Category ="Match Store Style Level" Description="Working set grids have documents. Match cannot occur." Severity="Error" />
+    <Message Code="839" Category ="Match Store Style Level" Description="Only one style is required for this operation." Severity="Error" />
+    <Message Code="840" Category ="Match Store Style Level" Description="The quantity can only be reduced, cannot made larger than what is displayed on the line." Severity="Error" />
+    <Message Code="841" Category ="Match Store Style Level" Description="Invoice working set grid is empty. CreateSet cannot be created." Severity="Error" />
+    <Message Code="842" Category ="Match Store Style Level" Description="Receipt working set grid is empty. CreateSet cannot be created." Severity="Error" />
+    <Message Code="843" Category ="Match Store Style Level" Description="Validation failed. CreateSet cannot be created." Severity="Error" />
+    <Message Code="844" Category ="Match Store Style Level" Description="Match Set is not available to View." Severity="Error" />
+    <Message Code="845" Category ="Match Store Style Level" Description="Miniset cannot contain multiple mismatched Stores/Styles." Severity="Error" />
+    <Message Code="846" Category ="Match Store Style Level" Description="Invoices in Mini Set have some lines not matched yet. Match can’t occur" Severity="Error" />
+    <Message Code="847" Category ="Match Store Style Level" Description="Miniset(s) are not created. Match can't occur." Severity="Error" />
+    <Message Code="848" Category ="Match Store Style Level" Description="Miniset cannot contain multiple mismatched Stores." Severity="Error" />
+    <Message Code="849" Category ="Match Store Style Level" Description="Miniset cannot contain multiple mismatched Styles." Severity="Error" />
+
+
+    <Message Code="850" Category ="Match MiniSet List" Description="MatchSetId not valid." Severity="Error" />
+    <Message Code="851" Category ="Match MiniSet List" Description="Select only one check box." Severity="Error" />
+
+    <Message Code="855" Category ="Match Import Inv Level No UnMtchRcpts" Description="Unable to retrieve no unmatched receipt records due to missing parameters. This may have resulted from session timeout. Please navigate to the Match Work List and try again." Severity="Error" />
+
+    <Message Code="860" Category ="Receipt WriteOff Account" Description="Receipt details info data not retreived." Severity="Error" />
+    <Message Code="861" Category ="Receipt WriteOff Account" Description="PO not exist in Receipt Header." Severity="Error" />
+    <Message Code="862" Category ="Receipt WriteOff Account" Description="The PO's AP Match Type can't be spaces." Severity="Error" />
+    <Message Code="863" Category ="Receipt WriteOff Account" Description="No Unmatched Receipts for PO." Severity="Error" />
+
+    <Message Code="865" Category ="Receipt WriteOff Account List" Description="Volume for Receipt Date > 5000, Please decrease the receipt date and retry." Severity="Error" />
+    <Message Code="866" Category ="Receipt WriteOff Account List" Description="Enter a valid Receipt Date." Severity="Error" />
+    <Message Code="867" Category ="Receipt WriteOff Account List" Description="Future date not allowed." Severity="Error" />
+
+    <Message Code="870" Category ="Receipt WriteOff Inventory" Description="Receipt details info data not retreived." Severity="Error" />
+    <Message Code="871" Category ="Receipt WriteOff Inventory" Description="PO/Store/Style does not exist." Severity="Error" />
+    <Message Code="872" Category ="Receipt WriteOff Inventory" Description="PO/Store does not exist." Severity="Error" />
+    <Message Code="873" Category ="Receipt WriteOff Inventory" Description="No Unmatched Receipts for PO." Severity="Error" />
+    <Message Code="874" Category ="Receipt WriteOff Inventory" Description="No Unmatched Receipts for the filter criteria entered." Severity="Error" />
+    <Message Code="875" Category ="Receipt WriteOff Inventory" Description="Receipt/Style does not exist." Severity="Error" />
+    <Message Code="876" Category ="Receipt WriteOff Inventory" Description="Receipt Number does not exist." Severity="Error" />
+    <Message Code="877" Category ="Receipt WriteOff Inventory" Description="No Unmatched Receipts for the filter criteria entered." Severity="Error" />
+    <Message Code="878" Category ="Receipt WriteOff Inventory" Description="Not a Valid Selection Combination." Severity="Error" />
+
+    <Message Code="880" Category ="UnMatch List" Description="No Match Set Id can be Unmatched for the PO." Severity="Error" />
+    <Message Code="881" Category ="UnMatch List" Description="Match Set Id may not exist or can't be Unmatched." Severity="Error" />
+    <Message Code="882" Category ="UnMatch List" Description="Only one Match Set Id can be un-matched at a time." Severity="Error" />
+    <Message Code="883" Category ="UnMatch List" Description="A Match Set Id line must be selected to un-matched." Severity="Error" />
+    <Message Code="884" Category ="UnMatch List" Description="Please enter PO number or Match Set Id." Severity="Error" />
+    <Message Code="885" Category ="UnMatch List" Description="Only one option can be entered." Severity="Error" />
+
+    <Message Code="900" Category ="Invoice Upload" Description="Selected excel file name is not valid." Severity="Error" />
+    <Message Code="901" Category ="Invoice Upload" Description="Invoice(s) processing completed!" Severity="Informational" />
+    <Message Code="902" Category ="Invoice Upload" Description="Please close the excel file if it is open." Severity="Error" />
+    <Message Code="903" Category ="Invoice Upload" Description="Browse and Select excel file to process!" Severity="Error" />
+    <Message Code="904" Category ="Invoice Upload" Description="Invoice/TranCode/PO is not valid." Severity="Error" />
+    <Message Code="905" Category ="Invoice Upload" Description="DueDate is required." Severity="Error" />
+    <Message Code="906" Category ="Invoice Upload" Description="The file does not exists." Severity="Error" />
+    <Message Code="907" Category ="Invoice Upload" Description="Invoice is required." Severity="Error" />
+    <Message Code="908" Category ="Invoice Upload" Description="Invalid Invoice No." Severity="Error" />
+    <Message Code="909" Category ="Invoice Upload" Description="Tran Code is required." Severity="Error" />
+    <Message Code="910" Category ="Invoice Upload" Description="Invalid Tran Code." Severity="Error" />
+    <Message Code="911" Category ="Invoice Upload" Description="Invalid Transaction code." Severity="Error" />
+    <Message Code="912" Category ="Invoice Upload" Description="Invalid PO." Severity="Error" />
+    <Message Code="913" Category ="Invoice Upload" Description="PO is required." Severity="Error" />
+    <Message Code="914" Category ="Invoice Upload" Description="Invoice/Trancode/PO already exist in the header." Severity="Error" />
+    <Message Code="915" Category ="Invoice Upload" Description="Invalid Invoice Date." Severity="Error" />
+    <Message Code="916" Category ="Invoice Upload" Description="Invoice Date is required." Severity="Error" />
+    <Message Code="917" Category ="Invoice Upload" Description="Invalid Store." Severity="Error" />
+    <Message Code="918" Category ="Invoice Upload" Description="Invalid Term." Severity="Error" />
+    <Message Code="919" Category ="Invoice Upload" Description="Invalid Due Date." Severity="Error" />
+    <Message Code="920" Category ="Invoice Upload" Description="Invalid Reason code/Tran code." Severity="Error" />
+    <Message Code="921" Category ="Invoice Upload" Description="Invalid Merch Amount." Severity="Error" />
+    <Message Code="922" Category ="Invoice Upload" Description="Invalid AOC Amount." Severity="Error" />
+    <Message Code="923" Category ="Invoice Upload" Description="Invalid Invoice Amount." Severity="Error" />
+    <Message Code="924" Category ="Invoice Upload" Description="Invoice Amount should be equal to Merch Amount + AOC Amount." Severity="Error" />
+    <Message Code="925" Category ="Invoice Upload" Description="Invalid Detail Seq No." Severity="Error" />
+    <Message Code="926" Category ="Invoice Upload" Description="Detail Style is required." Severity="Error" />
+    <Message Code="927" Category ="Invoice Upload" Description="Invalid Detail Style" Severity="Error" />
+    <Message Code="928" Category ="Invoice Upload" Description="Invalid Detail Invoice Qty." Severity="Error" />
+    <Message Code="929" Category ="Invoice Upload" Description="Invalid Detail Unit Cost." Severity="Error" />
+    <Message Code="930" Category ="Invoice Upload" Description="Invalid AOC Seq No." Severity="Error" />
+    <Message Code="931" Category ="Invoice Upload" Description="AOC Code is required." Severity="Error" />
+    <Message Code="932" Category ="Invoice Upload" Description="Invalid AOC Code." Severity="Error" />
+    <Message Code="933" Category ="Invoice Upload" Description="Invalid AOC Cost." Severity="Error" />
+    <Message Code="934" Category ="Invoice Upload" Description="Invalid Comment Seq No." Severity="Error" />
+    <Message Code="935" Category ="Invoice Upload" Description="Comment Type is required." Severity="Error" />
+    <Message Code="936" Category ="Invoice Upload" Description="Invalid Comment Type." Severity="Error" />
+    <Message Code="937" Category ="Invoice Upload" Description="Comments cannot be blank." Severity="Error" />
+    <Message Code="938" Category ="Invoice Upload" Description="Invoice Status is not valid for Due Date update." Severity="Error" />
+    <Message Code="939" Category ="Invoice Upload" Description="Invoice/TranCode/Vendor is not valid." Severity="Error" />
+    <Message Code="940" Category ="Invoice Upload" Description="PO or Vendor is required." Severity="Error" />
+    <Message Code="941" Category ="Invoice Upload" Description="PO - APMatchType not valid for the Tran code." Severity="Error" />
+
+    <Message Code="949" Category="InquirySearch" Description="For Lawson LookUp - Invoice or Invoice/Vendor is required." Severity="Error" />
+    <Message Code="950" Category="InquirySearch" Description="PO is required to be provided by itself." Severity="Error" />
+    <Message Code="951" Category="InquirySearch" Description="Vendor, Invoice Number, and Tran Code required to be provided by themselves." Severity="Error" />
+    <Message Code="952" Category="InquirySearch" Description="Invoice Number, Tran Code, and Vendor required to be provided by themselves." Severity="Error" />
+    <Message Code="953" Category="InquirySearch" Description="Tran Code, Vendor, and Invoice Number required to be provided by themselves." Severity="Error" />
+    <Message Code="954" Category="InquirySearch" Description="Check number is required to be provided by itself." Severity="Error" />
+    <Message Code="955" Category="InquirySearch" Description="From Date must be supplied with the To Date." Severity="Error" />
+    <Message Code="956" Category="InquirySearch" Description="To Date must be supplied with the From Date." Severity="Error" />
+    <Message Code="957" Category="InquirySearch" Description="A valid date range and another filter criteria is required." Severity="Error" />
+    <Message Code="958" Category="InquirySearch" Description="Date range cannot be larger than a two-year timeframe." Severity="Error" />
+    <Message Code="959" Category="InquirySearch" Description="No records exist in Lawson for the selection criteria entered." Severity="Error" />
+
+    <Message Code="960" Category="EDIInvoiceSearch" Description="No data to retrieve for provided Invoice Number." Severity="Error" />
+    <Message Code="961" Category="EDIInvoiceSearch" Description="No data to retrieve for provided PO Number." Severity="Error" />
+    <Message Code="962" Category="EDIInvoiceSearch" Description="No data to retrieve for provided Vendor." Severity="Error" />
+    <Message Code="963" Category="EDIInvoiceSearch" Description="No data to retrieve for provided date range." Severity="Error" />
+    <Message Code="964" Category="EDIInvoiceSearch" Description="At least one other input is required (Vendor, Invoice, PO)." Severity="Error" />
+
+    <Message Code="1001" Category="TurnIn" Description="Page Order is required." Severity="Error" />
+    <Message Code="1002" Category="TurnIn" Description="Warning: Duplicate Page Numbers Exist!&lt;br&gt;System Page Number {0} has the same page order number as system page {1}.&lt;br&gt;" Severity="Warning" />
+    <Message Code="1003" Category="TurnIn" Description="Ad# is required." Severity="Error" />
+    <Message Code="1004" Category="TurnIn" Description="Page# is required." Severity="Error" />
+    <Message Code="1005" Category="TurnIn" Description="Invalid Page Order." Severity="Error" />
+    <Message Code="1006" Category="TurnIn" Description="ISN is required." Severity="Error" />
+    <Message Code="1007" Category="TurnIn" Description="ISN has already been added." Severity="Error" />
+    <Message Code="1008" Category="TurnIn" Description="ISN is not valid." Severity="Error" />
+    <Message Code="1009" Category="TurnIn" Description="ISN or Reserve ISN is required." Severity="Error" />
+    <Message Code="1010" Category="TurnIn" Description="Department is required." Severity="Error" />
+    <Message Code="1011" Category="TurnIn" Description="Select a new default web category before deleting the default." Severity="Error" />
+    <Message Code="1012" Category="TurnIn" Description="Only 6 categories can be added." Severity="Error" />
+    <Message Code="1013" Category="TurnIn" Description="Vendor Approval is required." Severity="Error" />
+    <Message Code="1014" Category="TurnIn" Description="Select at least one Web Category." Severity="Error" />
+    <Message Code="1015" Category="TurnIn" Description="The row you were attempting to edit was recently killed by another user." Severity="Error" />
+    <Message Code="1016" Category="TurnIn" Description="At least one filter other than Start Ship Date from the Left Hand Navigation must be selected." Severity="Error" />
+    <Message Code="1017" Category="TurnIn" Description="UPC/SKU is not valid." Severity="Error" />
+    <Message Code="1018" Category="TurnIn" Description="UPC is required." Severity="Error" />
+    <Message Code="1019" Category="TurnIn" Description="UPC has already been added." Severity="Error" />
+    <Message Code="1020" Category="TurnIn" Description="UPC is not valid." Severity="Error" />
+    <Message Code="1021" Category="TurnIn" Description="Image is required." Severity="Error" />
+    <Message Code="1022" Category="TurnIn" Description="Image has already been added." Severity="Error" />
+    <Message Code="1023" Category="TurnIn" Description="Image is not valid." Severity="Error" />
+</ApplicationMessages>
+

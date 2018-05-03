@@ -1,0 +1,29 @@
+﻿    <div class="panel-heading" role="tab" data-toggle="collapse" data-parent="#accordion" href="#collapseFOB" ng-click="refreshScroll('FacetFOBWrapper')">
+    <h4 class="panel-title">
+        <a ng-click="refreshScroll('FacetFOBWrapper')" class="collapsed" data-toggle="collapse" target="_self" data-parent="#accordion" href="#collapseFOB" aria-expanded="false" aria-controls="collapseThree">
+            <span>Department/Area (FOB)</span>
+            <span ng-show="selectedFOBs.length>0" class="glyphicon glyphicon-ok facetSelectionColor" aria-hidden="true"></span>
+        </a>
+    </h4>
+</div>
+    <div id="collapseFOB" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+        <div class="panel-body">
+            <div class="facetWrapper" id="FacetFOBWrapper">
+                <table class="table table-striped">
+                    <thead></thead>
+                    <tbody>
+                        <tr ng-repeat="fob in response.fobs" on-finish-render="refreshScroll('FacetFOBWrapper')">
+                            <td>
+                                <div class="col col-sm-10">
+                                    <button ng-click="facetItemClicket(selectedFOBs,fob,'fob')" class="btn-block btn"><span ng-show="itemExist(selectedFOBs,fob)" class="glyphicon glyphicon-ok facetSelectionColor" aria-hidden="true"></span>{{fob.name}}</button>
+                                </div>
+                                <div class="col col-sm-2">
+                                    <span class="badge pull-right">{{fob.count | number }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

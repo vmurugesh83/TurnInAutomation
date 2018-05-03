@@ -1,0 +1,25 @@
+﻿<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Shipping Methods</h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class=" margintop20 autoscrollResults">
+                    <table class="table table-striped">
+                        <thead></thead>
+                        <tbody style="cursor:pointer;">
+                            <tr ng-repeat="carrierService in orderline.CarrierServiceList.CarrierService">
+                                <td class="text-capitalize" ng-click="saveService(carrierService)">{{carrierService._CarrierServiceDesc}}</td>
+                                <td ng-click="saveService(carrierService)">{{carrierService._Price | currency}}</td>
+</tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

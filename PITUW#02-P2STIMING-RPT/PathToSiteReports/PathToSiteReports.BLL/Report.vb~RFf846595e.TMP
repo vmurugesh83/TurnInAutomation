@@ -1,0 +1,42 @@
+﻿Imports PathToSiteReports.BusinessEntities
+Imports PathToSiteReports.MainframeDAL
+Imports PathToSiteReports.SQLDAL
+
+Public Class Report
+    Public Function GetAutoTurnInReportInfo() As List(Of SKUDetail)
+        Dim reportDAO As New ReportsDAO()
+        Dim adminDAO As New AdminDAO()
+        Dim virtualTicketDAO As New VirtualTicketDAO()
+        'Dim skuDetails As List(Of SKUDetail) = reportDAO.GetSKUDetailReport()
+        Dim skuDetailsTable As DataTable = reportDAO.GetSKUDetailReport()
+        Dim adminData As AdminData = Nothing
+        Dim vtImageDetails As List(Of VirtualTicket) = Nothing
+
+        If Not skuDetails Is Nothing AndAlso skuDetails.Count > 0 Then
+            For Each item As SKUDetail In skuDetails
+                adminData = adminDAO.GetAdminDataByISNAndColor(item.ISN, item.Color)
+
+                If Not adminData Is Nothing Then
+                    item.ImageID = adminData.ImageID
+                    item.AdNumber = adminData.AdNumber
+                    item.AdDesc = adminData.AdDesc
+                    item.AdType = adminData.AdType
+                End If
+
+                If item.ImageID > 0 Then
+                    vtImageDetails = virtualTicketDAO.GetImageShotDateByImageID(item.ImageID)
+                    If Not vtImageDetails Is Nothing AndAlso vtImageDetails.Count > 0 Then
+                        If Not vtImageDetails.Find(Function(a) a.ImageExtension.ToUpper() <> "JPG") Is Nothing Then
+                            item.ImageShotDate = vtImageDetails.Find(Function(a) a.ImageExtension.ToUpper() <> "JPG").ImageModifiedDate
+                        End If
+                        If Not vtImageDetails.Find(Function(a) a.ImageExtension.ToUpper() = "JPG") Is Nothing Then
+                            item.FinalImageReadyDate = vtImageDetails.Find(Function(a) a.ImageExtension.ToUpper() = "JPG").ImageModifiedDate
+                        End If
+                    End If
+                End If
+            Next
+        End If
+
+        Return skuDetails
+    End Function
+End Class

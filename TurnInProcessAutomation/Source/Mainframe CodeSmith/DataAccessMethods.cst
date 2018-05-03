@@ -1,0 +1,221 @@
+<%-- 
+Name: 
+Author: PC Mani
+Description: 
+--%>
+
+<%@ CodeTemplate Language="VB" TargetLanguage="Text" Src="ICCHelper.cst.vb" Inherits="ICCHelper" Debug="True" Description="Template description here." %>
+<%@ Property Name="DB2Connect" Type="System.String" Default="<SQL>" Optional="False" Category="Strings" Description="DB2 Connection string." %>
+<%@ Property Name="Table" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow." %>
+<%@ Property Name="ClassName" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow Formatted." %>
+<%@ Property Name="nSpace" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow Formatted." %>
+
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Data.OleDb" %>
+<%@ Import Namespace="System.Collections.Generic" %>
+<%
+    Dim DB2ColumnsSQL as string = "SELECT NAME, COLTYPE, LENGTH, SCALE, NULLS, DEFAULT, KEYSEQ FROM SYSIBM.SYSCOLUMNS WHERE TBNAME = '{0}' AND TBCREATOR = 'MRSSI' ORDER BY COLNO"
+    Dim DB2KeyColumnsSQL as string = "SELECT NAME, COLTYPE, LENGTH, SCALE, NULLS, DEFAULT, KEYSEQ FROM SYSIBM.SYSCOLUMNS WHERE TBNAME = '{0}' AND KEYSEQ > 0 AND TBCREATOR = 'MRSSI'  ORDER BY KEYSEQ"
+    Dim DB2NonKeyColumnsSQL as string = "SELECT NAME, COLTYPE, LENGTH, SCALE, NULLS, DEFAULT, KEYSEQ FROM SYSIBM.SYSCOLUMNS WHERE TBNAME = '{0}' AND KEYSEQ = 0 AND TBCREATOR = 'MRSSI' ORDER BY COLNO"
+    
+    Dim columnsDT As DataTable
+    Dim keyColumnsDT As DataTable
+    dim nonKeyColumnsDT as DataTable
+    
+ 	columnsDT = GetDataSet(DB2Connect, String.Format(DB2ColumnsSQL, table)).Tables(0) 
+    keyColumnsDT = GetDataSet(DB2Connect, String.Format(DB2KeyColumnsSQL, table)).Tables(0) 
+    nonKeyColumnsDT = GetDataSet(DB2Connect, String.Format(DB2NonKeyColumnsSQL, table)).Tables(0) 
+    
+    dim primaryKeys as new List(Of String)
+    dim foreignKeys as new List(Of String)
+    for each keyRow as DataRow in keyColumnsDT.Rows        
+        if CINT(keyRow("KEYSEQ")) > 0 Then
+            primaryKeys.Add(keyRow("NAME"))            
+        else if keyRow("FOREIGNKEY").ToString().TRIM <> "" Then
+            foreignKeys.Add(keyRow("NAME"))
+        end if
+    next
+%>
+Imports System.Configuration
+Imports System.Collections.Generic
+Imports System.Reflection
+Imports System.Text
+Imports log4net
+Imports BonTon.DBUtility
+Imports BonTon.DBUtility.DB2Helper
+Imports IBM.Data.DB2
+Imports TurnInProcessAutomation.BusinessEntities
+Imports TurnInProcessAutomation.Interface
+Imports TurnInProcessAutomation.Factory
+
+Partial Public Class <%=className%>Dao
+    Implements I<%=className%>Dao
+
+    'Static constants 
+    Private Shared _spSchema As String = ConfigurationManager.AppSettings("SPSchema")
+        
+     ''' <summary>
+     ''' Method to get all <%=className%>Info records.
+     ''' </summary>	    	 
+     Public Function GetAllFrom<%=className%>() as IList(Of <%=className%>Info) Implements I<%=className%>Dao.GetAllFrom<%=className%>
+
+			dim <%=ToCamelCase(className)%>Infos as IList(Of <%=className%>Info) = new List(Of <%=className%>Info)()
+            Dim sql As String = _spSchema + ".XX0000SP"
+
+            'Execute a query to read the <%=className%>Infos
+			Using rdr as DB2DataReader = ExecuteReader(ConnectionStringLocalTransaction, CommandType.StoredProcedure, sql, Nothing) 
+                While (rdr.Read()) 
+                   'instantiate new <%=className%>Info object via factory method and add to list
+                    <%=ToCamelCase(className)%>Infos.Add(<%=className%>Factory.Construct(rdr))
+                End While
+            End Using
+            return <%=ToCamelCase(className)%>Infos
+      End Function
+    
+<%  dim primaryKeyTypes as new List(Of String)
+    dim primaryKeyNullables as new List(Of String)
+    dim primaryKeyLengths as new List(Of String)
+
+    for each primaryKey as String in primaryKeys
+        for each row as DataRow in columnsDT.Rows
+            if row("NAME") = primaryKey then
+                primaryKeyTypes.Add(row("COLTYPE"))
+                primaryKeyNullables.Add(row("NULLS"))        
+                primaryKeyLengths.Add(row("LENGTH"))
+            end if
+        next
+    next
+%>    
+    ''' <summary>
+    ''' Method to get a <%=className%>Info record by its primary key column(s).
+    ''' </summary>	    	 
+    Public Function Get<%=className%>By<%for i as integer = 0 to primaryKeys.Count - 1%><%=ToPascalCase(primaryKeys(i))%><%if i = primaryKeys.Count - 1%><%else%>And<%end if%><%next%>(<%for i as integer = 0 to primaryKeys.Count - 1%>ByVal <%=ToCamelCase(primaryKeys(i))%> as <%=ConvertType(primaryKeyTypes(i), primaryKeyNullables(i))%><%if not i = primaryKeys.Count - 1 then%>, <%end if%><%next%>) as <%=className%>Info Implements I<%=className%>Dao.Get<%=className%>By<%for i as integer = 0 to primaryKeys.Count - 1%><%=ToPascalCase(primaryKeys(i))%><%if i = primaryKeys.Count - 1%><%else%>And<%end if%><%next%>
+		dim <%=ToCamelCase(className)%>Info as <%=className%>Info = Nothing
+        Dim sql As String = _spSchema + ".XX0000SP"
+
+        Dim parms as DB2Parameter() = New DB2Parameter() {<% For i as integer = 0 to primaryKeys.Count - 1 %>New DB2Parameter("@<%=primaryKeys(i)%>", DB2Type.<%dim dataType as String = primaryKeyTypes(i)%><%if dataType="TIMESTMP" then%><%="Timestamp"%><%else%><%=ToPascalCase(primaryKeyTypes(i))%><%end if%>, <%=primaryKeyLengths(i)%>)<% IF i=primaryKeys.Count - 1 then %>}<%else%>, <%end if%><% Next i %>
+        <% For i As Integer = 0 To primaryKeys.Count - 1 %>
+        parms(<%=i%>).Value = <%=ToCamelCase(primaryKeys(i))%>
+        <% Next i %>
+      
+        'Execute a query to read the <%=className%>Infos
+	    Using rdr as DB2DataReader = ExecuteReader(ConnectionStringLocalTransaction, CommandType.StoredProcedure, sql, parms)
+            While (rdr.Read()) 
+                'instantiate new <%=className%>Info object via factory method
+                 <%=ToCamelCase(className)%>Info = <%=className%>Factory.Construct(rdr)
+            End While
+        End Using
+        return <%=ToCamelCase(className)%>Info
+    End Function
+
+<%for each foreignKey as String in foreignKeys%>    
+    <%dim foreignKeyType as String = String.Empty
+    dim foreignKeyNullable as String = String.Empty
+    dim foreignKeyLength as String = String.Empty
+    for each row as DataRow in columnsDT.Rows
+        if row("NAME") = foreignKey then
+            foreignKeyType = row("COLTYPE")
+            foreignKeyNullable = row("NULLS")
+            foreignKeyLength = row("LENGTH")
+        end if
+next%>
+    
+    ''' <summary>
+    ''' Method to get a list of <%=className%>Info records related to foreign key "<%=foreignKey%>".
+    ''' </summary>	    	 
+    Public Function Get<%=className%>By<%=ToPascalCase(foreignKey)%>(ByVal <%=ToCamelCase(foreignKey)%> as <%=ConvertType(foreignKeyType, foreignKeyNullable)%>) as IList(Of <%=className%>Info) Implements I<%=className%>Dao.Get<%=className%>By<%=ToPascalCase(foreignKey)%>
+    	dim <%=ToCamelCase(className)%>Info as <%=className%>Info = Nothing
+        Dim sql As String = _spSchema + ".XX0000SP"
+
+        dim parm as DB2Parameter = new DB2Parameter(<%=foreignKey%>, DB2Type.<%=ToPascalCase(foreignKeyType)%>, <%=foreignKeyLength%>)
+        parm.Value = <%=ToCamelCase(foreignKey)%>
+
+        'Execute a query to read the <%=className%>Infos
+		Using rdr as DB2DataReader = ExecuteReader(ConnectionStringLocalTransaction, CommandType.StoredProcedure, sql, parm)
+            While (rdr.Read()) 
+                'instantiate new <%=className%>Info object via factory method
+                <%=ToCamelCase(className)%>Info = <%=className%>Factory.Construct(rdr)
+            End While
+        End Using
+        return <%=ToCamelCase(className)%>Info
+    End Function
+    <%next%>
+    
+    ''' <summary>
+    ''' Method to add a <%=className%>Info record to the database.
+    ''' </summary>	    	 
+    Public Sub Insert<%=className%>(<% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("NAME").ToString.Trim %>ByVal <%=ToCamelCase(name)%> As <%=ConvertType(columnsDT.rows(i)("COLTYPE").ToString.Trim, columnsDT.rows(i)("NULLS").ToString.Trim)%><% IF i=columnsDT.rows.Count - 1 then %><%else%>, <%end if%><% Next i %>) Implements I<%=className%>Dao.Insert<%=className%>
+        ' Get each commands parameter arrays 
+        Dim parms As DB2Parameter() = GetInsertParameters() 
+        Dim sql As String = _spSchema + ".XX0000SP"
+
+        ' Set up the parameters 
+        <% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("NAME").ToString.Trim %>parms(<%=i%>).Value = <%=ToCamelCase(name)%><% IF i=columnsDT.rows.Count - 1 then %><%else%><%=Environment.NewLine & "        "%><%end if%><% Next i %> 
+    
+        ExecuteNonQuery(ConnectionStringLocalTransaction, CommandType.StoredProcedure, sql, parms)
+    End Sub 
+
+    ''' <summary>
+    ''' Method to update a <%=className%>Info record to the database.
+    ''' </summary>	    	 
+    Public Sub Update<%=className%>(ByVal <%=ToCamelCase(className)%>Info as <%=className%>Info) Implements I<%=className%>Dao.Update<%=className%>
+        ' Get each commands parameter arrays 
+        Dim parms As DB2Parameter() = GetUpdateParameters() 
+        Dim sql As String = _spSchema + ".XX0000SP"
+
+        ' Set up the parameters 
+        <% dim k as Integer = 0%>
+        <% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("NAME").ToString.Trim %>parms(<%=i%>).Value = <%=ToCamelCase(className)%>Info.<%=ToPascalCase(name)%><% IF i=columnsDT.rows.Count - 1 then %><%else%><%=Environment.NewLine & "        "%><%end if%><%k=i%><% Next i %>
+        <% For j as integer = 0 to primaryKeys.Count - 1 %><%k=k+1%>parms(<%=k%>).Value = <%=ToCamelCase(className)%>Info.<%=ToPascalCase(primaryKeys(j))%><% if j = primaryKeys.Count - 1 then %><%else%><%=Environment.NewLine & "        "%><%end if%><% Next j %> 
+        
+        ExecuteNonQuery(ConnectionStringLocalTransaction, CommandType.StoredProcedure, sql, parms)
+    End Sub 
+    
+    ''' <summary>
+    ''' Method to delete a <%=className%>Info record.
+    ''' </summary>	    	 
+    Public Sub Delete<%=className%>(<%for i as integer = 0 to primaryKeys.Count - 1%>ByVal <%=ToCamelCase(primaryKeys(i))%> as <%=ConvertType(primaryKeyTypes(i), primaryKeyNullables(i))%><%if not i = primaryKeys.Count - 1 then%>, <%end if%><%next%>) Implements I<%=className%>Dao.Delete<%=className%>
+		Dim parms as DB2Parameter() = New DB2Parameter() {<% For i as integer = 0 to primaryKeys.Count - 1 %>New DB2Parameter("@<%=primaryKeys(i)%>", DB2Type.<%dim dataType as String = primaryKeyTypes(i)%><%if dataType="TIMESTMP" then%><%="Timestamp"%><%else%><%=ToPascalCase(primaryKeyTypes(i))%><%end if%>, <%=primaryKeyLengths(i)%>)<% IF i=primaryKeys.Count - 1 then %>}<%else%>, <%end if%><% Next i %>
+        Dim sql As String = _spSchema + ".XX0000SP"
+
+        <%for i as Integer = 0 to primaryKeys.Count - 1%>
+        parms(<%=i%>).Value = <%=ToCamelCase(primaryKeys(i))%>
+        <%next%>
+        
+        ExecuteNonQuery(ConnectionStringLocalTransaction, CommandType.StoredProcedure, sql, parms)
+    End Sub
+    
+    ''' <summary> 
+    ''' Internal function to get cached insert parameters 
+    ''' </summary> 
+    ''' <returns></returns> 
+    Private Shared Function GetInsertParameters() As DB2Parameter() 
+        Dim parms As DB2Parameter() = GetCachedParameters("SQL_INSERT_<%=className%>") 
+    
+        If parms Is Nothing Then
+            parms = New DB2Parameter() {<% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("NAME").ToString.Trim %>New DB2Parameter("@<%=name%>", DB2Type.<%dim dataType as String = columnsDT.rows(i)("COLTYPE").ToString().Trim()%><%if dataType="TIMESTMP" then%><%="Timestamp"%><%else%><%=ToPascalCase(columnsDT.rows(i)("COLTYPE").ToString().Trim())%><%end if%>, <%=columnsDT.rows(i)("LENGTH")%>)<% IF i=columnsDT.rows.Count - 1 then %>}<%else%>, <%end if%><% Next i %>
+        
+            CacheParameters("SQL_INSERT_<%=className%>", parms) 
+        End If 
+        Return parms 
+    End Function 
+    
+    ''' <summary> 
+    ''' Internal function to get cached update parameters 
+    ''' </summary> 
+    ''' <returns></returns> 
+    Private Shared Function GetUpdateParameters() As DB2Parameter() 
+        Dim parms As DB2Parameter() = GetCachedParameters("SQL_UPDATE_<%=className%>") 
+    
+        If parms Is Nothing Then
+            parms = New DB2Parameter() {<% For i as integer = 0 to columnsDT.rows.Count - 1 %><% Dim name as string = columnsDT.rows(i)("NAME").ToString.Trim %>New DB2Parameter("@<%=name%>", DB2Type.<%dim dataType as String = columnsDT.rows(i)("COLTYPE").ToString().Trim()%><%if dataType="TIMESTMP" then%><%="Timestamp"%><%else%><%=ToPascalCase(columnsDT.rows(i)("COLTYPE").ToString().Trim())%><%end if%>, <%=columnsDT.rows(i)("LENGTH")%>)<% IF i=columnsDT.rows.Count - 1 then %>, <%for j as Integer = 0 to primaryKeys.Count - 1%>New DB2Parameter("@<%=primaryKeys(j)%>", DB2Type.<%if primaryKeyTypes(j)="TIMESTMP" then%><%="Timestamp"%><%else%><%=ToPascalCase(primaryKeyTypes(j))%><%end if%>, <%=primaryKeyLengths(j)%><%if j = primaryKeys.Count - 1 then %>)<%else%>), <%end if%><%next%>}<%else%>, <%end if%><% Next i %>
+        
+            CacheParameters("SQL_UPDATE_<%=className%>", parms) 
+        End If 
+        Return parms 
+    End Function 
+End Class
+
+<script runat="template">
+
+</script>

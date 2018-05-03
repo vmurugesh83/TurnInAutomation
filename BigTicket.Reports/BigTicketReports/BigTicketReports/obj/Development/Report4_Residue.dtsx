@@ -1,0 +1,1460 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/19/2018 9:07:31 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PC82811"
+  DTS:CreatorName="INTERNAL\034846"
+  DTS:DTSID="{7F2EF17F-24E0-4E03-AD47-8A166F807A3A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.2430.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Report4_Residue"
+  DTS:PackageType="5"
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{77ECCC1D-5094-4F99-AA6A-BB3F98AE9C20}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{787E9C46-DD8C-4821-9DA5-5A8427EADD6A}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[User::ReportFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\internal.bonton.com\york\Group\BigTicketReporting\Reports\ResidueReport_2018-04-09.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=NO&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FF843960-56B9-4762-BF01-E7F5855DAB8B}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;\\\\internal.bonton.com\\york\\Group\\BigTicketReporting\\Reports\\ResidueReport_&quot; +  (DT_WSTR,4)DATEPART(&quot;yy&quot;,GETDATE()) + &quot;-&quot; + RIGHT(&quot;0&quot; + (DT_WSTR,2)DATEPART(&quot;mm&quot;,GETDATE()),2) + &quot;-&quot; + RIGHT(&quot;0&quot; + (DT_WSTR,2)DATEPART(&quot;dd&quot;,GETDATE()),2)  + &quot;.xlsx&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ReportFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">\\internal.bonton.com\york\Group\BigTicketReporting\Reports\ResidueReport_2018-04-09.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{647B6F9E-EF3C-47E6-89CB-DE2237140CF6}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\Excel Destination"
+              componentClassID="Microsoft.ExcelDestination"
+              contactInfo="Excel Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Excel Destination"
+              name="Excel Destination"
+              usesDispositions="true">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Data$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Excel Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Excel Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[NO_DEPT]"
+                      cachedDataType="i2"
+                      cachedName="NO_DEPT"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F2]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[NO_DEPT]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[DIS_UNITS]"
+                      cachedDataType="i4"
+                      cachedName="DIS_UNITS"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F3]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[DIS_UNITS]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[DIS_COST]"
+                      cachedDataType="numeric"
+                      cachedName="DIS_COST"
+                      cachedPrecision="19"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F4]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[DIS_COST]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[DIW_UNITS]"
+                      cachedDataType="i4"
+                      cachedName="DIW_UNITS"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F5]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[DIW_UNITS]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[DIW_COST]"
+                      cachedDataType="numeric"
+                      cachedName="DIW_COST"
+                      cachedPrecision="19"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F6]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[DIW_COST]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[SIW_UNITS]"
+                      cachedDataType="i4"
+                      cachedName="SIW_UNITS"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F7]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[SIW_UNITS]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[SIW_COST]"
+                      cachedDataType="numeric"
+                      cachedName="SIW_COST"
+                      cachedPrecision="19"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F8]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[SIW_COST]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[TOT_UNITS]"
+                      cachedDataType="i4"
+                      cachedName="TOT_UNITS"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F9]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TOT_UNITS]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[TOT_COST]"
+                      cachedDataType="numeric"
+                      cachedName="TOT_COST"
+                      cachedPrecision="29"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F10]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TOT_COST]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[SAMF_CNT]"
+                      cachedDataType="i4"
+                      cachedName="SAMF_CNT"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F12]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[SAMF_CNT]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[SAMF_COST]"
+                      cachedDataType="numeric"
+                      cachedName="SAMF_COST"
+                      cachedPrecision="19"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F13]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[SAMF_COST]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[N329_UNITS]"
+                      cachedDataType="i4"
+                      cachedName="N329_UNITS"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F15]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[N329_UNITS]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[N329_COST]"
+                      cachedDataType="numeric"
+                      cachedName="N329_COST"
+                      cachedPrecision="19"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F16]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[N329_COST]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[TOTINV_CNT]"
+                      cachedDataType="wstr"
+                      cachedName="TOTINV_CNT"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F18]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TOTINV_CNT]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[TOTINV_COST]"
+                      cachedDataType="wstr"
+                      cachedName="TOTINV_COST"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F19]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TOTINV_COST]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[O579_UNITS]"
+                      cachedDataType="i4"
+                      cachedName="O579_UNITS"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F21]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[O579_UNITS]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[O579_COST]"
+                      cachedDataType="numeric"
+                      cachedName="O579_COST"
+                      cachedPrecision="19"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F22]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[O579_COST]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[CCLY_CNT]"
+                      cachedDataType="wstr"
+                      cachedName="CCLY_CNT"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F24]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[CCLY_CNT]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[CCLY_COST]"
+                      cachedDataType="wstr"
+                      cachedName="CCLY_COST"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F25]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[CCLY_COST]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[ONCODE_UNITS]"
+                      cachedDataType="i4"
+                      cachedName="ONCODE_UNITS"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F26]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ONCODE_UNITS]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[ONCODE_COST]"
+                      cachedDataType="numeric"
+                      cachedName="ONCODE_COST"
+                      cachedPrecision="19"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F27]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ONCODE_COST]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[ONCODELY_CNT]"
+                      cachedDataType="wstr"
+                      cachedName="ONCODELY_CNT"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F29]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ONCODELY_CNT]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].Columns[ONCODELY_COST]"
+                      cachedDataType="wstr"
+                      cachedName="ONCODELY_COST"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F30]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ONCODELY_COST]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F1]"
+                      dataType="date"
+                      name="F1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F2]"
+                      dataType="wstr"
+                      length="255"
+                      name="F2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F3]"
+                      dataType="wstr"
+                      length="255"
+                      name="F3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F4]"
+                      dataType="wstr"
+                      length="255"
+                      name="F4" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F5]"
+                      dataType="wstr"
+                      length="255"
+                      name="F5" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F6]"
+                      dataType="wstr"
+                      length="255"
+                      name="F6" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F7]"
+                      dataType="wstr"
+                      length="255"
+                      name="F7" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F8]"
+                      dataType="wstr"
+                      length="255"
+                      name="F8" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F9]"
+                      dataType="wstr"
+                      length="255"
+                      name="F9" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F10]"
+                      dataType="wstr"
+                      length="255"
+                      name="F10" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F11]"
+                      dataType="r8"
+                      name="F11" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F12]"
+                      dataType="wstr"
+                      length="255"
+                      name="F12" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F13]"
+                      dataType="wstr"
+                      length="255"
+                      name="F13" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F14]"
+                      dataType="wstr"
+                      length="255"
+                      name="F14" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F15]"
+                      dataType="wstr"
+                      length="255"
+                      name="F15" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F16]"
+                      dataType="wstr"
+                      length="255"
+                      name="F16" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F17]"
+                      dataType="wstr"
+                      length="255"
+                      name="F17" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F18]"
+                      dataType="wstr"
+                      length="255"
+                      name="F18" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F19]"
+                      dataType="wstr"
+                      length="255"
+                      name="F19" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F20]"
+                      dataType="wstr"
+                      length="255"
+                      name="F20" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F21]"
+                      dataType="wstr"
+                      length="255"
+                      name="F21" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F22]"
+                      dataType="wstr"
+                      length="255"
+                      name="F22" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F23]"
+                      dataType="wstr"
+                      length="255"
+                      name="F23" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F24]"
+                      dataType="wstr"
+                      length="255"
+                      name="F24" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F25]"
+                      dataType="wstr"
+                      length="255"
+                      name="F25" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F26]"
+                      dataType="wstr"
+                      length="255"
+                      name="F26" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F27]"
+                      dataType="wstr"
+                      length="255"
+                      name="F27" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F28]"
+                      dataType="wstr"
+                      length="255"
+                      name="F28" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F29]"
+                      dataType="wstr"
+                      length="255"
+                      name="F29" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F30]"
+                      dataType="wstr"
+                      length="255"
+                      name="F30" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[F31]"
+                      dataType="wstr"
+                      length="255"
+                      name="F31" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Excel Destination.Outputs[Excel Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Excel Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">WITH CTEDEPT AS (SELECT DISTINCT NO_DEPT FROM  MRSPC.TBTSTYL WHERE NO_DEPT &lt;600), 
+CTERESIDUE AS (SELECT DISTINCT A.NO_SKU, A.DL_RETAIL_OWN, B.QT_OH_AVAIL, C.NO_DEPT, C.NO_CLASS
+, C.NO_SUB_CLASS, D.NA_VNDR_DUNS, A.ID_STYLE, A.DC_SKU, A.AM_COST, B.NO_LOCN,  
+'591' AS LOC, 'DISC IN STORE' AS DISC_TYPE,'NEVIN'                                                 
+FROM MRSPC.TBTSKUU A, MRSPC.TBTSLOC B, MRSPC.TBTSTYL C, MRSPC.TBTVNDR D        
+     , MRSPC.TBTDCSC E                                                         
+WHERE ((C.TY_STYLE = 'R'                                                       
+OR C.TY_STYLE = 'Q'                                                            
+     OR C.TY_STYLE = 'S')                                                      
+     AND (A.ST_SKU = 'D'OR A.ST_SKU = 'A')                                     
+     AND (C.ST_STYLE = 'A'                                                     
+     OR C.ST_STYLE = 'D')                                                      
+AND (B.FG_SMPL_FLR ='0')                                                       
+     AND NOT (B.NO_LOCN IN (591,579,519,470,560,023,133,530,135,920,204))      
+     AND (B.QT_OH_AVAIL &gt; 0)                                                   
+     AND (C.NO_DEPT IN (501,505,506,508,511)))                                 
+     AND (A.NO_SKU = B.NO_SKU)                                                 
+     AND (A.ID_STYLE = C.ID_STYLE)                                             
+     AND (C.NO_VNDR_DUNS = D.NO_VNDR_DUNS)                                     
+     AND (C.NO_DEPT = E.NO_DEPT)                                               
+AND (C.NO_CLASS = E.NO_CLASS)                                                  
+AND (C.NO_SUB_CLASS = E.NO_SUBCLASS)                                           
+     AND (A.NO_VNDR_DUNS = C.NO_VNDR_DUNS)                                     
+     AND (A.NO_VNDR_DUNS = D.NO_VNDR_DUNS)  
+UNION                                                                          
+SELECT DISTINCT A.NO_SKU, A.DL_RETAIL_OWN, B.QT_OH_AVAIL, C.NO_DEPT, C.NO_CLASS
+, C.NO_SUB_CLASS, D.NA_VNDR_DUNS, A.ID_STYLE, A.DC_SKU, A.AM_COST, B.NO_LOCN,  
+'591' AS LOC, 'DISC IN WHSE' AS DISC_TYPE,'NEVIN'                                                  
+FROM MRSPC.TBTSKUU A, MRSPC.TBTSLOC B, MRSPC.TBTSTYL C, MRSPC.TBTVNDR D        
+     , MRSPC.TBTDCSC E                                                         
+WHERE ((C.TY_STYLE = 'R')                                                      
+     AND (A.ST_SKU = 'D')                                                      
+     AND (C.ST_STYLE = 'A'                                                     
+     OR C.ST_STYLE = 'D')                                                      
+     AND  (B.NO_LOCN = 591)                                                    
+     AND (B.QT_OH_AVAIL &gt; 0)                                                   
+     AND (C.NO_DEPT IN (501,505,506,508,511)))                                 
+     AND (A.NO_SKU = B.NO_SKU)                                                 
+     AND (A.ID_STYLE = C.ID_STYLE)                                             
+     AND (C.NO_VNDR_DUNS = D.NO_VNDR_DUNS)                                     
+     AND (C.NO_DEPT = E.NO_DEPT)                                               
+AND (C.NO_CLASS = E.NO_CLASS)                                                  
+AND (C.NO_SUB_CLASS = E.NO_SUBCLASS)                                           
+     AND (A.NO_VNDR_DUNS = C.NO_VNDR_DUNS)                                     
+     AND (A.NO_VNDR_DUNS = D.NO_VNDR_DUNS)                                     
+UNION                                                                          
+SELECT DISTINCT A.NO_SKU, A.DL_RETAIL_OWN, B.QT_OH_AVAIL, C.NO_DEPT, C.NO_CLASS
+, C.NO_SUB_CLASS, D.NA_VNDR_DUNS, A.ID_STYLE, A.DC_SKU, A.AM_COST, B.NO_LOCN,  
+'591' AS LOC, 'SO IN WHSE' AS DISC_TYPE,'NEVIN'                                                    
+FROM MRSPC.TBTSKUU A, MRSPC.TBTSLOC B, MRSPC.TBTSTYL C, MRSPC.TBTVNDR D        
+     , MRSPC.TBTDCSC E                                                         
+WHERE ((C.TY_STYLE = 'S')                                                      
+     AND (A.ST_SKU = 'D'OR A.ST_SKU = 'A')                                     
+     AND (C.ST_STYLE = 'A'                                                     
+     OR C.ST_STYLE = 'D')                                                      
+     AND  (B.NO_LOCN = 591)                                                    
+     AND (B.QT_OH_AVAIL &gt; 0)                                                   
+     AND (C.NO_DEPT IN (501,505,506,508,511)))                                 
+     AND (A.NO_SKU = B.NO_SKU)                                                 
+     AND (A.ID_STYLE = C.ID_STYLE)                                             
+     AND (C.NO_VNDR_DUNS = D.NO_VNDR_DUNS)                                     
+     AND (C.NO_DEPT = E.NO_DEPT)                                               
+AND (C.NO_CLASS = E.NO_CLASS)                                                  
+AND (C.NO_SUB_CLASS = E.NO_SUBCLASS)                                           
+     AND (A.NO_VNDR_DUNS = C.NO_VNDR_DUNS)                                     
+     AND (A.NO_VNDR_DUNS = D.NO_VNDR_DUNS)                                     
+UNION
+SELECT DISTINCT A.NO_SKU, A.DL_RETAIL_OWN, B.QT_OH_AVAIL, C.NO_DEPT, C.NO_CLASS
+, C.NO_SUB_CLASS, D.NA_VNDR_DUNS, A.ID_STYLE, A.DC_SKU, A.AM_COST, B.NO_LOCN,  
+'591' AS LOC, 'DISC IN STORE' AS DISC_TYPE,'SIGAL'                                                 
+FROM MRSPC.TBTSKUU A, MRSPC.TBTSLOC B, MRSPC.TBTSTYL C, MRSPC.TBTVNDR D        
+     , MRSPC.TBTDCSC E                                                         
+WHERE ((C.TY_STYLE = 'R'                                                       
+OR C.TY_STYLE = 'Q'                                                            
+     OR C.TY_STYLE = 'S')                                                      
+     AND (A.ST_SKU = 'D'OR A.ST_SKU = 'A')                                     
+     AND (C.ST_STYLE = 'A'                                                     
+     OR C.ST_STYLE = 'D')                                                      
+AND (B.FG_SMPL_FLR ='0')                                                       
+     AND NOT (B.NO_LOCN IN (591,579,519,470,560,023,133,530,135,920,204))      
+     AND (B.QT_OH_AVAIL &gt; 0)                                                   
+     AND (C.NO_DEPT IN (502,503,507,509,504)))                                 
+     AND (A.NO_SKU = B.NO_SKU)                                                 
+     AND (A.ID_STYLE = C.ID_STYLE)                                             
+     AND (C.NO_VNDR_DUNS = D.NO_VNDR_DUNS)                                     
+     AND (C.NO_DEPT = E.NO_DEPT)                                               
+AND (C.NO_CLASS = E.NO_CLASS)                                                  
+AND (C.NO_SUB_CLASS = E.NO_SUBCLASS)                                           
+     AND (A.NO_VNDR_DUNS = C.NO_VNDR_DUNS)                                     
+     AND (A.NO_VNDR_DUNS = D.NO_VNDR_DUNS)                                     
+UNION
+SELECT DISTINCT A.NO_SKU, A.DL_RETAIL_OWN, B.QT_OH_AVAIL, C.NO_DEPT, C.NO_CLASS
+, C.NO_SUB_CLASS, D.NA_VNDR_DUNS, A.ID_STYLE, A.DC_SKU, A.AM_COST, B.NO_LOCN,  
+'591' AS LOC, 'DISC IN WHSE' AS DISC_TYPE,'SIGAL'                                                  
+FROM MRSPC.TBTSKUU A, MRSPC.TBTSLOC B, MRSPC.TBTSTYL C, MRSPC.TBTVNDR D        
+     , MRSPC.TBTDCSC E                                                         
+WHERE ((C.TY_STYLE = 'R')                                                      
+     AND (A.ST_SKU = 'D')                                                      
+     AND (C.ST_STYLE = 'A'                                                     
+     OR C.ST_STYLE = 'D')                                                      
+     AND  (B.NO_LOCN = 591)                                                    
+     AND (B.QT_OH_AVAIL &gt; 0)                                                   
+     AND (C.NO_DEPT IN (502,503,507,509,504)))                                 
+     AND (A.NO_SKU = B.NO_SKU)                                                 
+     AND (A.ID_STYLE = C.ID_STYLE)                                             
+     AND (C.NO_VNDR_DUNS = D.NO_VNDR_DUNS)                                     
+     AND (C.NO_DEPT = E.NO_DEPT)                                               
+AND (C.NO_CLASS = E.NO_CLASS)                                                  
+AND (C.NO_SUB_CLASS = E.NO_SUBCLASS)                                           
+     AND (A.NO_VNDR_DUNS = C.NO_VNDR_DUNS)                                     
+     AND (A.NO_VNDR_DUNS = D.NO_VNDR_DUNS)                                     
+UNION                                                                          
+SELECT DISTINCT A.NO_SKU, A.DL_RETAIL_OWN, B.QT_OH_AVAIL, C.NO_DEPT, C.NO_CLASS
+, C.NO_SUB_CLASS, D.NA_VNDR_DUNS, A.ID_STYLE, A.DC_SKU, A.AM_COST, B.NO_LOCN,  
+'591' AS LOC, 'SO IN WHSE' AS DISC_TYPE,'SIGAL'                                                    
+FROM MRSPC.TBTSKUU A, MRSPC.TBTSLOC B, MRSPC.TBTSTYL C, MRSPC.TBTVNDR D        
+     , MRSPC.TBTDCSC E                                                         
+WHERE ((C.TY_STYLE = 'S')                                                      
+     AND (A.ST_SKU = 'D'OR A.ST_SKU = 'A')                                     
+     AND (C.ST_STYLE = 'A'                                                     
+     OR C.ST_STYLE = 'D')                                                      
+     AND  (B.NO_LOCN = 591)                                                    
+     AND (B.QT_OH_AVAIL &gt; 0)                                                   
+     AND (C.NO_DEPT IN (502,503,507,509,504)))                                 
+     AND (A.NO_SKU = B.NO_SKU)                                                 
+     AND (A.ID_STYLE = C.ID_STYLE)                                             
+     AND (C.NO_VNDR_DUNS = D.NO_VNDR_DUNS)                                     
+     AND (C.NO_DEPT = E.NO_DEPT)                                               
+AND (C.NO_CLASS = E.NO_CLASS)                                                  
+AND (C.NO_SUB_CLASS = E.NO_SUBCLASS)                                           
+     AND (A.NO_VNDR_DUNS = C.NO_VNDR_DUNS)                                     
+     AND (A.NO_VNDR_DUNS = D.NO_VNDR_DUNS)),
+CTEDISCRESULT AS (     
+SELECT CTERESIDUE.NO_DEPT, CTERESIDUE.DISC_TYPE, 
+SUM(CTERESIDUE.AM_COST) AS COST, 
+SUM(CTERESIDUE.QT_OH_AVAIL) AS CNT
+FROM CTERESIDUE
+GROUP BY CTERESIDUE.NO_DEPT, CTERESIDUE.DISC_TYPE),
+CTEDISCSAMPLE AS (SELECT DISTINCT A.NO_TAG, A.NO_SKU, B.ID_STYLE, D.QT_OH_AVAIL, B.DL_RETAIL_OWN, C.NO_DEPT    
+      , C.DC_LONG, E.NA_VNDR_DUNS, A.NO_LOCN, B.ST_SKU,'NAPERVILLE' AS LOC            
+ FROM MRSPC.TBTTAGG A, MRSPC.TBTSKUU B, MRSPC.TBTSTYL C, MRSPC.TBTSLOC D       
+      , MRSPC.TBTVNDR E                                                        
+ WHERE                                                                         
+      ((A.ST_TAG = 'LC')                                                       
+      AND (A.IN_SMPL_FLR = 'Y')                                                
+ AND  (A.NO_LOCN IN (591))                                                     
+AND (B.ST_SKU = 'D')                                                           
+      AND (A.CD_COND = 'S-2'OR A.CD_COND = 'S-1')                              
+      AND (A.NO_RESV = 0)                                                      
+      AND (A.NO_XFER = 0))                                                     
+      AND (A.NO_SKU = B.NO_SKU)                                                
+      AND (B.ID_STYLE = C.ID_STYLE)                                            
+      AND (B.NO_VNDR_DUNS = C.NO_VNDR_DUNS)                                    
+      AND (B.NO_SKU = D.NO_SKU)                                                
+      AND (A.NO_LOCN = D.NO_LOCN)                                              
+      AND (C.NO_VNDR_DUNS = E.NO_VNDR_DUNS)),
+CTENCODE AS(SELECT C.NO_DEPT, A.CD_COND, A.NO_SKU, A.NO_TAG, B.DL_RETAIL_OWN, QT_OH_AVAIL, 
+'N-3/29' AS NCODE_TYPE                                                                       
+FROM MRSPC.TBTTAGG A, MRSPC.TBTSKUU B, MRSPC.TBTSTYL C, MRSPC.TBTSLOC D        
+WHERE (A.NO_LOCN = 591)                                                        
+AND A.ST_TAG IN ('LC', 'PI', 'RN', 'CR')                                       
+AND NOT B.NO_SKU IN (79346003, 70146402, 71738504, 77558203)                   
+AND (CD_COND IN ('N29', 'N-3'))                                                
+AND NOT (B.NO_VNDR_DUNS = 30765)                                               
+AND  (C.NO_DEPT &lt; 600)                                                         
+AND (D.NO_LOCN = 591)                                                          
+AND (A.NO_SKU = B.NO_SKU)                                                      
+AND (B.NO_VNDR_DUNS = C.NO_VNDR_DUNS)                                          
+AND (B.ID_STYLE = C.ID_STYLE)                                                  
+AND (B.NO_SKU = D.NO_SKU)                                                      
+UNION                                                                          
+SELECT C.NO_DEPT, A.CD_COND, A.NO_SKU, A.NO_TAG, B.DL_RETAIL_OWN, QT_OH_AVAIL, 
+'OUTLET 579' AS NCODE_TYPE                                                                   
+FROM MRSPC.TBTTAGG A, MRSPC.TBTSKUU B, MRSPC.TBTSTYL C, MRSPC.TBTSLOC D        
+WHERE (A.NO_LOCN = 579)                                                        
+AND A.ST_TAG IN ('LC', 'PI', 'RN', 'CR')                                       
+AND NOT B.NO_SKU IN (79346003, 70146402, 71738504, 77558203)                   
+                                                                               
+AND NOT (B.NO_VNDR_DUNS = 30765)                                               
+AND (C.NO_DEPT &lt; 600)                                                          
+AND (D.NO_LOCN = 579)                                                          
+AND (A.NO_SKU = B.NO_SKU)                                                      
+AND (B.NO_VNDR_DUNS = C.NO_VNDR_DUNS)                                          
+AND (B.ID_STYLE = C.ID_STYLE)                                                  
+AND (B.NO_SKU = D.NO_SKU)                                                      
+UNION                                                                          
+SELECT C.NO_DEPT, A.CD_COND, A.NO_SKU, A.NO_TAG, B.DL_RETAIL_OWN, QT_OH_AVAIL, 
+'ALL OTHER N CODES' AS NCODE_TYPE                                                            
+FROM MRSPC.TBTTAGG A, MRSPC.TBTSKUU B, MRSPC.TBTSTYL C, MRSPC.TBTSLOC D        
+WHERE (A.NO_LOCN = 591)                                                        
+AND A.ST_TAG IN ('LC', 'PI', 'RN', 'CG')                                       
+AND NOT B.NO_SKU IN (79346003, 70146402, 71738504, 77558203)                   
+AND (CD_COND LIKE 'N%')                                                        
+AND NOT  (CD_COND IN ('N29', 'N-3'))                                           
+AND NOT (B.NO_VNDR_DUNS = 30765)                                               
+AND  (C.NO_DEPT &lt; 600)                                                         
+AND (D.NO_LOCN = 591)                                                          
+AND (A.NO_SKU = B.NO_SKU)                                                      
+AND (B.NO_VNDR_DUNS = C.NO_VNDR_DUNS)                                          
+AND (B.ID_STYLE = C.ID_STYLE)                                                  
+AND (B.NO_SKU = D.NO_SKU)),
+CTENCODERESULT AS (SELECT NO_DEPT, NCODE_TYPE, SUM(QT_OH_AVAIL) AS CNT,
+SUM(DL_RETAIL_OWN) AS COST 
+FROM CTENCODE
+GROUP BY NO_DEPT, NCODE_TYPE)      
+SELECT CTEDEPT.NO_DEPT,
+(SELECT CNT FROM CTEDISCRESULT WHERE DISC_TYPE = 'DISC IN STORE' AND NO_DEPT = CTEDEPT.NO_DEPT) AS DIS_UNITS,
+(SELECT COST FROM CTEDISCRESULT WHERE DISC_TYPE = 'DISC IN STORE' AND NO_DEPT = CTEDEPT.NO_DEPT) AS DIS_COST,
+(SELECT CNT FROM CTEDISCRESULT WHERE DISC_TYPE = 'DISC IN WHSE' AND NO_DEPT = CTEDEPT.NO_DEPT) AS DIW_UNITS,
+(SELECT COST FROM CTEDISCRESULT WHERE DISC_TYPE = 'DISC IN WHSE' AND NO_DEPT = CTEDEPT.NO_DEPT) AS DIW_COST,
+(SELECT CNT FROM CTEDISCRESULT WHERE DISC_TYPE = 'SO IN WHSE' AND NO_DEPT = CTEDEPT.NO_DEPT) AS SIW_UNITS,
+(SELECT COST FROM CTEDISCRESULT WHERE DISC_TYPE = 'SO IN WHSE' AND NO_DEPT = CTEDEPT.NO_DEPT) AS SIW_COST,
+(SELECT SUM(CNT) FROM CTEDISCRESULT WHERE NO_DEPT = CTEDEPT.NO_DEPT) AS TOT_UNITS,
+(SELECT SUM(COST) FROM CTEDISCRESULT WHERE NO_DEPT = CTEDEPT.NO_DEPT) AS TOT_COST,
+'' AS BLANKCOL1,
+(SELECT SUM(QT_OH_AVAIL) FROM CTEDISCSAMPLE WHERE NO_DEPT = CTEDEPT.NO_DEPT) AS SAMF_CNT,
+(SELECT SUM(DL_RETAIL_OWN) FROM CTEDISCSAMPLE WHERE NO_DEPT = CTEDEPT.NO_DEPT) AS SAMF_COST,
+'' AS BLANKCOL2,
+(SELECT CNT FROM CTENCODERESULT WHERE NCODE_TYPE = 'N-3/29' AND NO_DEPT = CTEDEPT.NO_DEPT) AS N329_UNITS,
+(SELECT COST FROM CTENCODERESULT WHERE NCODE_TYPE = 'N-3/29' AND NO_DEPT = CTEDEPT.NO_DEPT) AS N329_COST,
+'' AS BLANKCOL3,
+'' AS TOTINV_CNT,
+'' AS TOTINV_COST,
+'' AS BLANKCOL4,
+(SELECT CNT FROM CTENCODERESULT WHERE NCODE_TYPE = 'OUTLET 579' AND NO_DEPT = CTEDEPT.NO_DEPT) AS O579_UNITS,
+(SELECT COST FROM CTENCODERESULT WHERE NCODE_TYPE = 'OUTLET 579' AND NO_DEPT = CTEDEPT.NO_DEPT) AS O579_COST,
+'' AS BLANKCOL5,
+'' AS CCLY_CNT,
+'' AS CCLY_COST,
+(SELECT CNT FROM CTENCODERESULT WHERE NCODE_TYPE = 'ALL OTHER N CODES' AND NO_DEPT = CTEDEPT.NO_DEPT) AS ONCODE_UNITS,
+(SELECT COST FROM CTENCODERESULT WHERE NCODE_TYPE = 'ALL OTHER N CODES' AND NO_DEPT = CTEDEPT.NO_DEPT) AS ONCODE_COST,
+'' AS BLANKCOL6,
+'' AS ONCODELY_CNT,
+'' AS ONCODELY_COST
+FROM CTEDEPT
+LEFT OUTER JOIN CTEDISCRESULT
+ON CTEDISCRESULT.NO_DEPT = CTEDEPT.NO_DEPT
+GROUP BY CTEDEPT.NO_DEPT
+WITH UR;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{23CE795A-E56D-4FC4-9972-B03CB3CC49CC}:invalid"
+                  connectionManagerRefId="{23CE795A-E56D-4FC4-9972-B03CB3CC49CC}:invalid"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[NO_DEPT]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NO_DEPT]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[NO_DEPT]"
+                      name="NO_DEPT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[DIS_UNITS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DIS_UNITS]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[DIS_UNITS]"
+                      name="DIS_UNITS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[DIS_COST]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DIS_COST]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[DIS_COST]"
+                      name="DIS_COST"
+                      precision="19"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[DIW_UNITS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DIW_UNITS]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[DIW_UNITS]"
+                      name="DIW_UNITS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[DIW_COST]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DIW_COST]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[DIW_COST]"
+                      name="DIW_COST"
+                      precision="19"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[SIW_UNITS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SIW_UNITS]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[SIW_UNITS]"
+                      name="SIW_UNITS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[SIW_COST]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SIW_COST]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[SIW_COST]"
+                      name="SIW_COST"
+                      precision="19"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TOT_UNITS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TOT_UNITS]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TOT_UNITS]"
+                      name="TOT_UNITS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TOT_COST]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TOT_COST]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TOT_COST]"
+                      name="TOT_COST"
+                      precision="29"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[BLANKCOL1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BLANKCOL1]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[BLANKCOL1]"
+                      name="BLANKCOL1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[SAMF_CNT]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SAMF_CNT]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[SAMF_CNT]"
+                      name="SAMF_CNT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[SAMF_COST]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SAMF_COST]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[SAMF_COST]"
+                      name="SAMF_COST"
+                      precision="19"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[BLANKCOL2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BLANKCOL2]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[BLANKCOL2]"
+                      name="BLANKCOL2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[N329_UNITS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[N329_UNITS]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[N329_UNITS]"
+                      name="N329_UNITS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[N329_COST]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[N329_COST]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[N329_COST]"
+                      name="N329_COST"
+                      precision="19"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[BLANKCOL3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BLANKCOL3]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[BLANKCOL3]"
+                      name="BLANKCOL3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TOTINV_CNT]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TOTINV_CNT]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TOTINV_CNT]"
+                      name="TOTINV_CNT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TOTINV_COST]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TOTINV_COST]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[TOTINV_COST]"
+                      name="TOTINV_COST"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[BLANKCOL4]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BLANKCOL4]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[BLANKCOL4]"
+                      name="BLANKCOL4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[O579_UNITS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[O579_UNITS]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[O579_UNITS]"
+                      name="O579_UNITS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[O579_COST]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[O579_COST]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[O579_COST]"
+                      name="O579_COST"
+                      precision="19"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[BLANKCOL5]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BLANKCOL5]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[BLANKCOL5]"
+                      name="BLANKCOL5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[CCLY_CNT]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CCLY_CNT]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[CCLY_CNT]"
+                      name="CCLY_CNT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[CCLY_COST]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CCLY_COST]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[CCLY_COST]"
+                      name="CCLY_COST"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ONCODE_UNITS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ONCODE_UNITS]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ONCODE_UNITS]"
+                      name="ONCODE_UNITS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ONCODE_COST]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ONCODE_COST]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ONCODE_COST]"
+                      name="ONCODE_COST"
+                      precision="19"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[BLANKCOL6]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BLANKCOL6]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[BLANKCOL6]"
+                      name="BLANKCOL6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ONCODELY_CNT]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ONCODELY_CNT]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ONCODELY_CNT]"
+                      name="ONCODELY_CNT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ONCODELY_COST]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ONCODELY_COST]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ONCODELY_COST]"
+                      name="ONCODELY_COST"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NO_DEPT]"
+                      dataType="i2"
+                      name="NO_DEPT" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DIS_UNITS]"
+                      dataType="i4"
+                      name="DIS_UNITS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DIS_COST]"
+                      dataType="numeric"
+                      name="DIS_COST"
+                      precision="19"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DIW_UNITS]"
+                      dataType="i4"
+                      name="DIW_UNITS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DIW_COST]"
+                      dataType="numeric"
+                      name="DIW_COST"
+                      precision="19"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SIW_UNITS]"
+                      dataType="i4"
+                      name="SIW_UNITS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SIW_COST]"
+                      dataType="numeric"
+                      name="SIW_COST"
+                      precision="19"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TOT_UNITS]"
+                      dataType="i4"
+                      name="TOT_UNITS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TOT_COST]"
+                      dataType="numeric"
+                      name="TOT_COST"
+                      precision="29"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BLANKCOL1]"
+                      dataType="wstr"
+                      name="BLANKCOL1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SAMF_CNT]"
+                      dataType="i4"
+                      name="SAMF_CNT" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SAMF_COST]"
+                      dataType="numeric"
+                      name="SAMF_COST"
+                      precision="19"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BLANKCOL2]"
+                      dataType="wstr"
+                      name="BLANKCOL2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[N329_UNITS]"
+                      dataType="i4"
+                      name="N329_UNITS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[N329_COST]"
+                      dataType="numeric"
+                      name="N329_COST"
+                      precision="19"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BLANKCOL3]"
+                      dataType="wstr"
+                      name="BLANKCOL3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TOTINV_CNT]"
+                      dataType="wstr"
+                      name="TOTINV_CNT" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TOTINV_COST]"
+                      dataType="wstr"
+                      name="TOTINV_COST" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BLANKCOL4]"
+                      dataType="wstr"
+                      name="BLANKCOL4" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[O579_UNITS]"
+                      dataType="i4"
+                      name="O579_UNITS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[O579_COST]"
+                      dataType="numeric"
+                      name="O579_COST"
+                      precision="19"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BLANKCOL5]"
+                      dataType="wstr"
+                      name="BLANKCOL5" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CCLY_CNT]"
+                      dataType="wstr"
+                      name="CCLY_CNT" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CCLY_COST]"
+                      dataType="wstr"
+                      name="CCLY_COST" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ONCODE_UNITS]"
+                      dataType="i4"
+                      name="ONCODE_UNITS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ONCODE_COST]"
+                      dataType="numeric"
+                      name="ONCODE_COST"
+                      precision="19"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BLANKCOL6]"
+                      dataType="wstr"
+                      name="BLANKCOL6" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ONCODELY_CNT]"
+                      dataType="wstr"
+                      name="ONCODELY_CNT" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ONCODELY_COST]"
+                      dataType="wstr"
+                      name="ONCODELY_COST" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NO_DEPT]"
+                      dataType="i2"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NO_DEPT]"
+                      name="NO_DEPT" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DIS_UNITS]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DIS_UNITS]"
+                      name="DIS_UNITS" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DIS_COST]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DIS_COST]"
+                      name="DIS_COST"
+                      precision="19"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DIW_UNITS]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DIW_UNITS]"
+                      name="DIW_UNITS" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DIW_COST]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DIW_COST]"
+                      name="DIW_COST"
+                      precision="19"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SIW_UNITS]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SIW_UNITS]"
+                      name="SIW_UNITS" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SIW_COST]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SIW_COST]"
+                      name="SIW_COST"
+                      precision="19"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TOT_UNITS]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TOT_UNITS]"
+                      name="TOT_UNITS" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TOT_COST]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TOT_COST]"
+                      name="TOT_COST"
+                      precision="29"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BLANKCOL1]"
+                      dataType="wstr"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BLANKCOL1]"
+                      name="BLANKCOL1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SAMF_CNT]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SAMF_CNT]"
+                      name="SAMF_CNT" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SAMF_COST]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SAMF_COST]"
+                      name="SAMF_COST"
+                      precision="19"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BLANKCOL2]"
+                      dataType="wstr"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BLANKCOL2]"
+                      name="BLANKCOL2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[N329_UNITS]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[N329_UNITS]"
+                      name="N329_UNITS" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[N329_COST]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[N329_COST]"
+                      name="N329_COST"
+                      precision="19"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BLANKCOL3]"
+                      dataType="wstr"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BLANKCOL3]"
+                      name="BLANKCOL3" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TOTINV_CNT]"
+                      dataType="wstr"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TOTINV_CNT]"
+                      name="TOTINV_CNT" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TOTINV_COST]"
+                      dataType="wstr"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TOTINV_COST]"
+                      name="TOTINV_COST" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BLANKCOL4]"
+                      dataType="wstr"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BLANKCOL4]"
+                      name="BLANKCOL4" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[O579_UNITS]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[O579_UNITS]"
+                      name="O579_UNITS" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[O579_COST]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[O579_COST]"
+                      name="O579_COST"
+                      precision="19"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BLANKCOL5]"
+                      dataType="wstr"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BLANKCOL5]"
+                      name="BLANKCOL5" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CCLY_CNT]"
+                      dataType="wstr"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CCLY_CNT]"
+                      name="CCLY_CNT" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CCLY_COST]"
+                      dataType="wstr"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CCLY_COST]"
+                      name="CCLY_COST" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ONCODE_UNITS]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ONCODE_UNITS]"
+                      name="ONCODE_UNITS" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ONCODE_COST]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ONCODE_COST]"
+                      name="ONCODE_COST"
+                      precision="19"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BLANKCOL6]"
+                      dataType="wstr"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BLANKCOL6]"
+                      name="BLANKCOL6" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ONCODELY_CNT]"
+                      dataType="wstr"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ONCODELY_CNT]"
+                      name="ONCODELY_CNT" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ONCODELY_COST]"
+                      dataType="wstr"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ONCODELY_COST]"
+                      name="ONCODELY_COST" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\Excel Destination.Inputs[Excel Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Data Flow Task"
+          TopLeft="188.5,65.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Data Flow Task\OLE DB Source"
+          TopLeft="251.5,55.5" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Data Flow Task\Excel Destination"
+          TopLeft="261.5,240.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="327.5,97.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14.5,143"
+              Start="0,0"
+              End="14.5,135.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,67.5"
+                    Point2="0,71.5"
+                    Point3="4,71.5" />
+                  <mssgle:LineSegment
+                    End="10.5,71.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10.5,71.5"
+                    Point2="14.5,71.5"
+                    Point3="14.5,75.5" />
+                  <mssgle:LineSegment
+                    End="14.5,135.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Excel Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

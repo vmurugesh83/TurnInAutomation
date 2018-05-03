@@ -1,0 +1,52 @@
+<%-- 
+Name: 
+Author: Kimberly Lehman
+Description: 
+--%>
+
+<%@ CodeTemplate Language="VB" TargetLanguage="Text" Src="ICCHelper.cst.vb" Inherits="ICCHelper" Debug="True" Description="Template description here." %>
+<%@ Property Name="DB2Connect" Type="System.String" Default="<SQL>" Optional="False" Category="Strings" Description="DB2 Connection string." %>
+<%@ Property Name="Table" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow." %>
+<%@ Property Name="nSpace" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow Formatted." %>
+<%@ Property Name="ClassName" Type="System.String" Optional="False" Category="Strings" Description="Current Table DataRow Formatted." %>
+
+<%@ Assembly Name="System.Data" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Data.OleDb" %>
+<%
+    Dim DB2ColumnsSQL as string = "SELECT NAME, COLTYPE, LENGTH, SCALE, NULLS, DEFAULT, KEYSEQ FROM SYSIBM.SYSCOLUMNS WHERE TBNAME = '{0}' AND TBCREATOR = 'MRSSI' ORDER BY COLNO"
+    Dim DB2KeyColumnsSQL as string = "SELECT NAME, COLTYPE, LENGTH, SCALE, NULLS, DEFAULT, KEYSEQ FROM SYSIBM.SYSCOLUMNS WHERE TBNAME = '{0}' AND KEYSEQ > 0 AND TBCREATOR = 'MRSSI'  ORDER BY KEYSEQ"
+    Dim DB2NonKeyColumnsSQL as string = "SELECT NAME, COLTYPE, LENGTH, SCALE, NULLS, DEFAULT, KEYSEQ FROM SYSIBM.SYSCOLUMNS WHERE TBNAME = '{0}' AND KEYSEQ = 0 AND TBCREATOR = 'MRSSI' ORDER BY COLNO"
+
+    Dim columnsDT As DataTable
+    Dim keyColumnsDT As DataTable
+    Dim nonKeyColumnsDT As DataTable
+
+ 	columnsDT = GetDataSet(DB2Connect, String.Format(DB2ColumnsSQL, table)).Tables(0) 
+ 	keyColumnsDT = GetDataSet(DB2Connect, String.Format(DB2KeyColumnsSQL, table)).Tables(0) 
+	nonKeyColumnsDT = GetDataSet(DB2Connect, String.Format(DB2NonKeyColumnsSQL, table)).Tables(0) 
+%>
+Imports IBM.Data.DB2
+Imports <%=nSpace%>.BusinessEntities
+Imports <%=nSpace%>.Factory.Common
+
+Public Class <%=className%>Factory
+
+    Public Shared Function Construct(ByVal reader As DB2DataReader) As <%=className%>Info
+       Dim <%=ToCamelCase(className)%>Info As New <%=className%>Info()
+
+        With <%=ToCamelCase(className)%>Info
+<% For i as integer = 0 to columnsDT.rows.Count - 1 %>
+        <% Dim colType as string = columnsDT.rows(i)("COLTYPE").ToString.Trim %>
+        <% Dim name as string = columnsDT.rows(i)("NAME").ToString.Trim %>
+            .<%=ToPascalCase(name)%> = <%=TypeCast("ReadColumn(reader, """ & name & """)",colType, "N")%>
+<% Next i %>    
+        End With
+        
+        Return <%=ToCamelCase(className)%>Info
+    End Function
+End Class
+
+<script runat="template">
+
+</script>

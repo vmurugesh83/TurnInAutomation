@@ -1,0 +1,121 @@
+<%-- 
+Name: 
+Author: PC Mani
+Description: 
+
+--%>
+<%@ CodeTemplate Language="VB" Src="ICCHelper.cst.vb" Inherits="ICCHelper" OutPutType="Normal" Debug="True" Description="RecObj Master" %>
+<%@ Property Name="DB2Connect" Type="System.String" Default="Provider=IBMDADB2.1;Data Source=TEST;User ID=CSPM001D;Password=CUAT8AM;Persist Security Info=True" Optional="False" Category="Strings" Description="DB2 Connection string." %>
+<%@ Property Name="tableName" Type="System.String" Default="ENTER TABLE NAME" Optional="False" Category="Strings" Description="Table Name" %>
+<%@ Property Name="className" Type="System.String" Default="ENTER CLASS NAME" Optional="False" Category="Strings" Description="Table Name" %>
+<%@ Property Name="nSpace" Type="System.String" Default="ENTER NAMESPACE" Optional="False" Category="Strings" Description="Table Name" %>
+<%@ Property Name="BusinessEntityOutputFolder" Type="System.String" Default="C:\csmithoutput" Optional="False" Category="OutputPaths" Description="Output path of model class files." %>
+<%@ Property Name="EntityFactoryOutputFolder" Type="System.String" Default="C:\csmithoutput" Optional="False" Category="OutputPaths" Description="Output path of model factory class files." %>
+<%@ Property Name="DataAccessInterfaceOutputFolder" Type="System.String" Default="C:\csmithoutput" Optional="False" Category="OutputPaths" Description="Output path of data access interface class files." %>
+<%@ Property Name="DataAccessOutputFolder" Type="System.String" Default="C:\csmithoutput" Optional="False" Category="OutputPaths" Description="Output path of data access object class files." %>
+
+
+<%@ Assembly Name="System.Data" %>
+
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Data.OleDb" %>
+<%@ Import Namespace="System.IO" %>
+
+<%@ Register Name="BusinessEntities" Template="BusinessEntities.cst" %>
+<%@ Register Name="ModelFactories" Template="ModelFactories.cst" %>
+<%@ Register Name="DataAccessInterfaces" Template="DataAccessInterfaces.cst" %>
+<%@ Register Name="DataAccessMethods" Template="DataAccessMethods.cst" %>
+
+<script runat="template">
+Public OverRides Sub Render(Writer as TextWriter)
+    Dim tablesDT As DataTable
+    
+    Dim businessEntities as BusinessEntities
+    Dim modelFactories as ModelFactories
+    Dim dataAccessInterfaces as DataAccessInterfaces
+    Dim dataAccessMethods as DataAccessMethods
+        
+    Dim businessEntitiesOutFile as OutputFile
+    Dim businessEntitiesFileName as string
+    
+    Dim modelFactoriesOutFile as OutputFile
+    Dim modelFactoriesFileName as string
+    
+    Dim dataAccessInterfacesOutFile as OutputFile
+    Dim dataAccessInterfacesFileName as string
+        
+    Dim dataAccessMethodsOutFile as OutputFile
+    Dim dataAccessMethodsFileName as string
+    
+    Dim DB2TablesSQL as string = "SELECT DISTINCT TBNAME FROM SYSIBM.SYSCOLUMNS WHERE TBNAME IN ('"+ tableName +"')"
+
+	tablesDT = GetDataSet(DB2Connect, DB2TablesSQL).Tables(0) 
+    For each tableRow as DataRow in TablesDT.rows  
+        'create Business Entities
+        businessEntities = new BusinessEntities
+        
+        'assign template properties
+        businessEntities.Table = tableName
+        businessEntities.DB2Connect = DB2Connect
+        businessEntities.ClassName = className
+        
+        'create output file 
+        businessEntitiesFileName = string.Format("{0}\{1}.vb", BusinessEntityOutputFolder, className & "Info")
+        businessEntitiesOutFile = new OutputFile(businessEntitiesFileName)
+        
+        'render Business Entities
+        businessEntities.RenderToFile(businessEntitiesOutFile, true)          
+        
+                
+        'create Model Factories
+        modelFactories = new ModelFactories
+        
+        'assign template properties
+        modelFactories.Table = tableName
+        modelFactories.DB2Connect = DB2Connect
+        modelFactories.ClassName = className
+        modelFactories.nSpace = nSpace
+        
+        'create output file 
+        modelFactoriesFileName = string.Format("{0}\{1}.vb", EntityFactoryOutputFolder, className & "Factory")
+        modelFactoriesOutFile = new OutputFile(modelFactoriesFileName)
+        
+        'render Business Entities
+        modelFactories.RenderToFile(modelFactoriesOutFile, true)           
+        
+        
+        'create Data Access Interfaces
+        dataAccessInterfaces = new DataAccessInterfaces
+        
+        'assign template properties
+        dataAccessInterfaces.Table = tableName
+        dataAccessInterfaces.DB2Connect = DB2Connect
+        dataAccessInterfaces.ClassName = className
+        dataAccessInterfaces.nSpace = nSpace
+        
+        'create output file 
+        dataAccessInterfacesFileName = string.Format("{0}\{1}.vb", DataAccessInterfaceOutputFolder, "I" & className & "Dao")
+        dataAccessInterfacesOutFile = new OutputFile(dataAccessInterfacesFileName)
+        
+        'render Data Access Methods
+        dataAccessInterfaces.RenderToFile(dataAccessInterfacesOutFile, true)           
+        
+        
+        'create Data Access Methods
+        dataAccessMethods = new DataAccessMethods
+        
+        'assign template properties
+        dataAccessMethods.Table = tableName
+        dataAccessMethods.DB2Connect = DB2Connect
+        dataAccessMethods.ClassName = className
+        dataAccessMethods.nSpace = nSpace
+
+        'create output file 
+        dataAccessMethodsFileName = string.Format("{0}\{1}.vb", DataAccessOutputFolder, className & "Dao")
+        dataAccessMethodsOutFile = new OutputFile(dataAccessMethodsFileName)
+        
+        'render Data Access Methods
+        dataAccessMethods.RenderToFile(dataAccessMethodsOutFile, true)           
+    Next tableRow 
+End Sub
+</script>

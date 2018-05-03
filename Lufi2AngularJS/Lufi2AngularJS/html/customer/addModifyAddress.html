@@ -1,0 +1,202 @@
+﻿
+<form name="searchForm" novalidate class="form" ng-submit="save()">
+    <div class="modal-header">
+        <h4 class="modal-title">{{title}}</h4>
+    </div>
+    <div class="row-sm-12">
+        <div class="col-sm-2">
+            </br>
+            <h5 style="font-weight:bold">Display Name:</h5>
+        </div>
+        <div class="col-sm-2">
+            </br>
+            <input ng-disabled="addressResponse || emailResponse" ng-keypress="keyPressValidator(event)" class="form-control" type="text" ng-model="address.PersonInfo._AddressID" />
+        </div>
+        <div class="col-sm-8"></div>
+    </div>
+    <div class="col-sm-12">
+        </br>
+        <div class="col-sm-6">
+            <div class="row clearfix">
+                <div class="col-sm-4 column" style="color:red" ng-show="EnterAddress"></div>
+                <div class="col-sm-8 column" style="color:red" ng-show="EnterAddress">
+                    Please enter an address
+                </div>
+                <div class="col-sm-4 column">
+                    Address Line 1:
+                </div>
+                <div class="col-sm-8 column">
+                    <input ng-disabled="addressResponse || emailResponse" ng-keypress="keyPressValidator(event)" class="form-control" type="text" ng-model="address.PersonInfo._AddressLine1" />
+                </div>
+                <div class="col-sm-4 column">
+                    Address Line 2:
+                </div>
+                <div class="col-sm-8 column">
+                    <input ng-disabled="addressResponse || emailResponse" ng-keypress="keyPressValidator(event)" class="form-control" type="text" ng-model="address.PersonInfo._AddressLine2" />
+                </div>
+                <div class="col-sm-4 column">
+                    Address Line 3:
+                </div>
+                <div class="col-sm-8 column">
+                    <input ng-disabled="addressResponse || emailResponse" ng-keypress="keyPressValidator(event)" class="form-control" type="text" ng-model="address.PersonInfo._AddressLine3" />
+                </div>
+                <div class="col-sm-4 column" style="color:red" ng-show="EnterCity"></div>
+                <div class="col-sm-8 column" style="color:red" ng-show="EnterCity">
+                    Please enter a city
+                </div>
+                <div class="col-sm-4 column">
+                    City:
+                </div>
+                <div class="col-sm-8 column">
+                    <input ng-disabled="addressResponse || emailResponse" ng-keypress="keyPressValidator(event)" class="form-control" type="text" ng-model="address.PersonInfo._City" />
+                </div>
+                <div class="col-sm-4 column" style="color:red" ng-show="EnterState"></div>
+                <div class="col-sm-8 column" style="color:red" ng-show="EnterState">
+                    Please enter a state 
+                </div>
+                <div class="col-sm-4 column" ng-hide="international">
+                    State:
+                </div>
+                <div class="col-sm-8 column" ng-hide="international">
+                    <select ng-disabled="addressResponse || emailResponse" class="form-control" ng-model="address.PersonInfo._State" ng-options="s.state as s.name for s in stateOptions"></select>
+                </div>
+                <div class="col-sm-4 column" ng-show="international">
+                    State:
+                </div>
+                <div class="col-sm-8 column" ng-show="international">
+                    <input ng-disabled="addressResponse || emailResponse" type="text" class="form-control" maxlength="2" ng-model="address.PersonInfo._State" />
+                </div>
+                <div class="col-sm-4 column" style="color:red" ng-show="EnterZip"></div>
+                <div class="col-sm-8 column" style="color:red" ng-show="EnterZip">
+                    Please enter a zip code
+                </div>
+                <div class="col-sm-4 column">
+                    Zip:
+                </div>
+                <div class="col-sm-8 column">
+                    <input ng-disabled="addressResponse || emailResponse" ng-keypress="keyPressValidator(event)" class="form-control" maxlength="5" type="text" ng-model="address.PersonInfo._ZipCode" />
+                </div>
+                <div class="col-sm-4 column" style="color:red" ng-show="EnterCountry"></div>
+                <div class="col-sm-8 column" style="color:red" ng-show="EnterCountry">
+                    Please enter a Country
+                </div>
+                <div class="col-sm-4 column">
+                    Country:
+                </div>
+                <div class="col-sm-8 column">
+                    <select ng-disabled="addressResponse || emailResponse || disableCountry" class="form-control" ng-model="address.PersonInfo._Country" ng-change="countryInfoMessage()" ng-options="s.id as s.country for s in CountryOptions"></select>
+                </div>
+                <div class="col-sm-4 column">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="row clearfix">
+                <div class="col-sm-4 column" style="color:red" ng-show="EnterFirstName"></div>
+                <div class="col-sm-8 column" style="color:red" ng-show="EnterFirstName">
+                    Please enter a first name
+                </div>
+                <div class="col-sm-4 column">
+                    First Name:
+                </div>
+                <div class="col-sm-8 column">
+                    <input ng-disabled="addressResponse || emailResponse" ng-keypress="keyPressValidator(event)" class="form-control" type="text" ng-model="address.PersonInfo._FirstName" />
+                </div>
+                <div class="col-sm-4 column">
+                    MI:
+                </div>
+                <div class="col-sm-8 column">
+                    <input ng-disabled="addressResponse || emailResponse" ng-keypress="keyPressValidator(event)" class="form-control" type="text" ng-model="address.PersonInfo._MiddleName" />
+                </div>
+                <div class="col-sm-4 column" style="color:red" ng-show="EnterLastName"></div>
+                <div class="col-sm-8 column" style="color:red" ng-show="EnterLastName">
+                    Please enter a last name
+                </div>
+                <div class="col-sm-4 column">
+                    Last Name:
+                </div>
+                <div class="col-sm-8 column">
+                    <input ng-disabled="addressResponse || emailResponse" ng-keypress="keyPressValidator(event)" class="form-control" type="text" ng-model="address.PersonInfo._LastName" />
+                </div>
+                <div class="col-sm-4 column" style="color:red" ng-show="EnterEmail"></div>
+                <div class="col-sm-8 column" style="color:red" ng-show="EnterEmail">
+                    Please enter a valid email address
+                </div>
+                <div class="col-sm-4 column">
+                    E-mail:
+                </div>
+                <div class="col-sm-8 column">
+                    <input ng-disabled="addressResponse || emailResponse" ng-keypress="keyPressValidator(event)" class="form-control" type="text" ng-model="address.PersonInfo._EMailID" />
+                </div>
+                <div class="col-sm-4 column" style="color:red" ng-show="EnterPhone"></div>
+                <div class="col-sm-8 column" style="color:red" ng-show="EnterPhone">
+                    Please enter a valid phone number
+                </div>
+                <div class="col-sm-4 column">
+                    Primary Phone:
+                </div>
+                <div class="col-sm-8 column">
+                    <input ng-change="formatPhone('_DayPhone')" maxlength="13" ng-disabled="addressResponse || emailResponse" class="form-control" type="text" ng-model="address.PersonInfo._DayPhone" />
+                </div>
+                <div class="col-sm-4 column">
+                    Secondary Phone:
+                </div>
+                <div class="col-sm-8 column">
+                    <input ng-change="formatPhone('_EveningPhone')" maxlength="13" ng-disabled="addressResponse || emailResponse" class="form-control" type="text" ng-model="address.PersonInfo._EveningPhone" />
+                </div>
+                <div class="col-sm-2 column">
+                    </br>
+                    </br>
+                    Default Billing Address:
+                </div>
+                <div class="col-sm-2 column">
+                    </br>
+                    </br>
+                    <input ng-disabled="addressResponse || emailResponse || disableBillTo" class="form-control" type="checkbox" ng-checked="defaultBilling" ng-model="defaultBilling" />
+                </div>
+                <div class="col-sm-8 column"></div>
+                <div class="col-sm-2 column">
+                    </br>
+                    </br>
+                    Default Shipping Address:
+                </div>
+                <div class="col-sm-2 column">
+                    </br>
+                    </br>
+                    <input ng-disabled="addressResponse || emailResponse || international || disableShipTo" class="form-control" ng-change="countryInfoMessage()" type="checkbox" ng-checked="defaultShipping" ng-model="defaultShipping" />
+                </div>
+                <div class="col-sm-2 column">
+                    </br>
+                    </br>
+                    Address Validation Override:
+                </div>
+                <div class="col-sm-2 column">
+                    </br>
+                    </br>
+                    <input class="form-control" type="checkbox" ng-model="avsOverride" />
+                </div>
+                <div class="col-sm-8 column"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row clearfix">
+            <div class="col-sm-3 ">
+            </br>
+                <button ng-disabled="addressResponse || emailResponse" class="btn btn-default btn-block" ng-click="reset()" type="button">Reset</button>
+            </div>
+            <div class="col-sm-3 ">
+                </br>
+               <!--<button ng-disabled="addressResponse || emailResponse" class="btn btn-default btn-block" ng-click="updateCountry()" type="button">Update Country</button>-->
+            </div>
+            <div class="col-sm-3 ">
+                </br>
+                <button ng-disabled="addressResponse || emailResponse" ng-click="Save()" class="btn btn-success btn-block" type="submit">Save</button>
+            </div>
+            <div class="col-sm-3 ">
+                </br>
+                <button ng-disabled="addressResponse || emailResponse" ng-click="cancel()" class="btn btn-warning btn-block" type="button">Cancel</button>
+            </div>
+        </div>
+    </div>
+    </form>

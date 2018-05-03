@@ -1,0 +1,1653 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope" xmlns:tns="http://ws.catalog.inovis.com" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" targetNamespace="http://ws.catalog.inovis.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ws.catalog.inovis.com">
+      <xsd:complexType name="UserIdentifier">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="accountId" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" name="networkId" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="password" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="username" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="QueryOptions">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="nullsFirst" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="pageNumber" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" name="pageSize" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" name="returnMedia" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="returnOnPromotionItemExists" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="returnTotalCount" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="sortFieldList" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ItemOptions">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="attributeFilterName" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="exportOptions" nillable="true" type="tns:ExportOptions" />
+          <xsd:element minOccurs="0" name="myCustomFieldsOnly" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="returnComponents" nillable="true" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="returnContainers" nillable="true" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="returnCustomFields" nillable="true" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="returnMockGtinAsNull" nillable="true" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="returnNullValues" nillable="true" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ExportOptions">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="attributeFilterName" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dataTypes" nillable="true" type="tns:ArrayOfExportDataType" />
+          <xsd:element minOccurs="0" name="frequency" nillable="true" type="tns:ExportFrequency" />
+          <xsd:element minOccurs="0" name="level" nillable="true" type="tns:ExportLevel" />
+          <xsd:element minOccurs="0" name="startDate" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="updateAsOfDate" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfExportDataType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ExportDataType" nillable="true" type="tns:ExportDataType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="ExportDataType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ACCOUNT" />
+          <xsd:enumeration value="PRODUCT" />
+          <xsd:enumeration value="PRODUCT_DELETE" />
+          <xsd:enumeration value="ITEM" />
+          <xsd:enumeration value="ITEM_DELETE" />
+          <xsd:enumeration value="PRODUCT_MEDIA" />
+          <xsd:enumeration value="ITEM_MEDIA" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="ExportLevel">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ITEM" />
+          <xsd:enumeration value="PRODUCT" />
+          <xsd:enumeration value="SELCODE" />
+          <xsd:enumeration value="ACCOUNT" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="ExportFrequency">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ONETIME" />
+          <xsd:enumeration value="DAILY" />
+          <xsd:enumeration value="WEEKLY_SUNDAY" />
+          <xsd:enumeration value="WEEKLY_MONDAY" />
+          <xsd:enumeration value="WEEKLY_TUESDAY" />
+          <xsd:enumeration value="WEEKLY_WEDNESDAY" />
+          <xsd:enumeration value="WEEKLY_THURSDAY" />
+          <xsd:enumeration value="WEEKLY_FRIDAY" />
+          <xsd:enumeration value="WEEKLY_SATURDAY" />
+          <xsd:enumeration value="MONTHLY" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="findItems">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="UserIdentifier" nillable="true" type="tns:UserIdentifier" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="accountNumber" nillable="true" type="xsd:long" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="queryString" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="queryOptions" nillable="true" type="tns:QueryOptions" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="itemOptions" nillable="true" type="tns:ItemOptions" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ItemPaginatedList">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="moreRecordsExist" nillable="true" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="results" nillable="true" type="tns:ArrayOfItem" />
+          <xsd:element minOccurs="0" name="totalCount" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfItem">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Item" nillable="true" type="tns:Item" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Item">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="access" type="xsd:string" />
+          <xsd:element minOccurs="0" name="accountName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="commonLogisticsGroup" type="tns:CommonLogisticsGroup" />
+          <xsd:element minOccurs="0" name="commonRetailGroup" type="tns:CommonRetailGroup" />
+          <xsd:element minOccurs="0" name="components" type="tns:ArrayOfComponentIdentifier" />
+          <xsd:element minOccurs="0" name="containers" type="tns:ArrayOfItemIdentifier" />
+          <xsd:element minOccurs="0" name="customFieldValues" type="tns:ArrayOfCustomFieldValue" />
+          <xsd:element minOccurs="0" name="extendedLogisticsGroup" type="tns:ExtendedLogisticsGroup" />
+          <xsd:element minOccurs="0" name="extendedRetailGroup" type="tns:ExtendedRetailGroup" />
+          <xsd:element minOccurs="0" name="gdsnGroup" type="tns:GdsnGroup" />
+          <xsd:element minOccurs="0" name="gdsnOptionalGroup" type="tns:GdsnOptionalGroup" />
+          <xsd:element minOccurs="0" name="gtinString" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="hardlinesGroup" type="tns:HardlinesGroup" />
+          <xsd:element minOccurs="0" name="imageCount" type="xsd:long" />
+          <xsd:element minOccurs="0" name="itemCreateDate" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="itemIdentifier" type="tns:ItemIdentifier" />
+          <xsd:element minOccurs="0" name="itemUpdateDate" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="nutritionGroup" type="tns:NutritionGroup" />
+          <xsd:element minOccurs="0" name="nutritionalSupplementsGroup" type="tns:NutritionalSupplementsGroup" />
+          <xsd:element minOccurs="0" name="petFoodGroup" type="tns:PetFoodGroup" />
+          <xsd:element minOccurs="0" name="pharmaceuticalGroup" type="tns:PharmaceuticalGroup" />
+          <xsd:element minOccurs="0" name="productDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="productExtendedDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="productId" type="xsd:long" />
+          <xsd:element minOccurs="0" name="productName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="selcodeDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="selcodeName" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ExtendedRetailGroup">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="alcoholWarning" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ampRating" type="xsd:double" />
+          <xsd:element minOccurs="0" name="bootLegCircumference" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="brandType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="btuRating" type="xsd:long" />
+          <xsd:element minOccurs="0" name="businessUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="closure" type="xsd:string" />
+          <xsd:element minOccurs="0" name="collarType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="colorization" type="xsd:string" />
+          <xsd:element minOccurs="0" name="consumerDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="departmentCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="departmentDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="depositValue" type="xsd:double" />
+          <xsd:element minOccurs="0" name="distributionChannel" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dressSkirtLength" type="xsd:string" />
+          <xsd:element minOccurs="0" name="earringDrop" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="expirationDate" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="expirationDate_Marked" type="xsd:string" />
+          <xsd:element minOccurs="0" name="extendedProductMarketingMessage" type="xsd:string" />
+          <xsd:element minOccurs="0" name="fauxFur" type="xsd:string" />
+          <xsd:element minOccurs="0" name="featureBenefitList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="fmcg_ItemNumber" type="tns:LongMeasurementType" />
+          <xsd:element minOccurs="0" name="fplaComplianceFlag" type="xsd:string" />
+          <xsd:element minOccurs="0" name="furAssociationList" type="tns:ArrayOfFurAssociation" />
+          <xsd:element minOccurs="0" name="genderByAge" type="xsd:string" />
+          <xsd:element minOccurs="0" name="goldKarat" type="xsd:string" />
+          <xsd:element minOccurs="0" name="handbagShoulderDrop" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="headwearBillType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="headwearCrown" type="xsd:string" />
+          <xsd:element minOccurs="0" name="headwearFit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="heelHeight" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="hpRating" type="xsd:double" />
+          <xsd:element minOccurs="0" name="ifdaCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="irradiated" type="xsd:string" />
+          <xsd:element minOccurs="0" name="irradiated_Ingredient" type="xsd:string" />
+          <xsd:element minOccurs="0" name="irradiated_RawMaterial" type="xsd:string" />
+          <xsd:element minOccurs="0" name="isbnNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="issnNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="liningMaterial" type="xsd:string" />
+          <xsd:element minOccurs="0" name="lpNaturalGas" type="xsd:string" />
+          <xsd:element minOccurs="0" name="marked_RetailPrice" type="xsd:string" />
+          <xsd:element minOccurs="0" name="marked_RetailPrice_Amount" type="tns:CurrencyType" />
+          <xsd:element minOccurs="0" name="marketingMessageList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="materialGroup" type="xsd:string" />
+          <xsd:element minOccurs="0" name="merchandiseClassification" type="xsd:string" />
+          <xsd:element minOccurs="0" name="orderQtyMultiple" type="xsd:int" />
+          <xsd:element minOccurs="0" name="pantInseamLength" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pantoneColorCode_Accent1" type="xsd:int" />
+          <xsd:element minOccurs="0" name="pantoneColorCode_Accent2" type="xsd:int" />
+          <xsd:element minOccurs="0" name="pantoneColorCode_Accent3" type="xsd:int" />
+          <xsd:element minOccurs="0" name="pantoneColorCode_Accent4" type="xsd:int" />
+          <xsd:element minOccurs="0" name="pantoneColorCode_Primary" type="xsd:int" />
+          <xsd:element minOccurs="0" name="plant" type="xsd:string" />
+          <xsd:element minOccurs="0" name="platformHeight" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="productShape" type="xsd:string" />
+          <xsd:element minOccurs="0" name="productStyle" type="xsd:string" />
+          <xsd:element minOccurs="0" name="productType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="refrigerateAfterOpening" type="xsd:string" />
+          <xsd:element minOccurs="0" name="salesOrganization" type="xsd:string" />
+          <xsd:element minOccurs="0" name="season" type="xsd:string" />
+          <xsd:element minOccurs="0" name="shaftHeight" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="shakeWellBeforeUse" type="xsd:string" />
+          <xsd:element minOccurs="0" name="shortProductMarketingMessage" type="xsd:string" />
+          <xsd:element minOccurs="0" name="sku" type="xsd:string" />
+          <xsd:element minOccurs="0" name="skuDesc" type="xsd:string" />
+          <xsd:element minOccurs="0" name="sleeveLength" type="xsd:string" />
+          <xsd:element minOccurs="0" name="sleeveMeasurement" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="soleType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="sport" type="xsd:string" />
+          <xsd:element minOccurs="0" name="stone" type="xsd:string" />
+          <xsd:element minOccurs="0" name="team" type="xsd:string" />
+          <xsd:element minOccurs="0" name="tireSegment" type="xsd:string" />
+          <xsd:element minOccurs="0" name="tireSpeedRating" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitofMeasureAssociation" type="tns:UnitofMeasureAssociation" />
+          <xsd:element minOccurs="0" name="unspscClassification" type="xsd:long" />
+          <xsd:element minOccurs="0" name="vendorColorCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="vendorColorDesc" type="xsd:string" />
+          <xsd:element minOccurs="0" name="vendorPurchaseMethod" type="xsd:string" />
+          <xsd:element minOccurs="0" name="vendorSizeCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="vendorSizeDesc" type="xsd:string" />
+          <xsd:element minOccurs="0" name="warning" type="xsd:string" />
+          <xsd:element minOccurs="0" name="warning_Description" type="xsd:string" />
+          <xsd:element minOccurs="0" name="warrantyPeriod" type="tns:LongMeasurementType" />
+          <xsd:element minOccurs="0" name="watchBandWidth" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="watchCaseDimensionAssociation" type="tns:WatchCaseDimensionAssociation" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfFurAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="FurAssociation" nillable="true" type="tns:FurAssociation" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FurAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="furAnimalName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="furCondition" type="xsd:string" />
+          <xsd:element minOccurs="0" name="furConstruction" type="xsd:string" />
+          <xsd:element minOccurs="0" name="furCountryOfOrigin" type="xsd:string" />
+          <xsd:element minOccurs="0" name="furCuttingMethod" type="xsd:string" />
+          <xsd:element minOccurs="0" name="furMfrName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="furMfrRegIdNbr" type="xsd:string" />
+          <xsd:element minOccurs="0" name="furTextileWoolCountryOfOriginAndName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="furTextileWoolRn" type="xsd:string" />
+          <xsd:element minOccurs="0" name="furTreatment" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfString">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="UnitofMeasureAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="alternateUnitOfMeasure" type="xsd:string" />
+          <xsd:element minOccurs="0" name="invoicedUnitOfMeasure" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CurrencyType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="currencyCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="value" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="LongMeasurementType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="uom" type="xsd:string" />
+          <xsd:element minOccurs="0" name="value" type="xsd:long" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DoubleMeasurementType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="uom" type="xsd:string" />
+          <xsd:element minOccurs="0" name="value" type="xsd:double" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="WatchCaseDimensionAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="watchCaseDiameter" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="watchCaseHeight" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="watchCaseWidth" type="tns:DoubleMeasurementType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfComponentIdentifier">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ComponentIdentifier" nillable="true" type="tns:ComponentIdentifier" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ComponentIdentifier">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="account" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" name="colorDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="gtin" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" name="gtinType" nillable="true" type="tns:GtinType" />
+          <xsd:element minOccurs="0" name="nrfColorCode" type="xsd:int" />
+          <xsd:element minOccurs="0" name="nrfSizeCode" type="xsd:int" />
+          <xsd:element minOccurs="0" name="quantity" nillable="true" type="tns:IntegerMeasurementType" />
+          <xsd:element minOccurs="0" name="sizeDescription" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IntegerMeasurementType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="uom" type="xsd:string" />
+          <xsd:element minOccurs="0" name="value" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="GtinType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="UP" />
+          <xsd:enumeration value="EN" />
+          <xsd:enumeration value="EO" />
+          <xsd:enumeration value="UK" />
+          <xsd:enumeration value="UA" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="GdsnOptionalGroup">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="careInformation_Url" type="xsd:string" />
+          <xsd:element minOccurs="0" name="careInstructions" type="xsd:string" />
+          <xsd:element minOccurs="0" name="commodityHarmonizedTariffSched" type="xsd:string" />
+          <xsd:element minOccurs="0" name="commodityHarmonizedTariffSchedInternationalList" type="tns:ArrayOfCommodityHarmonizedTariffSchedInternational" />
+          <xsd:element minOccurs="0" name="description_Invoice" type="xsd:string" />
+          <xsd:element minOccurs="0" name="doesNotContain" type="xsd:string" />
+          <xsd:element minOccurs="0" name="finishDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="innerPackPackagingDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="innerPackPackagingMaterial" type="xsd:string" />
+          <xsd:element minOccurs="0" name="innerPackPackaging_Material_Quantity" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="innerPackQty" type="xsd:int" />
+          <xsd:element minOccurs="0" name="keyActiveIngredient_Name" type="xsd:string" />
+          <xsd:element minOccurs="0" name="manufacturerUrl" type="xsd:string" />
+          <xsd:element minOccurs="0" name="modelNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="msds" type="xsd:string" />
+          <xsd:element minOccurs="0" name="msdsNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="msds_Url" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nestingAssociation" type="tns:NestingAssociation" />
+          <xsd:element minOccurs="0" name="nutrition_Ingredients" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Ingredients_List" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Organic" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Organic_ClaimAgencyList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="nutrition_Organic_Code" type="xsd:string" />
+          <xsd:element minOccurs="0" name="orderSizingFactor" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="package_TamperResistant" type="xsd:string" />
+          <xsd:element minOccurs="0" name="packaging_Terms" type="xsd:string" />
+          <xsd:element minOccurs="0" name="palletBlocksandTiersAssociation" type="tns:PalletBlocksandTiersAssociation" />
+          <xsd:element minOccurs="0" name="palletDimensionAssociation" type="tns:PalletDimensionAssociation" />
+          <xsd:element minOccurs="0" name="palletWeightAssociation" type="tns:PalletWeightAssociation" />
+          <xsd:element minOccurs="0" name="pallet_Terms" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pallet_TotalQuantity" type="xsd:int" />
+          <xsd:element minOccurs="0" name="pallet_Type" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pharmaActiveIngredientAssociationList" type="tns:ArrayOfPharmaActiveIngredientAssociation" />
+          <xsd:element minOccurs="0" name="private" type="xsd:string" />
+          <xsd:element minOccurs="0" name="private_TradingPartnerList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="productFormList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="publicationDate" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="recall" type="xsd:string" />
+          <xsd:element minOccurs="0" name="recyclable_Item" type="xsd:string" />
+          <xsd:element minOccurs="0" name="recyclable_Packaging" type="xsd:string" />
+          <xsd:element minOccurs="0" name="recycleDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="recycleType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="replacedItemNumber" type="tns:StringMeasurementType" />
+          <xsd:element minOccurs="0" name="returnPolicy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="scentsFlavors" type="xsd:string" />
+          <xsd:element minOccurs="0" name="securityTag" type="xsd:string" />
+          <xsd:element minOccurs="0" name="securityTag_Location" type="xsd:string" />
+          <xsd:element minOccurs="0" name="setPieces" type="xsd:long" />
+          <xsd:element minOccurs="0" name="shelfLife" type="tns:IntegerMeasurementType" />
+          <xsd:element minOccurs="0" name="stackingWeight_Maximum" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="taxAssociationList" type="tns:ArrayOfTaxAssociation" />
+          <xsd:element minOccurs="0" name="temperature_Storage_Maximum" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="temperature_Storage_Minimum" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="temperature_Transport_Distribution_Maximum" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="temperature_Transport_Distribution_Minimum" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="temperature_Transport_Market_Maximum" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="temperature_Transport_Market_Minimum" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="transportHandlingCodeList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="vendorCollection" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PalletWeightAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="palletWeight" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="pallet_Weight_Net" type="tns:DoubleMeasurementType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NestingAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="nestingIncrement" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nestingQuantity" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PalletBlocksandTiersAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="palletBlocks" type="xsd:int" />
+          <xsd:element minOccurs="0" name="palletTiers" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PalletDimensionAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="palletHeight" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="palletLength" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="palletWidth" type="tns:DoubleMeasurementType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfPharmaActiveIngredientAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="PharmaActiveIngredientAssociation" nillable="true" type="tns:PharmaActiveIngredientAssociation" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PharmaActiveIngredientAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="pharmaceutical_ActiveIngredient_Name" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pharmaceutical_ActiveIngredient_Purpose" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pharmaceutical_ActiveIngredient_Quantity" type="tns:DoubleMeasurementType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfCommodityHarmonizedTariffSchedInternational">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="CommodityHarmonizedTariffSchedInternational" nillable="true" type="tns:CommodityHarmonizedTariffSchedInternational" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CommodityHarmonizedTariffSchedInternational">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="countryCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="value" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="StringMeasurementType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="uom" type="xsd:string" />
+          <xsd:element minOccurs="0" name="value" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfTaxAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="TaxAssociation" nillable="true" type="tns:TaxAssociation" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="TaxAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="tax_Agency" type="xsd:string" />
+          <xsd:element minOccurs="0" name="tax_Amount" type="tns:CurrencyType" />
+          <xsd:element minOccurs="0" name="tax_Rate" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="tax_Type" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="HardlinesGroup">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="rimHlFilter" type="xsd:string" />
+          <xsd:element minOccurs="0" name="rimSlFilter" type="xsd:string" />
+          <xsd:element minOccurs="0" name="samsFilter" type="xsd:string" />
+          <xsd:element minOccurs="0" name="tiresFilter" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PharmaceuticalGroup">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="pharmaceutical_DirectionsList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="pharmaceutical_DosageUnit" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pharmaceutical_InactiveIngredients" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pharmaceutical_OtherInformationList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="pharmaceutical_QuestionsContact" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pharmaceutical_UsesList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="pharmaceutical_Warning_Alcohol" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pharmaceutical_Warning_AllergyAlertList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="pharmaceutical_Warning_Children" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pharmaceutical_Warning_Choking" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pharmaceutical_Warning_DoNotUseList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="pharmaceutical_Warning_DoctorList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="pharmaceutical_Warning_DoctorOrPharmacistList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="pharmaceutical_Warning_Dosage" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pharmaceutical_Warning_Flammability" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pharmaceutical_Warning_GeneralList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="pharmaceutical_Warning_Ingestion" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pharmaceutical_Warning_Overdose" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pharmaceutical_Warning_PregnancyList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="pharmaceutical_Warning_ReyesSyndrome" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pharmaceutical_Warning_SoreThroat" type="xsd:string" />
+          <xsd:element minOccurs="0" name="pharmaceutical_Warning_StopUseList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="pharmaceutical_Warning_UseCautionList" type="tns:ArrayOfString" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfItemIdentifier">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ItemIdentifier" nillable="true" type="tns:ItemIdentifier" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ItemIdentifier">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="account" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" name="gtin" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" name="gtinType" nillable="true" type="tns:GtinType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NutritionalSupplementsGroup">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Alfalfa" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_AmericanYellowDock" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Artichoke" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Ashwangandha" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Astragalus" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Bilberry" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_BlackCohosh" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_BlackWalnut" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Boswellia" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_BurdockRoot" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_ButchersBroom" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_CascaraSagrada" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_CatsClaw" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Cayenne" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Chamomile" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Chickweed" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Chlorophyll" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Citrin" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Cranberry" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Damiana" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Dandelion" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_DevilsClaw" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_DongQuai" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_EchinaceaRoot" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Elderberry" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Eyebright" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Fenugreek" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Feverfew" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_FoTi" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_GarciniaCambogia" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Garlic" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Ginger" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_GingkoBiloba" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_GingkoVin" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Goldenseal" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_GotuKola" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_GreenTeaExtract" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Guarana" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_HawaiianNoni" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Hawthorn" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_HorseChestnut" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Horsetail" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_HuperzineA" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Juniper" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_KavaJohn" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_KavaKava" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Kelp" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Licorice" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_MaitakeMushroom" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_MilkThistle" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_MultiGinseng" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Nettle" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_PanaxGinseng" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_PassionFlower" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_PauDarco" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_ProprietaryBlend" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_ProprietaryBlend_ListList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Psyllium" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Pygeum" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_RedClover" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_RedRaspberry" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_ReishiMushroom" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_RhubarbRoot" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_SarsaparillaRoot" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_SawPalmetto" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Scullcap" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Senna" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_ShiitakeMushroom" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_SiberianGinseng" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_SlipperyElmBark" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Spirulina" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_StJohnsWort" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Suma" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Thyme" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_UvaUrsi" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_ValerianRoot" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Vitex" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_WhiteYellow" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_WildYam" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Supplement_Yucca" type="tns:DoubleMeasurementType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NutritionGroup">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="alcoholPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="degreeOfOriginalWort" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dryMatter_FatPercentage" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="houseChefEndorsed" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_AspartameFree" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Baby_Stage1" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Baby_Stage2" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Baby_Stage3" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Biotin" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_BiotinPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Boron" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_CaffeineFree" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Calcium" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_CalciumPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Calories" type="xsd:double" />
+          <xsd:element minOccurs="0" name="nutrition_CaloriesFromFat" type="xsd:double" />
+          <xsd:element minOccurs="0" name="nutrition_Carbs" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_CarbsPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Chloride" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_ChloridePercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Cholesterol" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_CholesterolPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Chromium" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_ChromiumPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Copper" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_CopperPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_DairyFree" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_DietaryFiber" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_DietaryFiberPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_EggFree" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Fat" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_FatPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_FiberInsoluble" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_FiberSoluble" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Folate" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_FolatePercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Gelatin" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_GlutenFree" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_HeartHealthy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_HighFiber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Holiday" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Iodine" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_IodinePercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Iron" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_IronPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Kosher" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_KosherDescriptionList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="nutrition_LowCalorie" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_LowCholesterol" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_LowFat" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_LowIron" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_LowSalt" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_LowSugar" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Lutein" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Macrobiotic" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Magnesium" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_MagnesiumPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Manganese" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_ManganesePercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_MilkFree" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Molybdenum" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_MolybdenumPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Monounsat" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Niacin" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_NiacinPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Nickel" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_NoCholesterol" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_NoFat" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_NoFluorocarbons" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_NoMsg" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_NoPreservatives" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_NoSalt" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_NoSugar" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_OtherCarbs" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_PantothenicAcid" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_PantothenicAcidPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_PeanutFree" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_PhenylalaninFree" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Phosphorous" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_PhosphorousPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Polyunsat" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Potassium" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_PotassiumPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Protein" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_ProteinPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_RealMilk" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Riboflavin" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_RiboflavinPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Ripe" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_SaccharinFree" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_SaturatedFat" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_SaturatedFatPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Seasonal" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Selenium" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_SeleniumPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_ServingSize" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_ServingsPerContainer" type="xsd:double" />
+          <xsd:element minOccurs="0" name="nutrition_Silicon" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Sodium" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_SodiumPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_SoyFree" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_SpecialOrder" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_SugarAlcohol" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Sugars" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Thiamin" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_ThiaminPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Tin" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_ValuePack" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Vanadium" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_VarietyDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Vegan" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Vegetarian" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Vita" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_VitaPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Vitb12" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Vitb12Percent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Vitb6" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Vitb6Percent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Vitc" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_VitcPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Vitd" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_VitdPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Vite" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_VitePercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_Vitk" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_VitkPercent" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_WeightVolumePerServing" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_WheatFree" type="xsd:string" />
+          <xsd:element minOccurs="0" name="nutrition_Zinc" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="nutrition_ZincPercent" type="tns:DoubleMeasurementType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ExtendedLogisticsGroup">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="aerosol" type="xsd:string" />
+          <xsd:element minOccurs="0" name="assemblyCountry" type="xsd:string" />
+          <xsd:element minOccurs="0" name="consumerItemDimensionAssociation" type="tns:ConsumerItemDimensionAssociation" />
+          <xsd:element minOccurs="0" name="consumerItemVolume" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="consumerItemVolumeDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="consumerItem_Unpackaged" type="xsd:string" />
+          <xsd:element minOccurs="0" name="consumerItem_Weight_Drained" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="consumerLengthDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="consumerPackageLabelType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="contentPerConsumerPackage" type="xsd:int" />
+          <xsd:element minOccurs="0" name="innerPackDimensionAssociation" type="tns:InnerPackDimensionAssociation" />
+          <xsd:element minOccurs="0" name="innerPackPackagingType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="innerPackPackaging_Type_Description" type="xsd:string" />
+          <xsd:element minOccurs="0" name="innerPackVolume" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="innerPackWeightAssociation" type="tns:InnerPackWeightAssociation" />
+          <xsd:element minOccurs="0" name="itemClearanceHeight" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="itemClearanceLength" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="itemClearanceWidth" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="logisticsLoadOrientationAssociation" type="tns:LogisticsLoadOrientationAssociation" />
+          <xsd:element minOccurs="0" name="logistics_MaxPressure_Orientation_Height" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="logistics_MaxPressure_Orientation_Length" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="logistics_MaxPressure_Orientation_Width" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="masterPackContainerEquipmentType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="masterPackDimensionAssociation" type="tns:MasterPackDimensionAssociation" />
+          <xsd:element minOccurs="0" name="masterPackPackagingConfiguration" type="xsd:string" />
+          <xsd:element minOccurs="0" name="masterPackPackagingDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="masterPackPackagingMaterial" type="xsd:string" />
+          <xsd:element minOccurs="0" name="masterPackPackagingType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="masterPackPackaging_Material_Quantity" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="masterPackPackaging_Type_Description" type="xsd:string" />
+          <xsd:element minOccurs="0" name="masterPackQty" type="xsd:int" />
+          <xsd:element minOccurs="0" name="masterPackVolume" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="masterPackWeightAssociation" type="tns:MasterPackWeightAssociation" />
+          <xsd:element minOccurs="0" name="northAmerican_Hmis" type="xsd:string" />
+          <xsd:element minOccurs="0" name="packSizeType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="package_SpecialOpening_Type" type="xsd:string" />
+          <xsd:element minOccurs="0" name="palletAlternateTiers" type="xsd:int" />
+          <xsd:element minOccurs="0" name="palletVolume" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="transportMethodType" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="MasterPackWeightAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="masterPackWeight" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="masterPack_Weight_Net" type="tns:DoubleMeasurementType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="InnerPackDimensionAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="innerPackHeight" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="innerPackLength" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="innerPackWidth" type="tns:DoubleMeasurementType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="MasterPackDimensionAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="masterPackHeight" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="masterPackLength" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="masterPackWidth" type="tns:DoubleMeasurementType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsumerItemDimensionAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="consumerItemDepth" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="consumerItemHeight" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="consumerItemLength" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="consumerItemWidth" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="consumerItem_Diameter" type="tns:DoubleMeasurementType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="InnerPackWeightAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="innerPackWeight" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="innerPack_Weight_Net" type="tns:DoubleMeasurementType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="LogisticsLoadOrientationAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="logistics_Load_Orientation_Height" type="xsd:string" />
+          <xsd:element minOccurs="0" name="logistics_Load_Orientation_Length" type="xsd:string" />
+          <xsd:element minOccurs="0" name="logistics_Load_Orientation_Width" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GdsnGroup">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="barcode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="barcode_SymbologyTypeList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="batchNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="brandOwnerAssociation" type="tns:BrandOwnerAssociation" />
+          <xsd:element minOccurs="0" name="classificationAssociationList" type="tns:ArrayOfClassificationAssociation" />
+          <xsd:element minOccurs="0" name="classificationAttributeAssociationList" type="tns:ArrayOfClassificationAttributeAssociation" />
+          <xsd:element minOccurs="0" name="consumerPackage_ContentDeclaration" type="xsd:string" />
+          <xsd:element minOccurs="0" name="consumerPackage_Peg" type="xsd:string" />
+          <xsd:element minOccurs="0" name="consumerPackagingMaterial" type="xsd:string" />
+          <xsd:element minOccurs="0" name="consumerPackagingMaterialDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="consumerPackagingType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="consumerPackaging_Material_Quantity" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="consumerPackaging_Type_Description" type="xsd:string" />
+          <xsd:element minOccurs="0" name="coupon_FamilyCode" type="xsd:int" />
+          <xsd:element minOccurs="0" name="effectiveDateOfChange" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="geneticallyModified" type="xsd:string" />
+          <xsd:element minOccurs="0" name="informationProviderAssociation" type="tns:InformationProviderAssociation" />
+          <xsd:element minOccurs="0" name="internationalDescriptionList" type="tns:ArrayOfInternationalDescription" />
+          <xsd:element minOccurs="0" name="internationalLongDescriptionList" type="tns:ArrayOfInternationalLongDescription" />
+          <xsd:element minOccurs="0" name="longDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="notForResale" type="xsd:string" />
+          <xsd:element minOccurs="0" name="packaging_Returnable" type="xsd:string" />
+          <xsd:element minOccurs="0" name="peggroupAssociation" type="tns:PeggroupAssociation" />
+          <xsd:element minOccurs="0" name="recyclable_GreenDot" type="xsd:string" />
+          <xsd:element minOccurs="0" name="registerDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="returnUnsoldItem" type="xsd:string" />
+          <xsd:element minOccurs="0" name="targetMarketAssociationList" type="tns:ArrayOfTargetMarketAssociation" />
+          <xsd:element minOccurs="0" name="tradeName_SubBrand" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitIndicator_Base" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitIndicator_Consumer" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitIndicator_Despatch" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitIndicator_Invoice" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitIndicator_Orderable" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitIndicator_Variable" type="xsd:string" />
+          <xsd:element minOccurs="0" name="usageDescription" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfClassificationAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ClassificationAssociation" nillable="true" type="tns:ClassificationAssociation" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ClassificationAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="classification_Agency" type="xsd:string" />
+          <xsd:element minOccurs="0" name="classification_LevelOne" type="xsd:string" />
+          <xsd:element minOccurs="0" name="classification_LevelOne_Description" type="xsd:string" />
+          <xsd:element minOccurs="0" name="classification_LevelTwo" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfInternationalLongDescription">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="InternationalLongDescription" nillable="true" type="tns:InternationalLongDescription" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="InternationalLongDescription">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="languageCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="value" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfTargetMarketAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="TargetMarketAssociation" nillable="true" type="tns:TargetMarketAssociation" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="TargetMarketAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="targetMarket_Country" type="xsd:string" />
+          <xsd:element minOccurs="0" name="targetMarket_Country_Description" type="xsd:string" />
+          <xsd:element minOccurs="0" name="targetMarket_Subdivision" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BrandOwnerAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="brandOwner_Gln" type="xsd:string" />
+          <xsd:element minOccurs="0" name="brandOwner_Name" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="InformationProviderAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="informationProvider_Gln" type="xsd:string" />
+          <xsd:element minOccurs="0" name="informationProvider_Name" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfClassificationAttributeAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ClassificationAttributeAssociation" nillable="true" type="tns:ClassificationAttributeAssociation" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ClassificationAttributeAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="classification_Attribute_Type" type="xsd:int" />
+          <xsd:element minOccurs="0" name="classification_Attribute_Value" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PeggroupAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="consumerPackage_Peg_Horizontal" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="consumerPackage_Peg_Vertical" type="tns:DoubleMeasurementType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfInternationalDescription">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="InternationalDescription" nillable="true" type="tns:InternationalDescription" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="InternationalDescription">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="languageCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="value" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CommonRetailGroup">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="availableDateAssociation" type="tns:AvailableDateAssociation" />
+          <xsd:element minOccurs="0" name="bookingDate" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="cancelDate" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="colorDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="colorLongDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="commodityGroup" type="xsd:string" />
+          <xsd:element minOccurs="0" name="cpsiaCertificateUrl" type="xsd:string" />
+          <xsd:element minOccurs="0" name="cpsiaCertified" type="xsd:string" />
+          <xsd:element minOccurs="0" name="description" type="xsd:string" />
+          <xsd:element minOccurs="0" name="discontinueDate" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="fabricDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="hanger" type="xsd:string" />
+          <xsd:element minOccurs="0" name="hanger_TypeList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="internationalTradeNameList" type="tns:ArrayOfInternationalTradeName" />
+          <xsd:element minOccurs="0" name="manufacturerofGoodsAssociation" type="tns:ManufacturerofGoodsAssociation" />
+          <xsd:element minOccurs="0" name="minimumAdvertisedPriceAssociationList" type="tns:ArrayOfMinimumAdvertisedPriceAssociation" />
+          <xsd:element minOccurs="0" name="newProductIntroductoryPriceAssociationList" type="tns:ArrayOfNewProductIntroductoryPriceAssociation" />
+          <xsd:element minOccurs="0" name="nrfColorCode" type="xsd:int" />
+          <xsd:element minOccurs="0" name="nrfSizeCode" type="xsd:int" />
+          <xsd:element minOccurs="0" name="oddSizeIndicator" type="xsd:string" />
+          <xsd:element minOccurs="0" name="onPromotion" type="xsd:string" />
+          <xsd:element minOccurs="0" name="orderQtyMax" type="xsd:int" />
+          <xsd:element minOccurs="0" name="orderQtyMin" type="xsd:int" />
+          <xsd:element minOccurs="0" name="prepackCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="reorderableProduct" type="xsd:string" />
+          <xsd:element minOccurs="0" name="seasonalAvailability" type="xsd:string" />
+          <xsd:element minOccurs="0" name="sizeDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="sizeLongDescription" type="xsd:string" />
+          <xsd:element minOccurs="0" name="specialCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="styleNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="suggestedRetailPriceAssociationList" type="tns:ArrayOfSuggestedRetailPriceAssociation" />
+          <xsd:element minOccurs="0" name="tradeName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="unitCostAssociationList" type="tns:ArrayOfUnitCostAssociation" />
+          <xsd:element minOccurs="0" name="warranty" type="xsd:string" />
+          <xsd:element minOccurs="0" name="warrantyDesc" type="xsd:string" />
+          <xsd:element minOccurs="0" name="warranty_Url" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfUnitCostAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="UnitCostAssociation" nillable="true" type="tns:UnitCostAssociation" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="UnitCostAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="unitCost" type="tns:UnitCostType" />
+          <xsd:element minOccurs="0" name="unitCost_EffectiveDate" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="unitCost_ExpirationDate" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="unitCost_OnPromotion" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="UnitCostType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="currencyCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="privateAccount" type="xsd:long" />
+          <xsd:element minOccurs="0" name="value" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfMinimumAdvertisedPriceAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="MinimumAdvertisedPriceAssociation" nillable="true" type="tns:MinimumAdvertisedPriceAssociation" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="MinimumAdvertisedPriceAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="minimumAdvertisedPrice" type="tns:CurrencyType" />
+          <xsd:element minOccurs="0" name="minimumAdvertisedPrice_EffectiveDate" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="minimumAdvertisedPrice_ExpirationDate" type="xsd:dateTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AvailableDateAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="availableDate" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="availableDate_Consumer" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="availableDate_End" type="xsd:dateTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfNewProductIntroductoryPriceAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="NewProductIntroductoryPriceAssociation" nillable="true" type="tns:NewProductIntroductoryPriceAssociation" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NewProductIntroductoryPriceAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="newProductIntroductoryPrice" type="tns:NewProductIntroductoryPriceType" />
+          <xsd:element minOccurs="0" name="newProductIntroductoryPrice_EffectiveDate" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="newProductIntroductoryPrice_ExpirationDate" type="xsd:dateTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NewProductIntroductoryPriceType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="currencyCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="privateAccount" type="xsd:long" />
+          <xsd:element minOccurs="0" name="value" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfInternationalTradeName">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="InternationalTradeName" nillable="true" type="tns:InternationalTradeName" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="InternationalTradeName">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="languageCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="value" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfSuggestedRetailPriceAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="SuggestedRetailPriceAssociation" nillable="true" type="tns:SuggestedRetailPriceAssociation" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SuggestedRetailPriceAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="msrp" type="tns:CurrencyType" />
+          <xsd:element minOccurs="0" name="msrp_EffectiveDate" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="msrp_ExpirationDate" type="xsd:dateTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ManufacturerofGoodsAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="manufacturerOfGoods" type="xsd:string" />
+          <xsd:element minOccurs="0" name="manufacturerOfGoods_Gln" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CommonLogisticsGroup">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="advertisedOrigin" type="xsd:string" />
+          <xsd:element minOccurs="0" name="commodityHarmonizedSystemSchedB" type="xsd:string" />
+          <xsd:element minOccurs="0" name="commodityNmfcClassification" type="xsd:int" />
+          <xsd:element minOccurs="0" name="commodityQuotaCategory" type="xsd:int" />
+          <xsd:element minOccurs="0" name="consumerPackageDimensionAssociation" type="tns:ConsumerPackageDimensionAssociation" />
+          <xsd:element minOccurs="0" name="consumerPackageSize" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="consumerPackageVolume" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="consumerWeightAssociation" type="tns:ConsumerWeightAssociation" />
+          <xsd:element minOccurs="0" name="dangerousGoods" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dangerousGoodsAssociationList" type="tns:ArrayOfDangerousGoodsAssociation" />
+          <xsd:element minOccurs="0" name="hazardousMaterialAssociationList" type="tns:ArrayOfHazardousMaterialAssociation" />
+          <xsd:element minOccurs="0" name="leadTime" type="tns:IntegerMeasurementType" />
+          <xsd:element minOccurs="0" name="originCountryList" type="tns:ArrayOfString" />
+          <xsd:element minOccurs="0" name="shipFromAssociationList" type="tns:ArrayOfShipFromAssociation" />
+          <xsd:element minOccurs="0" name="temperature_FlashPointList" type="tns:ArrayOfDoubleMeasurementType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsumerPackageDimensionAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="consumerPackageHeight" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="consumerPackageLength" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="consumerPackageWidth" type="tns:DoubleMeasurementType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfShipFromAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ShipFromAssociation" nillable="true" type="tns:ShipFromAssociation" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ShipFromAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="shipFrom_City" type="xsd:string" />
+          <xsd:element minOccurs="0" name="shipFrom_Code" type="xsd:string" />
+          <xsd:element minOccurs="0" name="shipFrom_Country" type="xsd:string" />
+          <xsd:element minOccurs="0" name="shipFrom_Name" type="xsd:string" />
+          <xsd:element minOccurs="0" name="shipFrom_State" type="xsd:string" />
+          <xsd:element minOccurs="0" name="shipFrom_ZipPostalCode" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfDangerousGoodsAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="DangerousGoodsAssociation" nillable="true" type="tns:DangerousGoodsAssociation" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DangerousGoodsAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="dangerousGoods_AMarginNumber" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dangerousGoods_ChemicalName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dangerousGoods_Classification" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dangerousGoods_HazardId" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dangerousGoods_PackingGroup" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dangerousGoods_RegulationCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dangerousGoods_ShippingName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="dangerousGoods_UnitedNationsNumber" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsumerWeightAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="consumerItemWeight" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="consumerPackageWeight" type="tns:DoubleMeasurementType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfHazardousMaterialAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="HazardousMaterialAssociation" nillable="true" type="tns:HazardousMaterialAssociation" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="HazardousMaterialAssociation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="hazMatClassCode" type="xsd:string" />
+          <xsd:element minOccurs="0" name="hazMatMaterialDescription" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfDoubleMeasurementType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="DoubleMeasurementType" nillable="true" type="tns:DoubleMeasurementType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfCustomFieldValue">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="CustomFieldValue" nillable="true" type="tns:CustomFieldValue" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CustomFieldValue">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="accountId" type="xsd:long" />
+          <xsd:element minOccurs="0" name="fieldName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="value" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PetFoodGroup">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="petfood_AdultCats" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_AdultDogs" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_Ash" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="petfood_Canned" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_Coat" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_CompleteBalanced" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_CrudeFat" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="petfood_CrudeFiber" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="petfood_CrudeMoisture" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="petfood_CrudeProtein" type="tns:DoubleMeasurementType" />
+          <xsd:element minOccurs="0" name="petfood_Digestibility" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_Dry" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_Flavors" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_Hairball" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_Healthy" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_HighProtein" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_Kittens" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_LargeDogs" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_LowCalorie" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_LowFat" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_MediumDogs" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_Puppies" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_ReducedCalorie" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_SeniorCats" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_SeniorDogs" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_Skin" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_SmallDogs" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_Snacks" type="xsd:string" />
+          <xsd:element minOccurs="0" name="petfood_TartarControl" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="findItemsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="PaginatedList" nillable="true" type="tns:ItemPaginatedList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="WebServiceException">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="exceptionType" nillable="true" type="tns:WebServiceExceptionType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="WebServiceExceptionType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="DATA_ACCESS" />
+          <xsd:enumeration value="DATA_NOT_FOUND" />
+          <xsd:enumeration value="INTERNAL_ERROR" />
+          <xsd:enumeration value="INVALID_PARAMETER" />
+          <xsd:enumeration value="USER_AUTHENTICATION" />
+          <xsd:enumeration value="EXPORT_PROFILE" />
+          <xsd:enumeration value="COMPLIANCE_CHECK" />
+          <xsd:enumeration value="INVALID_USER_ACCOUNT_IDENTIFIERS" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="WebServiceException" type="tns:WebServiceException" />
+      <xsd:element name="findCrossCatalogueItems">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="UserIdentifier" nillable="true" type="tns:UserIdentifier" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="queryString" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="queryOptions" nillable="true" type="tns:QueryOptions" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="findCrossCatalogueItemsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="PaginatedList" nillable="true" type="tns:ItemPaginatedList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createOrUpdateItem">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="UserIdentifier" nillable="true" type="tns:UserIdentifier" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="item" nillable="true" type="tns:Item" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createOrUpdateItemResponse">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="getItem">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="UserIdentifier" nillable="true" type="tns:UserIdentifier" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="itemIdentifier" nillable="true" type="tns:ItemIdentifier" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="itemOptions" nillable="true" type="tns:ItemOptions" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getItemResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Item" nillable="true" type="tns:Item" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteItem">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="UserIdentifier" nillable="true" type="tns:UserIdentifier" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="itemIdentifier" nillable="true" type="tns:ItemIdentifier" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteItemResponse">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="createItem">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="UserIdentifier" nillable="true" type="tns:UserIdentifier" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="item" nillable="true" type="tns:Item" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createItemResponse">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="findDistinctAttributeValues">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="UserIdentifier" nillable="true" type="tns:UserIdentifier" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="accountNumber" nillable="true" type="xsd:long" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="queryString" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="attributeNames" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="queryOptions" nillable="true" type="tns:QueryOptions" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="DistinctAttributeValuePaginatedList">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="moreRecordsExist" nillable="true" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="results" nillable="true" type="tns:ArrayOfDistinctAttributeValueList" />
+          <xsd:element minOccurs="0" name="totalCount" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfDistinctAttributeValueList">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="DistinctAttributeValueList" nillable="true" type="tns:DistinctAttributeValueList" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DistinctAttributeValueList">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="values" type="tns:ArrayOfDistinctAttributeValue" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfDistinctAttributeValue">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="DistinctAttributeValue" nillable="true" type="tns:DistinctAttributeValue" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DistinctAttributeValue">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="name" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="value" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="findDistinctAttributeValuesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="DistinctAttributeValues" nillable="true" type="tns:DistinctAttributeValuePaginatedList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteItemUnderProduct">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="UserIdentifier" nillable="true" type="tns:UserIdentifier" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="itemIdentifier" nillable="true" type="tns:ItemIdentifier" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="productName" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteItemUnderProductResponse">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="getItemUnderProduct">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="UserIdentifier" nillable="true" type="tns:UserIdentifier" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="itemIdentifier" nillable="true" type="tns:ItemIdentifier" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="itemOptions" nillable="true" type="tns:ItemOptions" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="productName" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getItemUnderProductResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Item" nillable="true" type="tns:Item" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="unlinkContainerFromComponent">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="UserIdentifier" nillable="true" type="tns:UserIdentifier" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="containerIdentifier" nillable="true" type="tns:ItemIdentifier" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="componentIdentifier" nillable="true" type="tns:ItemIdentifier" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="unlinkContainerFromComponentResponse">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="updateItemAttributes">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="UserIdentifier" nillable="true" type="tns:UserIdentifier" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="item" nillable="true" type="tns:Item" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateItemAttributesResponse">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="linkContainerToComponent">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="UserIdentifier" nillable="true" type="tns:UserIdentifier" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="containerIdentifier" nillable="true" type="tns:ItemIdentifier" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="componentIdentifier" nillable="true" type="tns:ItemIdentifier" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="quantity" nillable="true" type="tns:IntegerMeasurementType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="linkContainerToComponentResponse">
+        <xsd:complexType />
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="createItemResponse">
+    <wsdl:part name="parameters" element="tns:createItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="createOrUpdateItemResponse">
+    <wsdl:part name="parameters" element="tns:createOrUpdateItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="getItemRequest">
+    <wsdl:part name="parameters" element="tns:getItem" />
+  </wsdl:message>
+  <wsdl:message name="linkContainerToComponentRequest">
+    <wsdl:part name="parameters" element="tns:linkContainerToComponent" />
+  </wsdl:message>
+  <wsdl:message name="getItemUnderProductRequest">
+    <wsdl:part name="parameters" element="tns:getItemUnderProduct" />
+  </wsdl:message>
+  <wsdl:message name="unlinkContainerFromComponentRequest">
+    <wsdl:part name="parameters" element="tns:unlinkContainerFromComponent" />
+  </wsdl:message>
+  <wsdl:message name="WebServiceException">
+    <wsdl:part name="WebServiceException" element="tns:WebServiceException" />
+  </wsdl:message>
+  <wsdl:message name="findItemsResponse">
+    <wsdl:part name="parameters" element="tns:findItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="findDistinctAttributeValuesResponse">
+    <wsdl:part name="parameters" element="tns:findDistinctAttributeValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteItemRequest">
+    <wsdl:part name="parameters" element="tns:deleteItem" />
+  </wsdl:message>
+  <wsdl:message name="findCrossCatalogueItemsRequest">
+    <wsdl:part name="parameters" element="tns:findCrossCatalogueItems" />
+  </wsdl:message>
+  <wsdl:message name="getItemResponse">
+    <wsdl:part name="parameters" element="tns:getItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteItemUnderProductResponse">
+    <wsdl:part name="parameters" element="tns:deleteItemUnderProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="unlinkContainerFromComponentResponse">
+    <wsdl:part name="parameters" element="tns:unlinkContainerFromComponentResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteItemResponse">
+    <wsdl:part name="parameters" element="tns:deleteItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="linkContainerToComponentResponse">
+    <wsdl:part name="parameters" element="tns:linkContainerToComponentResponse" />
+  </wsdl:message>
+  <wsdl:message name="createItemRequest">
+    <wsdl:part name="parameters" element="tns:createItem" />
+  </wsdl:message>
+  <wsdl:message name="findDistinctAttributeValuesRequest">
+    <wsdl:part name="parameters" element="tns:findDistinctAttributeValues" />
+  </wsdl:message>
+  <wsdl:message name="findCrossCatalogueItemsResponse">
+    <wsdl:part name="parameters" element="tns:findCrossCatalogueItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getItemUnderProductResponse">
+    <wsdl:part name="parameters" element="tns:getItemUnderProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="findItemsRequest">
+    <wsdl:part name="parameters" element="tns:findItems" />
+  </wsdl:message>
+  <wsdl:message name="updateItemAttributesResponse">
+    <wsdl:part name="parameters" element="tns:updateItemAttributesResponse" />
+  </wsdl:message>
+  <wsdl:message name="createOrUpdateItemRequest">
+    <wsdl:part name="parameters" element="tns:createOrUpdateItem" />
+  </wsdl:message>
+  <wsdl:message name="deleteItemUnderProductRequest">
+    <wsdl:part name="parameters" element="tns:deleteItemUnderProduct" />
+  </wsdl:message>
+  <wsdl:message name="updateItemAttributesRequest">
+    <wsdl:part name="parameters" element="tns:updateItemAttributes" />
+  </wsdl:message>
+  <wsdl:portType name="ItemWebService">
+    <wsdl:operation name="findItems">
+      <wsdl:input name="findItemsRequest" message="tns:findItemsRequest" />
+      <wsdl:output name="findItemsResponse" message="tns:findItemsResponse" />
+      <wsdl:fault name="WebServiceException" message="tns:WebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="findCrossCatalogueItems">
+      <wsdl:input name="findCrossCatalogueItemsRequest" message="tns:findCrossCatalogueItemsRequest" />
+      <wsdl:output name="findCrossCatalogueItemsResponse" message="tns:findCrossCatalogueItemsResponse" />
+      <wsdl:fault name="WebServiceException" message="tns:WebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="createOrUpdateItem">
+      <wsdl:input name="createOrUpdateItemRequest" message="tns:createOrUpdateItemRequest" />
+      <wsdl:output name="createOrUpdateItemResponse" message="tns:createOrUpdateItemResponse" />
+      <wsdl:fault name="WebServiceException" message="tns:WebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="getItem">
+      <wsdl:input name="getItemRequest" message="tns:getItemRequest" />
+      <wsdl:output name="getItemResponse" message="tns:getItemResponse" />
+      <wsdl:fault name="WebServiceException" message="tns:WebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteItem">
+      <wsdl:input name="deleteItemRequest" message="tns:deleteItemRequest" />
+      <wsdl:output name="deleteItemResponse" message="tns:deleteItemResponse" />
+      <wsdl:fault name="WebServiceException" message="tns:WebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="createItem">
+      <wsdl:input name="createItemRequest" message="tns:createItemRequest" />
+      <wsdl:output name="createItemResponse" message="tns:createItemResponse" />
+      <wsdl:fault name="WebServiceException" message="tns:WebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="findDistinctAttributeValues">
+      <wsdl:input name="findDistinctAttributeValuesRequest" message="tns:findDistinctAttributeValuesRequest" />
+      <wsdl:output name="findDistinctAttributeValuesResponse" message="tns:findDistinctAttributeValuesResponse" />
+      <wsdl:fault name="WebServiceException" message="tns:WebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteItemUnderProduct">
+      <wsdl:input name="deleteItemUnderProductRequest" message="tns:deleteItemUnderProductRequest" />
+      <wsdl:output name="deleteItemUnderProductResponse" message="tns:deleteItemUnderProductResponse" />
+      <wsdl:fault name="WebServiceException" message="tns:WebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="getItemUnderProduct">
+      <wsdl:input name="getItemUnderProductRequest" message="tns:getItemUnderProductRequest" />
+      <wsdl:output name="getItemUnderProductResponse" message="tns:getItemUnderProductResponse" />
+      <wsdl:fault name="WebServiceException" message="tns:WebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="unlinkContainerFromComponent">
+      <wsdl:input name="unlinkContainerFromComponentRequest" message="tns:unlinkContainerFromComponentRequest" />
+      <wsdl:output name="unlinkContainerFromComponentResponse" message="tns:unlinkContainerFromComponentResponse" />
+      <wsdl:fault name="WebServiceException" message="tns:WebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="updateItemAttributes">
+      <wsdl:input name="updateItemAttributesRequest" message="tns:updateItemAttributesRequest" />
+      <wsdl:output name="updateItemAttributesResponse" message="tns:updateItemAttributesResponse" />
+      <wsdl:fault name="WebServiceException" message="tns:WebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="linkContainerToComponent">
+      <wsdl:input name="linkContainerToComponentRequest" message="tns:linkContainerToComponentRequest" />
+      <wsdl:output name="linkContainerToComponentResponse" message="tns:linkContainerToComponentResponse" />
+      <wsdl:fault name="WebServiceException" message="tns:WebServiceException" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ItemWebServiceHttpBinding" type="tns:ItemWebService">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="findItems">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="findItemsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findItemsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <wsdlsoap:fault use="literal" name="WebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findCrossCatalogueItems">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="findCrossCatalogueItemsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findCrossCatalogueItemsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <wsdlsoap:fault use="literal" name="WebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createOrUpdateItem">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="createOrUpdateItemRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createOrUpdateItemResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <wsdlsoap:fault use="literal" name="WebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getItem">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getItemRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getItemResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <wsdlsoap:fault use="literal" name="WebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteItem">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="deleteItemRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteItemResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <wsdlsoap:fault use="literal" name="WebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createItem">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="createItemRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createItemResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <wsdlsoap:fault use="literal" name="WebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findDistinctAttributeValues">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="findDistinctAttributeValuesRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findDistinctAttributeValuesResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <wsdlsoap:fault use="literal" name="WebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteItemUnderProduct">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="deleteItemUnderProductRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteItemUnderProductResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <wsdlsoap:fault use="literal" name="WebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getItemUnderProduct">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getItemUnderProductRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getItemUnderProductResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <wsdlsoap:fault use="literal" name="WebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="unlinkContainerFromComponent">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="unlinkContainerFromComponentRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="unlinkContainerFromComponentResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <wsdlsoap:fault use="literal" name="WebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateItemAttributes">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="updateItemAttributesRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateItemAttributesResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <wsdlsoap:fault use="literal" name="WebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="linkContainerToComponent">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="linkContainerToComponentRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="linkContainerToComponentResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <wsdlsoap:fault use="literal" name="WebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ItemWebService">
+    <wsdl:port name="ItemWebServiceHttpPort" binding="tns:ItemWebServiceHttpBinding">
+      <wsdlsoap:address location="http://catalogue.gxs.com/QRSGUI/services/ItemWebService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

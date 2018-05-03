@@ -1,0 +1,34 @@
+﻿Public Class PathToSiteTiming
+    Public Property VendorImageAdsAverageDays As Integer
+    Public Property TurnInAdsAverageDays As Integer
+    Public Property LiftAdsAverageDays As Integer
+    Public Property INFCAdsAverageDays As Integer
+    Public Property ExtraHotAdsAverageDays As Integer
+    Public Property SSSetupToSampleRequestAverageDays As Integer
+    Public Property SampleRequestToSampleReceiptAverageDays As Integer
+    Public Property SSSetupToPOApprovalAverageDays As Integer
+    Public Property SSSetupToTurnInAverageDays As Integer
+    Public Property POApprovalToTurnInAverageDays As Integer
+    Public Property SampleReceiptToTurnInAverageDays As Integer
+    Public Property TurnInToImageShotAverageDaysVI As Integer
+    Public Property TurnInToImageShotAverageDaysLIFT As Integer
+    Public Property TurnInToImageShotAverageDaysTI As Integer
+    Public Property TurnInToImageShotAverageDaysINFC As Integer
+    Public Property TurnInToImageShotAverageDaysExtraHot As Integer
+    Public Property ImageShotToFInalImageDaysVI As Integer
+    Public Property ImageShotToFInalImageDaysLIFT As Integer
+    Public Property ImageShotToFInalImageDaysTI As Integer
+    Public Property ImageShotToFInalImageDaysINFC As Integer
+    Public Property ImageShotToFInalImageDaysExtraHot As Integer
+    Public Property AveragePhotoTimeVI As Integer
+    Public Property AveragePhotoTimeLIFT As Integer
+    Public Property AveragePhotoTimeTI As Integer
+    Public Property AveragePhotoTimeINFC As Integer
+    Public Property AveragePhotoTimeExtraHot As Integer
+    Public Property TurnInToPOReceiptAverageDays As Integer
+    Public Property TurnInToCopyReadyAverageDaysVI As Integer
+    Public Property TurnInToCopyReadyAverageDaysLIFT As Integer
+    Public Property TurnInToCopyReadyAverageDaysTI As Integer
+    Public Property TurnInToCopyReadyAverageDaysINFC As Integer
+    Public Property TurnInToCopyReadyAverageDaysExtraHot As Integer
+End Class

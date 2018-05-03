@@ -1,0 +1,42 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+TurnInAutomationBatch.BLL
+</name>
+</assembly>
+<members>
+<member name="M:TurnInAutomationBatch.BLL.Common.GetDefaultValues(System.String)">
+	<summary>
+ Loads the default values XML and reads the default values from the XML for the XPath
+ </summary>
+	<param name="xPath">XPath of the table name defined in the default values XML</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:TurnInAutomationBatch.BLL.Common.WriteToLogTable(System.Int32,System.Int32,System.String,System.String,System.String,System.String)">
+	<summary>
+ Writes to the turn in automation log table in DB2
+ </summary>
+	<param name="TurnInBatchID"></param>
+	<param name="TurnInItemTypeID"></param>
+	<param name="TurnInItemType"></param>
+	<param name="BatchStatusCode"></param>
+	<param name="BatchStatusMessage"></param>
+	<param name="LastModifiedBy"></param>
+	<remarks></remarks>
+</member><member name="P:TurnInAutomationBatch.BLL.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:TurnInAutomationBatch.BLL.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:TurnInAutomationBatch.BLL.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+</members>
+</doc>

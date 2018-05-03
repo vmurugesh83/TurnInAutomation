@@ -1,0 +1,77 @@
+﻿/* Telerik Controls */
+/* Rad Menu */
+.RadMenu_WebBlue {min-height: 25px !important;background: #336699 !important;}
+.RadMenu_WebBlue .rmLink {min-height: 25px !important;color: #ffffff !important;background: #336699 !important;}
+.RadMenu_WebBlue .rmLink:hover, .RadMenu_WebBlue .rmFocused, .RadMenu_WebBlue .rmExpanded {min-height: 25px !important;color: #276c9d !important;background: #FFFFFF !important;}
+.RadMenu_WebBlue .rmDisabled{min-height: 25px !important;color: #dcdcdc !important;background-color: Gray !important;}
+.RadMenu_WebBlue .rmDisabled:hover{min-height: 25px !important;color: #dcdcdc !important;background-color: Gray !important;}
+.RadMenu_WebBlue .rmText {font-weight: bold !important;font-size: 10pt !important;font-family: Arial !important;}
+
+/* Rad TreeView */
+.RadTreeView {color: #000000 !important;font: 8pt Arial !important;overflow: hidden !important;}
+.RadTreeView .rtUL ul.rtUL {padding-left: 10px;}
+.RadTreeView .rtLI {font: 8pt Arial !important;}
+.RadTreeView .rtHover .rtIn {color: #FFFFFF !important;}	
+
+/* Rad Input */
+.RadInput_Vista {width:100%}
+.RadInput_Vista, .RadInput_Vista .riEnabled, .RadInput_Vista .riRead, .RadInput_Vista .riDisabled, .RadInput_Vista .riEmpty, .RadInput_Vista .riFocused, .RadInput_Vista .riNegative, .RadInput_Vista .riHover {font-size: 10pt !important;font-family: Arial !important;}
+.RadInput_Vista .riRead, .RadInput_Vista .riDisabled {color: #000000 !important;background: transparent !important;border: solid 0px #aeaeae !important;}
+
+/* Rad ComboBox */
+.RadComboBox_Vista, .RadComboBox_Vista .rcbInput, .RadComboBoxDropDown_Vista {font-size: 10pt !important;font-family: Arial !important;}
+.rcbMoreResults a {display: none !important;}
+
+/* Rad Picker */
+.RadPicker_Vista table{vertical-align:bottom;}
+/*.RadPicker_Vista table, .RadPicker_Vista td{border:0;border-style:none;padding:0;margin:0;}
+.RadPicker_Vista .rcInputCell{padding:0 4px 0 0;}*/
+
+/* Rad Toolbar */
+.RadToolBar_Default {float: right !important; margin-right: 10px !important;}
+.RadToolBar_Default .rtbWrap {font: 10pt Arial !important;}
+
+/* Rad Grid */
+/*.RadGrid_Vista {border: none 0px transparent !important;background: transparent !important;}
+.MasterTable_Vista .GridHeader_Vista {border-bottom: none 0px transparent !important;}
+.GridCommandRow_Vista td {background: #B0C4DE !important;border-top: none 0px transparent !important;border-bottom: none 0px transparent !important;border-left: none 0px transparent !important;border-right: none 0px transparent !important;padding-left: 0px !important;}
+.GridHeaderDiv_Vista{background:none transparent !important;}
+.GridHeader_Vista {font-family: Arial !important;font-size: 10pt !important;font-weight: bold !important;}
+.GridRow_AltRow {background-color: #f8f8ff !important;}
+.GridRow_Vista td, .GridAltRow_Vista td {font: 10pt Arial !important;padding: 0px 7px 0px 7px !important;padding-left: 7px !important;padding-right: 7px !important;border: 1px solid !important;padding-top: 3px !important;padding-bottom: 3px !important;border-color: #fcfcfc #fff #fcfcfc #ededed !important;}
+.GridRow_Vista a, .GridAltRow_Vista a {color: #333 !important;}
+.DetailTable_Vista th {font-family: Arial !important;font-size: 8pt !important;font-weight: bold !important;}
+.SelectedRow_Vista {background: url(Images/selectedBg.gif) 0 repeat-x #FAF0CD !important;}*/
+
+/* Rad Panel Bar */
+.RadPanelBar_Default {background: #B0C4DE !important;}
+.RadPanelBar_Default ul.rpRootGroup{padding: 0px !important;}
+.RadPanelBar_Default .rpRootGroup{border-top: 0px !important;border-right: 0px !important;border-bottom: 0px !important;}
+.RadPanelBar_Default .rpRootGroup .rpLink{border-bottom: 1px solid #bfbfbf !important;background: #336699 !important;}
+.RadPanelBar_Default .rpRootGroup .rpLink:hover{border-bottom: 1px solid #BFBFBF !important;background: #FFFFFF !important;}
+.RadPanelBar_Default .rpRootGroup .rpLink:hover .rpText{color: #336699 !important;}
+.RadPanelBar_Default .rpRootGroup .rpText{padding: 5px 3px 5px 12px !important;}
+.RadPanelBar_Default .rpText{margin-left: 7px !important;margin-right: 7px !important;}
+.RadPanelBar_Default .rpExpandable .rpText{font: bold 10pt Arial !important;background: transparent url(Images/ArrowRight.gif) no-repeat left 9px !important;}
+.RadPanelBar_Default .rpExpanded .rpText{background: transparent url(Images/ArrowDown.gif) no-repeat left 9px !important;}
+.RadPanelBar_Default .rpGroup{background: #B0C4DE;}
+.RadPanelBar_Default .rpGroup .rpExpanded .rpText, .RadPanelBar_Default .rpGroup .rpExpandable .rpText{background-position: left 5px !important;}
+.RadPanelBar_Default .rpRootGroup .rpDisabled:hover, .RadPanelBar_Default .rpRootGroup .rpDisabled .text{background: #B0C4DE;}
+
+/* Rad Splitter */
+.RadSplitter_Web20 .slideHeader {color: #FFFFFF !important;background: #336699 !important;}
+.RadSplitter_Web20 .slideTitleContainer {color: #FFFFFF !important;background: #336699 !important;}
+.RadSplitter_Web20 .slideTitle {font: bold 10pt Arial !important;}
+.RadSplitter_Web20 .slideContent {background: #B0C4DE !important;}
+.RadSplitter_Web20 .paneTabContainer {color: #FFFFFF !important;background: #336699 !important;}
+.RadSplitter_Web20 .paneTabContainerExpanded {color: #276C9D !important;background: #FFFFFF !important;}
+.RadSplitter_Web20 .paneTabContainerDocked {color: #276C9D !important;background: #FFFFFF !important;}
+.RadSplitter_Web20 .paneTabText {font: bold 10pt Arial !important;}
+
+/* Rad Tabstrip */
+.RadTabStrip_Web20 .rtsLevel {background: #B0C4DE !important;}
+.RadTabStrip_Web20 .rtsLI .rtsTxt {color: #FFFFFF !important;}
+.RadTabStrip_Web20 .rtsLI .rtsSelected .rtsTxt {color: #336699 !important;}
+
+/* Rad Window */
+.radwindow_Vista {z-index:9999 !important;}

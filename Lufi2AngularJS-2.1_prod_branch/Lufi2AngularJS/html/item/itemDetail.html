@@ -1,0 +1,236 @@
+﻿<div class="row clearfix" ng-cloak>
+    <div class="col-sm-3 column">
+        <img style="max-width:100%" ng-src="{{ImageURL}}" />
+        <div class="row clearfix">
+            </br>
+            <div class="col-sm-6 column"; ng-show="currentItem.id">
+                UPC:
+            </div>
+            <div class="col-sm-6 column">
+                <span>{{currentItem.id}}</span>
+            </div>
+        </div>
+        <div class="row clearfix"; ng-show="currentItem.imageid">
+            <div class="col-sm-6 column">
+                Image ID:
+            </div>
+            <div class="col-sm-6 column">
+                <span>{{currentItem.imageid}}</span>
+            </div>
+        </div>
+        <div class="row clearfix"; ng-show="currentItem.webid">
+            <div class="col-sm-6 column">
+                Web ID:
+            </div>
+            <div class="col-sm-6 column">
+                <span style="word-wrap:break-word">{{currentItem.webid}}</span>
+            </div>
+        </div>
+        <div class="row clearfix"; ng-show="currentItem.vendorstyle">
+            <div class="col-sm-6 column">
+                Vendor Style:
+            </div>
+            <div class="col-sm-6 column">
+                <span>{{currentItem.vendorstyle}}</span>
+            </div>
+        </div>
+        <div class="row clearfix" ; ng-show="currentItem.pricestatus">
+            <div class="col-sm-6 column">
+                Price Status:
+            </div>
+            <div class="col-sm-6 column">
+                <span>{{currentItem.pricestatus}}</span>
+            </div>
+        </div>
+        <div class="row clearfix" ; ng-show="showPickUpAllowed">
+            <div class="col-sm-12 column">
+                <h4>
+                    Pick Up Allowed
+                </h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-7 column">
+        <div class="row clearfix" >
+            <div class="col-sm-12 column">
+                <h3>
+                    <span ng-show="showProductName" ng-bind-html="currentItem.productname"></span>
+                    <span ng-hide="showProductName">{{currentItem.isnlongdesc}}</span>
+                    <img src="assets/images/yellow_dot.gif" ng-show="currentItem.pricestatus =='F'" />
+                    <img src="assets/images/web_exclusive.png" ng-show="currentItem.iswebexclusive == 'Y'" />
+                    <img src="assets/images/special_handling.png" ng-show="currentItem.isspecialhandling == 'Y'"/>
+                    <img src="assets/images/incredible_value.png" ng-show="currentItem.itemDetail.ComputedPrice.Extn._btIsIVPEvent == 'true'" />
+                    <img src="assets/images/clearance.png" ng-show="currentItem.pricestatus == 'C'" />
+                    <img src="assets/images/bonus_buy.png" ng-show="currentItem.itemDetail.ComputedPrice.Extn._btIsBonusEvent == 'true'" />
+                    <img src="assets/images/coupons_excluded.png" ng-show="currentItem.itemDetail.ComputedPrice.Extn._btIsBonusEvent == 'true' || currentItem.itemDetail.ComputedPrice.Extn._btIsIVPEvent == 'true'" />
+                </h3>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-sm-2 column">
+                Brand:
+            </div>
+            <div class="col-sm-4 column">
+                <span>{{currentItem.brandlongdesc}}</span>
+            </div>
+            <div class="col-sm-2 column">
+                Size:
+            </div>
+            <div class="col-sm-4 column">
+                <span>{{currentItem.itemsize}}</span>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-sm-2 column">
+                Color:
+            </div>
+            <div class="col-sm-4 column">
+                <span>{{currentItem.colorlongdesc}}</span>
+            </div>
+            <div ng-click="openItemLocate(currentItem);">
+                <div class="col-sm-2 column">
+                    <span style="border-bottom: 1px solid black;">Inventory:</span>
+                </div>
+                <div class="col-sm-4 column">
+                    <span>{{currentItem._AvailableQty | number}}</span>
+                </div>
+            </div>
+            </br>
+            </br>
+            <div class="row clearfix">
+                <div class="col-sm-4 column">
+                    <button ng-click="openItemDescription(currentItem)" class="btn btn-success btn-block" type="button">Item Description</button>
+                </div>
+                <div class="col-sm-3 column">
+                    <button ng-show="currentItem.isgwp == 'Y'" ng-click="openGWP(currentItem)" class="btn btn-success btn-block" type="button">GWP/PWP</button>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row clearfix">
+            <div class="col-sm-12 column">
+                Similar Items:
+            </div>
+            <div class="col-sm-12 column scrollResults" id="ItemDetailWrapper" style="overflow-y: hidden" iscroll>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="col-sm-2">UPC</th>
+                            <th class="col-sm-6">Product</th>
+                            <th class="col-sm-1">Color</th>
+                            <th class="col-sm-1">Size</th>
+                            <th class="col-sm-1">Inventory</th>
+                            <th class="col-sm-1">TKT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in (orderedIsnGroup = (isnGroup.productList | orderBy:['isn','sizesequence','colorlongdesc']))"
+                            ng-click="setClickedRow($index); updateCurrentItem(item)"
+                            ng-class="{'selectedItemDetail':$index == selectedRow}"
+                            on-finish-render="orderSimilarItems(orderedIsnGroup); refreshIScroll()">
+                            <td class="col-sm-2">
+                                <div data-toggle="tooltip" data-placement="left" title="{{item}}">
+                                    {{item.id}}
+                                </div>
+                            </td>
+                            <td class="col-sm-6" ng-show="item.productname != null" ng-bind-html="item.productname"></td>
+                            <td class="col-sm-6" ng-hide="item.productname != null">{{item.isnlongdesc}}</td>
+                            <td class="col-sm-1">
+                                {{item.colorlongdesc}}
+                            </td>
+                            <td class="col-sm-1">
+                                {{item.itemsize}}
+                            </td>
+                            <td class="col-sm-1">
+                                <span ng-show="item._AvailableQty !== null">{{item._AvailableQty | number}}</span><span ng-show="item._AvailableQty === null" style="color: blue;">Select For Avail</span>
+                            </td>
+                            <td class="col-sm-1">
+                                {{item.itemDetail.ComputedPrice._UnitPrice | currency}}<span ng-show="(item._AvailableQty !== null) && (item.itemDetail === null)" style="color: blue;">Update</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2 column">
+        <div class="row clearfix">
+            <div class="col-sm-12 column">
+                <div class="row">
+                    <div class="col-sm-3 column">
+                        Qty:
+                    </div>
+                    <div class="col-sm-9 column">
+                        <input ng-keypress=" numberValidator(event)" ng-model="txtQtyInput" value="1" class="form-control text-left" type="text" size="2">
+                    </div>
+                    </div>
+                </br>
+                <button ng-disabled="disableCartButton(currentItem)" ng-click="openOrderCart(currentItem)" class="btn btn-block btn-primary">Add to Cart</button>
+            </div>
+        </div>
+        </br>
+        <div ng-show="pricingServiceDown(currentItem)">
+            <div class="alert alert-danger fade in">
+                <a class="close" data-dismiss="alert"></a>
+                <strong>Error!</strong> 
+                <div ng-show="currentItem.itemDetail.ComputedPrice._RetailPrice == '-999999.99'">Unable to complete pricing</div>
+                <div ng-show="currentItem.itemDetail.ComputedPrice._RetailPrice == '-8888888.88'">Unable to price this upc</div>
+            </div>
+        </div>
+        <div class="row clearfix" ng-show="currentItem.itemDetail.ComputedPrice._UnitPrice">
+            <div class="col-sm-4 column">
+                TKT:
+            </div>
+            <div class="col-sm-8 column">
+                <span>{{currentItem.itemDetail.ComputedPrice._UnitPrice | currency}}</span>
+            </div>
+        </div>
+        <div class="row clearfix" ng-show="currentItem.itemDetail.ComputedPrice._RetailPrice">
+            <div class="col-sm-4 column">
+                Sale:
+            </div>
+            <div class="col-sm-8 column">
+                <span>{{currentItem.itemDetail.ComputedPrice._RetailPrice | currency}}</span>
+            </div>
+        </div>
+        <div class="row clearfix" ng-show="currentItem.specialhandlingfee && currentItem.specialhandlingfee != 0">
+            <div class="col-sm-4 column">
+                Handling:
+            </div>
+            <div class="col-sm-8 column">
+                <span>{{currentItem.specialhandlingfee | currency}}</span>
+            </div>
+        </div>
+        <div class="row clearfix" ng-show="currentItem.itemtype == 'BGT'">
+            <div class="col-sm-12 column">
+                White Glove:    $75.00
+            </div>
+        </div>
+        </br>
+        </br>
+        </br>
+        <div class="row clearfix">
+            <div class="col-sm-12 column scrollDefaultTable" ng-show="currentItem.itemDetail.ComputedPrice.Extn._ExtnSPOOfferDetail || currentItem.itemDetail.ComputedPrice.Extn._ExtnMPTOfferDetail" style="overflow-y: hidden">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Promo
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td ng-show="currentItem.itemDetail.ComputedPrice.Extn._ExtnSPOOfferDetail">{{currentItem.itemDetail.ComputedPrice.Extn._ExtnSPOOfferDetail}}</td>
+                            <br />
+                        </tr>
+                        <tr>
+                            <br />
+                            <td ng-show="currentItem.itemDetail.ComputedPrice.Extn._ExtnMPTOfferDetail">{{currentItem.itemDetail.ComputedPrice.Extn._ExtnMPTOfferDetail}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

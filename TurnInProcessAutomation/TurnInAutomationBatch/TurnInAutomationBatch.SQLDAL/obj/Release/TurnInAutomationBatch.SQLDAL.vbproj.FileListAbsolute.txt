@@ -1,0 +1,8 @@
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\TurnInAutomationBatch\TurnInAutomationBatch.SQLDAL\bin\Release\TurnInAutomationBatch.SQLDAL.dll
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\TurnInAutomationBatch\TurnInAutomationBatch.SQLDAL\bin\Release\TurnInAutomationBatch.SQLDAL.pdb
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\TurnInAutomationBatch\TurnInAutomationBatch.SQLDAL\bin\Release\TurnInAutomationBatch.SQLDAL.xml
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\TurnInAutomationBatch\TurnInAutomationBatch.SQLDAL\obj\Release\TurnInAutomationBatch.SQLDAL.Resources.resources
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\TurnInAutomationBatch\TurnInAutomationBatch.SQLDAL\obj\Release\TurnInAutomationBatch.SQLDAL.vbproj.GenerateResource.Cache
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\TurnInAutomationBatch\TurnInAutomationBatch.SQLDAL\obj\Release\TurnInAutomationBatch.SQLDAL.dll
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\TurnInAutomationBatch\TurnInAutomationBatch.SQLDAL\obj\Release\TurnInAutomationBatch.SQLDAL.xml
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\TurnInAutomationBatch\TurnInAutomationBatch.SQLDAL\obj\Release\TurnInAutomationBatch.SQLDAL.pdb

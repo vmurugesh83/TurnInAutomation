@@ -1,0 +1,145 @@
+﻿<div class="detail-page" ng-hide="updatingPrice">
+    <div class="modal-header">
+        <h4 class="modal-title">Pricing Detail</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row ">
+            <div class="col-sm-12 column">
+                Charge and Discount Breakdown
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-sm-12 column">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Category
+                            </th>
+                            <th class="text-right">
+                                Total
+                            </th>
+                            <th>
+
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in pricingDetail.category" ng-hide="item.total == 0 && item.hideWhenZero">
+                            <td>
+                                {{item.categoryDescription}}
+                            </td>
+                            <td class="text-right">
+                                {{item.total | currency}}
+                            </td>
+                            <td>
+                                <a href="" ng-click="openModifyCharge(item)" ng-show="!isModalCalledFromOrderDetails && item.updateable">Update</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-sm-12 column">
+                <div ng-if="pricingDetail.coupons.length==0">
+                    <h3>There are no coupons on this order.</h3>
+                </div>
+                <table ng-if="pricingDetail.coupons.length>0" class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Coupon Code
+                            </th>
+                            <th class="text-right">
+                                Discount Amount
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in pricingDetail.coupons">
+                            <td>
+                                {{item.couponCode}}
+                            </td>
+                            <td class="text-right">
+                                {{item.DiscountAmt | currency}}
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row ">
+            <div class="col-sm-4 column"></div>
+            <div class="col-sm-4 column">
+               <!--<button ng-click="close()" class="btn btn-success btn-block" type="button" ng-show="!isModalCalledFromOrderDetails">Save</button>--> 
+            </div>
+            <div class="col-sm-4 column">
+                <button ng-click="dismiss()" class="btn btn-warning btn-block" type="button">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="detail-page" ng-show="updatingPrice">
+    <div class="modal-header">
+        <h4 class="modal-title">Modify Charge</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row clearfix">
+            <div class="col-sm-12 column">
+                <div class="row clearfix">
+                    <div class="col-sm-6 column">
+                        Current Charge Amount:
+                    </div>
+                    <div class="col-sm-6 column">
+                        {{item.total | currency}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row clearfix">
+            <div class="col-sm-6 column">
+                Update to Flat Rate: $
+            </div>
+            <div class="col-sm-6 column">
+                <input ng-change="calculateFlatRate()" ng-model="flatRate" class="form-control" type="text" />
+            </div>
+        </div>
+        <hr />
+        <!--<div class="row clearfix">
+            <div class="col-sm-6 column">
+                Reduce by Percentage: %
+            </div>
+            <div class="col-sm-6 column">
+                <input ng-change="calculatePercentage()"  ng-model="percentage" class="form-control" type="text" />
+            </div>
+        </div>
+        <hr />-->
+        <div class="row clearfix">
+            <div class="col-sm-6 column">
+                New Charge Amount:
+            </div>
+            <div class="col-sm-6 column">
+                <div>{{newCharge | currency}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col col-sm-2">
+            </div>
+            <div class="col col-sm-4">
+                <button ng-enable="newCharge>=0" ng-click="update()" class="btn btn-success btn-block" type="button">Update</button>
+            </div>
+            <div class="col col-sm-4">
+                <button ng-click="cancel()" class="btn btn-warning btn-block" type="button">Cancel</button>
+            </div>
+            <div class="col col-sm-2">
+            </div>
+        </div>
+    </div>
+</div>

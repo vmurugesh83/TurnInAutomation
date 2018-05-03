@@ -1,0 +1,320 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+BonTon.DBUtility
+</name>
+</assembly>
+<members>
+<member name="P:BonTon.DBUtility.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:BonTon.DBUtility.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:BonTon.DBUtility.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:BonTon.DBUtility.OleHelper.ExecuteNonQuery(System.String,System.Data.CommandType,System.String,System.Data.OleDb.OleDbParameter[])">
+	<summary> 
+ Execute a OleDbCommand (that returns no resultset) against the database specified in the connection string 
+ using the provided parameters. 
+ </summary>
+	<remarks> 
+ e.g.: 
+ int result = ExecuteNonQuery(connString, CommandType.StoredProcedure, "PublishOrders", new OleDbParameter("@prodid", 24)); 
+ </remarks>
+	<param name="connectionString">a valid connection string for a OleDbConnection</param>
+	<param name="cmdType">the CommandType (stored procedure, text, etc.)</param>
+	<param name="cmdText">the stored procedure name or T-SQL command</param>
+	<param name="commandParameters">an array of SqlParamters used to execute the command</param>
+	<returns>an int representing the number of rows affected by the command</returns>
+</member><member name="M:BonTon.DBUtility.OleHelper.ExecuteNonQuery(System.Data.OleDb.OleDbConnection,System.Data.CommandType,System.String,System.Data.OleDb.OleDbParameter[])">
+	<summary> 
+ Execute a OleDbCommand (that returns no resultset) against an existing database connection 
+ using the provided parameters. 
+ </summary>
+	<remarks> 
+ e.g.: 
+ int result = ExecuteNonQuery(connString, CommandType.StoredProcedure, "PublishOrders", new OleDbParameter("@prodid", 24)); 
+ </remarks>
+	<param name="connection">an existing database connection</param>
+	<param name="cmdType">the CommandType (stored procedure, text, etc.)</param>
+	<param name="cmdText">the stored procedure name or T-SQL command</param>
+	<param name="commandParameters">an array of SqlParamters used to execute the command</param>
+	<returns>an int representing the number of rows affected by the command</returns>
+</member><member name="M:BonTon.DBUtility.OleHelper.ExecuteNonQuery(System.Data.OleDb.OleDbTransaction,System.Data.CommandType,System.String,System.Data.OleDb.OleDbParameter[])">
+	<summary> 
+ Execute a OleDbCommand (that returns no resultset) using an existing SQL Transaction 
+ using the provided parameters. 
+ </summary>
+	<remarks> 
+ e.g.: 
+ int result = ExecuteNonQuery(connString, CommandType.StoredProcedure, "PublishOrders", new OleDbParameter("@prodid", 24)); 
+ </remarks>
+	<param name="trans">an existing sql transaction</param>
+	<param name="cmdType">the CommandType (stored procedure, text, etc.)</param>
+	<param name="cmdText">the stored procedure name or T-SQL command</param>
+	<param name="commandParameters">an array of SqlParamters used to execute the command</param>
+	<returns>an int representing the number of rows affected by the command</returns>
+</member><member name="M:BonTon.DBUtility.OleHelper.ExecuteReader(System.String,System.Data.CommandType,System.String,System.Data.OleDb.OleDbParameter[])">
+	<summary> 
+ Execute a OleDbCommand that returns a resultset against the database specified in the connection string 
+ using the provided parameters. 
+ </summary>
+	<remarks> 
+ e.g.: 
+ OleDbDataReader r = ExecuteReader(connString, CommandType.StoredProcedure, "PublishOrders", new OleDbParameter("@prodid", 24)); 
+ </remarks>
+	<param name="connectionString">a valid connection string for a OleDbConnection</param>
+	<param name="cmdType">the CommandType (stored procedure, text, etc.)</param>
+	<param name="cmdText">the stored procedure name or T-SQL command</param>
+	<param name="commandParameters">an array of SqlParamters used to execute the command</param>
+	<returns>A OleDbDataReader containing the results</returns>
+</member><member name="M:BonTon.DBUtility.OleHelper.ExecuteScalar(System.String,System.Data.CommandType,System.String,System.Data.OleDb.OleDbParameter[])">
+	<summary> 
+ Execute a OleDbCommand that returns the first column of the first record against the database specified in the connection string 
+ using the provided parameters. 
+ </summary>
+	<remarks> 
+ e.g.: 
+ Object obj = ExecuteScalar(connString, CommandType.StoredProcedure, "PublishOrders", new OleDbParameter("@prodid", 24)); 
+ </remarks>
+	<param name="connectionString">a valid connection string for a OleDbConnection</param>
+	<param name="cmdType">the CommandType (stored procedure, text, etc.)</param>
+	<param name="cmdText">the stored procedure name or T-SQL command</param>
+	<param name="commandParameters">an array of SqlParamters used to execute the command</param>
+	<returns>An object that should be converted to the expected type using Convert.To{Type}</returns>
+</member><member name="M:BonTon.DBUtility.OleHelper.ExecuteScalar(System.Data.OleDb.OleDbConnection,System.Data.CommandType,System.String,System.Data.OleDb.OleDbParameter[])">
+	<summary> 
+ Execute a OleDbCommand that returns the first column of the first record against an existing database connection 
+ using the provided parameters. 
+ </summary>
+	<remarks> 
+ e.g.: 
+ Object obj = ExecuteScalar(connString, CommandType.StoredProcedure, "PublishOrders", new OleDbParameter("@prodid", 24)); 
+ </remarks>
+	<param name="connection">an existing database connection</param>
+	<param name="cmdType">the CommandType (stored procedure, text, etc.)</param>
+	<param name="cmdText">the stored procedure name or T-SQL command</param>
+	<param name="commandParameters">an array of SqlParamters used to execute the command</param>
+	<returns>An object that should be converted to the expected type using Convert.To{Type}</returns>
+</member><member name="M:BonTon.DBUtility.OleHelper.ExecuteScalar(System.Data.OleDb.OleDbTransaction,System.Data.CommandType,System.String,System.Data.OleDb.OleDbParameter[])">
+	<summary>
+ Execute a OleDbCommand that returns the first column of the first record using an existing SQL Transaction  
+ using the provided parameters. 
+ </summary>
+	<param name="trans"></param>
+	<param name="cmdType"></param>
+	<param name="cmdText"></param>
+	<param name="commandParameters"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:BonTon.DBUtility.OleHelper.CacheParameters(System.String,System.Data.OleDb.OleDbParameter[])">
+	<summary> 
+ add parameter array to the cache 
+ </summary>
+	<param name="cacheKey">Key to the parameter cache</param>
+	<param name="commandParameters">an array of SqlParamters to be cached</param>
+</member><member name="M:BonTon.DBUtility.OleHelper.GetCachedParameters(System.String)">
+	<summary> 
+ Retrieve cached parameters 
+ </summary>
+	<param name="cacheKey">key used to lookup parameters</param>
+	<returns>Cached SqlParamters array</returns>
+</member><member name="M:BonTon.DBUtility.OleHelper.FormatInListOfString(System.Collections.Generic.IList{System.String})">
+	<summary>
+ Formats a List (Of String) into a SQL IN predicate clause.
+ </summary>
+</member><member name="M:BonTon.DBUtility.OleHelper.FormatInListOfString(System.Collections.Generic.List{System.Int32})">
+	<summary>
+ Formats a List (Of Integer) into a SQL IN predicate clause.
+ </summary>
+</member><member name="M:BonTon.DBUtility.OleHelper.FormatInListOfString(System.Collections.Generic.List{System.Decimal})">
+	<summary>
+ Formats a List (Of Decimal) into a SQL IN predicate clause.
+ </summary>
+</member><member name="M:BonTon.DBUtility.OleHelper.PrepareCommand(System.Data.OleDb.OleDbCommand,System.Data.OleDb.OleDbConnection,System.Data.OleDb.OleDbTransaction,System.Data.CommandType,System.String,System.Data.OleDb.OleDbParameter[])">
+	<summary> 
+ Prepare a command for execution 
+ </summary>
+	<param name="cmd">OleDbCommand object</param>
+	<param name="conn">OleDbConnection object</param>
+	<param name="trans">OleDbTransaction object</param>
+	<param name="cmdType">Cmd type e.g. stored procedure or text</param>
+	<param name="cmdText">Command text, e.g. Select * from Products</param>
+	<param name="cmdParms">OleDbParameters to use in the command</param>
+</member><member name="T:BonTon.DBUtility.OleHelper">
+	<summary> 
+ The OleHelper class is intended to encapsulate high performance, 
+ scalable best practices for common uses of SqlClient. 
+ </summary>
+</member><member name="M:BonTon.DBUtility.MQHelper.MQConn">
+	<summary>
+ set message connection info
+ </summary>
+</member><member name="M:BonTon.DBUtility.MQHelper.MQOpen(System.Int32,System.String)">
+	<summary>
+ open queue access
+ </summary>
+</member><member name="M:BonTon.DBUtility.MQHelper.MQPut(System.Int32,IBM.WMQ.MQMessage)">
+	<summary>
+ write messages to queue
+ </summary>
+</member><member name="M:BonTon.DBUtility.MQHelper.MQPut(System.Int32,IBM.WMQ.MQPutMessageOptions,IBM.WMQ.MQMessage)">
+	<summary>
+ write messages to queue
+ </summary>
+</member><member name="M:BonTon.DBUtility.MQHelper.MQGet(System.Int32,IBM.WMQ.MQGetMessageOptions,IBM.WMQ.MQMessage)">
+	<summary>
+ read messages from queue.
+ </summary>
+</member><member name="M:BonTon.DBUtility.MQHelper.MQClose">
+	<summary>
+ close connection.
+ </summary>
+</member><member name="M:BonTon.DBUtility.MQHelper.MQDisc">
+	<summary>
+ disconnect connection.
+ </summary>
+</member><member name="M:BonTon.DBUtility.SqlHelper.ExecuteNonQuery(System.String,System.Data.CommandType,System.String,System.Data.SqlClient.SqlParameter[])">
+	<summary> 
+ Execute a SqlCommand (that returns no resultset) against the database specified in the connection string 
+ using the provided parameters. 
+ </summary>
+	<remarks> 
+ e.g.: 
+ int result = ExecuteNonQuery(connString, CommandType.StoredProcedure, "PublishOrders", new SqlParameter("@prodid", 24)); 
+ </remarks>
+	<param name="connectionString">a valid connection string for a SqlConnection</param>
+	<param name="cmdType">the CommandType (stored procedure, text, etc.)</param>
+	<param name="cmdText">the stored procedure name or T-SQL command</param>
+	<param name="commandParameters">an array of SqlParamters used to execute the command</param>
+	<returns>an int representing the number of rows affected by the command</returns>
+</member><member name="M:BonTon.DBUtility.SqlHelper.ExecuteNonQuery(System.Data.SqlClient.SqlConnection,System.Data.CommandType,System.String,System.Data.SqlClient.SqlParameter[])">
+	<summary> 
+ Execute a SqlCommand (that returns no resultset) against an existing database connection 
+ using the provided parameters. 
+ </summary>
+	<remarks> 
+ e.g.: 
+ int result = ExecuteNonQuery(connString, CommandType.StoredProcedure, "PublishOrders", new SqlParameter("@prodid", 24)); 
+ </remarks>
+	<param name="connection">an existing database connection</param>
+	<param name="cmdType">the CommandType (stored procedure, text, etc.)</param>
+	<param name="cmdText">the stored procedure name or T-SQL command</param>
+	<param name="commandParameters">an array of SqlParamters used to execute the command</param>
+	<returns>an int representing the number of rows affected by the command</returns>
+</member><member name="M:BonTon.DBUtility.SqlHelper.ExecuteNonQuery(System.Data.SqlClient.SqlTransaction,System.Data.CommandType,System.String,System.Data.SqlClient.SqlParameter[])">
+	<summary> 
+ Execute a SqlCommand (that returns no resultset) using an existing SQL Transaction 
+ using the provided parameters. 
+ </summary>
+	<remarks> 
+ e.g.: 
+ int result = ExecuteNonQuery(connString, CommandType.StoredProcedure, "PublishOrders", new SqlParameter("@prodid", 24)); 
+ </remarks>
+	<param name="trans">an existing sql transaction</param>
+	<param name="cmdType">the CommandType (stored procedure, text, etc.)</param>
+	<param name="cmdText">the stored procedure name or T-SQL command</param>
+	<param name="commandParameters">an array of SqlParamters used to execute the command</param>
+	<returns>an int representing the number of rows affected by the command</returns>
+</member><member name="M:BonTon.DBUtility.SqlHelper.ExecuteReader(System.String,System.Data.CommandType,System.String,System.Data.SqlClient.SqlParameter[])">
+	<summary> 
+ Execute a SqlCommand that returns a resultset against the database specified in the connection string 
+ using the provided parameters. 
+ </summary>
+	<remarks> 
+ e.g.: 
+ SqlDataReader r = ExecuteReader(connString, CommandType.StoredProcedure, "PublishOrders", new SqlParameter("@prodid", 24)); 
+ </remarks>
+	<param name="connectionString">a valid connection string for a SqlConnection</param>
+	<param name="cmdType">the CommandType (stored procedure, text, etc.)</param>
+	<param name="cmdText">the stored procedure name or T-SQL command</param>
+	<param name="commandParameters">an array of SqlParamters used to execute the command</param>
+	<returns>A SqlDataReader containing the results</returns>
+</member><member name="M:BonTon.DBUtility.SqlHelper.ExecuteScalar(System.String,System.Data.CommandType,System.String,System.Data.SqlClient.SqlParameter[])">
+	<summary> 
+ Execute a SqlCommand that returns the first column of the first record against the database specified in the connection string 
+ using the provided parameters. 
+ </summary>
+	<remarks> 
+ e.g.: 
+ Object obj = ExecuteScalar(connString, CommandType.StoredProcedure, "PublishOrders", new SqlParameter("@prodid", 24)); 
+ </remarks>
+	<param name="connectionString">a valid connection string for a SqlConnection</param>
+	<param name="cmdType">the CommandType (stored procedure, text, etc.)</param>
+	<param name="cmdText">the stored procedure name or T-SQL command</param>
+	<param name="commandParameters">an array of SqlParamters used to execute the command</param>
+	<returns>An object that should be converted to the expected type using Convert.To{Type}</returns>
+</member><member name="M:BonTon.DBUtility.SqlHelper.ExecuteScalar(System.Data.SqlClient.SqlConnection,System.Data.CommandType,System.String,System.Data.SqlClient.SqlParameter[])">
+	<summary> 
+ Execute a SqlCommand that returns the first column of the first record against an existing database connection 
+ using the provided parameters. 
+ </summary>
+	<remarks> 
+ e.g.: 
+ Object obj = ExecuteScalar(connString, CommandType.StoredProcedure, "PublishOrders", new SqlParameter("@prodid", 24)); 
+ </remarks>
+	<param name="connection">an existing database connection</param>
+	<param name="cmdType">the CommandType (stored procedure, text, etc.)</param>
+	<param name="cmdText">the stored procedure name or T-SQL command</param>
+	<param name="commandParameters">an array of SqlParamters used to execute the command</param>
+	<returns>An object that should be converted to the expected type using Convert.To{Type}</returns>
+</member><member name="M:BonTon.DBUtility.SqlHelper.ExecuteScalar(System.Data.SqlClient.SqlTransaction,System.Data.CommandType,System.String,System.Data.SqlClient.SqlParameter[])">
+	<summary>
+ Execute a SqlCommand that returns the first column of the first record using an existing SQL Transaction  
+ using the provided parameters. 
+ </summary>
+	<param name="trans"></param>
+	<param name="cmdType"></param>
+	<param name="cmdText"></param>
+	<param name="commandParameters"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:BonTon.DBUtility.SqlHelper.CacheParameters(System.String,System.Data.SqlClient.SqlParameter[])">
+	<summary> 
+ add parameter array to the cache 
+ </summary>
+	<param name="cacheKey">Key to the parameter cache</param>
+	<param name="commandParameters">an array of SqlParamters to be cached</param>
+</member><member name="M:BonTon.DBUtility.SqlHelper.GetCachedParameters(System.String)">
+	<summary> 
+ Retrieve cached parameters 
+ </summary>
+	<param name="cacheKey">key used to lookup parameters</param>
+	<returns>Cached SqlParamters array</returns>
+</member><member name="M:BonTon.DBUtility.SqlHelper.FormatInListOfString(System.Collections.Generic.IList{System.String})">
+	<summary>
+ Formats a List (Of String) into a SQL IN predicate clause.
+ </summary>
+</member><member name="M:BonTon.DBUtility.SqlHelper.FormatInListOfString(System.Collections.Generic.List{System.Int32})">
+	<summary>
+ Formats a List (Of Integer) into a SQL IN predicate clause.
+ </summary>
+</member><member name="M:BonTon.DBUtility.SqlHelper.FormatInListOfString(System.Collections.Generic.List{System.Decimal})">
+	<summary>
+ Formats a List (Of Decimal) into a SQL IN predicate clause.
+ </summary>
+</member><member name="M:BonTon.DBUtility.SqlHelper.PrepareCommand(System.Data.SqlClient.SqlCommand,System.Data.SqlClient.SqlConnection,System.Data.SqlClient.SqlTransaction,System.Data.CommandType,System.String,System.Data.SqlClient.SqlParameter[])">
+	<summary> 
+ Prepare a command for execution 
+ </summary>
+	<param name="cmd">SqlCommand object</param>
+	<param name="conn">SqlConnection object</param>
+	<param name="trans">SqlTransaction object</param>
+	<param name="cmdType">Cmd type e.g. stored procedure or text</param>
+	<param name="cmdText">Command text, e.g. Select * from Products</param>
+	<param name="cmdParms">SqlParameters to use in the command</param>
+</member><member name="T:BonTon.DBUtility.SqlHelper">
+	<summary> 
+ The OleHelper class is intended to encapsulate high performance, 
+ scalable best practices for common uses of SqlClient. 
+ </summary>
+</member>
+</members>
+</doc>

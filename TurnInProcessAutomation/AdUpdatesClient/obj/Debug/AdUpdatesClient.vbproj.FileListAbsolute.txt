@@ -1,0 +1,9 @@
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdatesClient\bin\Debug\AdUpdatesClient.exe.config
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdatesClient\bin\Debug\AdUpdatesClient.exe
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdatesClient\bin\Debug\AdUpdatesClient.pdb
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdatesClient\bin\Debug\AdUpdatesClient.xml
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdatesClient\obj\Debug\AdUpdatesClient.Resources.resources
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdatesClient\obj\Debug\AdUpdatesClient.vbproj.GenerateResource.Cache
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdatesClient\obj\Debug\AdUpdatesClient.exe
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdatesClient\obj\Debug\AdUpdatesClient.xml
+C:\Repository\2013\ADVMarketing.TurnIn\Dev\TurnInProcessAutomation\AdUpdatesClient\obj\Debug\AdUpdatesClient.pdb

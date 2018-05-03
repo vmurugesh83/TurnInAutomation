@@ -1,0 +1,88 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+TurnInAutomationBatch.MainframeDAL
+</name>
+</assembly>
+<members>
+<member name="P:TurnInAutomationBatch.MainframeDAL.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:TurnInAutomationBatch.MainframeDAL.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:TurnInAutomationBatch.MainframeDAL.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:TurnInAutomationBatch.MainframeDAL.EcommResultsDAO.GetApprovedColorDetailsByISN(System.Decimal,System.DateTime,System.Boolean,System.Boolean)">
+	<summary>
+ Calls the stored procedure to get color level results for the ISN passed
+ </summary>
+	<param name="InternalStyleNumber">ISN for which color level results to be retrieved</param>
+	<param name="StartShipDate">Start ship date to be matched with PO ship date</param>
+	<param name="IncludeOnlyWebEligibleItems">Indicator for web eligible items</param>
+	<param name="IsVendorImage">Vendor image indicator</param>
+	<returns>Returns the color level results for the ISN passed</returns>
+	<remarks></remarks>
+</member><member name="M:TurnInAutomationBatch.MainframeDAL.EcommResultsDAO.GetWebCategory(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
+	<summary>
+ Gets the maximum used web category for the department, vendor, generic class, generic sub class and sub class
+ </summary>
+	<param name="DeptID"></param>
+	<param name="VendorID"></param>
+	<param name="GenericClassID"></param>
+	<param name="GenericSubClassID"></param>
+	<param name="ClassID"></param>
+	<param name="SubClassID"></param>
+	<returns>Returns the maximum used web category</returns>
+	<remarks></remarks>
+</member><member name="M:TurnInAutomationBatch.MainframeDAL.EcommResultsDAO.GetApprovedColorDetailsByVendorStyle(System.String,System.DateTime,System.Boolean,System.Boolean,System.Int32)">
+	<summary>
+ Calls the stored procedure to get color level results for the Vendor passed
+ </summary>
+	<param name="VendorStyle">Vendor style for which color level results to be retrieved</param>
+	<param name="StartShipDate">Start ship date to be matched with PO ship date</param>
+	<returns>Returns the color level results for the vendor style passed</returns>
+	<remarks></remarks>
+</member><member name="M:TurnInAutomationBatch.MainframeDAL.ColorDAO.GetFrequentlyUsedFriendlyColor(System.Int32,System.Int32,System.Int32,System.Boolean)">
+	<summary>
+ Gets the frequently used friendly color for the Dept, Vendor and Color code.
+ It looks up the history in web cat if the parameter FromWebCatHistory is true, 
+ otherwise it looks up the history in Turn in.
+ </summary>
+	<param name="DeptID"></param>
+	<param name="VendorID"></param>
+	<param name="ColorCode"></param>
+	<param name="FromWebCatHistory"></param>
+	<returns>Frequently used friendly color</returns>
+	<remarks></remarks>
+</member><member name="M:TurnInAutomationBatch.MainframeDAL.ColorDAO.GetFrequentlyUsedColorFamily(System.Int32,System.Int32,System.Int32,System.Boolean)">
+	<summary>
+ Gets the frequently used color family for the Dept, Vendor and Color code.
+ It looks up the history in web cat if the parameter FromWebCatHistory is true, 
+ otherwise it looks up the history in Turn in.
+ </summary>
+	<param name="DeptID"></param>
+	<param name="VendorID"></param>
+	<param name="ColorCode"></param>
+	<param name="FromWebCatHistory"></param>
+	<returns>The frequently used color family</returns>
+	<remarks></remarks>
+</member><member name="M:TurnInAutomationBatch.MainframeDAL.ColorDAO.GetFrequentlyUsedColorFamilyFromStyleSKU(System.Int32,System.Int32,System.Int32)">
+	<summary>
+ Gets the frequently used color family for the Dept, Vendor and Color code.
+ It looks up the history in style sku.
+ </summary>
+	<param name="DeptID"></param>
+	<param name="VendorID"></param>
+	<param name="ColorCode"></param>
+	<returns>The frequently used color family</returns>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

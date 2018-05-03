@@ -1,0 +1,115 @@
+﻿Imports System.Data.SqlClient
+Imports BonTon.DBUtility.SqlHelper
+Imports PathToSiteReports.BusinessEntities
+
+Public Class AdminDAO
+    Public Function GetAdminDataByISNAndColor(ByVal internalStyleNumber As Decimal, ByVal ColorCode As Integer) As AdminData
+        Dim adminData As AdminData = Nothing
+        Dim sqlQuery As String = String.Empty
+
+        Try
+            sqlQuery = String.Format("SELECT ISNULL(IMN.image_id,0) AS image_id, " &
+                                     " ISNULL(ADM.AD_NBR,0) AS AD_NBR, " &
+                                     " ISNULL(AD.ad_desc,'') AS ad_desc, " &
+                                     " ISNULL(MT.media_type_desc,'') AS media_type_desc FROM " &
+                    " [informix].[merch] AS MER " &
+                    " INNER JOIN [informix].[ad_merch] AS ADM" &
+                    " ON MER.MERCH_ID = ADM.MERCH_ID" &
+                    " INNER JOIN  [informix].[ad_info] AS AD" &
+                    " ON ADM.AD_NBR = AD.AD_NBR" &
+                    " INNER JOIN [informix].[media_type] AS MT" &
+                    " ON AD.media_type_cd = MT.media_type_cd" &
+                    " LEFT OUTER JOIN [informix].[image_merch_new] AS IMN" &
+                    " ON ADM.MERCH_ID = IMN.MERCH_ID" &
+                    " WHERE MER.internal_style_num = {0} " &
+                    " AND MER.vendor_color_code = {1}", _
+                internalStyleNumber, ColorCode)
+
+            'Execute a query to read the adInfo
+            Using rdr As SqlDataReader = ExecuteReader(ConnectionStringLocalTransaction, CommandType.Text, sqlQuery)
+                If rdr.HasRows Then
+                    rdr.Read()
+                    adminData = New AdminData()
+                    adminData.ImageID = CInt(rdr("image_id"))
+                    adminData.AdNumber = CInt(rdr("AD_NBR"))
+                    adminData.AdDesc = CStr(rdr("ad_desc"))
+                    adminData.AdType = CStr(rdr("media_type_desc"))
+                End If
+            End Using
+
+        Catch ex As Exception
+            Throw
+        End Try
+        Return adminData
+    End Function
+    Public Function UpdateAdNumberAndImageID(ByVal skuDetailsTable As DataTable) As DataTable
+        Dim tempTableQuery As String = String.Empty
+        Dim updateStatement As String = String.Empty
+        Dim selectQuery As String = String.Empty
+        Dim updatedTable As DataTable = Nothing
+
+        Try
+            tempTableQuery = GetSKUDetailsTempTableQuery()
+            Using sqlCon As SqlConnection = New SqlConnection(ConnectionStringLocalTransaction)
+                sqlCon.Open()
+
+                Dim sqlComm As SqlCommand = New SqlCommand(tempTableQuery, sqlCon)
+                sqlComm.ExecuteNonQuery()
+                'Create the temp table
+                ExecuteNonQuery(ConnectionStringLocalTransaction, CommandType.Text, tempTableQuery, Nothing)
+
+                'Write the data from SKU details data table to the temp table
+                Using bulkCopy As SqlBulkCopy = New SqlBulkCopy(ConnectionStringLocalTransaction)
+                    bulkCopy.BulkCopyTimeout = 700
+                    bulkCopy.DestinationTableName = "#TmpSKUDetail"
+                    bulkCopy.WriteToServer(skuDetailsTable)
+                    bulkCopy.Close()
+                End Using
+
+                'Now we have the temp table with data, so update the data from admin
+                updateStatement = GetAdNumAndImageIDUpdateStatement()
+                ExecuteNonQuery(ConnectionStringLocalTransaction, CommandType.Text, updateStatement, Nothing)
+                selectQuery = "SELECT * FROM #TmpSKUDetail"
+                updatedTable = ExecGetDataTable(ConnectionStringLocalTransaction, CommandType.Text, selectQuery, Nothing)
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+    Private Function GetSKUDetailsTempTableQuery() As String
+        Dim tempTableQuery As String = String.Empty
+
+        tempTableQuery = "CREATE TABLE #TmpSKUDetail (GMM VARCHAR(100), DMM VARCHAR(100)" &
+            ", BUYER VARCHAR(100), FOB VARCHAR(100), DEPT VARCHAR(100), Class VARCHAR(100)" &
+            ", INTERNAL_STYLE_NUM DECIMAL(15,0), CLR_CDE INTEGER, SKU_NUM DECIMAL(15,0)" &
+            ", UPC_NUM DECIMAL(15,0), SS_DATE DATE, SAMPLE_REQ_DATE DATE, CMR_DATE DATE, SAMPLE_DUE_DATE DATE" &
+            ", PO_APPROVAL_DTE DATE, DC_SHIP_DTE DATE, TURN_IN_DATE DATE" &
+            ", FIRST_RC_DATE DATE, COPY_READY_DATE DATE, PRODUCT_READY_DATE DATE" &
+            ", PRODUCT_ACTIVE_DATE DATE, AD_NUM INTEGER, AD_DESC VARCHAR(200)" &
+            ", AD_TYPE VARCHAR(100), IMAGE_ID_NUM INTEGER, IMAGE_SHOT_DATE DATE" &
+            ", IMAGE_READY_DATE DATE)"
+
+        Return tempTableQuery
+    End Function
+
+    Private Function GetAdNumAndImageIDUpdateStatement() As String
+        Dim updateStatement As String = "UPDATE #TmpSKUDetail " &
+            " SET AD_NUM = ADM.AD_NBR, " &
+            " AD_TYPE = MT.media_type_desc, " &
+            " IMAGE_ID_NUM = IMN.image_id " &
+            " FROM  [tempdb].[dbo].[##OOOH192] FC " &
+            " INNER JOIN [informix].[merch] AS MER " &
+            " ON FC.internal_style_num = MER.internal_style_num " &
+            " AND FC.clr_cde = MER.vendor_color_code" &
+            " INNER JOIN [informix].[ad_merch] AS ADM" &
+            " ON MER.MERCH_ID = ADM.MERCH_ID " &
+            " INNER JOIN  [informix].[ad_info] AS AD" &
+            " ON ADM.AD_NBR = AD.AD_NBR " &
+            " INNER JOIN [informix].[media_type] AS MT " &
+            " ON AD.media_type_cd = MT.media_type_cd " &
+            " LEFT OUTER JOIN [informix].[image_merch_new] AS IMN " &
+            " ON ADM.MERCH_ID = IMN.MERCH_ID"
+
+        Return updateStatement
+    End Function
+End Class

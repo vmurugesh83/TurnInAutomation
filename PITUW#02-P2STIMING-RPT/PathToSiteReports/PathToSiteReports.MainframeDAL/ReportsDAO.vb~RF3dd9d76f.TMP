@@ -1,0 +1,346 @@
+﻿Imports System.Configuration
+Imports BonTon.DBUtility.DB2Helper
+Imports IBM.Data.DB2
+Imports PathToSiteReports.BusinessEntities
+Imports PathToSiteReports.Factory
+
+Public Class ReportsDAO
+    'Static constants 
+    Private Shared _spSchema As String = ConfigurationManager.AppSettings("SPSchema")
+    Private Shared _dbSchema As String = ConfigurationManager.AppSettings("DB2Schema")
+    'Public Function GetSKUDetailReport() As List(Of SKUDetail)
+    Public Function GetSKUDetailReport() As DataTable
+        Dim sql As String = String.Empty
+        Dim skuDetailTable As DataTable = Nothing
+
+        Try
+            'Execute OO Query
+            sql = GetTimingReportSKUDetailsOOQuery()
+            skuDetailTable = ExecGetDataTable(ConnectionStringLocalTransaction, CommandType.Text, sql, Nothing)
+            'Using rdr As DB2DataReader = ExecuteReader(ConnectionStringLocalTransaction, CommandType.Text, sql, Nothing)
+            '    While (rdr.Read())
+            '        skuDetails.Add(ReportFactory.ConstructSKUDetail(rdr))
+            '    End While
+            'End Using
+
+            ''Execute OH Query
+            sql = GetTimingReportSKUDetailsOHQuery()
+            skuDetailTable.Merge(ExecGetDataTable(ConnectionStringLocalTransaction, CommandType.Text, sql, Nothing))
+            'Using rdr As DB2DataReader = ExecuteReader(ConnectionStringLocalTransaction, CommandType.Text, sql, Nothing)
+            '    While (rdr.Read())
+            '        skuDetails.Add(ReportFactory.ConstructSKUDetail(rdr))
+            '    End While
+            'End Using
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return skuDetailTable
+    End Function
+    Public Function GetSKUDetailsListFromDataTable(ByVal skuDetails As DataTable) As List(Of SKUDetail)
+        Dim resultList As New List(Of SKUDetail)
+
+        Using rdr As DataTableReader = skuDetails.CreateDataReader()
+            While (rdr.Read())
+                resultList.Add(ReportFactory.ConstructSKUDetailFromDataTableReader(rdr))
+            End While
+        End Using
+
+        Return resultList
+    End Function
+
+    Public Function GetSKUWithOHReceipt(ByVal startDate As Date, ByVal endDate As Date) As DataTable
+        Dim sql As String = String.Empty
+        Dim ohReceiptTable As DataTable = Nothing
+
+        Try
+
+            sql = GetPathToSiteReportOHQuery(startDate, endDate)
+            ohReceiptTable = ExecGetDataTable(ConnectionStringLocalTransaction, CommandType.Text, sql, Nothing)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return ohReceiptTable
+    End Function
+
+    Private Function GetTimingReportSKUDetailsOOQuery() As String
+        Dim sqlQuery As String = String.Format("SELECT DISTINCT" &
+                " CAST(TMS206.GMM_ID AS VARCHAR(4)) || ' - ' || TMS206.GMM_DESC AS GMM, " &
+                " CAST(TMS207.DMM_ID AS VARCHAR(4)) || ' - ' || TMS207.DMM_DESC AS DMM," &
+                " CAST(TMS208.BUYER_ID AS VARCHAR(4)) || ' - ' || TMS208.BUYER_DESC AS BUYER," &
+                " CAST(TMS212.FOB_ID AS VARCHAR(4)) || ' - ' || TMS212.FOB_DESC AS FOB," &
+                " CAST(TMS213.DEPT_ID AS VARCHAR(4)) || ' - ' || TMS213.DEPT_SHORT_DESC AS DEPT," &
+                " CAST(TMS214.CLASS_ID AS VARCHAR(4)) || ' - ' || TMS214.CLASS_LONG_DESC AS Class," &
+                " TSS100.INTERNAL_STYLE_NUM," &
+                " TSS200.CLR_CDE, " &
+                " TSS200.SKU_NUM, " &
+                " TSS200.UPC_NUM " &
+                " ,DATE((SELECT MIN(DATE_MAINT_TS)  FROM " &
+                " {0}.TSS300ISN_SKU_AUD WHERE SKU_NUM = TSS200.SKU_NUM " &
+                " AND INTERNAL_STYLE_NUM = TSS200.INTERNAL_STYLE_NUM AND DATE(DATE_MAINT_TS) > '0001-01-01')) AS SS_DATE " &
+                " ,TTU450.SMPL_REQ_CRTE_TS AS SAMPLE_REQ_DATE " &
+                " ,CAST(TTU450.CMR_CHECK_IN_DTE AS VARCHAR(10)) AS CMR_DATE, " &
+                " TTU450.SAMPLE_DUE_DTE AS SAMPLE_DUE_DATE, " &
+                " (SELECT MIN(DATE(TPO105.PO_TRACK_TS)) FROM " &
+                " {0}.TPO105PROCESS_LOG AS TPO105 " &
+                " WHERE TPO105.PO_ID = PurchaseOrder.PO_ID " &
+                " AND TPO105.PO_TRACK_CDE IN ('AP') " &
+                " AND DATE(TPO105.PO_TRACK_TS) > '0001-01-01') AS PO_APPROVAL_DTE, " &
+                " (SELECT MIN(DATE(TPO100.)) FROM " &
+                " {0}.TPO100SUMMARY AS TPO100 " &
+                " WHERE TPO100.PO_ID = PurchaseOrder.PO_ID " &
+                " AND TPO100.DC_SHIP_DTE > '0001-01-01') AS DC_SHIP_DTE," &
+                " DATE(TTU410.LAST_MOD_TS) AS TURN_IN_DATE," &
+                " (SELECT DATE(MIN(RECEIPT_CREATE_TS)) FROM" &
+                " {0}.TDL101RECEIPT_DTL  WHERE PO_ID = PurchaseOrder.PO_ID) AS FIRST_RC_DATE," &
+                " CAST(TEC120.COPY_READY_DTE AS VARCHAR(10)) AS COPY_READY_DATE," &
+                " CAST(TEC120.PRODUCT_READY_DTE AS VARCHAR(10)) AS PRODUCT_READY_DATE," &
+                " CAST(TEC120.ACTIVE_DTE AS VARCHAR(10)) AS PRODUCT_ACTIVE_DATE,    " &
+                " TPO110.LOC_REMAIN_OO_QTY AS Quantity, " &
+                " COALESCE(TPM190.OWN_PRICE_AMT,0.0) AS OWN_PRICE_AMT    " &
+                " FROM {0}.TPO110OPEN_ORDER AS TPO110" &
+                " INNER JOIN {0}.TSS200SKU AS TSS200 " &
+                " ON TPO110.SKU_NUM = TSS200.SKU_NUM" &
+                " INNER JOIN {0}.TSS100ISN AS TSS100" &
+                " ON TSS200.INTERNAL_STYLE_NUM = TSS100.INTERNAL_STYLE_NUM" &
+                " INNER JOIN {0}.TMS213DEPARTMENT AS TMS213" &
+                " ON TSS100.DEPT_ID = TMS213.DEPT_ID" &
+                " INNER JOIN {0}.TMS208BUYER AS TMS208 " &
+                " ON TMS213.BUYER_ID = TMS208.BUYER_ID " &
+                " INNER JOIN {0}.TMS207DMM AS TMS207 " &
+                " ON TMS208.DMM_ID = TMS207.DMM_ID " &
+                " INNER JOIN {0}.TMS206GMM AS TMS206 " &
+                " ON TMS207.GMM_ID = TMS206.GMM_ID " &
+                " INNER JOIN {0}.TMS212FOB AS TMS212 " &
+                " ON TMS213.FOB_ID = TMS212.FOB_ID" &
+                " INNER JOIN {0}.TMS214DEPT_CLASS AS TMS214" &
+                " ON TSS100.CLASS_ID = TMS214.CLASS_ID" &
+                " AND TSS100.DEPT_ID = TMS214.DEPT_ID" &
+                " INNER JOIN {0}.TPM190CUR_SKU_PRC AS TPM190 " &
+                " ON TPM190.SKU_NUM = TSS200.SKU_NUM" &
+                " LEFT OUTER JOIN {0}.TTU450SAMPLE_REQ AS TTU450" &
+                " ON TSS200.INTERNAL_STYLE_NUM = TTU450.INTERNAL_STYLE_NUM" &
+                " AND TSS200.CLR_CDE = TTU450.CLR_CDE " &
+                " AND UPPER(TTU450.SAMPLE_STATUS_DESC) NOT IN ('RETURNED','DISPOSED','MISSING')" &
+                " LEFT OUTER JOIN {0}.TTU410MERCHANDISE AS TTU410 " &
+                " ON TSS200.INTERNAL_STYLE_NUM = TTU410.INTERNAL_STYLE_NUM" &
+                " AND TSS200.CLR_CDE = TTU410.CLR_CDE " &
+                " LEFT OUTER JOIN {0}.TEC150_PRODUCT_UPC AS TEC150" &
+                " ON TSS200.UPC_NUM = TEC150.UPC_NUM " &
+                " AND TEC150.ACTIVE_FLG IN ('D','R','I','A')" &
+                " LEFT OUTER JOIN {0}.TEC150_PRODUCT_UPC AS TEC150_UPC" &
+                " ON TSS200.UPC_NUM = TEC150_UPC.UPC_NUM" &
+                " LEFT OUTER JOIN {0}.TEC120_PRODUCT AS TEC120" &
+                " ON TEC150_UPC.PRODUCT_CDE = TEC120.PRODUCT_CDE" &
+                " LEFT OUTER JOIN (SELECT TPO110.SKU_NUM, MIN(TPO107.PO_ID) AS PO_ID FROM " &
+                " {0}.TPO110OPEN_ORDER AS TPO110 " &
+                " INNER JOIN {0}.TPO107SKU AS TPO107" &
+                " ON TPO110.SKU_NUM = TPO107.SKU_NUM" &
+                " WHERE TPO110.LOC_ID IN (192,193,195)" &
+                " AND TPO110.PO_STATUS_CDE IN ('AU','AP','VR')" &
+                " AND TPO110.LOC_REMAIN_OO_QTY > 0" &
+                " GROUP BY TPO110.SKU_NUM) AS PurchaseOrder " &
+                " ON TPO110.SKU_NUM = PurchaseOrder.SKU_NUM" &
+                " WHERE TPO110.LOC_ID IN (192,193,195)" &
+                " AND TPO110.PO_STATUS_CDE IN ('AU','AP','VR')" &
+                " AND TPO110.LOC_REMAIN_OO_QTY > 0" &
+                " AND TEC150.UPC_NUM IS NULL " &
+                " FETCH FIRST 100 ROWS ONLY WITH UR;", _dbSchema)
+        Return sqlQuery
+    End Function
+    Private Function GetTimingReportSKUDetailsOHQuery() As String
+        Dim sqlQuery As String = String.Format("SELECT DISTINCT" &
+                " CAST(TMS206.GMM_ID AS VARCHAR(4)) || ' - ' || TMS206.GMM_DESC AS GMM, " &
+                " CAST(TMS207.DMM_ID AS VARCHAR(4)) || ' - ' || TMS207.DMM_DESC AS DMM," &
+                " CAST(TMS208.BUYER_ID AS VARCHAR(4)) || ' - ' || TMS208.BUYER_DESC AS BUYER," &
+                " CAST(TMS212.FOB_ID AS VARCHAR(4)) || ' - ' || TMS212.FOB_DESC AS FOB," &
+                " CAST(TMS213.DEPT_ID AS VARCHAR(4)) || ' - ' || TMS213.DEPT_SHORT_DESC AS DEPT," &
+                " CAST(TMS214.CLASS_ID AS VARCHAR(4)) || ' - ' || TMS214.CLASS_LONG_DESC AS Class," &
+                " TSS100.INTERNAL_STYLE_NUM," &
+                " TSS200.CLR_CDE, " &
+                " TSS200.SKU_NUM, " &
+                " TSS200.UPC_NUM " &
+                " ,DATE((SELECT MIN(DATE_MAINT_TS)  FROM " &
+                "{0}.TSS300ISN_SKU_AUD WHERE SKU_NUM = TSS200.SKU_NUM AND INTERNAL_STYLE_NUM = TSS200.INTERNAL_STYLE_NUM " &
+                "AND DATE(DATE_MAINT_TS) > '0001-01-01')) AS SS_DATE " &
+                " ,TTU450.SMPL_REQ_CRTE_TS AS SAMPLE_REQ_DATE " &
+                " ,CAST(TTU450.CMR_CHECK_IN_DTE AS VARCHAR(10)) AS CMR_DATE, " &
+                " TTU450.SAMPLE_DUE_DTE AS SAMPLE_DUE_DATE, " &
+                " (SELECT MIN(DATE(TPO105.PO_TRACK_TS)) FROM " &
+                " {0}.TPO105PROCESS_LOG AS TPO105 " &
+                " WHERE TPO105.PO_ID = PurchaseOrder.PO_ID " &
+                " AND TPO105.PO_TRACK_CDE IN ('AP') " &
+                " AND DATE(TPO105.PO_TRACK_TS) > '0001-01-01') AS PO_APPROVAL_DTE, " &
+                " (SELECT MIN(DATE(TPO100.DC_SHIP_DTE)) FROM " &
+                " {0}.TPO100SUMMARY AS TPO100 " &
+                " WHERE TPO100.PO_ID = PurchaseOrder.PO_ID " &
+                " AND TPO100.DC_SHIP_DTE > '0001-01-01') AS DC_SHIP_DTE," &
+                " DATE(TTU410.LAST_MOD_TS) AS TURN_IN_DATE," &
+                " (SELECT DATE(MIN(RECEIPT_CREATE_TS)) FROM" &
+                " {0}.TDL101RECEIPT_DTL  WHERE PO_ID = PurchaseOrder.PO_ID) AS FIRST_RC_DATE," &
+                " CAST(TEC120.COPY_READY_DTE AS VARCHAR(10)) AS COPY_READY_DATE," &
+                " CAST(TEC120.PRODUCT_READY_DTE AS VARCHAR(10)) AS PRODUCT_READY_DATE," &
+                " CAST(TEC120.ACTIVE_DTE AS VARCHAR(10)) AS PRODUCT_ACTIVE_DATE,    " &
+                " OH.SKU_LOC_CUR_OH_QTY AS SKU_LOC_CUR_OH_QTY AS Quantity, " &
+                " COALESCE(TPM190.OWN_PRICE_AMT,0.0) AS OWN_PRICE_AMT    " &
+                " FROM {0}.VUI100SKU_LOC_OH AS OH " &
+                " INNER JOIN {0}.TSS200SKU AS TSS200 " &
+                " ON OH.SKU_NUM = TSS200.SKU_NUM" &
+                " INNER JOIN {0}.TSS100ISN AS TSS100" &
+                " ON TSS200.INTERNAL_STYLE_NUM = TSS100.INTERNAL_STYLE_NUM" &
+                " INNER JOIN {0}.TMS213DEPARTMENT AS TMS213" &
+                " ON TSS100.DEPT_ID = TMS213.DEPT_ID" &
+                " INNER JOIN {0}.TMS208BUYER AS TMS208 " &
+                " ON TMS213.BUYER_ID = TMS208.BUYER_ID " &
+                " INNER JOIN {0}.TMS207DMM AS TMS207 " &
+                " ON TMS208.DMM_ID = TMS207.DMM_ID " &
+                " INNER JOIN {0}.TMS206GMM AS TMS206 " &
+                " ON TMS207.GMM_ID = TMS206.GMM_ID " &
+                " INNER JOIN {0}.TMS212FOB AS TMS212" &
+                " ON TMS213.FOB_ID = TMS212.FOB_ID" &
+                " INNER JOIN {0}.TMS214DEPT_CLASS AS TMS214" &
+                " ON TSS100.CLASS_ID = TMS214.CLASS_ID" &
+                " AND TSS100.DEPT_ID = TMS214.DEPT_ID" &
+                " LEFT OUTER JOIN {0}.TTU450SAMPLE_REQ AS TTU450" &
+                " ON TSS200.INTERNAL_STYLE_NUM = TTU450.INTERNAL_STYLE_NUM" &
+                " AND TSS200.CLR_CDE = TTU450.CLR_CDE" &
+                " AND UPPER(SAMPLE_STATUS_DESC) NOT IN ('RETURNED','DISPOSED','MISSING')" &
+                " LEFT OUTER JOIN {0}.TTU410MERCHANDISE AS TTU410" &
+                " ON TSS200.INTERNAL_STYLE_NUM = TTU410.INTERNAL_STYLE_NUM" &
+                " AND TSS200.CLR_CDE = TTU410.CLR_CDE" &
+                " LEFT OUTER JOIN {0}.TEC150_PRODUCT_UPC AS TEC150" &
+                " ON TSS200.UPC_NUM = TEC150.UPC_NUM " &
+                " AND TEC150.ACTIVE_FLG IN ('D','R','I','A')" &
+                " LEFT OUTER JOIN {0}.TEC150_PRODUCT_UPC AS TEC150_UPC" &
+                " ON TSS200.UPC_NUM = TEC150_UPC.UPC_NUM" &
+                " LEFT OUTER JOIN {0}.TEC120_PRODUCT AS TEC120" &
+                " ON TEC150_UPC.PRODUCT_CDE = TEC120.PRODUCT_CDE" &
+                " LEFT OUTER JOIN (SELECT VUI100.SKU_NUM, MIN(TPO107.PO_ID) AS PO_ID FROM " &
+                " {0}.VUI100SKU_LOC_OH AS VUI100 " &
+                " INNER JOIN {0}.TPO107SKU AS TPO107 " &
+                " ON VUI100.SKU_NUM = TPO107.SKU_NUM" &
+                " WHERE VUI100.LOC_ID IN (192,193,195)" &
+                " AND VUI100.SKU_LOC_CUR_OH_QTY > 0" &
+                " GROUP BY VUI100.SKU_NUM) AS PurchaseOrder " &
+                " ON OH.SKU_NUM = PurchaseOrder.SKU_NUM" &
+                " WHERE OH.LOC_ID IN (192,193,195)" &
+                " AND OH.SKU_LOC_CUR_OH_QTY > 0" &
+                " AND TEC150.UPC_NUM IS NULL " &
+                " FETCH FIRST 100 ROWS ONLY WITH UR", _dbSchema)
+        Return sqlQuery
+    End Function
+    Private Function GetThisWeekINFCReceiptQuery(ByVal startDate As Date, ByVal endDate As Date) As String
+        Dim sqlQuery As String = String.Format("SELECT DISTINCT VUI100.SKU_NUM FROM " &
+                                               " {0}.TPO107SKU AS TPO107" &
+                                               " INNER JOIN {0}.TDL101RECEIPT_DTL AS TDL101 " &
+                                               " ON TPO107.PO_ID = TDL101.PO_ID " &
+                                               " INNER JOIN {0}.VUI100SKU_LOC_OH AS VUI100 " &
+                                               " ON TPO107.SKU_NUM = VUI100.SKU_NUM " &
+                                               " WHERE DATE(RECEIPT_CREATE_TS) BETWEEN '{1}' AND '{2}' " &
+                                               " AND VUI100.SKU_LOC_CUR_OH_QTY > 0 WITH UR;",
+                                               _dbSchema,
+                                               startDate.ToShortDateString(),
+                                               endDate.ToShortDateString())
+
+        Return sqlQuery
+    End Function
+
+    Private Function GetPathToSiteReportOHQuery(ByVal startDate As Date, ByVal endDate As Date) As String
+        Dim sqlQuery As String = String.Format("SELECT DISTINCT " &
+                " CAST(TMS206.GMM_ID AS VARCHAR(4)) || ' - ' || TMS206.GMM_DESC AS GMM, " &
+                " CAST(TMS207.DMM_ID AS VARCHAR(4)) || ' - ' || TMS207.DMM_DESC AS DMM," &
+                " CAST(TMS208.BUYER_ID AS VARCHAR(4)) || ' - ' || TMS208.BUYER_DESC AS BUYER," &
+                " CAST(TMS212.FOB_ID AS VARCHAR(4)) || ' - ' || TMS212.FOB_DESC AS FOB," &
+                " CAST(TMS213.DEPT_ID AS VARCHAR(4)) || ' - ' || TMS213.DEPT_SHORT_DESC AS DEPT," &
+                " CAST(TMS214.CLASS_ID AS VARCHAR(4)) || ' - ' || TMS214.CLASS_LONG_DESC AS Class," &
+                " TSS100.INTERNAL_STYLE_NUM," &
+                " TSS200.CLR_CDE," &
+                " TSS200.SKU_NUM," &
+                " TSS200.UPC_NUM" &
+                " ,DATE((SELECT MIN(DATE_MAINT_TS)  FROM " &
+                " {0}.TSS300ISN_SKU_AUD WHERE SKU_NUM = TSS200.SKU_NUM AND INTERNAL_STYLE_NUM = TSS200.INTERNAL_STYLE_NUM " &
+                " AND DATE(DATE_MAINT_TS) > '0001-01-01')) AS SS_DATE" &
+                " ,TTU450.SMPL_REQ_CRTE_TS AS SAMPLE_REQ_DATE " &
+                " ,CAST(TTU450.CMR_CHECK_IN_DTE AS VARCHAR(10)) AS CMR_DATE, " &
+                " TTU450.SAMPLE_DUE_DTE AS SAMPLE_DUE_DATE, " &
+                " (SELECT MIN(DATE(TPO105.PO_TRACK_TS)) FROM " &
+                " {0}.TPO105PROCESS_LOG AS TPO105 " &
+                " WHERE TPO105.PO_ID = PurchaseOrder.PO_ID" &
+                " AND TPO105.PO_TRACK_CDE IN ('AP') " &
+                " AND DATE(TPO105.PO_TRACK_TS) > '0001-01-01') AS PO_APPROVAL_DTE, " &
+                " (SELECT MIN(DATE(TPO100.DC_SHIP_DTE)) FROM " &
+                " {0}.TPO100SUMMARY AS TPO100 " &
+                " WHERE TPO100.PO_ID = PurchaseOrder.PO_ID" &
+                " AND TPO100.DC_SHIP_DTE > '0001-01-01') AS DC_SHIP_DTE," &
+                " DATE(TTU410.LAST_MOD_TS) AS TURN_IN_DATE," &
+                " (SELECT DATE(MIN(RECEIPT_CREATE_TS)) FROM" &
+                " {0}.TDL101RECEIPT_DTL  WHERE PO_ID = PurchaseOrder.PO_ID) AS FIRST_RC_DATE," &
+                " CAST(TEC120.COPY_READY_DTE AS VARCHAR(10)) AS COPY_READY_DATE," &
+                " CAST(TEC120.PRODUCT_READY_DTE AS VARCHAR(10)) AS PRODUCT_READY_DATE," &
+                " CAST(TEC120.ACTIVE_DTE AS VARCHAR(10)) AS PRODUCT_ACTIVE_DATE," &
+                " COALESCE(OH.SKU_LOC_CUR_OH_QTY,0) AS SKU_LOC_CUR_OH_QTY," &
+                " COALESCE(TPM190.OWN_PRICE_AMT,0.0) AS OWN_PRICE_AMT    " &
+                " FROM {0}.VUI100SKU_LOC_OH AS OH " &
+                " INNER JOIN {0}.TSS200SKU AS TSS200 " &
+                " ON OH.SKU_NUM = TSS200.SKU_NUM" &
+                " INNER JOIN {0}.TPM190CUR_SKU_PRC AS TPM190 " &
+                " ON TPM190.SKU_NUM = TSS200.SKU_NUM" &
+                " INNER JOIN {0}.TSS100ISN AS TSS100" &
+                " ON TSS200.INTERNAL_STYLE_NUM = TSS100.INTERNAL_STYLE_NUM" &
+                " INNER JOIN {0}.TMS213DEPARTMENT AS TMS213" &
+                " ON TSS100.DEPT_ID = TMS213.DEPT_ID" &
+                " INNER JOIN {0}.TMS208BUYER AS TMS208 " &
+                " ON TMS213.BUYER_ID = TMS208.BUYER_ID" &
+                " INNER JOIN {0}.TMS207DMM AS TMS207 " &
+                " ON TMS208.DMM_ID = TMS207.DMM_ID " &
+                " INNER JOIN {0}.TMS206GMM AS TMS206 " &
+                " ON TMS207.GMM_ID = TMS206.GMM_ID " &
+                " INNER JOIN {0}.TMS212FOB AS TMS212" &
+                " ON TMS213.FOB_ID = TMS212.FOB_ID" &
+                " INNER JOIN {0}.TMS214DEPT_CLASS AS TMS214" &
+                " ON TSS100.CLASS_ID = TMS214.CLASS_ID" &
+                " AND TSS100.DEPT_ID = TMS214.DEPT_ID" &
+                " LEFT OUTER JOIN {0}.TTU450SAMPLE_REQ AS TTU450" &
+                " ON TSS200.INTERNAL_STYLE_NUM = TTU450.INTERNAL_STYLE_NUM" &
+                " AND TSS200.CLR_CDE = TTU450.CLR_CDE" &
+                " AND UPPER(SAMPLE_STATUS_DESC) NOT IN ('RETURNED','DISPOSED','MISSING')" &
+                " LEFT OUTER JOIN {0}.TTU410MERCHANDISE AS TTU410" &
+                " ON TSS200.INTERNAL_STYLE_NUM = TTU410.INTERNAL_STYLE_NUM" &
+                " AND TSS200.CLR_CDE = TTU410.CLR_CDE" &
+                " LEFT OUTER JOIN {0}.TEC150_PRODUCT_UPC AS TEC150" &
+                " ON TSS200.UPC_NUM = TEC150.UPC_NUM " &
+                " AND TEC150.ACTIVE_FLG IN ('D','R','I','A')" &
+                " LEFT OUTER JOIN {0}.TEC150_PRODUCT_UPC AS TEC150_UPC" &
+                " ON TSS200.UPC_NUM = TEC150_UPC.UPC_NUM" &
+                " LEFT OUTER JOIN {0}.TEC120_PRODUCT AS TEC120" &
+                " ON TEC150_UPC.PRODUCT_CDE = TEC120.PRODUCT_CDE" &
+                " LEFT OUTER JOIN (SELECT VUI100.SKU_NUM, MIN(TPO107.PO_ID) AS PO_ID FROM " &
+                " {0}.VUI100SKU_LOC_OH AS VUI100 " &
+                " INNER JOIN {0}.TPO107SKU AS TPO107" &
+                " ON VUI100.SKU_NUM = TPO107.SKU_NUM" &
+                " WHERE VUI100.LOC_ID IN (192,193,195)" &
+                " AND VUI100.SKU_LOC_CUR_OH_QTY > 0" &
+                " GROUP BY VUI100.SKU_NUM) AS PurchaseOrder " &
+                " ON OH.SKU_NUM = PurchaseOrder.SKU_NUM" &
+                " WHERE OH.LOC_ID IN (192,193,195)" &
+                " AND OH.SKU_LOC_CUR_OH_QTY > 0" &
+                " AND TEC150.UPC_NUM IS NULL " &
+                " AND TSS200.SKU_NUM IN (SELECT DISTINCT VUI100.SKU_NUM FROM {0}.VUI100SKU_LOC_OH AS VUI100" &
+                " INNER JOIN {0}.TPO107SKU AS TPO107" &
+                " ON VUI100.SKU_NUM = TPO107.SKU_NUM" &
+                " INNER JOIN {0}.TDL100RECEIPT_HDR AS TDL100" &
+                " ON TPO107.PO_ID = TDL100.PO_ID" &
+                " WHERE VUI100.LOC_ID IN (192,193,195)" &
+                " AND VUI100.SKU_LOC_CUR_OH_QTY > 0" &
+                " AND TDL100.LOC_ID = 192 " &
+                " AND DATE(RECEIPT_CREATE_TS) BETWEEN '{1}' AND '{2}')" &
+                " FETCH FIRST 100 ROWS ONLY " &
+                " WITH UR;",
+                _dbSchema,
+                startDate.ToShortDateString(),
+                endDate.ToShortDateString())
+
+        Return sqlQuery
+    End Function
+End Class

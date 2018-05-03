@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Trees>
+  <Tree Id="RTS|AP Adjustments|New">
+    <Node Text="RTS" Expanded="True">
+      <Node Text="AP Adjustments" Expanded="True">
+        <Node Id="New" Text="" Expanded="True">
+          <Node Id="DocNum" Text="Document #:" Expanded="True">
+            <Node Id="DocNum_1" Text ="" />
+          </Node>
+          <Node Id="VndNum" Text="Vendor #:" Expanded="True" >
+            <Node Id="VndNum_1" Text ="" />
+          </Node>
+          <Node Id="VndName" Text="Vendor Name:" Expanded="True">
+            <Node Id="VndName_1" Text ="" />
+          </Node>
+        </Node>
+      </Node>
+    </Node>
+  </Tree>
+  <Tree Id="RTS|Adjustment Detail|New">
+    <Node Text="RTS" Expanded="True">
+      <Node Text="AP Adjustments" Expanded="True">
+        <Node Id="New" Text="" Expanded="True">
+          <Node Id="DocNum" Text="Document #:" Expanded="True">
+            <Node Id="DocNum_1" Text ="" />
+          </Node>
+          <Node Id="VndNum" Text="Vendor #:" Expanded="True" >
+            <Node Id="VndNum_1" Text ="" />
+          </Node>
+          <Node Id="VndName" Text="Vendor Name:" Expanded="True">
+            <Node Id="VndName_1" Text ="" />
+          </Node>
+        </Node>
+      </Node>
+    </Node>
+  </Tree>
+  <Tree Id="Management|TransactionType">
+    <Node Text="Management" Expanded="True">
+      <Node Text="TransactionType" Expanded="True">
+        <Node Id="TranType" Text="Transaction Type:" Expanded="True">
+          <Node Id="TranType_1" Text ="" />
+        </Node>
+      </Node>
+    </Node>
+  </Tree>
+</Trees>
+

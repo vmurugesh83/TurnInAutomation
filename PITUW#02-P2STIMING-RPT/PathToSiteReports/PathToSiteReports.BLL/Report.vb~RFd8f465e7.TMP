@@ -1,0 +1,21 @@
+﻿Imports PathToSiteReports.BusinessEntities
+Imports PathToSiteReports.MainframeDAL
+Imports PathToSiteReports.SQLDAL
+
+Public Class Report
+    Public Function GetAutoTurnInReportInfo() As List(Of SKUDetail)
+        Dim reportDAO As New ReportsDAO()
+        Dim adminDAO As New AdminDAO()
+        Dim skuDetails As List(Of SKUDetail) = reportDAO.GetSKUDetailReport()
+        Dim adminData As AdminData = Nothing
+
+        If Not skuDetails Is Nothing AndAlso skuDetails.Count > 0 Then
+            For Each item As SKUDetail In skuDetails
+                adminData = Nothing
+            Next
+        End If
+
+
+        Return skuDetails
+    End Function
+End Class

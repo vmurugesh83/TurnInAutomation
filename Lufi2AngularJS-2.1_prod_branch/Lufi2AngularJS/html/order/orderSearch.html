@@ -1,0 +1,175 @@
+﻿<div class="row scrollresults" id="searchPageWrapper" style="overflow-y: hidden;max-height:550px;min-height:90px;position:relative">
+    <div class="col-sm-12 column">
+        <form name="orderSearch" novalidate ng-submit="search()">
+            <div class="row">
+                <div class="col-sm-12 backgroundLtGray backgroundLtGrayBox">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="row searchRowMargin">
+                                <div class="col-sm-4">
+                                    Last Name
+                                </div>
+                                <div class="col-sm-8 column">
+                                    <input name="lastName" ng-model="formInput.lastName" ng-change="validate()" type="text" class="form-control" ng-focus="lastNameFocus=true;" ng-blur="lastNameFocus=false" ng-class="{'redInput':((validation.fullName.isShowError || validation.lastName.isShowError) && !validation.form.valid)}" />
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-6">
+                                            <div class="orderSearchTooltip" ng-show="(validation.fullName.isShowError || validation.lastName.isShowError) && !validation.form.valid && lastNameFocus">
+                                                <span style="width:100%;" ng-show="validation.lastName.isShowError && !validation.form.valid && lastNameFocus">{{validation.lastName.error}}</span>
+                                                <span style="width:100%;" ng-show="validation.fullName.isShowError && !validation.form.valid && lastNameFocus">{{validation.fullName.error}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row searchRowMargin">
+                                <div class="col-sm-4 column">
+                                    First Name
+                                </div>
+                                <div class="col-sm-8 column">
+                                    <input name="firstName" ng-model="formInput.firstName" ng-change="validate()" type="text" class="form-control" ng-focus="firstNameFocus=true;" ng-blur="firstNameFocus=false" ng-class="{'redInput':((validation.fullName.isShowError || validation.firstName.isShowError) && !validation.form.valid)}" />
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-6">
+                                            <div class="orderSearchTooltip" ng-show="(validation.fullName.isShowError || validation.firstName.isShowError) && !validation.form.valid && firstNameFocus">
+                                                <div ng-show="validation.firstName.isShowError && !validation.form.valid && firstNameFocus">{{validation.firstName.error}}</div>
+                                                <div ng-show="validation.fullName.isShowError && !validation.form.valid && firstNameFocus">{{validation.fullName.error}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row searchRowMargin">
+                                <div class="col-sm-4">
+                                    Order Number
+                                </div>
+                                <div class="col-sm-8">
+                                    <input name="orderNumber" ng-model="formInput.orderNumber" ng-change="validate()" ng-keypress="numberValidator(event)" type="text" class="form-control" autofocus="" ng-focus="orderNumberFocus=true;" ng-blur="orderNumberFocus=false" ng-class="{'yellowInput':validation.orderNumber.isShowError}" />
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-6">
+                                            <div class="orderSearchTooltip" ng-show="validation.orderNumber.isShowError && orderNumberFocus">
+                                                <div>{{validation.orderNumber.error}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    Gift Registry
+                                </div>
+                                <div class="col-sm-8">
+                                    <input name="giftRegistry" ng-model="formInput.giftRegistry" ng-change="validate()" type="text" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="row searchRowMargin">
+                                <div class="col-sm-4">
+                                    Email Address
+                                </div>
+                                <div class="col-sm-8">
+                                    <input name="email" ng-model="formInput.email" ng-change="validate()" type="text" class="form-control" ng-focus="emailFocus=true;" ng-blur="emailFocus=false" ng-class="{'redInput':(validation.email.isShowError && !validation.form.valid)}" />
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-6">
+                                            <div class="orderSearchTooltip" ng-show="validation.email.isShowError && !validation.form.valid && emailFocus">
+                                                <div>{{validation.email.error}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row searchRowMargin">
+                                <div class="col-sm-4">
+                                    Phone Number
+                                </div>
+                                <div class="col-sm-8">
+                                    <input name="phoneNumber" ng-model="formInput.phoneNumber" ng-change="formatPhone();validate()" ng-keypress="numberValidator(event)" maxlength="13" type="text" class="form-control" ng-focus="phoneFocus=true;" ng-blur="phoneFocus=false" ng-class="{'redInput':(validation.phoneNumber.isShowError && !validation.form.valid)}" />
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-6">
+                                            <div class="orderSearchTooltip" ng-show="validation.phoneNumber.isShowError && phoneFocus">
+                                                <div>{{validation.phoneNumber.error}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row searchRowMargin">
+                                <div class="col-sm-4">
+                                    Zip Code
+                                </div>
+                                <div class="col-sm-8">
+                                    <input name="zipCode" ng-model="formInput.zipCode" ng-change="validate()" ng-keypress="numberValidator(event)" maxlength="5" type="text" class="form-control" ng-focus="zipFocus=true;" ng-blur="zipFocus=false" ng-class="{'redInput':(validation.zipCode.isShowError && !validation.form.valid)}" />
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-6">
+                                            <div class="orderSearchTooltip" ng-show="validation.zipCode.isShowError && zipFocus">
+                                                <div>{{validation.zipCode.error}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <span style="line-height: 3em;">Show History Orders</span>
+                                </div>
+                                <div class="col-sm-7">
+                                    <button class="shippingLineSelectButton" type="button" style="margin-left:6px;" ng-click="toggleHistorySearch()"><i class="fa" ng-class="formInput.showHistoryOrders === 'Y' ? checkedButtonFont : ''"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button ng-click="clearSearch()" type="button" class="btn btn-default btn-block">Clear</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-success btn-block orderSearchConfirm" ng-disabled="!validation.form.valid">
+                                        <i class="fa fa-search" style="color:white;"></i>
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div id="wrapper" iscroll class="col-sm-12 column" style="overflow-y: hidden;max-height:320px;min-height:90px;position:relative">
+                <table ng-table="tableParams" class="table">
+                    <tr ng-repeat="order in $data">
+                        <td ng-click="openOrderDetail(order)" data-title="'Order Number'" sortable="'_OrderNo'" ng-class=" {'sorted': params.sorting()['_OrderNo']}">
+                            <a href=""> {{order._OrderNo}} </a>
+                        </td>
+                        <td data-title="'First Name'" sortable="'_CustomerFirstName'" ng-class=" {'sorted': params.sorting()['_CustomerFirstName']}">
+                            {{order._CustomerFirstName}}
+                        </td>
+                        <td data-title="'Last Name'" sortable="'_CustomerLastName'" ng-class=" {'sorted': params.sorting()['_CustomerLastName']}">
+                            {{order._CustomerLastName}}
+                        </td>
+                        <td data-title="'Address'" sortable="'PersonInfoBillTo._AddressLine1'" ng-class=" {'sorted': params.sorting()['PersonInfoBillTo._AddressLine1']}">
+                            {{order.PersonInfoBillTo |oneLineAddress:'short'}}
+                        </td>
+                        <td data-title="'Email'" sortable="'_CustomerEMailID'" ng-class=" {'sorted': params.sorting()['_CustomerEMailID']}">
+                            {{order._CustomerEMailID}}
+                        </td>
+                        <td data-title="'Order Date'" sortable="'_OrderDate'" ng-class=" {'sorted': params.sorting()['_OrderDate']}">
+                            {{order._OrderDate | date:'short'}}
+                        </td>
+                        <td data-title="'Type'" sortable="'_orderType'" ng-class=" {'sorted': params.sorting()['_orderType']}">
+                            {{order._orderType}}
+                        </td>
+                        <td data-title="'Status'" sortable="'_Status'" ng-class=" {'sorted': params.sorting()['_Status']}">
+                            {{order._Status}}
+                        </td>
+                        <td data-title="'Total'" sortable="'_GrandTotal'" ng-class=" {'sorted': params.sorting()['_GrandTotal']}">
+                            {{order._GrandTotal | currency}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
